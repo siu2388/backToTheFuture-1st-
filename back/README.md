@@ -51,7 +51,7 @@ yarn start
 ## 파일 구조 설명
 
 1. src폴더는 크게는 routers, services, db의 3개 폴더로 구분됩니다.
-**현재는 User MVP 코드만 있습니다.**
+   **현재는 User MVP 코드만 있습니다.**
 
 - routers:
   - request와 response가 처리됩니다. MVP 별로 1개씩, 총 5개 파일이 있게 됩니다.
@@ -71,3 +71,5 @@ yarn start
 - src/middlewares:
   - jwt토큰을 다루는 미들웨어인 login_required.js
   - 학습 편의를 위해 일괄 http 400 코드로 에러를 변환하는 에러핸들러인 errorMiddleware.js
+
+2023
