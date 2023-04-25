@@ -27,6 +27,7 @@ class userAuthService {
     return createdNewUser;
   }
 
+  //로그인
   static async getUser({ email, password }) {
     // 이메일 db에 존재 여부 확인
     const user = await User.findByEmail({ email });
@@ -42,7 +43,7 @@ class userAuthService {
       password,
       correctPasswordHash
     );
-    if (!isPasswordCorrect) {
+    if (!isPasswordCorrect) {  //로그인실패(비번불일치)
       const errorMessage =
         "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -57,7 +58,7 @@ class userAuthService {
     const name = user.name;
     const description = user.description;
 
-    const loginUser = {
+    const loginUser = { //컨트롤러층에 반환할 객체
       token,
       id,
       email,
@@ -112,7 +113,7 @@ class userAuthService {
 
     return user;
   }
-
+  // 입력된 id로 db에서 찾아서 반환
   static async getUserInfo({ user_id }) {
     const user = await User.findById({ user_id });
 
