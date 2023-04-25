@@ -55,7 +55,7 @@ function LoginForm() {
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
-      alert('로그인에 실패하였습니다.');
+      alert("로그인에 실패하였습니다.");
     }
   };
 
