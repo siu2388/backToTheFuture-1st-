@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+import * as Api from "../../api";
 
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
+  const [grade, setGrade] = useState("");
+  const [date, setDate] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,6 +43,25 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         />
       </Form.Group>
 
+      <Form.Group controlId="formBasicGrade" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="상"
+          value={grade}
+          onChange={(e) => setGrade(e.target.value)}
+        />
+      </Form.Group>
+
+
+      <Form.Group controlId="formBasicDate" className="mt-3">
+        <Form.Control
+          type="date"
+          placeholder="수상 날짜"
+          value={description}
+          onChange={(e) => setDate(e.target.value)}
+        />
+      </Form.Group>
+
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
@@ -49,6 +70,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
+
+
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

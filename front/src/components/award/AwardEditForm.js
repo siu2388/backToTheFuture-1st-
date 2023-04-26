@@ -7,6 +7,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   const [title, setTitle] = useState(currentAward.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
+  const [grade, setGrade] = useState("");
+  const [date, setDate] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     await Api.put(`awards/${currentAward.id}`, {
       user_id,
       title,
+      grade,
+      date,
       description,
     });
 
@@ -38,6 +42,24 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
           placeholder="수상내역"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicGrade">
+        <Form.Control
+          type="text"
+          placeholder="상"
+          value={grade}
+          onChange={(e) => setGrade(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicDate">
+        <Form.Control
+          type="date"
+          placeholder="수상 날짜"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
         />
       </Form.Group>
 
