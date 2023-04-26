@@ -5,7 +5,6 @@ import * as Api from "../../api";
 function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("")
-  //useState로 description 상태를 생성함.
   const [authority, setAuthority] = useState("")
   const [registerNum, setRegisterNum] = useState("")
   const [grade, setGrade] = useState("")

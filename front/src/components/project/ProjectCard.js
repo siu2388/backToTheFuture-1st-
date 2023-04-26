@@ -7,22 +7,27 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
         <Col>
           <span>{project.title}</span>
           <br />
-          <span className="text-muted">{project.period}</span>
+          <span className="text-muted">{project.startDate}</span>
+          <br />
+          <span className="text-muted">{project.endDate}</span>
           <br />
           <span className="text-muted">{project.archive}</span>
           <br />
           <span className="text-muted">{project.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="1">
+          <Col xs lg="3" style={{ display: 'flex', alignItems: 'center' }}>
             <Button
               variant="outline-info"
               size="sm"
               onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              편집
-            </Button>
+              className="me-1"
+            >편집</Button>
+            <Button 
+            variant="outline-danger"
+            size="sm"
+            // 함수 기능 넣기 
+            >삭제</Button>
           </Col>
         )}
       </Row>

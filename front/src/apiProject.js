@@ -4,16 +4,18 @@
 
 // Mock은 가짜라는 뜻을 가집니다. 임시로 가짜 사용자 데이터를 설정합니다.
 const userMock1 = {
-  title: "컴활",
-  authority: "대한",
-  registerNum: "1234",
-  grade: "1급",
+  title: "abcde-1",
+  startDate: "ktkim@elicer.com",
+  endDate: "튜터",
+  archive: "https://blog.naver.com/atyourglance",
+  description: "안녕하세요!",
 }
 const userMock2 = {
-  title: "한능검",
-  authority: "기관1",
-  registerNum: "5678",
-  grade: "1급",
+  title: "abcde-12",
+  startDate: "ironman@avengers.com",
+  endDate: "아이언맨",
+  archive: "https://blog.naver.com/atyourglance",
+  description: "I, am, Ironman",
 }
 
 
@@ -24,7 +26,7 @@ console.log(
   "color: #a25cd1;"
 );
 
-if (endpoint === "certificatelist") {
+if (endpoint === "projectlist") {
   const data = [userMock1, userMock2]
   const response = {data}
   return response
@@ -43,9 +45,11 @@ console.log(
 
 // userMock 유저 정보를, 전달 받은 data 정보로 덮어씌움
 userMock1.title = data.title
-userMock1.authority = data.authority
-userMock1.registerNum = data.registerNum
 userMock1.grade = data.grade
+userMock1.startDate = data.startDate
+userMock1.endDate = data.endDate
+userMock1.archive=data.archive
+userMock1.description = data.description
 
 const response = {data: userMock1}
 return response

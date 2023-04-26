@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-import * as Api from "../../apiMock";
+import * as Api from "../../apiAward";
 
 import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";

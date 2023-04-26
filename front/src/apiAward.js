@@ -15,24 +15,6 @@ const userMock2 = {
   date: "아이언맨",
   description: "I, am, Ironman",
 }
-const userMock3 = {
-  title: "abcde-123",
-  grade: "captain_america@avengers.com",
-  date: "캡틴아메리카",
-  description: "I can do this all day",
-}
-const userMock4 = {
-  title: "abcde-1234",
-  grade: "thor@avengers.com",
-  date: "토르",
-  description: "Strongest Avenger",
-}
-const userMock5 = {
-  title: "abcde-12345",
-  grade: "natasha@avengers.com",
-  date: "나타샤",
-  description: "Strongest Agent",
-}
 
 
 
@@ -43,7 +25,7 @@ console.log(
 );
 
 if (endpoint === "awardlist") {
-  const data = [userMock1, userMock2, userMock3, userMock4, userMock5]
+  const data = [userMock1, userMock2]
   const response = {data}
   return response
 }
@@ -61,6 +43,7 @@ console.log(
 
 // userMock 유저 정보를, 전달 받은 data 정보로 덮어씌움
 userMock1.title = data.title
+// userMock1title = data.title > 이름도 변경
 userMock1.grade = data.grade
 userMock1.date = data.date
 userMock1.description = data.description
