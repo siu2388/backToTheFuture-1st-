@@ -4,11 +4,11 @@ import * as Api from "../../api";
 
 function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) {
   //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("")
   //useState로 description 상태를 생성함.
-  const [institute, setInstitute] = useState("");
-  const [regiNum, setRegiNum] = useState("");
-  const [grade, setGrade] = useState("");
+  const [institute, setInstitute] = useState("")
+  const [regiNum, setRegiNum] = useState("")
+  const [grade, setGrade] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
