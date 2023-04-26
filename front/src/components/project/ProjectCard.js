@@ -1,22 +1,20 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-function CertificateCard({ certificate, isEditable, setIsEditing }) {
+function ProjectCard({ project, isEditable, setIsEditing }) {
   return (
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{certificate.title}</span>
+          <span>{project.title}</span>
           <br />
-          <span className="text-muted">{certificate.institute}</span>
-          <br />
-          <span className="text-muted">{certificate.expire}</span>
+          <span className="text-muted">{project.description}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">
             <Button
               variant="outline-info"
               size="sm"
-              onClick={() => setIsEditing(true)}
+              onClick={() => setIsEditing((prev) => !prev)}
               className="mr-3"
             >
               편집
@@ -28,4 +26,4 @@ function CertificateCard({ certificate, isEditable, setIsEditing }) {
   );
 }
 
-export default CertificateCard;
+export default ProjectCard;
