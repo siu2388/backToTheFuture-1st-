@@ -15,7 +15,7 @@ function AwardCard({ award, isEditable, setIsEditing }) {
 
         </Col>
         {isEditable && (
-          <Col xs lg="1">ㅁ
+          <Col xs lg="1">
             <Button
               variant="outline-info"
               size="sm"
