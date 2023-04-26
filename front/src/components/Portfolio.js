@@ -59,7 +59,7 @@ function Portfolio() {
             portfolioOwnerId={portfolioOwner.id}
             isEditable={portfolioOwner.id === userState.user?.id}
           />
-        </Col>
+        </Col>      
         <Col>
 
           <div style={{ textAlign: "center" }}>
