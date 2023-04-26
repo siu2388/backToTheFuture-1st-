@@ -41,6 +41,25 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         />
       </Form.Group>
 
+      <Form.Group controlId="formBasicGrade" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="상"
+          value={grade}
+          onChange={(e) => setGrade(e.target.value)}
+        />
+      </Form.Group>
+
+
+      <Form.Group controlId="formBasicDate" className="mt-3">
+        <Form.Control
+          type="date"
+          placeholder="수상 날짜"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+        />
+      </Form.Group>
+
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
