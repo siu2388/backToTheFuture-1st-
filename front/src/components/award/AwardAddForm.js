@@ -7,6 +7,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
+  const [grade, setGrade] = useState("");
+  const [date, setDate] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +51,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
           onChange={(e) => setGrade(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
