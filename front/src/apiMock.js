@@ -60,6 +60,7 @@ console.log(
 );
 
 // userMock 유저 정보를, 전달 받은 data 정보로 덮어씌움
+// userMock1title = data.title > 이름도 변경
 userMock1.grade = data.grade
 userMock1.date = data.date
 userMock1.description = data.description

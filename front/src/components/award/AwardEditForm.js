@@ -46,15 +46,24 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicGrade" className="mt-3">
-        <Form.Label>상</Form.Label>
+      <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex',alignItems: 'center'}} >
+        <Form.Label inline className = "me-2">상</Form.Label>
         <Form.Control
+          inline
           type="text"
           placeholder="상"
           value={grade}
-          onChange={(e) => setGrade(e.target.value)}
+          onChange={(e) => setGrade(e.target.value)}          
         />
       </Form.Group>
+
+      <Form.Select aria-label="Default select example" className = "mt-3" onChange={(e) => setGrade(e.target.value)}>
+        <option>Open this select menu</option>
+        <option value="동상">동상</option>
+        <option value="은상">은상</option>
+        <option value="금상">금상</option>
+
+      </Form.Select>
 
       <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
@@ -73,6 +82,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
+
+
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>

@@ -15,16 +15,20 @@ function AwardCard({ award, isEditable, setIsEditing }) {
 
         </Col>
         {isEditable && (
-          <Col xs lg="1">ㅁ
+          <Col xs lg="3" style={{ display: 'flex', alignItems: 'center' }}>
             <Button
               variant="outline-info"
               size="sm"
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              편집
-            </Button>
+              onClick={() => setIsEditing(prev => !prev)}
+              className="me-1"
+            >편집</Button>
+            <Button 
+            variant="outline-danger"
+            size="sm"
+            // 함수 기능 넣기 
+            >삭제</Button>
           </Col>
+
         )}
       </Row>
     </Card.Text>
