@@ -7,7 +7,9 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
         <Col>
           <span>{project.title}</span>
           <br />
-          <span className="text-muted">{project.period}</span>
+          <span className="text-muted">{project.startDate}</span>
+          <br />
+          <span className="text-muted">{project.endDate}</span>
           <br />
           <span className="text-muted">{project.archive}</span>
           <br />

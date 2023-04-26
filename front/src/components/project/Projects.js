@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
-import * as Api from 'api';
 import Project from './Project';
 import ProjectAddForm from './ProjectAddForm';
+import * as Api from "../../apiProject";
 
 function Projects({ portfolioOwnerId, isEditable }) {
   //useState로 projects 상태를 생성함.
@@ -18,8 +18,8 @@ function Projects({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>수상이력</Card.Title>
-        {projects.map(project => (
+        <Card.Title>프로젝트</Card.Title>
+        {projects.map((project) => (
           <Project
             key={project.id}
             project={project}

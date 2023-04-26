@@ -57,14 +57,6 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Select aria-label="Default select example" className = "mt-3" onChange={(e) => setGrade(e.target.value)}>
-        <option>Open this select menu</option>
-        <option value="동상">동상</option>
-        <option value="은상">은상</option>
-        <option value="금상">금상</option>
-
-      </Form.Select>
-
       <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
           type="text"

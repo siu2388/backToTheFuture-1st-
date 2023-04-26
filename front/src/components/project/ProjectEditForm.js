@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+
+import * as Api from "../../apiProject";
 
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
-  const [period, setPeriod] = useState(currentProject.period);
-  const [archive, setArchive] = useState(currentArchive.period);
+  const [startDate, setStartDate] = useState(currentProject.startDate);
+  const [endDate, setEndDate] = useState(currentProject.endDate);
+  const [archive, setArchive] = useState(currentProject.archive);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +23,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     await Api.put(`projects/${currentProject.id}`, {
       user_id,
       title,
-      period,
+      startDate,
+      endDate,
       archive,
       description,
     });
@@ -45,16 +48,26 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicPeriod">
+      <Form.Label>활동 기간</Form.Label>
+      <Form.Group controlId="formBasicStartDate" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="활동 기간"
-          value={period}
-          onChange={(e) => setPeriod(e.target.value)}
+          placeholder="시작 연월"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicArchive">
+      <Form.Group controlId="formBasicEndDate" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="완료 연월"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicArchive" className="mt-3">
         <Form.Control
           type="text"
           placeholder="결과물"

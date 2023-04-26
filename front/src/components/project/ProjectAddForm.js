@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";  //project를 위한 api 쓰기
+import * as Api from "../../api";  //project를 위한 api 쓰기
 
 function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
-  const [period, setPeriod] = setState("");
-  const [archive, setArchive] = setState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [archive, setArchive] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     await Api.post("project/create", {
       user_id: portfolioOwnerId,
       title,
-      period,
+      startDate,
+      endDate,
       archive,
       description,
     });
@@ -45,13 +47,22 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
         />
       </Form.Group>
 
-
-      <Form.Group controlId="formBasicPeriod" className="mt-3">
+      <Form.Label>활동 기간</Form.Label>
+      <Form.Group controlId="formBasicStartDate" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="활동 기간"
-          value={period}
-          onChange={(e) => setPeriod(e.target.value)}
+          placeholder="시작 연월"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicEndDate" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="완료 연월"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
         />
       </Form.Group>
 
@@ -61,7 +72,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
           type="text"
           placeholder="결과물"
           value={archive}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => setArchive(e.target.value)}
         />
       </Form.Group>
 
