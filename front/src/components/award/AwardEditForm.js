@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+import * as Api from "../../apiMock";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentAward.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
+  const [grade, setGrade] = useState(currentAward.grade);
+  const [date, setDate] = useState(currentAward.date);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     await Api.put(`awards/${currentAward.id}`, {
       user_id,
       title,
+      grade,
+      date,
       description,
     });
 
@@ -33,11 +37,32 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicTitle">
+        <Form.Label>수상내역</Form.Label>
         <Form.Control
           type="text"
           placeholder="수상내역"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex',alignItems: 'center'}} >
+        <Form.Label inline className = "me-2">상</Form.Label>
+        <Form.Control
+          inline
+          type="text"
+          placeholder="상"
+          value={grade}
+          onChange={(e) => setGrade(e.target.value)}          
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicDate" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="수상 날짜"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
         />
       </Form.Group>
 
@@ -49,6 +74,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
+
+
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>

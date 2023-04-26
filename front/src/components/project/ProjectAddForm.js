@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "../../api";
+import * as Api from "../../api";  //project를 위한 api 쓰기
 
-
-function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
+function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
-  const [grade, setGrade] = useState("");
-  const [date, setDate] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [archive, setArchive] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,19 +19,19 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     const user_id = portfolioOwnerId;
 
     // "award/create" 엔드포인트로 post요청함.
-    await Api.post("award/create", {
+    await Api.post("project/create", {
       user_id: portfolioOwnerId,
       title,
-      grade,
-      date,
+      startDate,
+      endDate,
+      archive,
       description,
-
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("awardlist", user_id);
-    // awards를 response의 data로 세팅함.
-    setAwards(res.data);
+    const res = await Api.get("projectlist", user_id);
+    // projects를 response의 data로 세팅함.
+    setProjects(res.data);
     // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };
@@ -47,22 +47,32 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicGrade" className="mt-3">
+      <Form.Label>활동 기간</Form.Label>
+      <Form.Group controlId="formBasicStartDate" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
+          placeholder="시작 연월"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicEndDate" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="완료 연월"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
         />
       </Form.Group>
 
 
-      <Form.Group controlId="formBasicDate" className="mt-3">
+      <Form.Group controlId="formBasicArchive" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="수상 날짜"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
+          placeholder="결과물"
+          value={archive}
+          onChange={(e) => setArchive(e.target.value)}
         />
       </Form.Group>
 
@@ -74,8 +84,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
-
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
@@ -91,4 +99,4 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   );
 }
 
-export default AwardAddForm;
+export default ProjectAddForm;

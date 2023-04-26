@@ -5,32 +5,36 @@
 // Mock은 가짜라는 뜻을 가집니다. 임시로 가짜 사용자 데이터를 설정합니다.
 const userMock1 = {
   title: "abcde-1",
-  grade: "ktkim@elicer.com",
-  date: "튜터",
+  startDate: "ktkim@elicer.com",
+  endDate: "튜터",
+  archive: "https://blog.naver.com/atyourglance",
   description: "안녕하세요!",
 }
 const userMock2 = {
   title: "abcde-12",
-  grade: "ironman@avengers.com",
-  date: "아이언맨",
+  startDate: "ironman@avengers.com",
+  endDate: "아이언맨",
+  archive: "https://blog.naver.com/atyourglance",
   description: "I, am, Ironman",
 }
 const userMock3 = {
   title: "abcde-123",
-  grade: "captain_america@avengers.com",
-  date: "캡틴아메리카",
+  startDate: "captain_america@avengers.com",
+  endDate: "캡틴아메리카",
+  archive: "https://blog.naver.com/atyourglance",
   description: "I can do this all day",
 }
 const userMock4 = {
   title: "abcde-1234",
-  grade: "thor@avengers.com",
-  date: "토르",
+  startDate: "thor@avengers.com",
+  endDate: "토르",
+  archive: "https://blog.naver.com/atyourglance",
   description: "Strongest Avenger",
 }
 const userMock5 = {
   title: "abcde-12345",
-  grade: "natasha@avengers.com",
-  date: "나타샤",
+  startDate: "natasha@avengers.com",
+  endDate: "나타샤",
   description: "Strongest Agent",
 }
 
@@ -42,7 +46,7 @@ console.log(
   "color: #a25cd1;"
 );
 
-if (endpoint === "awardlist") {
+if (endpoint === "projectlist") {
   const data = [userMock1, userMock2, userMock3, userMock4, userMock5]
   const response = {data}
   return response
@@ -60,9 +64,11 @@ console.log(
 );
 
 // userMock 유저 정보를, 전달 받은 data 정보로 덮어씌움
-// userMock1title = data.title > 이름도 변경
+userMock1.title = data.title
 userMock1.grade = data.grade
-userMock1.date = data.date
+userMock1.startDate = data.startDate
+userMock1.endDate = data.endDate
+userMock1.archive=data.archive
 userMock1.description = data.description
 
 const response = {data: userMock1}
