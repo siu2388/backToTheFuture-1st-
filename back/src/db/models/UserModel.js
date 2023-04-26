@@ -1,6 +1,6 @@
 import { UserModel } from "../schemas/user";
 
-class User {
+class Award {
   static async create({ newUser }) {  //서비스-userService.js에서 받은 정보 그대로 db저장
     const createdNewUser = await UserModel.create(newUser);
     return createdNewUser;
