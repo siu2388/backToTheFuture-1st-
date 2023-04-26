@@ -21,7 +21,10 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     await Api.post("award/create", {
       user_id: portfolioOwnerId,
       title,
+      grade,
+      date,
       description,
+
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
@@ -55,7 +58,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
       <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
-          type="date"
+          type="text"
           placeholder="수상 날짜"
           value={date}
           onChange={(e) => setDate(e.target.value)}
