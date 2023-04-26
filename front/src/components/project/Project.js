@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectEditForm from "./ProjectEditForm";
 
-function Project({ project, setProjects, isEditable }) {
+function Project({ project, setProject, isEditable }) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
@@ -10,7 +10,7 @@ function Project({ project, setProjects, isEditable }) {
       {isEditing ? (
         <ProjectEditForm
           currentProject={project}
-          setProjects={setProjects}
+          setProjects={setProject}
           setIsEditing={setIsEditing}
         />
       ) : (
