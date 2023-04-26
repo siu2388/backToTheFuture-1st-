@@ -23,6 +23,6 @@ function Award({ award, setAwards, isEditable }) {
       )}
     </>
   );
-}
+}ㄴ
 
 export default Award;

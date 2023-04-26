@@ -57,7 +57,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         <Form.Control
           type="date"
           placeholder="수상 날짜"
-          value={description}
+          value={date}
           onChange={(e) => setDate(e.target.value)}
         />
       </Form.Group>
