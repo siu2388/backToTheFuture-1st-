@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";  //Education를 위한 api 쓰기
+import * as Api from "api"; //Education를 위한 api 쓰기
 
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState("");
+  const [schoolName, setschoolName] = useState("");
   //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState("");
+  const [major, setMajor] = useState("");
+  const [status, setStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +19,9 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     // "award/create" 엔드포인트로 post요청함.
     await Api.post("education/create", {
       user_id: portfolioOwnerId,
-      title,
-      description,
+      schoolName,
+      major,
+      status,
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
@@ -32,22 +34,55 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicTitle">
+      <Form.Group controlId="formBasicSchoolName">
         <Form.Control
           type="text"
-          placeholder="수상내역"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="학교이름"
+          value={schoolName}
+          onChange={(e) => setschoolName(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Group controlId="formBasicMajor" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상세내역"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder="전공"
+          value={major}
+          onChange={(e) => setMajor(e.target.value)}
         />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicStatus">
+        <Form.Check
+          inline
+          label="재학중"
+          name="position"
+          type={"radio"}
+          id={`inline-radio-1`}
+        />
+        <Form.Check
+          inline
+          label="학사졸업"
+          name="position"
+          type={"radio"}
+          id={`inline-radio-2`}
+        />
+        <Form.Check
+          inline
+          label="석사졸업"
+          name="position"
+          type={"radio"}
+          id={`inline-radio-3`}
+        />
+        <Form.Check
+          inline
+          label="박사졸업"
+          name="position"
+          type={"radio"}
+          id={`inline-radio-4`}
+        />
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
       </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center">
