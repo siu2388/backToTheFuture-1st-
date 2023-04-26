@@ -7,6 +7,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   const [title, setTitle] = useState("");
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
+  const [period, setPeriod] = setState("");
+  const [archive, setArchive] = setState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     await Api.post("project/create", {
       user_id: portfolioOwnerId,
       title,
+      period,
+      archive,
       description,
     });
 
@@ -38,6 +42,26 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
           placeholder="수상내역"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+      </Form.Group>
+
+
+      <Form.Group controlId="formBasicPeriod" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="활동 기간"
+          value={period}
+          onChange={(e) => setPeriod(e.target.value)}
+        />
+      </Form.Group>
+
+
+      <Form.Group controlId="formBasicArchive" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="결과물"
+          value={archive}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
 

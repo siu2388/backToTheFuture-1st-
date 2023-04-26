@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "../../api";
+import * as Api from "../../apiCert";
 
 function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentCertificate.title);
-  const [institute, setInstitute] = useState(currentCertificate.institute)
-  //useState로 description 상태를 생성함.
-  const [regiNum, setRegiNum] = useState(currentCertificate.regiNum);
+  const [authority, setAuthority] = useState(currentCertificate.authority)
+  const [registerNum, setRegisterNum] = useState(currentCertificate.registerNum);
   const [grade, setGrade] = useState(currentCertificate.grade);
 
   const handleSubmit = async (e) => {
@@ -21,7 +20,7 @@ function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing
     await Api.put(`certificates/${currentCertificate.id}`, {
       user_id,
       title,
-      regiNum,
+      registerNum,
       grade,
     });
 
@@ -44,21 +43,21 @@ function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitute" className="mt-3">
+      <Form.Group controlId="formBasicAuthority" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발급기관"
-          value={institute}
-          onChange={(e) => setInstitute(e.target.value)}
+          value={authority}
+          onChange={(e) => setAuthority(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicRegiNum" className="mt-3">
+      <Form.Group controlId="formBasicRegisterNum" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발급번호"
-          value={regiNum}
-          onChange={(e) => setRegiNum(e.target.value)}
+          value={registerNum}
+          onChange={(e) => setRegisterNum(e.target.value)}
         />
       </Form.Group>
 

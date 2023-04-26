@@ -7,6 +7,10 @@ function ProjectCard({ project, isEditable, setIsEditing }) {
         <Col>
           <span>{project.title}</span>
           <br />
+          <span className="text-muted">{project.period}</span>
+          <br />
+          <span className="text-muted">{project.archive}</span>
+          <br />
           <span className="text-muted">{project.description}</span>
         </Col>
         {isEditable && (

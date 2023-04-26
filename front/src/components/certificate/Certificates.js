@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-import * as Api from "../../api";
+import * as Api from "../../apiCert";
+
 import Certificate from "./Certificate";
 import CertificateAddForm from "./CertificateAddForm";
 
@@ -18,7 +19,7 @@ function Certificates({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>수상이력</Card.Title>
+        <Card.Title>자격증</Card.Title>
         {certificates.map((certificate) => (
           <Certificate
             key={certificate.id}

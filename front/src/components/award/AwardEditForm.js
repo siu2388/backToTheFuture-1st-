@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+import * as Api from "../../apiMock";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentAward.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
-  const [grade, setGrade] = useState("");
-  const [date, setDate] = useState("");
+  const [grade, setGrade] = useState(currentAward.grade);
+  const [date, setDate] = useState(currentAward.date);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +37,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formBasicTitle">
+        <Form.Label>수상내역</Form.Label>
         <Form.Control
           type="text"
           placeholder="수상내역"
@@ -45,7 +46,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicGrade">
+      <Form.Group controlId="formBasicGrade" className="mt-3">
+        <Form.Label>상</Form.Label>
         <Form.Control
           type="text"
           placeholder="상"
@@ -54,9 +56,9 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicDate">
+      <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
-          type="date"
+          type="text"
           placeholder="수상 날짜"
           value={date}
           onChange={(e) => setDate(e.target.value)}

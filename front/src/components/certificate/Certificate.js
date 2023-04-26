@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import CertificateCard from "./CertificateCard";
 import CertificateEditForm from "./CertificateEditForm";
 
-function Certificate({ certificate, setCertificate, isEditable }) {
+function Certificate({ certificate, setCertificates, isEditable }) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
+  
   return (
     <>
       {isEditing ? (
         <CertificateEditForm
           currentCertificate={certificate}
-          setCertificate={setCertificate}
+          setCertificates={setCertificates}
           setIsEditing={setIsEditing}
         />
       ) : (

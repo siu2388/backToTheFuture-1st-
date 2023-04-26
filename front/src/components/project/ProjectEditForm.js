@@ -7,6 +7,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   const [title, setTitle] = useState(currentProject.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
+  const [period, setPeriod] = useState(currentProject.period);
+  const [archive, setArchive] = useState(currentArchive.period);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,6 +21,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     await Api.put(`projects/${currentProject.id}`, {
       user_id,
       title,
+      period,
+      archive,
       description,
     });
 
@@ -38,6 +42,24 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
           placeholder="수상내역"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicPeriod">
+        <Form.Control
+          type="text"
+          placeholder="활동 기간"
+          value={period}
+          onChange={(e) => setPeriod(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicArchive">
+        <Form.Control
+          type="text"
+          placeholder="결과물"
+          value={archive}
+          onChange={(e) => setArchive(e.target.value)}
         />
       </Form.Group>
 
