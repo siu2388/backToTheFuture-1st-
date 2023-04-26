@@ -7,8 +7,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   const [title, setTitle] = useState(currentAward.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
-  const [grade, setGrade] = useState("");
-  const [date, setDate] = useState("");
+  const [grade, setGrade] = useState(currentAward.description);
+  const [date, setDate] = useState(currentAWard.description);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

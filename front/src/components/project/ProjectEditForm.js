@@ -7,6 +7,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   const [title, setTitle] = useState(currentProject.title);
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
+  const [period, setPeriod] = useState(currentProject.period);
+  const [archive, setArchive] = useState(currentArchive.period);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
