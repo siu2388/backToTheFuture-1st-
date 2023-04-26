@@ -18,7 +18,7 @@ function Educations({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>수상이력</Card.Title>
+        <Card.Title>학력</Card.Title>
         {educations.map(education => (
           <Education
             key={education.id}

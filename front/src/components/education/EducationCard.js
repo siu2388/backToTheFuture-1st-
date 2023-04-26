@@ -6,10 +6,11 @@ function EducationCard({ education, isEditable, setIsEditing }) {
       <Row className="align-items-center">
         <Col>
           <span>{education.schoolName}</span>
-          <br />
+          <span>{education.degree}</span>
           <span className="text-muted">{education.major}</span>
-          <br />
           <span className="text-muted2">{education.status}</span>
+          <br />
+          <span className="text-muted3">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">
