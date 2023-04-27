@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
-import * as Api from 'api';
+
 import Education from './Education';
 import EducationAddForm from './EducationAddForm';
+import * as Api from "../../apiEducation";
 
 function Educations({ portfolioOwnerId, isEditable }) {
   //useState로 Educations 상태를 생성함.

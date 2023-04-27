@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+import * as Api from "../../apiEducation";
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -75,23 +75,24 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         <option value="5">졸업</option>
       </Form.Select>
 
-      <Form.Floating className="mb-3" onChange={(e) => setStartDate(e.target.value)}>
+      <Form.Label>재학 기간</Form.Label>
+      <Form.Group controlId="formBasicStartDate" className="mt-3">
         <Form.Control
-          id="floatingInputCustom"
-          type="text"
+          type="number"
           placeholder="입학날짜"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
         />
-        <label htmlFor="floatingInputCustom">입학날짜 예시: 2023-3-1</label>
-      </Form.Floating>
+      </Form.Group>
 
-      <Form.Floating onChange={(e) => setEndDate(e.target.value)}>
+      <Form.Group controlId="formBasicEndDate" className="mt-3">
         <Form.Control
-          id="floatingPasswordCustom"
-          type="text"
+          type="number"
           placeholder="졸업날짜"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
         />
-        <label htmlFor="floatingPasswordCustom">졸업날짜 예시: 2026-2-1</label>
-      </Form.Floating>
+      </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
