@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "../../apiMock";
+import * as Api from "../../api";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -46,14 +46,20 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex',alignItems: 'center'}} >
-        <Form.Label inline className = "me-2">상</Form.Label>
+      <Form.Group
+        controlId="formBasicGrade"
+        className="mt-3"
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <Form.Label inline className="me-2">
+          상
+        </Form.Label>
         <Form.Control
           inline
           type="text"
           placeholder="상"
           value={grade}
-          onChange={(e) => setGrade(e.target.value)}          
+          onChange={(e) => setGrade(e.target.value)}
         />
       </Form.Group>
 
@@ -74,8 +80,6 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
-
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
