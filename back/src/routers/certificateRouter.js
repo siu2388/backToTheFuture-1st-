@@ -17,13 +17,17 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
     // req (request) 에서 데이터 가져오기
     const user_id = req.body.user_id;
     const title = req.body.title;
-    const description = req.body.description;
+    const authority = req.body.authority;
+    const registerNum = req.body.registerNum;
+    const grade = req.body.grade;
 
     // 위 데이터를 유저 db에 추가하기
     const newCertificate = await CertificateService.addCertificate({
       user_id,
       title,
-      description,
+      authority,
+      registerNum,
+      grade,
     });
 
     res.status(201).json(newCertificate);
@@ -31,6 +35,7 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
     next(error);
   }
 });
+
 certificateRouter.get("/certificates/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
@@ -56,9 +61,11 @@ certificateRouter.put("/certificates/:id", async function (req, res, next) {
 
     // body data 로부터 업데이트할 수상 정보를 추출함.
     const title = req.body.title ?? null;
-    const description = req.body.description ?? null;
+    const authority = req.body.authority ?? null;
+    const registerNum = req.body.registerNum ?? null;
+    const grade = req.body.grade ?? null;
 
-    const toUpdate = { title, description };
+    const toUpdate = { title, authority, registerNum, grade };
 
     // 위 추출된 정보를 이용하여 db의 데이터 수정하기
     const certificate = await CertificateService.setCertificate({ certificateId, toUpdate });
@@ -104,6 +111,3 @@ certificateRouter.get("/certificatelist/:user_id", async function (req, res, nex
 });
 
 export { certificateRouter };
-
-
-
