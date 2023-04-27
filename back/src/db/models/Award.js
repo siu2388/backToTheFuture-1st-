@@ -1,9 +1,9 @@
-import { UserModel } from "../schemas/user";
+import { AwardModel } from "../schemas/award";
 
-class User {
-  static async create({ newUser }) {
-    const createdNewUser = await UserModel.create(newUser);
-    return createdNewUser;
+class Award {
+  static async create({ newAward }) {
+    const createdNewAward = await AwardModel.create(newAward);
+    return createdNewAward;
   }
 
   static async findByEmail({ email }) {
@@ -17,8 +17,8 @@ class User {
   }
 
   static async findAll() {
-    const users = await UserModel.find({});
-    return users;
+    const awards = await AwardModel.find({});
+    return awards;
   }
 
   static async update({ user_id, fieldToUpdate, newValue }) {
@@ -26,7 +26,7 @@ class User {
     const update = { [fieldToUpdate]: newValue };
     const option = { returnOriginal: false };
 
-    const updatedUser = await UserModel.findOneAndUpdate(
+    const updatedUser = await AwardModel.findOneAndUpdate(
       filter,
       update,
       option
@@ -35,4 +35,4 @@ class User {
   }
 }
 
-export { User };
+export { Award };
