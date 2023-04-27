@@ -68,38 +68,37 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
 
       <Form.Select aria-label="Default select example2" onChange={(e) => setStatus(e.target.value)}>
         <option>Open this select menu</option>
-        <option value="1">재학중</option>
-        <option value="2">학사</option>
-        <option value="3">석사</option>
-        <option value="4">박사</option>
-        <option value="5">졸업</option>
+        <option value="재학중">재학중</option>
+        <option value="학사">학사</option>
+        <option value="석사">석사</option>
+        <option value="박사">박사</option>
+        <option value="졸업">졸업</option>
       </Form.Select>
 
-      <Form.Label>재학 기간</Form.Label>
-      <Form.Group controlId="formBasicStartDate" className="mt-3">
+      <Form.Floating className="mb-3" onChange={(e) => setStartDate(e.target.value)}>
         <Form.Control
-          type="number"
+          id="floatingInputCustom"
+          type="text"
           placeholder="입학날짜"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
         />
-      </Form.Group>
+        <label htmlFor="floatingInputCustom">입학날짜 예시: 2023-3-1</label>
+      </Form.Floating>
 
-      <Form.Group controlId="formBasicEndDate" className="mt-3">
+      <Form.Floating onChange={(e) => setEndDate(e.target.value)}>
         <Form.Control
-          type="number"
+          id="floatingPasswordCustom"
+          type="text"
           placeholder="졸업날짜"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
         />
-      </Form.Group>
+        <label htmlFor="floatingPasswordCustom">졸업날짜 예시: 2026-2-1</label>
+      </Form.Floating>
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <Button variant="primary" type="submit" className="me-3">
             확인
           </Button>
-          <Button variant="secondary" onClick={() => setIsAdding(false)}>
+          <Button variant="secondary" onClick={() => setIsEditing(false)}>
             취소
           </Button>
         </Col>

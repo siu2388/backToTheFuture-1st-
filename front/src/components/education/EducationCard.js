@@ -8,9 +8,9 @@ function EducationCard({ education, isEditable, setIsEditing }) {
           <span>{education.schoolName}</span>
           <span>{education.degree}</span>
           <span className="text-muted">{education.major}</span>
-          <span className="text-muted2">{education.status}</span>
+          <span className="text-muted">{education.status}</span>
           <br />
-          <span className="text-muted3">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
+          <span className="text-muted">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">
