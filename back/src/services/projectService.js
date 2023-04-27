@@ -3,12 +3,12 @@ import { Project } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class ProjectService {
-  static async addProject({ user_id, title, institute, registerNum, grade }) {
+  static async addProject({ user_id, title, startDate, endDate, archive, description }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newProject = { id, user_id, title, institute, registerNum, grade };
+    const newProject = { id, user_id, title, startDate, endDate, archive, description };
     const createdNewProject = await Project.create({ newProject });
 
     return createdNewProject;
@@ -47,21 +47,27 @@ class ProjectService {
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.institute) {
-      const fieldToUpdate = "institute";
-      const newValue = toUpdate.institute;
+    if (toUpdate.startDate) {
+      const fieldToUpdate = "startDate";
+      const newValue = toUpdate.startDate;
+      project = await Project.update({ projectId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.endDate) {
+      const fieldToUpdate = "endDate";
+      const newValue = toUpdate.endDate;
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
     
-    if (toUpdate.registerNum) {
-      const fieldToUpdate = "registerNum";
-      const newValue = toUpdate.registerNum;
+    if (toUpdate.archive) {
+      const fieldToUpdate = "archive";
+      const newValue = toUpdate.archive;
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
     
-    if (toUpdate.grade) {
-      const fieldToUpdate = "grade";
-      const newValue = toUpdate.grade;
+    if (toUpdate.description) {
+      const fieldToUpdate = "description";
+      const newValue = toUpdate.description;
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
 

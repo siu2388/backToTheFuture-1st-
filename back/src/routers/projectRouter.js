@@ -63,11 +63,12 @@ projectRouter.put("/projects/:id", async function (req, res, next) {
 
     // body data 로부터 업데이트할 수상 정보를 추출함.
     const title = req.body.title ?? null;
-    const institute = req.body.institute ?? null;
-    const registerNum = req.body.registerNum ?? null;
-    const grade = req.body.grade ?? null;
+    const startDate = req.body.startDate ?? null;
+    const endDate = req.body.endDate ?? null;
+    const archive = req.body.archive ?? null;
+    const description = req.body.description ?? null;
 
-    const toUpdate = { title, institute, registerNum, grade };
+    const toUpdate = { title, startDate, endDate, archive, description };
 
     // 위 추출된 정보를 이용하여 db의 데이터 수정하기
     const project = await ProjectService.setProject({ projectId, toUpdate });
