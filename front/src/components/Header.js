@@ -38,7 +38,6 @@ function Header() {
         <Nav.Link onClick={() => navigate("/network")}>네트워크</Nav.Link>
       </Nav.Item>
 
-
       {isLogin && (
         <>
 
