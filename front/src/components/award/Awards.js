@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-import * as Api from "../../apiAward";
+import * as Api from "../../api";
 
 import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";
@@ -17,6 +17,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
     Api.get("awardlist", portfolioOwnerId).then((res) => setAwards(res.data));
   }, [portfolioOwnerId]);
 
+
   return (
     <Card>
       <Card.Body>
@@ -27,6 +28,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
             award={award}
             setAwards={setAwards}
             isEditable={isEditable}
+
           />
         ))}
         {isEditable && (

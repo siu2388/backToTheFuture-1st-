@@ -28,7 +28,7 @@ console.log(
   "color: #a25cd1;"
 );
 
-if (endpoint === "projectlist") {
+if (endpoint === "educationlist") {
   const data = [userMock1, userMock2]
   const response = {data}
   return response

@@ -67,11 +67,11 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
 
       <Form.Select aria-label="Default select example2" onChange={(e) => setStatus(e.target.value)}>
         <option>Open this select menu</option>
-        <option value="1">재학중</option>
-        <option value="2">학사</option>
-        <option value="3">석사</option>
-        <option value="4">박사</option>
-        <option value="5">졸업</option>
+        <option value="재학중">재학중</option>
+        <option value="학사">학사</option>
+        <option value="석사">석사</option>
+        <option value="박사">박사</option>
+        <option value="졸업">졸업</option>
       </Form.Select>
 
       <Form.Label>재학 기간</Form.Label>
