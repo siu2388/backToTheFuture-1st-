@@ -3,12 +3,12 @@ import { Certificate } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class CertificateService {
-  static async addCertificate({ user_id, title, institute, registerNum, grade }) {
+  static async addCertificate({ user_id, title, authority, registerNum, grade }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newCertificate = { id, user_id, title, institute, registerNum, grade };
+    const newCertificate = { id, user_id, title, authority, registerNum, grade };
     const createdNewCertificate = await Certificate.create({ newCertificate });
 
     return createdNewCertificate;
@@ -47,9 +47,9 @@ class CertificateService {
       certificate = await Certificate.update({ certificateId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.institute) {
-      const fieldToUpdate = "institute";
-      const newValue = toUpdate.institute;
+    if (toUpdate.authority) {
+      const fieldToUpdate = "authority";
+      const newValue = toUpdate.authority;
       certificate = await Certificate.update({ certificateId, fieldToUpdate, newValue });
     }
     

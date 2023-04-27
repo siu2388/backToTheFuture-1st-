@@ -38,7 +38,7 @@ describe("certificateRouter", () => {
         .send({
           user_id,
           title: "awesome_certificate",
-          institute: "issuing_agency",
+          authority: "issuing_agency",
           registerNum: "awesome001",
           grade: "first",
         });
@@ -46,7 +46,7 @@ describe("certificateRouter", () => {
       certificate_id = res.body.id;
       expect(res.statusCode).toEqual(201);
       expect(res.body.title).toBe("awesome_certificate");
-      expect(res.body.institute).toBe("issuing_agency");
+      expect(res.body.authority).toBe("issuing_agency");
       expect(res.body.registerNum).toBe("awesome001");
       expect(res.body.grade).toBe("first");
     });
@@ -70,14 +70,14 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "awesome_certificate2",
-          institute: "issuing_agency",
+          authority: "issuing_agency",
           registerNum: "awesome002",
           grade: "second",
         });
 
       expect(res.statusCode).toEqual(200);
       expect(res.body.title).toBe("awesome_certificate2");
-      expect(res.body.institute).toBe("issuing_agency");
+      expect(res.body.authority).toBe("issuing_agency");
       expect(res.body.registerNum).toBe("awesome002");
       expect(res.body.grade).toBe("second");
     });
@@ -103,7 +103,7 @@ describe("certificateRouter", () => {
         .send({
           user_id,
           title: "awesome_certificate3",
-          institute: "issuing_agency",
+          authority: "issuing_agency",
           registerNum: "awesome003",
           grade: "third",
         });
@@ -114,7 +114,7 @@ describe("certificateRouter", () => {
         .send({
           user_id,
           title: "awesome_certificate4",
-          institute: "issuing_agency",
+          authority: "issuing_agency",
           registerNum: "awesome004",
           grade: "first",
         });
@@ -125,7 +125,7 @@ describe("certificateRouter", () => {
         .send({
           user_id,
           title: "awesome_certificate5",
-          institute: "issuing_agency",
+          authority: "issuing_agency",
           registerNum: "awesome005",
           grade: "second",
         });

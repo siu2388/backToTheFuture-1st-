@@ -14,7 +14,7 @@ const CertificateSchema = new Schema(
       type: String,
       required: true,
     },
-    institute: {
+    authority: {
       type: String,
       required: true,
     },
