@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+import * as Api from "../../apiEducation";
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -51,10 +51,10 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
 
       <Form.Select aria-label="Default select example" onChange={(e) => setDegree(e.target.value)}>
         <option>Open this select menu</option>
-        <option value="1">중학교</option>
-        <option value="2">고등학교</option>
-        <option value="3">대학교</option>
-        <option value="4">대학원</option>
+        <option value="중학교">중학교</option>
+        <option value="고등학교">고등학교</option>
+        <option value="대학교">대학교</option>
+        <option value="대학원">대학원</option>
       </Form.Select>
 
       <Form.Group controlId="formBasicMajor" className="mt-3" style={{ display: "flex", alignItems: "center" }}>
@@ -68,11 +68,11 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
 
       <Form.Select aria-label="Default select example2" onChange={(e) => setStatus(e.target.value)}>
         <option>Open this select menu</option>
-        <option value="1">재학중</option>
-        <option value="2">학사</option>
-        <option value="3">석사</option>
-        <option value="4">박사</option>
-        <option value="5">졸업</option>
+        <option value="재학중">재학중</option>
+        <option value="학사">학사</option>
+        <option value="석사">석사</option>
+        <option value="박사">박사</option>
+        <option value="졸업">졸업</option>
       </Form.Select>
 
       <Form.Floating className="mb-3" onChange={(e) => setStartDate(e.target.value)}>
@@ -98,7 +98,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           <Button variant="primary" type="submit" className="me-3">
             확인
           </Button>
-          <Button variant="secondary" onClick={() => setIsAdding(false)}>
+          <Button variant="secondary" onClick={() => setIsEditing(false)}>
             취소
           </Button>
         </Col>
