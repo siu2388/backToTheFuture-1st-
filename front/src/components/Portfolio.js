@@ -7,7 +7,8 @@ import * as Api from "../api";
 import User from "./user/User";
 import Awards from  "./award/Awards"
 import Projects from "./project/Projects"
-import Certificates from "./certificate/Certificates"
+import Certificates from "./certificate/Certificates";
+import Educations from "./education/Educations";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function Portfolio() {
         </Col>
         <Col>
 
-          <div style={{ textAlign: "center" }}>
+          <div>
             <Awards
               portfolioOwnerId = {portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
@@ -77,9 +78,12 @@ function Portfolio() {
             <Certificates
               portfolioOwnerId = {portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
-            />            
+            />
+            <Educations
+              portfolioOwnerId = {portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />                        
           </div>
-
         </Col>
       </Row>
     </Container>

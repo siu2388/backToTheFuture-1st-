@@ -3,35 +3,18 @@
 // 따라서 코드를 실습용으로 임시 변경했습니다.
 
 // Mock은 가짜라는 뜻을 가집니다. 임시로 가짜 사용자 데이터를 설정합니다.
-const userMock1 = {
-  title: "abcde-1",
-  grade: "ktkim@elicer.com",
-  date: "튜터",
-  description: "안녕하세요!",
+const userMock1 = { 
+  title: "컴활",
+  authority: "대한",
+  registerNum: "1234",
+  grade: "1급",
 }
+
 const userMock2 = {
-  title: "abcde-12",
-  grade: "ironman@avengers.com",
-  date: "아이언맨",
-  description: "I, am, Ironman",
-}
-const userMock3 = {
-  title: "abcde-123",
-  grade: "captain_america@avengers.com",
-  date: "캡틴아메리카",
-  description: "I can do this all day",
-}
-const userMock4 = {
-  title: "abcde-1234",
-  grade: "thor@avengers.com",
-  date: "토르",
-  description: "Strongest Avenger",
-}
-const userMock5 = {
-  title: "abcde-12345",
-  grade: "natasha@avengers.com",
-  date: "나타샤",
-  description: "Strongest Agent",
+  title: "한능검",
+  authority: "기관1",
+  registerNum: "5678",
+  grade: "1급",
 }
 
 
@@ -42,8 +25,8 @@ console.log(
   "color: #a25cd1;"
 );
 
-if (endpoint === "awardlist") {
-  const data = [userMock1, userMock2, userMock3, userMock4, userMock5]
+if (endpoint === "certificatelist") {
+  const data = [userMock1, userMock2]
   const response = {data}
   return response
 }
@@ -60,10 +43,10 @@ console.log(
 );
 
 // userMock 유저 정보를, 전달 받은 data 정보로 덮어씌움
-// userMock1title = data.title > 이름도 변경
+userMock1.title = data.title
+userMock1.authority = data.authority
+userMock1.registerNum = data.registerNum
 userMock1.grade = data.grade
-userMock1.date = data.date
-userMock1.description = data.description
 
 const response = {data: userMock1}
 return response

@@ -6,7 +6,6 @@ import * as Api from "../../api";
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
-  //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentProject.description);
   const [startDate, setStartDate] = useState(currentProject.startDate);
   const [endDate, setEndDate] = useState(currentProject.endDate);

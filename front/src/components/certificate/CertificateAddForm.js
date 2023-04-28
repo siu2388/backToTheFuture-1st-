@@ -4,11 +4,10 @@ import * as Api from "../../api";
 
 function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) {
   //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState("");
-  //useState로 description 상태를 생성함.
-  const [institute, setInstitute] = useState("");
-  const [regiNum, setRegiNum] = useState("");
-  const [grade, setGrade] = useState("");
+  const [title, setTitle] = useState("")
+  const [authority, setAuthority] = useState("")
+  const [registerNum, setRegisterNum] = useState("")
+  const [grade, setGrade] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +20,8 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
     await Api.post("certificate/create", {
       user_id: portfolioOwnerId,
       title,
-      institute,
-      regiNum,
+      authority,
+      registerNum,
       grade
     });
 
@@ -45,21 +44,22 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicInstitute" className="mt-3">
+      <Form.Group controlId="formBasicAuthority" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발급기관"
-          value={institute}
-          onChange={(e) => setInstitute(e.target.value)}
+          value={authority}
+          onChange={(e) => setAuthority(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicRegiNum" className="mt-3">
+
+      <Form.Group controlId="formBasicRegisterNum" className="mt-3">
         <Form.Control
           type="text"
           placeholder="발급번호"
-          value={regiNum}
-          onChange={(e) => setRegiNum(e.target.value)}
+          value={registerNum}
+          onChange={(e) => setRegisterNum(e.target.value)}
         />
       </Form.Group>
 

@@ -15,6 +15,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
     Api.get("awardlist", portfolioOwnerId).then((res) => setAwards(res.data));
   }, [portfolioOwnerId]);
 
+
   return (
     <Card>
       <Card.Body>
@@ -39,6 +40,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
             portfolioOwnerId={portfolioOwnerId}
             setAwards={setAwards}
             setIsAdding={setIsAdding}
+            
           />
         )}
       </Card.Body>
@@ -47,3 +49,4 @@ function Awards({ portfolioOwnerId, isEditable }) {
 }
 
 export default Awards;
+

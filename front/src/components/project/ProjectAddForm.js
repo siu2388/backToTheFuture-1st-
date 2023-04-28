@@ -5,7 +5,6 @@ import * as Api from "../../api";  //project를 위한 api 쓰기
 function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
-  //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -41,7 +40,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="수상내역"
+          placeholder="프로젝트 이름"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />

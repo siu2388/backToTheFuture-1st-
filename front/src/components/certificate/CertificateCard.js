@@ -7,22 +7,26 @@ function CertificateCard({ certificate, isEditable, setIsEditing }) {
         <Col>
           <span>{certificate.title}</span>
           <br />
-          <span className="text-muted">{certificate.institute}</span>
-          <br />
-          <span className="text-muted">{certificate.regiNum}</span>
+          <span className="text-muted">{certificate.authority}</span>
+          <br />          
+          <span className="text-muted">{certificate.registerNum}</span>
           <br />
           <span className="text-muted">{certificate.grade}</span>          
         </Col>
+
         {isEditable && (
-          <Col xs lg="1">
+          <Col xs lg="3" style={{ display: 'flex', alignItems: 'center' }}>
             <Button
               variant="outline-info"
               size="sm"
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="mr-3"
-            >
-              편집
-            </Button>
+              onClick={() => setIsEditing((prev)=>!prev)}
+              className="me-1"
+            >편집</Button>
+            <Button 
+            variant="outline-danger"
+            size="sm"
+            // 함수 기능 넣기 
+            >삭제</Button>
           </Col>
         )}
       </Row>

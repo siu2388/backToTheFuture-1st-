@@ -1,32 +1,27 @@
 import React, { useState } from "react";
-import AwardCard from "./AwardCard";
-import AwardEditForm from "./AwardEditForm";
+import EducationCard from "./EducationCard";
+import EducationEditForm from "./EducationEditForm";
 
-
-function Award({ award, setAwards, isEditable }) {
+function Education({ education, setEducations, isEditable }) {
   //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
-
-
-
   return (
     <>
       {isEditing ? (
-        <AwardEditForm
-          currentAward={award}
-          setAwards={setAwards}
+        <EducationEditForm
+          currentEducation={education}
+          setEducations={setEducations}
           setIsEditing={setIsEditing}
         />
       ) : (
-        <AwardCard
-          award={award}
+        <EducationCard
+          education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
-          setAwards = {setAwards}
         />
       )}
     </>
   );
 }
 
-export default Award;
+export default Education;
