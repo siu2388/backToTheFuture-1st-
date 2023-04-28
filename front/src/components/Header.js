@@ -39,11 +39,9 @@ function Header() {
 
       {isLogin && (
         <>
-
           <Nav.Item>
             <Nav.Link onClick={() => navigate("/award")}>수상이력</Nav.Link>
           </Nav.Item>
-
 
           <Nav.Item>
             <Nav.Link onClick={() => navigate("/certificate")}>
@@ -51,16 +49,15 @@ function Header() {
             </Nav.Link>
           </Nav.Item>
 
-
           <Nav.Item>
-            <Nav.Link onClick={() => navigate("/network")}>
+            <Nav.Link onClick={() => navigate("/project")}>
               프로젝트 목록
             </Nav.Link>
           </Nav.Item>
 
-        <Nav.Item>
-          <Nav.Link onClick={logout}>로그아웃</Nav.Link>
-        </Nav.Item>
+          <Nav.Item>
+            <Nav.Link onClick={logout}>로그아웃</Nav.Link>
+          </Nav.Item>
         </>
       )}
     </Nav>

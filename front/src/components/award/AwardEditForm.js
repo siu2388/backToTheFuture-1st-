@@ -36,8 +36,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicTitle" lassName="mt-3" style={{ display: 'flex'}}>
-        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >수상내역</Form.Label>
+      <Form.Group
+        controlId="formBasicTitle"
+        className="mt-3"
+        style={{ display: "flex" }}
+      >
+        <Form.Label
+          inline
+          className="me-3 mt-3 text-center"
+          style={{ width: "6rem " }}
+        >
+          수상내역
+        </Form.Label>
         <Form.Control
           type="text"
           placeholder="수상내역"
@@ -46,8 +56,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex'}} >
-        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >상</Form.Label>
+      <Form.Group
+        controlId="formBasicGrade"
+        className="mt-3"
+        style={{ display: "flex" }}
+      >
+        <Form.Label
+          inline
+          className="me-3 mt-3 text-center"
+          style={{ width: "6rem " }}
+        >
+          상
+        </Form.Label>
         <Form.Control
           inline
           type="text"
@@ -57,8 +77,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicDate" className="mt-3" style={{ display: 'flex'}}>
-        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >수상 날짜</Form.Label>
+      <Form.Group
+        controlId="formBasicDate"
+        className="mt-3"
+        style={{ display: "flex" }}
+      >
+        <Form.Label
+          inline
+          className="me-3 mt-3 text-center"
+          style={{ width: "6rem " }}
+        >
+          수상 날짜
+        </Form.Label>
         <Form.Control
           type="text"
           placeholder="수상 날짜"
@@ -67,8 +97,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicDescription" className="mt-3" style={{ display: 'flex'}}>
-        <Form.Label inline className = "me-3 mt-3 text-center " style={{ width: '6rem'}}>상세내역</Form.Label>
+      <Form.Group
+        controlId="formBasicDescription"
+        className="mt-3"
+        style={{ display: "flex" }}
+      >
+        <Form.Label
+          inline
+          className="me-3 mt-3 text-center "
+          style={{ width: "6rem" }}
+        >
+          상세내역
+        </Form.Label>
         <Form.Control
           type="text"
           placeholder="상세내역"
