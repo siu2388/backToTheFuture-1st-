@@ -1,15 +1,18 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState} from 'react';
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
 function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   const handleDelete = async () => {
     await Api.delete("awards", award.id).then(() => {
       setAwards((prevAwards) =>
-        prevAwards.filter((award) => award.id !== award.id)
+        prevAwards.filter((prevAward) => prevAward.id !== award.id)
       );
     });
   };
+
+  useEffect(() => {}, [award]);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -38,7 +41,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 
