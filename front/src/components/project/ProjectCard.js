@@ -1,12 +1,12 @@
 import { Card, Button, Row, Col, Modal } from "react-bootstrap";
-import {useState} from 'react';
+import { useState } from "react";
 import * as Api from "../../api";
 
 function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   const handleDelete = async () => {
     await Api.delete("projects", project.id).then(() => {
       setProjects((prevProjects) =>
-        prevProjects.filter((project) => project.id !== project.id)
+        prevProjects.filter((prevProject) => prevProject.id !== project.id)
       );
     });
   };
@@ -41,11 +41,11 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             </Button>
 
             <>
-              <Button variant="outline-danger" onClick = {handleShow} size="sm">             
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 
-              <Modal show={show} onHide={handleClose} animation = {false}>
+              <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
                   <Modal.Title>삭제</Modal.Title>
                 </Modal.Header>
@@ -56,7 +56,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
                   </Button>
                   <Button
                     variant="primary"
-                    onClick = {() => {
+                    onClick={() => {
                       handleClose();
                       handleDelete();
                     }}

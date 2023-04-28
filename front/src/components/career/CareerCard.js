@@ -1,12 +1,12 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import { useState , useEffect} from "react";
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
 function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
   const handleDelete = async () => {
     await Api.delete("careers", career.id).then(() => {
       setCareers((prevCareers) =>
-        prevCareers.filter((career) => career.id !== career.id)
+        prevCareers.filter((prevCareer) => prevCareer.id !== career.id)
       );
     });
   };

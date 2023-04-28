@@ -1,12 +1,14 @@
-import { Card,  Modal, Button, Row, Col } from "react-bootstrap";
-import {useState} from 'react';
+import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import { useState } from "react";
 import * as Api from "../../api";
 
 function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
   const handleDelete = async () => {
     await Api.delete("educations", education.id).then(() => {
       setEducations((prevEducations) =>
-        prevEducations.filter((education) => education.id !== education.id)
+        prevEducations.filter(
+          (prevEducation) => prevEducation.id !== education.id
+        )
       );
     });
   };
@@ -24,7 +26,8 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
           <span className="text-muted">{education.major}</span>
           <span className="text-muted">{education.status}</span>
           <br />
-          <span className="text-muted">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
+          <span className="text-muted">{education.startDate}</span> ~{" "}
+          <span className="text-muted4">{education.endDate}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
@@ -37,7 +40,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 
