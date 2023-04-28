@@ -3,12 +3,13 @@
 // 따라서 코드를 실습용으로 임시 변경했습니다.
 
 // Mock은 가짜라는 뜻을 가집니다. 임시로 가짜 사용자 데이터를 설정합니다.
-const userMock1 = {
+const userMock1 = { 
   title: "컴활",
   authority: "대한",
   registerNum: "1234",
   grade: "1급",
 }
+
 const userMock2 = {
   title: "한능검",
   authority: "기관1",

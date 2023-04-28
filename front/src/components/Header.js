@@ -40,9 +40,11 @@ function Header() {
 
       {isLogin && (
         <>
-          <Nav.Item>
-            <Nav.Link onClick={() => navigate("/education")}>학력</Nav.Link>
-          </Nav.Item>
+
+        <Nav.Item>
+        <Nav.Link onClick={() => navigate("/network")}>학력</Nav.Link>
+        </Nav.Item>
+
 
         <Nav.Item>
         <Nav.Link onClick={() => navigate("/network")}>수상이력</Nav.Link>

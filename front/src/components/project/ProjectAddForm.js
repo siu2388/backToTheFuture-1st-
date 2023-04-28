@@ -40,7 +40,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="수상내역"
+          placeholder="프로젝트 이름"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />

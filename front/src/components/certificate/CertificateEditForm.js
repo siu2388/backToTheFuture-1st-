@@ -9,10 +9,10 @@ function CertificateEditForm({
 }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentCertificate.title);
-  //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState(
-    currentCertificate.description
-  );
+  const [authority, setAuthority] = useState(currentCertificate.authority);
+  const [registerNum, setRegisterNum] = useState(currentCertificate.registerNum);
+  const [grade, setGrade] = useState(currentCertificate.grade);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

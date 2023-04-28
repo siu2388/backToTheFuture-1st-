@@ -46,14 +46,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group
-        controlId="formBasicGrade"
-        className="mt-3"
-        style={{ display: "flex", alignItems: "center" }}
-      >
-        <Form.Label inline className="me-2">
-          상
-        </Form.Label>
+      <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex'}} >
+        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >상</Form.Label>
         <Form.Control
           inline
           type="text"
