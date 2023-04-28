@@ -1,17 +1,19 @@
-import { Card,  Modal, Button, Row, Col } from "react-bootstrap";
-import {useState, useEffect} from 'react';
+import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import {useState} from 'react';
 import * as Api from "../../api";
 
-function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
+function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
   const handleDelete = async () => {
-    await Api.delete("educations", education.id).then(() => {
-      setEducations((prevEducations) =>
-        prevEducations.filter((prevEducation) => prevEducation.id !== education.id)
+    await Api.delete("skills", skill.id).then(() => {
+      setSkills((prevSkills) =>
+        prevSkills.filter((prevSkill) => prevSkill.id !== skill.id)
       );
     });
   };
 
-  useEffect(() => {}, [education]);
+  useEffect(() => {}, [skill]);
+
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -21,15 +23,15 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{education.schoolName}</span>
-          <span>{education.schoolType}</span>
-          <span className="text-muted">{education.major}</span>
-          <span className="text-muted">{education.status}</span>
+          <span>{skill.skillName}</span>
           <br />
-          <span className="text-muted">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
+          <span className="text-muted">{skill.level}</span>
+          <br />
+          <span className="text-muted">{skill.period}</span>
         </Col>
+        
         {isEditable && (
-          <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
+          <Col xs lg="1">
             <Button
               variant="outline-info"
               size="sm"
@@ -71,4 +73,4 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
   );
 }
 
-export default EducationCard;
+export default SkillCard;
