@@ -3,9 +3,8 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api"; //Education를 위한 api 쓰기
 
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
- 
-  const [schoolName, setschoolName] = useState("");
-  const [degree, setDegree] = useState("");
+  const [schoolName, setSchoolName] = useState("");
+  const [schoolType, setSchoolType] = useState("");
   const [major, setMajor] = useState("");
   const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -22,11 +21,11 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     await Api.post("education/create", {
       user_id: portfolioOwnerId,
       schoolName,
-      degree,
+      schoolType,
       major,
       status,
       startDate,
-      endDate
+      endDate,
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
@@ -44,11 +43,15 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           type="text"
           placeholder="학교이름"
           value={schoolName}
-          onChange={(e) => setschoolName(e.target.value)}
+          onChange={(e) => setSchoolName(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Select aria-label="Default select example" onChange={(e) => setDegree(e.target.value)}>
+      <Form.Select
+        aria-label="Default select example"
+        value={schoolType}
+        onChange={(e) => setSchoolType(e.target.value)}
+      >
         <option>Open this select menu</option>
         <option value="1">중학교</option>
         <option value="2">고등학교</option>
@@ -56,7 +59,11 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         <option value="4">대학원</option>
       </Form.Select>
 
-      <Form.Group controlId="formBasicMajor" className="mt-3" style={{ display: "flex", alignItems: "center" }}>
+      <Form.Group
+        controlId="formBasicMajor"
+        className="mt-3"
+        style={{ display: "flex", alignItems: "center" }}
+      >
         <Form.Control
           type="text"
           placeholder="전공"
@@ -65,7 +72,10 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         />
       </Form.Group>
 
-      <Form.Select aria-label="Default select example2" onChange={(e) => setStatus(e.target.value)}>
+      <Form.Select
+        aria-label="Default select example2"
+        onChange={(e) => setStatus(e.target.value)}
+      >
         <option>Open this select menu</option>
         <option value="재학중">재학중</option>
         <option value="학사">학사</option>

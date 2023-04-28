@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Card, Button, Row, Col } from "react-bootstrap";
 
-import Education from './Education';
-import EducationAddForm from './EducationAddForm';
-import * as Api from "../../apiEducation";
+import Education from "./Education";
+import EducationAddForm from "./EducationAddForm";
+import * as Api from "../../api";
 
 function Educations({ portfolioOwnerId, isEditable }) {
   //useState로 Educations 상태를 생성함.
@@ -13,7 +13,9 @@ function Educations({ portfolioOwnerId, isEditable }) {
 
   useEffect(() => {
     // "Educationlist/유저id"로 GET 요청하고, response의 data로 Educations를 세팅함.
-    Api.get('educationlist', portfolioOwnerId).then((res) => setEducations(res.data));
+    Api.get("educationlist", portfolioOwnerId).then((res) =>
+      setEducations(res.data)
+    );
   }, [portfolioOwnerId]);
 
   return (
