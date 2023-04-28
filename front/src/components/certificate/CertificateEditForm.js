@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "api";
+import * as Api from "../../api";
 
-function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing }) {
+function CertificateEditForm({
+  currentCertificate,
+  setCertificates,
+  setIsEditing,
+}) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentCertificate.title);
   //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState(currentCertificate.description);
+  const [description, setDescription] = useState(
+    currentCertificate.description
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();

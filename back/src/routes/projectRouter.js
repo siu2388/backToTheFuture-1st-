@@ -107,10 +107,10 @@ projectRouter.get("/projectlist/:user_id", async function (req, res, next) {
     // @ts-ignore
     const user_id = req.params.user_id;
     const projectList = await ProjectService.getProjectList({ user_id });
-    res.status(200).send(ProjectList);
+    res.status(200).send(projectList);
   } catch (error) {
     next(error);
   }
 });
 
-export { ProjectRouter };
+export { projectRouter };
