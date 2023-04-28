@@ -8,8 +8,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [department, setDepartment] = useState(currentCareer.department);
   const [position, setPosition] = useState(currentCareer.position);
   const [description, setDescription] = useState(currentCareer.description);
-  const [startDate, setStartDate] = useState(currentCareer.StartDate);
-  const [endDate, setEndDate] = useState(currentCareer.EndDate);
+  const [startDate, setStartDate] = useState(currentCareer.startDate);
+  const [endDate, setEndDate] = useState(currentCareer.endDate);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

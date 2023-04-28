@@ -3,12 +3,29 @@ import { Career } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class CareerService {
-  static async addCareer({ user_id, title, grade, date, description }) {
+  static async addCareer({
+    user_id,
+    company,
+    department,
+    position,
+    description,
+    startDate,
+    endDate,
+  }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newCareer = { id, user_id, title, grade, date, description };
+    const newCareer = {
+      id,
+      user_id,
+      company,
+      department,
+      position,
+      description,
+      startDate,
+      endDate,
+    };
     const createdNewCareer = await Career.create({ newCareer });
 
     return createdNewCareer;
@@ -41,26 +58,38 @@ class CareerService {
       return { errorMessage };
     }
 
-    if (toUpdate.title) {
-      const fieldToUpdate = "title";
-      const newValue = toUpdate.title;
+    if (toUpdate.company) {
+      const fieldToUpdate = "company";
+      const newValue = toUpdate.company;
       career = await Career.update({ careerId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.grade) {
-      const fieldToUpdate = "grade";
-      const newValue = toUpdate.grade;
+    if (toUpdate.department) {
+      const fieldToUpdate = "department";
+      const newValue = toUpdate.department;
       career = await Career.update({ careerId, fieldToUpdate, newValue });
     }
-    if (toUpdate.date) {
-      const fieldToUpdate = "date";
-      const newValue = toUpdate.date;
+    if (toUpdate.position) {
+      const fieldToUpdate = "position";
+      const newValue = toUpdate.position;
       career = await Career.update({ careerId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
+      career = await Career.update({ careerId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.startDate) {
+      const fieldToUpdate = "startDate";
+      const newValue = toUpdate.startDate;
+      career = await Career.update({ careerId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.endDate) {
+      const fieldToUpdate = "endDate";
+      const newValue = toUpdate.endDate;
       career = await Career.update({ careerId, fieldToUpdate, newValue });
     }
 

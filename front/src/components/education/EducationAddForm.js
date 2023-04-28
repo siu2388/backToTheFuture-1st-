@@ -53,10 +53,10 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         onChange={(e) => setSchoolType(e.target.value)}
       >
         <option>Open this select menu</option>
-        <option value="1">중학교</option>
-        <option value="2">고등학교</option>
-        <option value="3">대학교</option>
-        <option value="4">대학원</option>
+        <option value="중학교">중학교</option>
+        <option value="고등학교">고등학교</option>
+        <option value="대학교">대학교</option>
+        <option value="대학원">대학원</option>
       </Form.Select>
 
       <Form.Group
