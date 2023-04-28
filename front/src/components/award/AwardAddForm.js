@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
@@ -25,7 +24,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       grade,
       date,
       description,
-
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
@@ -56,7 +54,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         />
       </Form.Group>
 
-
       <Form.Group controlId="formBasicDate" className="mt-3">
         <Form.Control
           type="text"
@@ -74,8 +71,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
-
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

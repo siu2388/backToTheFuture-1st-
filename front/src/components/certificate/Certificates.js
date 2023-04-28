@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-import * as Api from "../../apiCert";
-
+import * as Api from "../../api";
 import Certificate from "./Certificate";
 import CertificateAddForm from "./CertificateAddForm";
 
