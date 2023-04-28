@@ -1,34 +1,36 @@
-import { Card, Button, Row, Col, Modal } from "react-bootstrap";
-import {useState} from 'react';
+import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import { useState } from "react";
 import * as Api from "../../api";
 
-function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
+
+function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
   const handleDelete = async () => {
-    await Api.delete("projects", project.id).then(() => {
-      setProjects((prevProjects) =>
-        prevProjects.filter((project) => project.id !== project.id)
+    await Api.delete("careers", career.id).then(() => {
+      setCareers((prevCareers) =>
+        prevCareers.filter((career) => career.id !== career.id)
       );
     });
   };
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const [show, setShow] = useState(false);
+
+const handleClose = () => setShow(false);
+const handleShow = () => setShow(true);
+
 
   return (
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{project.title}</span>
+          <span>{career.name}</span>
           <br />
-          <span className="text-muted">{project.startDate}</span>
+          <span className="text-muted">{career.authority}</span>
           <br />
-          <span className="text-muted">{project.endDate}</span>
+          <span className="text-muted">{career.registerNum}</span>
           <br />
-          <span className="text-muted">{project.archive}</span>
-          <br />
-          <span className="text-muted">{project.description}</span>
+          <span className="text-muted">{career.grade}</span>
         </Col>
+
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
             <Button
@@ -39,13 +41,12 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             >
               편집
             </Button>
-
             <>
-              <Button variant="outline-danger" onClick = {handleShow} size="sm">             
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 
-              <Modal show={show} onHide={handleClose} animation = {false}>
+              <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
                   <Modal.Title>삭제</Modal.Title>
                 </Modal.Header>
@@ -56,7 +57,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
                   </Button>
                   <Button
                     variant="primary"
-                    onClick = {() => {
+                    onClick={() => {
                       handleClose();
                       handleDelete();
                     }}
@@ -73,4 +74,4 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   );
 }
 
-export default ProjectCard;
+export default CareerCard;
