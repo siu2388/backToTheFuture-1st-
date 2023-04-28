@@ -59,12 +59,21 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       </Form.Group>
 
 
-      <Form.Group controlId="formBasicPositionm" className="mt-3">
+      <Form.Group controlId="formBasicPosition" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="직무"
+          placeholder="직급"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicDescription" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="직무설명"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
 

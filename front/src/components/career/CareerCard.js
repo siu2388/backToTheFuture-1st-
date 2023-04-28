@@ -1,7 +1,6 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import * as Api from "../../api";
-
 
 function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
   const handleDelete = async () => {
@@ -12,23 +11,28 @@ function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
     });
   };
 
-const [show, setShow] = useState(false);
+  useEffect(() => {}, [career]);
 
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
 
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{career.name}</span>
+          <span>{career.company}</span>
           <br />
-          <span className="text-muted">{career.authority}</span>
+          <span className="text-muted">{career.department}</span>
           <br />
-          <span className="text-muted">{career.registerNum}</span>
+          <span className="text-muted">{career.position}</span>
           <br />
-          <span className="text-muted">{career.grade}</span>
+          <span className="text-muted">{career.description}</span>
+          <br />
+          <span className="text-muted">{career.startDate}</span>
+          <br />
+          <span className="text-muted">{career.endDate}</span>
         </Col>
 
         {isEditable && (
