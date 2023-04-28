@@ -5,12 +5,11 @@ import * as Api from "../../api";
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [schoolName, setschoolName] = useState(currentEducation.schoolName);
-  const [degree, setDegree] = useState(currentEducation.degree);
+  const [schoolType, setSchoolType] = useState(currentEducation.schoolType);
   const [major, setMajor] = useState(currentEducation.major);
   const [status, setStatus] = useState(currentEducation.status);
   const [startDate, setStartDate] = useState(currentEducation.startDate);
   const [endDate, setEndDate] = useState(currentEducation.endDate);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,11 +22,11 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     await Api.put(`educations/${currentEducation.id}`, {
       user_id,
       schoolName,
-      degree,
+      schoolType,
       major,
       status,
       startDate,
-      endDate
+      endDate,
     });
 
     // "educationlist/유저id" 엔드포인트로 GET 요청함.
@@ -49,7 +48,11 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Select aria-label="Default select example" onChange={(e) => setDegree(e.target.value)}>
+      <Form.Select
+        aria-label="Default select example"
+        value={schoolType}
+        onChange={(e) => setSchoolType(e.target.value)}
+      >
         <option>Open this select menu</option>
         <option value="중학교">중학교</option>
         <option value="고등학교">고등학교</option>
@@ -57,7 +60,11 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         <option value="대학원">대학원</option>
       </Form.Select>
 
-      <Form.Group controlId="formBasicMajor" className="mt-3" style={{ display: "flex", alignItems: "center" }}>
+      <Form.Group
+        controlId="formBasicMajor"
+        className="mt-3"
+        style={{ display: "flex", alignItems: "center" }}
+      >
         <Form.Control
           type="text"
           placeholder="전공"
@@ -66,7 +73,11 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Select aria-label="Default select example2" onChange={(e) => setStatus(e.target.value)}>
+      <Form.Select
+        aria-label="Default select example2"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      >
         <option>Open this select menu</option>
         <option value="재학중">재학중</option>
         <option value="학사">학사</option>
@@ -75,10 +86,14 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         <option value="졸업">졸업</option>
       </Form.Select>
 
-      <Form.Floating className="mb-3" onChange={(e) => setStartDate(e.target.value)}>
+      <Form.Floating
+        className="mb-3"
+        onChange={(e) => setStartDate(e.target.value)}
+      >
         <Form.Control
           id="floatingInputCustom"
           type="text"
+          value={startDate}
           placeholder="입학날짜"
         />
         <label htmlFor="floatingInputCustom">입학날짜 예시: 2023-3-1</label>
@@ -88,6 +103,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         <Form.Control
           id="floatingPasswordCustom"
           type="text"
+          value={endDate}
           placeholder="졸업날짜"
         />
         <label htmlFor="floatingPasswordCustom">졸업날짜 예시: 2026-2-1</label>

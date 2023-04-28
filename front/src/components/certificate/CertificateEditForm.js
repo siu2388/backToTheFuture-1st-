@@ -22,13 +22,12 @@ function CertificateEditForm({
     const user_id = currentCertificate.user_id;
 
     // "projects/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`projects/${currentCertificate.id}`, {
+    await Api.put(`certificates/${currentCertificate.id}`, {
       user_id,
       title,
       authority,
       registerNum,
-      grade
-
+      grade,
     });
 
     // "projectlist/유저id" 엔드포인트로 GET 요청함.
@@ -69,7 +68,6 @@ function CertificateEditForm({
         />
       </Form.Group>
 
-
       <Form.Group controlId="formBasicGrade" className="mt-3">
         <Form.Control
           type="text"
@@ -78,7 +76,6 @@ function CertificateEditForm({
           onChange={(e) => setGrade(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>

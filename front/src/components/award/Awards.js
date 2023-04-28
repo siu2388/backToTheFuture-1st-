@@ -26,6 +26,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
             award={award}
             setAwards={setAwards}
             isEditable={isEditable}
+
           />
         ))}
         {isEditable && (
