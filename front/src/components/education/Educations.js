@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-import Education from "./Education";
-import EducationAddForm from "./EducationAddForm";
+import Education from './Education';
+import EducationAddForm from './EducationAddForm';
 import * as Api from "../../api";
 
 function Educations({ portfolioOwnerId, isEditable }) {

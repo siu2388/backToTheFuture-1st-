@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-
-import * as Api from "../../api";
-
+import * as Api from '../../api';
 import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";
 
@@ -43,6 +41,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
             portfolioOwnerId={portfolioOwnerId}
             setAwards={setAwards}
             setIsAdding={setIsAdding}
+            
           />
         )}
       </Card.Body>
