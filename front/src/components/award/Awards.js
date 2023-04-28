@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-<<<<<<< HEAD
-
-import * as Api from "../../apiAward";
-
-=======
 import * as Api from '../../api';
->>>>>>> 5b368ee4008141986f1e3806f1700451572c7cb2
 import Award from "./Award";
 import AwardAddForm from "./AwardAddForm";
 
