@@ -2,17 +2,13 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function CertificateEditForm({
-  currentCertificate,
-  setCertificates,
-  setIsEditing,
-}) {
+function CertificateEditForm({ currentCertificate, setCertificates, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentCertificate.title);
+  const [institute, setInstitute] = useState(currentCertificate.institute)
   //useState로 description 상태를 생성함.
-  const [description, setDescription] = useState(
-    currentCertificate.description
-  );
+  const [regiNum, setRegiNum] = useState(currentCertificate.regiNum);
+  const [grade, setGrade] = useState(currentCertificate.grade);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +21,8 @@ function CertificateEditForm({
     await Api.put(`certificates/${currentCertificate.id}`, {
       user_id,
       title,
-      description,
+      regiNum,
+      grade,
     });
 
     // "awardlist/유저id" 엔드포인트로 GET 요청함.
@@ -41,18 +38,36 @@ function CertificateEditForm({
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="수상내역"
+          placeholder="자격증이름"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Group controlId="formBasicInstitute" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="상세내역"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          placeholder="발급기관"
+          value={institute}
+          onChange={(e) => setInstitute(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicRegiNum" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="발급번호"
+          value={regiNum}
+          onChange={(e) => setRegiNum(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicGrade" className="mt-3">
+        <Form.Control
+          type="text"
+          placeholder="등급"
+          value={grade}
+          onChange={(e) => setGrade(e.target.value)}
         />
       </Form.Group>
 

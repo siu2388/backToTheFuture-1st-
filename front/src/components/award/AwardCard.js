@@ -14,7 +14,7 @@ function AwardCard({ award, isEditable, setIsEditing }) {
           <span className="text-muted">{award.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
+          <Col xs lg="1">
             <Button
               variant="outline-info"
               size="sm"

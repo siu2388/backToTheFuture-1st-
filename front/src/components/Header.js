@@ -25,6 +25,7 @@ function Header() {
 
   return (
     <Nav activeKey={location.pathname}>
+
       <Nav.Item className="me-auto mb-5">
         <Nav.Link disabled>안녕하세요, 포트폴리오 공유 서비스입니다.</Nav.Link>
       </Nav.Item>
@@ -58,8 +59,10 @@ function Header() {
           </Nav.Item>
         </>
       )}
+
     </Nav>
   );
 }
 
 export default Header;
+

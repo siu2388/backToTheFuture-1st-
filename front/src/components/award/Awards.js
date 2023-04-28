@@ -47,3 +47,4 @@ function Awards({ portfolioOwnerId, isEditable }) {
 }
 
 export default Awards;
+

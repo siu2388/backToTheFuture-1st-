@@ -18,7 +18,7 @@ function CertificateCard({ certificate, isEditable, setIsEditing }) {
             <Button
               variant="outline-info"
               size="sm"
-              onClick={() => setIsEditing((prev) => !prev)}
+              onClick={() => setIsEditing(true)}
               className="mr-3"
             >
               편집
