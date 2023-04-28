@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
+<<<<<<< HEAD
 import * as Api from "../../apiEducation";
+=======
+import * as Api from "../../api";
+>>>>>>> 5b368ee4008141986f1e3806f1700451572c7cb2
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   //useState로 title 상태를 생성함.

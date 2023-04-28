@@ -12,23 +12,25 @@ function AwardCard({ award, isEditable, setIsEditing }) {
           <span className="text-muted">{award.date}</span>
           <br />
           <span className="text-muted">{award.description}</span>
-
         </Col>
         {isEditable && (
-          <Col xs lg="3" style={{ display: 'flex', alignItems: 'center' }}>
+          <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
             <Button
               variant="outline-info"
               size="sm"
-              onClick={() => setIsEditing(prev => !prev)}
+              onClick={() => setIsEditing((prev) => !prev)}
               className="me-1"
-            >편집</Button>
-            <Button 
-            variant="outline-danger"
-            size="sm"
-            // 함수 기능 넣기 
-            >삭제</Button>
+            >
+              편집
+            </Button>
+            <Button
+              variant="outline-danger"
+              size="sm"
+              // 함수 기능 넣기
+            >
+              삭제
+            </Button>
           </Col>
-
         )}
       </Row>
     </Card.Text>

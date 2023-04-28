@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
+<<<<<<< HEAD
 import * as Api from "../../apiAward";
+=======
+import * as Api from "../../api";
+>>>>>>> 5b368ee4008141986f1e3806f1700451572c7cb2
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -46,14 +50,25 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         />
       </Form.Group>
 
+<<<<<<< HEAD
       <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex'}} >
         <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >상</Form.Label>
+=======
+      <Form.Group
+        controlId="formBasicGrade"
+        className="mt-3"
+        style={{ display: "flex", alignItems: "center" }}
+      >
+        <Form.Label inline className="me-2">
+          상
+        </Form.Label>
+>>>>>>> 5b368ee4008141986f1e3806f1700451572c7cb2
         <Form.Control
           inline
           type="text"
           placeholder="상"
           value={grade}
-          onChange={(e) => setGrade(e.target.value)}          
+          onChange={(e) => setGrade(e.target.value)}
         />
       </Form.Group>
 
@@ -76,8 +91,6 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       </Form.Group>
-
-
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
