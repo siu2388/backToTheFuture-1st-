@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import Project from './Project';
 import ProjectAddForm from './ProjectAddForm';
-import * as Api from "../../apiProject";
+import * as Api from "../../api";
 
 function Projects({ portfolioOwnerId, isEditable }) {
   //useState로 projects 상태를 생성함.
