@@ -58,7 +58,6 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
         />
       </Form.Group>
 
-
       <Form.Group controlId="formBasicPosition" className="mt-3">
         <Form.Control
           type="text"
@@ -71,7 +70,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
           type="text"
-          placeholder="직무설명"
+          placeholder="직무 설명"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />

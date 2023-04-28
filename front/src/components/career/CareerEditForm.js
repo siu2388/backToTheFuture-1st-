@@ -57,33 +57,33 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicPosition" className="mt-3">
-        <Form.Control
-          type="text"
-          placeholder="직급"
-          value={position}
-          onChange={(e) => setPosition(e.target.value)}
-        />
-      </Form.Group>
+    <Form.Group controlId="formBasicPosition" className="mt-3">
+      <Form.Control
+        type="text"
+        placeholder="직급"
+        value={position}
+        onChange={(e) => setPosition(e.target.value)}
+      />
+    </Form.Group>
 
-      <Form.Group controlId="formBasicDescription" className="mt-3">
-        <Form.Control
-          type="text"
-          placeholder="직무설명"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </Form.Group>
+    <Form.Group controlId="formBasicDescription" className="mt-3">
+      <Form.Control
+        type="text"
+        placeholder="직무 설명"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+    </Form.Group>
 
-      <Form.Label>근무 기간</Form.Label>
-      <Form.Group controlId="formBasicStartDate" className="mt-3">
-        <Form.Control
-          type="text"
-          placeholder="근무 시작 날짜"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
-      </Form.Group>
+    <Form.Label>근무 기간</Form.Label>
+    <Form.Group controlId="formBasicStartDate" className="mt-3">
+      <Form.Control
+        type="text"
+        placeholder="근무 시작 날짜"
+        value={startDate}
+        onChange={(e) => setStartDate(e.target.value)}
+      />
+    </Form.Group>
 
       <Form.Group controlId="formBasicEndDate" className="mt-3">
         <Form.Control
