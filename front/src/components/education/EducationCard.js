@@ -24,8 +24,8 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
       <Row className="align-items-center">
         <Col>
           <span>{education.schoolName}</span>
-          <span>{education.schoolType}</span>
           <span className="text-muted">{education.major}</span>
+          <span>{education.schoolType}</span>
           <span className="text-muted">{education.status}</span>
           <br />
           <span className="text-muted">{education.startDate}</span> ~{" "}
@@ -62,7 +62,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
                       handleDelete();
                     }}
                   >
-                    변경 내용 저장
+                    확인
                   </Button>
                 </Modal.Footer>
               </Modal>
