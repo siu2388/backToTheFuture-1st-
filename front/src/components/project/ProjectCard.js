@@ -1,18 +1,15 @@
 import { Card, Button, Row, Col, Modal } from "react-bootstrap";
-import {useState, useEffect } from 'react';
+import {useState} from 'react';
 import * as Api from "../../api";
 
 function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   const handleDelete = async () => {
     await Api.delete("projects", project.id).then(() => {
       setProjects((prevProjects) =>
-        prevProjects.filter((prevProject) => prevProject.id !== project.id)
+        prevProjects.filter((project) => project.id !== project.id)
       );
     });
   };
-
-  useEffect(() => {}, [project]);
-  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

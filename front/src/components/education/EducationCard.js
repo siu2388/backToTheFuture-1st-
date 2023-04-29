@@ -1,19 +1,15 @@
 import { Card,  Modal, Button, Row, Col } from "react-bootstrap";
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import * as Api from "../../api";
 
 function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
   const handleDelete = async () => {
     await Api.delete("educations", education.id).then(() => {
       setEducations((prevEducations) =>
-        prevEducations.filter(
-          (prevEducation) => prevEducation.id !== education.id
-        )
+        prevEducations.filter((education) => education.id !== education.id)
       );
     });
   };
-
-  useEffect(() => {}, [education]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -28,8 +24,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
           <span>{education.schoolType}</span>
           <span className="text-muted">{education.status}</span>
           <br />
-          <span className="text-muted">{education.startDate}</span> ~{" "}
-          <span className="text-muted4">{education.endDate}</span>
+          <span className="text-muted">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
@@ -42,7 +37,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size="sm">
+              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
                 삭제
               </Button>
 
