@@ -18,6 +18,7 @@ function Certificate({ certificate, setCertificates, isEditable }) {
           certificate={certificate}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
+          setCertificates={setCertificates}
         />
       )}
     </>
