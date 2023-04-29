@@ -82,8 +82,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       >
         <option>상태</option>
         <option value="재학중">재학중</option>
-        <option value="휴학">학사</option>
-        <option value="수료">석사</option>
+        <option value="휴학">휴학</option>
+        <option value="수료">수료</option>
         <option value="졸업">졸업</option>
       </Form.Select>
 
