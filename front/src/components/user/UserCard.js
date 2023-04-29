@@ -17,6 +17,11 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         </Row>
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
+        <Card.Link href = {user?.github} target='_blank'>Github</Card.Link>
+        <Card.Link href = {user?.blog} target='_blank'>Blog</Card.Link>
+
+
+
         <Card.Text>{user?.description}</Card.Text> 
       
 

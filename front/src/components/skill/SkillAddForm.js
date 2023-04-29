@@ -41,7 +41,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           type="text"
           placeholder="기술명"
           value={skillName}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setSkillName(e.target.value)}
         />
       </Form.Group>
 
@@ -50,7 +50,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           type="text"
           placeholder="숙련도"
           value={level}
-          onChange={(e) => setGrade(e.target.value)}
+          onChange={(e) => setLevel(e.target.value)}
         />
       </Form.Group>
 
@@ -59,7 +59,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           type="text"
           placeholder="사용 기간"
           value={period}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => setPeriod(e.target.value)}
         />
       </Form.Group>
 

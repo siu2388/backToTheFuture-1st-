@@ -61,7 +61,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
                       handleDelete();
                     }}
                   >
-                    확인
+                    변경 내용 저장
                   </Button>
                 </Modal.Footer>
               </Modal>

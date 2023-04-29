@@ -9,6 +9,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
+  const [blog, setBlog] = useState(user.blog);
+  const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
 
   const handleSubmit = async (e) => {
@@ -19,6 +21,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       image,
       name,
       email,
+      github,
+      blog,
       description,
     });
     // 유저 정보는 response의 data임.
@@ -61,6 +65,46 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="이메일"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="userEditGithub" className="mb-3">
+            <Form.Control
+              type="string"
+              placeholder="Github"
+              value={github}
+              onChange={(e) => {
+                const inputValue = e.target.value;
+                if (
+                  inputValue.startsWith("https://") ||
+                  inputValue.startsWith("http://")
+                ) {
+                  setGithub(inputValue);
+                } else {
+                  setGithub(`https://${inputValue}`);
+                }
+              }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="userEditBlog" className="mb-3">
+            <Form.Control
+              type="string"
+              placeholder="Blog"
+              value={blog}
+              onChange={(e) => {
+                {
+                  const inputValue = e.target.value;
+                  if (
+                    inputValue.startsWith("https://") ||
+                    inputValue.startsWith("http://")
+                  ) {
+                    setBlog(inputValue);
+                  } else {
+                    setBlog(`https://${inputValue}`);
+                  }
+                }
+              }}
             />
           </Form.Group>
 
