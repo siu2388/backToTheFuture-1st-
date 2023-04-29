@@ -1,5 +1,5 @@
 import { Card, Button, Row, Col, Modal } from "react-bootstrap";
-import { useState } from "react";
+import {useState, useEffect } from 'react';
 import * as Api from "../../api";
 
 function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
@@ -10,6 +10,9 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
       );
     });
   };
+
+  useEffect(() => {}, [project]);
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

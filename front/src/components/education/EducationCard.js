@@ -1,5 +1,5 @@
-import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { Card,  Modal, Button, Row, Col } from "react-bootstrap";
+import {useState, useEffect} from 'react';
 import * as Api from "../../api";
 
 function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
@@ -12,6 +12,8 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
       );
     });
   };
+
+  useEffect(() => {}, [education]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

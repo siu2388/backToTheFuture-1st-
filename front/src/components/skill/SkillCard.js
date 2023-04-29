@@ -1,17 +1,18 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import {useState} from 'react';
 import * as Api from "../../api";
 
-function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
+function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
   const handleDelete = async () => {
-    await Api.delete("awards", award.id).then(() => {
-      setAwards((prevAwards) =>
-        prevAwards.filter((prevAward) => prevAward.id !== award.id)
+    await Api.delete("skills", skill.id).then(() => {
+      setSkills((prevSkills) =>
+        prevSkills.filter((prevSkill) => prevSkill.id !== skill.id)
       );
     });
   };
 
-  useEffect(() => {}, [award]);
+  useEffect(() => {}, [skill]);
+
 
   const [show, setShow] = useState(false);
 
@@ -22,13 +23,11 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{award.title}</span>
+          <span>{skill.skillName}</span>
           <br />
-          <span className="text-muted">{award.grade}</span>
+          <span className="text-muted">{skill.level}</span>
           <br />
-          <span className="text-muted">{award.date}</span>
-          <br />
-          <span className="text-muted">{award.description}</span>
+          <span className="text-muted">{skill.period}</span>
         </Col>
         
         {isEditable && (
@@ -42,7 +41,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size="sm">
+              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
                 삭제
               </Button>
 
@@ -74,4 +73,4 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
   );
 }
 
-export default AwardCard;
+export default SkillCard;
