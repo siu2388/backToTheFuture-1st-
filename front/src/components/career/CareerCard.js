@@ -62,7 +62,7 @@ const handleShow = () => setShow(true);
                       handleDelete();
                     }}
                   >
-                    변경 내용 저장
+                    확인
                   </Button>
                 </Modal.Footer>
               </Modal>
