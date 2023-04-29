@@ -15,10 +15,11 @@ function Skills({ portfolioOwnerId, isEditable }) {
     Api.get("skilllist", portfolioOwnerId).then((res) => setSkills(res.data));
   }, [portfolioOwnerId]);
 
+
   return (
     <Card>
       <Card.Body>
-        <Card.Title>사용 기술</Card.Title>
+        <Card.Title>사용기술</Card.Title>
         {skills.map((skill) => (
           <Skill
             key={skill.id}

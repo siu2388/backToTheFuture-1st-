@@ -44,11 +44,11 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             </Button>
 
             <>
-              <Button variant="outline-danger" onClick={handleShow} size="sm">
+              <Button variant="outline-danger" onClick = {handleShow} size="sm">             
                 삭제
               </Button>
 
-              <Modal show={show} onHide={handleClose} animation={false}>
+              <Modal show={show} onHide={handleClose} animation = {false}>
                 <Modal.Header closeButton>
                   <Modal.Title>삭제</Modal.Title>
                 </Modal.Header>
@@ -59,12 +59,12 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
                   </Button>
                   <Button
                     variant="primary"
-                    onClick={() => {
+                    onClick = {() => {
                       handleClose();
                       handleDelete();
                     }}
                   >
-                    확인
+                    변경 내용 저장
                   </Button>
                 </Modal.Footer>
               </Modal>

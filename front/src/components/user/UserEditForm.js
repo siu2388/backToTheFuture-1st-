@@ -8,7 +8,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
   //useState로 description 상태를 생성함.
+  const [blog, setBlog] = useState(user.blog);
+  const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +20,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     const res = await Api.put(`users/${user.id}`, {
       name,
       email,
+      github,
+      blog,
       description,
+
     });
     // 유저 정보는 response의 data임.
     const updatedUser = res.data;
@@ -47,6 +53,24 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="이메일"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="userEditGithub" className="mb-3">
+            <Form.Control
+              type="string"
+              placeholder="Github"
+              value={github}
+              onChange={(e) => setGithub(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="userEditBlog" className="mb-3">
+            <Form.Control
+              type="string"
+              placeholder="Blog"
+              value={blog}
+              onChange={(e) => setBlog(e.target.value)}
             />
           </Form.Group>
 
