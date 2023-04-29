@@ -79,16 +79,14 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="Blog"
               value={blog}
               onChange={(e) => {
-                {
-                  const inputValue = e.target.value;
-                  if (
-                    inputValue.startsWith("https://") ||
-                    inputValue.startsWith("http://")
-                  ) {
-                    setBlog(inputValue);
-                  } else {
-                    setBlog(`https://${inputValue}`);
-                  }
+                const inputValue = e.target.value;
+                if (
+                  inputValue.startsWith("https://") ||
+                  inputValue.startsWith("http://")
+                ) {
+                  setBlog(inputValue);
+                } else {
+                  setBlog(`https://${inputValue}`);
                 }
               }}
             />
