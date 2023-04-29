@@ -56,6 +56,8 @@ class userAuthService {
     // 반환할 loginuser 객체를 위한 변수 설정
     const id = user.id;
     const name = user.name;
+    const github = user.github;
+    const blog = user.blog;
     const description = user.description;
 
     const loginUser = { //컨트롤러층에 반환할 객체
@@ -63,6 +65,8 @@ class userAuthService {
       id,
       email,
       name,
+      github,
+      blog,
       description,
       errorMessage: null,
     };
@@ -102,6 +106,18 @@ class userAuthService {
     if (toUpdate.password) {
       const fieldToUpdate = "password";
       const newValue = bcrypt.hash(toUpdate.password, 10);
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.github) {
+      const fieldToUpdate = "github";
+      const newValue = toUpdate.github;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.blog) {
+      const fieldToUpdate = "blog";
+      const newValue = toUpdate.blog;
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
