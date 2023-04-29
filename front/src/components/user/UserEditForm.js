@@ -4,6 +4,7 @@ import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
+  const [image, setImage]= useState("");
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
@@ -15,6 +16,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`users/${user.id}`, {
+      image,
       name,
       email,
       description,
@@ -31,8 +33,20 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   return (
     <Card className="mb-2">
       <Card.Body>
+
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="useEditName" className="mb-3">
+
+
+          <Form.Group controlId="formFile" className="mb-3">
+          <Form.Label>프로필 사진 변경</Form.Label>
+          <Form.Control 
+            type="file"
+            value={image}
+            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} 
+          />
+          </Form.Group>
+
+          <Form.Group controlId="userEditName" className="mb-3">
             <Form.Control
               type="text"
               placeholder="이름"
