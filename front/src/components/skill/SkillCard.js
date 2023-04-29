@@ -1,5 +1,5 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import * as Api from "../../api";
 
 function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
