@@ -11,7 +11,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [blog, setBlog] = useState(user.blog);
   const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +22,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       github,
       blog,
       description,
-
     });
     // 유저 정보는 response의 data임.
     const updatedUser = res.data;
@@ -61,7 +59,17 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="string"
               placeholder="Github"
               value={github}
-              onChange={(e) => setGithub(e.target.value)}
+              onChange={(e) => {
+                const inputValue = e.target.value;
+                if (
+                  inputValue.startsWith("https://") ||
+                  inputValue.startsWith("http://")
+                ) {
+                  setGithub(inputValue);
+                } else {
+                  setGithub(`https://${inputValue}`);
+                }
+              }}
             />
           </Form.Group>
 
@@ -70,7 +78,19 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="string"
               placeholder="Blog"
               value={blog}
-              onChange={(e) => setBlog(e.target.value)}
+              onChange={(e) => {
+                {
+                  const inputValue = e.target.value;
+                  if (
+                    inputValue.startsWith("https://") ||
+                    inputValue.startsWith("http://")
+                  ) {
+                    setBlog(inputValue);
+                  } else {
+                    setBlog(`https://${inputValue}`);
+                  }
+                }
+              }}
             />
           </Form.Group>
 
