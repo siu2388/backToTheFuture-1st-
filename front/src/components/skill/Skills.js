@@ -19,7 +19,7 @@ function Skills({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>수상이력</Card.Title>
+        <Card.Title>사용기술</Card.Title>
         {skills.map((skill) => (
           <Skill
             key={skill.id}
