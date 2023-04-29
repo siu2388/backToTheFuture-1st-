@@ -5,11 +5,12 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
-import Awards from  "./award/Awards"
-import Projects from "./project/Projects"
+import Awards from "./award/Awards";
+import Projects from "./project/Projects";
 import Certificates from "./certificate/Certificates";
 import Educations from "./education/Educations";
 import Careers from "./career/Careers";
+import Skills from "./skill/Skills";
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -66,28 +67,31 @@ function Portfolio() {
           />
         </Col>
         <Col>
-
           <div>
             <Awards
-              portfolioOwnerId = {portfolioOwner.id}
+              portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
             <Projects
-              portfolioOwnerId = {portfolioOwner.id}
+              portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
             <Certificates
-              portfolioOwnerId = {portfolioOwner.id}
+              portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
             />
             <Educations
-              portfolioOwnerId = {portfolioOwner.id}
+              portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
-            />              
+            />
             <Careers
-              portfolioOwnerId = {portfolioOwner.id}
+              portfolioOwnerId={portfolioOwner.id}
               isEditable={portfolioOwner.id === userState.user?.id}
-            />             
+            />
+            <Skills
+              portfolioOwnerId={portfolioOwner.id}
+              isEditable={portfolioOwner.id === userState.user?.id}
+            />
           </div>
         </Col>
       </Row>

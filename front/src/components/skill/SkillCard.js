@@ -1,5 +1,5 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState} from 'react';
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
 function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
@@ -12,7 +12,6 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
   };
 
   useEffect(() => {}, [skill]);
-
 
   const [show, setShow] = useState(false);
 
@@ -29,7 +28,7 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
           <br />
           <span className="text-muted">{skill.period}</span>
         </Col>
-        
+
         {isEditable && (
           <Col xs lg="1">
             <Button
@@ -41,7 +40,7 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-
 // user_id,skillName,level,period
 function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -41,7 +40,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           type="text"
           placeholder="기술명"
           value={skillName}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => setSkillName(e.target.value)}
         />
       </Form.Group>
 
@@ -50,7 +49,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           type="text"
           placeholder="숙련도"
           value={level}
-          onChange={(e) => setGrade(e.target.value)}
+          onChange={(e) => setLevel(e.target.value)}
         />
       </Form.Group>
 
@@ -59,10 +58,9 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           type="text"
           placeholder="사용 기간"
           value={period}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={(e) => setPeriod(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
