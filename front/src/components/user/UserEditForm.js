@@ -29,6 +29,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     // 유저 정보는 response의 data임.
   
     const updatedUser = res.data;
+
     
     
     // 해당 유저 정보로 user을 세팅함.
