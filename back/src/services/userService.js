@@ -44,7 +44,8 @@ class userAuthService {
       password,
       correctPasswordHash
     );
-    if (!isPasswordCorrect) {  //로그인실패(비번불일치)
+    if (!isPasswordCorrect) {
+      //로그인실패(비번불일치)
       const errorMessage =
         "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -61,9 +62,11 @@ class userAuthService {
     const blog = user.blog;
     const description = user.description;
 
-    const loginUser = { //컨트롤러층에 반환할 객체
+    const loginUser = {
+      //컨트롤러층에 반환할 객체
       token,
       id,
+      image,
       email,
       name,
       github,
@@ -86,8 +89,7 @@ class userAuthService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      const errorMessage =
-        "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+      const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -98,6 +100,11 @@ class userAuthService {
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
+    if (toUpdate.image) {
+      const fieldToUpdate = "image";
+      const newValue = toUpdate.image;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
     if (toUpdate.email) {
       const fieldToUpdate = "email";
       const newValue = toUpdate.email;

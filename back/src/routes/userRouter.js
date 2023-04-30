@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     cb(null, `${Date.now()}_${file.originalname}`);
   },
 });
-const upload = multer({ storage: storage }).single("profile_img");
+const upload = multer({ storage: storage }).single("image");
 
 //user등록
 userAuthRouter.post("/user/register", async (req, res, next) => {
@@ -104,6 +104,8 @@ userAuthRouter.put(
       // URI로부터 사용자 id를 추출함.
       const user_id = req.params.id;
       // body data 로부터 업데이트할 사용자 정보를 추출함.
+      const image = req.file. ?? null;
+
       const name = req.body.name ?? null;
       const email = req.body.email ?? null;
       const password = req.body.password ?? null;
@@ -111,7 +113,15 @@ userAuthRouter.put(
       const blog = req.body.blog ?? null;
       const description = req.body.description ?? null;
 
-      const toUpdate = { name, email, password, github, blog, description };
+      const toUpdate = {
+        name,
+        image,
+        email,
+        password,
+        github,
+        blog,
+        description,
+      };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
       const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
@@ -154,13 +164,5 @@ userAuthRouter.post("/", (req, res) => {
     });
   });
 });
-// jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get("/afterlogin", login_required, (req, res, next) => {
-  res
-    .status(200)
-    .send(
-      `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
-    );
-});
 
-export { userAuthRouter};
+export { userAuthRouter };

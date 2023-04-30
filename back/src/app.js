@@ -8,7 +8,7 @@ import { educationRouter } from "./routes/educationRouter";
 import { projectRouter } from "./routes/projectRouter";
 import { careerRouter } from "./routes/careerRouter";
 import { skillRouter } from "./routes/skillRouter";
-import imgUploadRouter from './middlewares/user_uploadImage';
+// import imgUploadRouter from './middlewares/user_uploadImage';
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
-app.use(imgUploadRouter);
+// app.use(imgUploadRouter);
 
 app.use(awardRouter);
 app.use(certificateRouter);
