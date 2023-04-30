@@ -1,15 +1,17 @@
 import { Card, Button, Row, Col, Modal } from "react-bootstrap";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import * as Api from "../../api";
 
 function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   const handleDelete = async () => {
     await Api.delete("projects", project.id).then(() => {
       setProjects((prevProjects) =>
-        prevProjects.filter((project) => project.id !== project.id)
+        prevProjects.filter((prevProject) => prevProject.id !== project.id)
       );
     });
   };
+
+  useEffect(() => {}, [project]);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,15 +21,15 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{project.title}</span>
+          <span>{project?.title}</span>
           <br />
-          <span>{project.startDate}</span>
+          <span className="text-muted">{project?.startDate}</span>
           <br />
-          <span>{project.endDate}</span>
+          <span className="text-muted">{project?.endDate}</span>
           <br />
-          <span>{project.archive}</span>
+          <span className="text-muted">{project?.archive}</span>
           <br />
-          <span>{project.description}</span>
+          <span className="text-muted">{project?.description}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>

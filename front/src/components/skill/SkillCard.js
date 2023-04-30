@@ -22,15 +22,15 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{skill.skillName}</span>
+          <span>{skill?.skillName}</span>
           <br />
-          <span className="text-muted">{skill.level}</span>
+          <span className="text-muted">{skill?.level}</span>
           <br />
-          <span className="text-muted">{skill.period}</span>
+          <span className="text-muted">{skill?.period}</span>
         </Col>
 
         {isEditable && (
-          <Col xs lg="1">
+          <Col xs lg="2">
             <Button
               variant="outline-info"
               size="sm"

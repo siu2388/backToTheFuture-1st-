@@ -22,13 +22,13 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{award.title}</span>
+          <span>{award?.title}</span>
           <br />
-          <span>{award.grade}</span>
+          <span className="text-muted">{award?.grade}</span>
           <br />
-          <span>{award.date}</span>
+          <span className="text-muted">{award?.date}</span>
           <br />
-          <span>{award.description}</span>
+          <span className="text-muted">{award?.description}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">

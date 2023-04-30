@@ -45,8 +45,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       <Card.Body>
 
         <Form onSubmit={handleSubmit}>
-
-
           <Form.Group controlId="userEditImage" className="mb-3">
           <Form.Label>프로필 사진 변경</Form.Label>
           <Form.Control
