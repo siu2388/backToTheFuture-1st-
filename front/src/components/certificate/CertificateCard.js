@@ -28,13 +28,13 @@ function CertificateCard({
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{certificate.title}</span>
+          <span>{certificate?.title}</span>
           <br />
-          <span className="text-muted">{certificate.authority}</span>
+          <span className="text-muted">{certificate?.authority}</span>
           <br />
-          <span className="text-muted">{certificate.registerNum}</span>
+          <span className="text-muted">{certificate?.registerNum}</span>
           <br />
-          <span className="text-muted">{certificate.grade}</span>
+          <span className="text-muted">{certificate?.grade}</span>
         </Col>
 
         {isEditable && (

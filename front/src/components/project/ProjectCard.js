@@ -19,15 +19,15 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{project.title}</span>
+          <span>{project?.title}</span>
           <br />
-          <span className="text-muted">{project.startDate}</span>
+          <span className="text-muted">{project?.startDate}</span>
           <br />
-          <span className="text-muted">{project.endDate}</span>
+          <span className="text-muted">{project?.endDate}</span>
           <br />
-          <span className="text-muted">{project.archive}</span>
+          <span className="text-muted">{project?.archive}</span>
           <br />
-          <span className="text-muted">{project.description}</span>
+          <span className="text-muted">{project?.description}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
