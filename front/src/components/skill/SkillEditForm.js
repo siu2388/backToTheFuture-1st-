@@ -5,8 +5,8 @@ import * as Api from "../../api";
 function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
   const [skillName, setSkillName] = useState(currentSkill.skillName);
   //useState로 description 상태를 생성함.
-  const [level, setLevel] = useState("currentSkill.level");
-  const [period, setPeriod] = useState("currentSkill.period");
+  const [level, setLevel] = useState(currentSkill.level);
+  const [period, setPeriod] = useState(currentSkill.period);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

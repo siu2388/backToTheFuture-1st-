@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-
 // user_id,skillName,level,period
 function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -62,7 +61,6 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           onChange={(e) => setPeriod(e.target.value)}
         />
       </Form.Group>
-
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

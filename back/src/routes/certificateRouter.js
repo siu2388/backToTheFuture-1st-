@@ -80,7 +80,7 @@ certificateRouter.put("/certificates/:id", async function (req, res, next) {
   }
 });
 
-certificateRouter.delete("/certificates/:id", async function (req, res, next) {
+certificateRouter.delete("/certificates/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const certificateId = req.params.id;

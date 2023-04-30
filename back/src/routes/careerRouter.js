@@ -94,7 +94,7 @@ careerRouter.delete("/careers/:id", async (req, res, next) => {
 
     // 위 id를 이용하여 db에서 데이터 삭제하기
     const result = await CareerService.deleteCareer({ careerId });
-
+    
     if (result.errorMessage) {
       throw new Error(result.errorMessage);
     }

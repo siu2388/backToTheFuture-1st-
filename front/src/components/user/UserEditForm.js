@@ -4,7 +4,7 @@ import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
-  const [image, setImage]= useState("");
+  const [image, setImage]= useState(null);
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
@@ -41,14 +41,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Form onSubmit={handleSubmit}>
 
 
-          <Form.Group controlId="formFile" className="mb-3">
+          <Form.Group controlId="userEditImage" className="mb-3">
           <Form.Label>프로필 사진 변경</Form.Label>
           <Form.Control 
             type="file"
             value={image}
-            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} 
+            onChange={(e) => setImage(e.target.files[0])} 
           />
           </Form.Group>
+
 
           <Form.Group controlId="userEditName" className="mb-3">
             <Form.Control
@@ -93,16 +94,14 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               placeholder="Blog"
               value={blog}
               onChange={(e) => {
-                {
-                  const inputValue = e.target.value;
-                  if (
-                    inputValue.startsWith("https://") ||
-                    inputValue.startsWith("http://")
-                  ) {
-                    setBlog(inputValue);
-                  } else {
-                    setBlog(`https://${inputValue}`);
-                  }
+                const inputValue = e.target.value;
+                if (
+                  inputValue.startsWith("https://") ||
+                  inputValue.startsWith("http://")
+                ) {
+                  setBlog(inputValue);
+                } else {
+                  setBlog(`https://${inputValue}`);
                 }
               }}
             />

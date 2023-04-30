@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
-import * as Api from '../../api';
+import * as Api from "../../api";
 import Skill from "./Skill";
 import SkillAddForm from "./SkillAddForm";
 
@@ -26,8 +26,6 @@ function Skills({ portfolioOwnerId, isEditable }) {
             skill={skill}
             setSkills={setSkills}
             isEditable={isEditable}
-
-
           />
         ))}
         {isEditable && (
@@ -42,7 +40,6 @@ function Skills({ portfolioOwnerId, isEditable }) {
             portfolioOwnerId={portfolioOwnerId}
             setSkills={setSkills}
             setIsAdding={setIsAdding}
-            
           />
         )}
       </Card.Body>
@@ -51,4 +48,3 @@ function Skills({ portfolioOwnerId, isEditable }) {
 }
 
 export default Skills;
-

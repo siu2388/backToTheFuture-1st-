@@ -1,19 +1,24 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
-function CertificateCard({ certificate, isEditable, setIsEditing, setCertificates }) {
-
+function CertificateCard({
+  certificate,
+  isEditable,
+  setIsEditing,
+  setCertificates,
+}) {
   const handleDelete = async () => {
     await Api.delete("certificates", certificate.id).then(() => {
       setCertificates((prevCertificates) =>
-        prevCertificates.filter((prevCertificate) => prevCertificate.id !== certificate.id)
+        prevCertificates.filter(
+          (prevCertificate) => prevCertificate.id !== certificate.id
+        )
       );
     });
   };
 
   useEffect(() => {}, [certificate]);
-  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -26,10 +31,10 @@ function CertificateCard({ certificate, isEditable, setIsEditing, setCertificate
           <span>{certificate.title}</span>
           <br />
           <span className="text-muted">{certificate.authority}</span>
-          <br />          
+          <br />
           <span className="text-muted">{certificate.registerNum}</span>
           <br />
-          <span className="text-muted">{certificate.grade}</span>          
+          <span className="text-muted">{certificate.grade}</span>
         </Col>
 
         {isEditable && (
@@ -43,7 +48,7 @@ function CertificateCard({ certificate, isEditable, setIsEditing, setCertificate
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 
