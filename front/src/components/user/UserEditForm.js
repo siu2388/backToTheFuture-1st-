@@ -15,6 +15,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`users/${user.id}`, {
@@ -26,9 +27,13 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       description,
     });
     // 유저 정보는 response의 data임.
+  
     const updatedUser = res.data;
+    
+    
     // 해당 유저 정보로 user을 세팅함.
     setUser(updatedUser);
+    
 
     // isEditing을 false로 세팅함.
     setIsEditing(false);
@@ -40,14 +45,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
         <Form onSubmit={handleSubmit}>
 
-          <Form.Group controlId="formFile" className="mb-3">
+
+          <Form.Group controlId="userEditImage" className="mb-3">
           <Form.Label>프로필 사진 변경</Form.Label>
-          <Form.Control 
-            encType="multipart/form-data"
-            value={image}
-            onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} 
-          />
+          <Form.Control
+          type="file"
+          onChange={(e) => setImage(e.target.files[0])}
+        />
           </Form.Group>
+
 
           <Form.Group controlId="userEditName" className="mb-3">
             <Form.Control
