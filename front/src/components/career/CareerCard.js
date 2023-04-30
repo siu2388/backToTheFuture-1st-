@@ -22,13 +22,17 @@ const handleShow = () => setShow(true);
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{career.name}</span>
+          <span>{career.company}</span>
           <br />
-          <span className="text-muted">{career.authority}</span>
+          <span className="text-muted">{career.department}</span>
           <br />
-          <span className="text-muted">{career.registerNum}</span>
+          <span className="text-muted">{career.position}</span>
           <br />
-          <span className="text-muted">{career.grade}</span>
+          <span className="text-muted">{career.startDate}</span>
+          <br />
+          <span className="text-muted">{career.endDate}</span>
+          <br />
+          <span className="text-muted">{career.description}</span>
         </Col>
 
         {isEditable && (
