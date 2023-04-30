@@ -30,7 +30,7 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
         </Col>
 
         {isEditable && (
-          <Col xs lg="1">
+          <Col xs lg="2">
             <Button
               variant="outline-info"
               size="sm"

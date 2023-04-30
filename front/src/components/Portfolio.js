@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
-import "./Portfolio.css";
+
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -62,12 +62,8 @@ function Portfolio() {
 
   return (
 
-    <Container fluid>
+    <Container className = "bookcover">
       
-
-
-
-        <div className="bookcover">
 
           <div className="bookdot">
 
@@ -158,7 +154,6 @@ function Portfolio() {
               
             </div>
           </div>
-        </div>
 
 
     </Container>

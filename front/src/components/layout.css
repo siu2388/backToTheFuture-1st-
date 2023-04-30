@@ -14,6 +14,8 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+
+
 .bookcover {
   background-color: #b4d1da;
   border-radius: 9px;
@@ -61,6 +63,10 @@ body {
   flex-direction: column;
 }
 
+.miniroom-gif-box {
+  display: flex;
+  flex-direction: column;
+}
 .menu-container {
   flex: 0.15;
 }
