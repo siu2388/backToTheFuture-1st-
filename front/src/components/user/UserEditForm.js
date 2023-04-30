@@ -40,11 +40,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
         <Form onSubmit={handleSubmit}>
 
-
           <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>프로필 사진 변경</Form.Label>
           <Form.Control 
-            type="file"
+            encType="multipart/form-data"
             value={image}
             onChange={(e) => setImage(URL.createObjectURL(e.target.files[0]))} 
           />

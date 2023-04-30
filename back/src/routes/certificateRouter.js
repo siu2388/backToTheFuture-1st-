@@ -15,11 +15,8 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const user_id = req.body.user_id;
-    const title = req.body.title;
-    const authority = req.body.authority;
-    const registerNum = req.body.registerNum;
-    const grade = req.body.grade;
+
+    const { user_id, title, authority, registerNum, grade } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newCertificate = await CertificateService.addCertificate({
@@ -42,7 +39,9 @@ certificateRouter.get("/certificates/:id", async function (req, res, next) {
     const certificateId = req.params.id;
 
     // 위 id를 이용하여 db에서 데이터 찾기
-    const certificate = await CertificateService.getCertificate({ certificateId });
+    const certificate = await CertificateService.getCertificate({
+      certificateId,
+    });
 
     if (certificate.errorMessage) {
       throw new Error(certificate.errorMessage);
@@ -68,7 +67,10 @@ certificateRouter.put("/certificates/:id", async function (req, res, next) {
     const toUpdate = { title, authority, registerNum, grade };
 
     // 위 추출된 정보를 이용하여 db의 데이터 수정하기
-    const certificate = await CertificateService.setCertificate({ certificateId, toUpdate });
+    const certificate = await CertificateService.setCertificate({
+      certificateId,
+      toUpdate,
+    });
 
     if (certificate.errorMessage) {
       throw new Error(certificate.errorMessage);
@@ -86,7 +88,9 @@ certificateRouter.delete("/certificates/:id", async (req, res, next) => {
     const certificateId = req.params.id;
 
     // 위 id를 이용하여 db에서 데이터 삭제하기
-    const result = await CertificateService.deleteCertificate({ certificateId });
+    const result = await CertificateService.deleteCertificate({
+      certificateId,
+    });
 
     if (result.errorMessage) {
       throw new Error(result.errorMessage);
@@ -98,16 +102,21 @@ certificateRouter.delete("/certificates/:id", async (req, res, next) => {
   }
 });
 
-certificateRouter.get("/certificatelist/:user_id", async function (req, res, next) {
-  try {
-    // 특정 사용자의 전체 수상 목록을 얻음
-    // @ts-ignore
-    const user_id = req.params.user_id;
-    const certificateList = await CertificateService.getCertificateList({ user_id });
-    res.status(200).send(certificateList);
-  } catch (error) {
-    next(error);
+certificateRouter.get(
+  "/certificatelist/:user_id",
+  async function (req, res, next) {
+    try {
+      // 특정 사용자의 전체 수상 목록을 얻음
+      // @ts-ignore
+      const user_id = req.params.user_id;
+      const certificateList = await CertificateService.getCertificateList({
+        user_id,
+      });
+      res.status(200).send(certificateList);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
 export { certificateRouter };
