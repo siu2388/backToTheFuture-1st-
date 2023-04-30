@@ -39,80 +39,70 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Floating
-        className="mb-3"
-        onChange={(e) => setSchoolName(e.target.value)}
-      >
+
+        <label htmlFor="floatingInputCustom">학교</label>
         <Form.Control
           id="floatingInputCustom"
           type="text"
           value={schoolName}
           placeholder="예 :00고등학교/00대학교"
+          onChange={(e) => setSchoolName(e.target.value)}
         />
-        <label htmlFor="floatingInputCustom">학교</label>
-      </Form.Floating>
-
+        
       
+        <label htmlFor="floatingInputCustom">학위</label>
+        <Form.Select
+          aria-label="Default select example"
+          value={schoolType}
+          onChange={(e) => setSchoolType(e.target.value)}
+        >
+          <option>select</option>
+          <option value="학사">학사</option>
+          <option value="석사">석사</option>
+          <option value="박사">박사</option>
+        </Form.Select>
 
-      <Form.Select
-        aria-label="Default select example"
-        value={schoolType}
-        onChange={(e) => setSchoolType(e.target.value)}
-      >
-        <option>학위</option>
-        <option value="학사">학사</option>
-        <option value="석사">석사</option>
-        <option value="박사">박사</option>
-      </Form.Select>
 
-
-      <Form.Floating
-        className="mb-3"
-        onChange={(e) => setMajor(e.target.value)}
-      >
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          value={major}
-          placeholder="예:경영학"
-        />
         <label htmlFor="floatingInputCustom">전공</label>
-      </Form.Floating>
+          <Form.Control
+            id="floatingInputCustom"
+            type="text"
+            value={major}
+            placeholder="예:경영학"
+            onChange={(e) => setMajor(e.target.value)}
+          />
+        
 
       <Form.Select
         aria-label="Default select example2"
-        value={status}
         onChange={(e) => setStatus(e.target.value)}
       >
         <option>상태</option>
         <option value="재학중">재학중</option>
-        <option value="휴학">학사</option>
-        <option value="수료">석사</option>
+        <option value="휴학">휴학</option>
+        <option value="수료">수료</option>
         <option value="졸업">졸업</option>
       </Form.Select>
 
-      <Form.Floating
-        className="mb-3"
-        onChange={(e) => setStartDate(e.target.value)}
-      >
+      
+      <label htmlFor="floatingInputCustom">입학년월</label>
         <Form.Control
           id="floatingInputCustom"
           type="text"
           value={startDate}
-          placeholder="입학년월 예:2021.03"
-        />
-        <label htmlFor="floatingInputCustom">입학년월</label>
-      </Form.Floating>
+          placeholder="예: 2021-03"
+          onChange={(e) => setStartDate(e.target.value)}
+        />  
 
-      <Form.Floating onChange={(e) => setEndDate(e.target.value)}>
+
+      <label htmlFor="floatingInputCustom">졸업년월</label>
         <Form.Control
           id="floatingPasswordCustom"
           type="text"
           value={endDate}
-          placeholder="졸업년월 예:2023.09"
+          placeholder="예: 2023-09"
+          onChange={(e) => setEndDate(e.target.value)}
         />
-        <label htmlFor="floatingPasswordCustom">졸업년월</label>
-      </Form.Floating>
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

@@ -1,8 +1,8 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import {useState,useEffect} from 'react';
 import * as Api from "../../api";
 
-function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
+function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   const handleDelete = async () => {
     await Api.delete("awards", award.id).then(() => {
       setAwards((prevAwards) =>
@@ -12,6 +12,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
   };
 
   useEffect(() => {}, [award]);
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -23,13 +24,12 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
         <Col>
           <span>{award.title}</span>
           <br />
-          <span className="text-muted">{award.grade}</span>
+          <span>{award.grade}</span>
           <br />
-          <span className="text-muted">{award.date}</span>
+          <span>{award.date}</span>
           <br />
-          <span className="text-muted">{award.description}</span>
+          <span>{award.description}</span>
         </Col>
-        
         {isEditable && (
           <Col xs lg="1">
             <Button
@@ -41,7 +41,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards}) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size="sm">
+              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
                 삭제
               </Button>
 

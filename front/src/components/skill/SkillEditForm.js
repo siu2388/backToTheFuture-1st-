@@ -33,28 +33,32 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <label htmlFor="floatingInputCustom">보유기술</label>
       <Form.Group controlId="formBasicSkillName">
         <Form.Control
           type="text"
-          placeholder="기술명"
+          placeholder="예: React"
           value={skillName}
           onChange={(e) => setSkillName(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicLevel" className="mt-3">
+
+      <label htmlFor="floatingInputCustom">숙련도</label>
+      <Form.Group controlId="formBasicLevel">
         <Form.Control
           type="text"
-          placeholder="숙련도"
+          placeholder="예: 상,중,하"
           value={level}
           onChange={(e) => setLevel(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicPeriod" className="mt-3">
+      <label htmlFor="floatingInputCustom">사용기간</label>
+      <Form.Group controlId="formBasicPeriod">
         <Form.Control
           type="text"
-          placeholder="사용 기간"
+          placeholder="예: 5년"
           value={period}
           onChange={(e) => setPeriod(e.target.value)}
         />

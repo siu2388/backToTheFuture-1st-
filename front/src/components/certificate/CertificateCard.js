@@ -19,7 +19,6 @@ function CertificateCard({
   };
 
   useEffect(() => {}, [certificate]);
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);

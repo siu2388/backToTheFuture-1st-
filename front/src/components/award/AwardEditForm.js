@@ -36,86 +36,46 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group
-        controlId="formBasicTitle"
-        className="mt-3"
-        style={{ display: "flex" }}
-      >
-        <Form.Label
-          inline
-          className="me-3 mt-3 text-center"
-          style={{ width: "6rem " }}
-        >
-          수상내역
-        </Form.Label>
+      
+      <label htmlFor="floatingInputCustom">수상내역</label>
         <Form.Control
+          id="floatingInputCustom"
           type="text"
-          placeholder="수상내역"
           value={title}
+          placeholder="수상내역"
           onChange={(e) => setTitle(e.target.value)}
         />
-      </Form.Group>
 
-      <Form.Group
-        controlId="formBasicGrade"
-        className="mt-3"
-        style={{ display: "flex" }}
-      >
-        <Form.Label
-          inline
-          className="me-3 mt-3 text-center"
-          style={{ width: "6rem " }}
-        >
-          상
-        </Form.Label>
+
+      
+      <label htmlFor="floatingInputCustom">상</label>
         <Form.Control
-          inline
+          id="floatingInputCustom"
           type="text"
-          placeholder="상"
+          placeholder="예: 금상"
           value={grade}
           onChange={(e) => setGrade(e.target.value)}
         />
-      </Form.Group>
 
-      <Form.Group
-        controlId="formBasicDate"
-        className="mt-3"
-        style={{ display: "flex" }}
-      >
-        <Form.Label
-          inline
-          className="me-3 mt-3 text-center"
-          style={{ width: "6rem " }}
-        >
-          수상 날짜
-        </Form.Label>
+
+      <label htmlFor="floatingInputCustom">수상년월</label>       
         <Form.Control
+          id="floatingInputCustom"
           type="text"
-          placeholder="수상 날짜"
+          placeholder="예 : 2020-02"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-      </Form.Group>
 
-      <Form.Group
-        controlId="formBasicDescription"
-        className="mt-3"
-        style={{ display: "flex" }}
-      >
-        <Form.Label
-          inline
-          className="me-3 mt-3 text-center "
-          style={{ width: "6rem" }}
-        >
-          상세내역
-        </Form.Label>
+
+      <label htmlFor="floatingInputCustom">상세내역</label>    
         <Form.Control
           type="text"
           placeholder="상세내역"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-      </Form.Group>
+
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>

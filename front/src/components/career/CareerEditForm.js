@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
+function CareerEditForm({
+  currentCareer,
+  setCareers,
+  setIsEditing,
+}) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
   const [company, setCompany] = useState(currentCareer.company);
   const [department, setDepartment] = useState(currentCareer.department);
   const [position, setPosition] = useState(currentCareer.position);
   const [description, setDescription] = useState(currentCareer.description);
-  const [startDate, setStartDate] = useState(currentCareer.startDate);
-  const [endDate, setEndDate] = useState(currentCareer.endDate);
+  const [startDate, setStartDate] = useState(currentCareer.StartDate);
+  const [endDate, setEndDate] = useState(currentCareer.EndDate);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,16 +43,19 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+
+      <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
         <Form.Control
           type="text"
-          placeholder="회사 이름"
+          placeholder="회사명"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicDepartment" className="mt-3">
+      <label htmlFor="floatingInputCustom">부서</label>
+      <Form.Group controlId="formBasicDepartment">
         <Form.Control
           type="text"
           placeholder="부서"
@@ -57,38 +64,30 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
         />
       </Form.Group>
 
-    <Form.Group controlId="formBasicPosition" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="직급"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
-      />
-    </Form.Group>
-
-    <Form.Group controlId="formBasicDescription" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="직무 설명"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-    </Form.Group>
-
-    <Form.Label>근무 기간</Form.Label>
-    <Form.Group controlId="formBasicStartDate" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="근무 시작 날짜"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-    </Form.Group>
-
-      <Form.Group controlId="formBasicEndDate" className="mt-3">
+      <label htmlFor="floatingInputCustom">직무</label>
+      <Form.Group controlId="formBasicPosition">
         <Form.Control
           type="text"
-          placeholder="근무 종료 날짜"
+          placeholder="직무"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+      </Form.Group>
+
+      <label htmlFor="floatingInputCustom">근무 기간</label>
+      <Form.Group controlId="formBasicStartDate">
+        <Form.Control
+          type="text"
+          placeholder="예: 2020-02"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="formBasicEndDate">
+        <Form.Control
+          type="text"
+          placeholder="예: 2023-03"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
