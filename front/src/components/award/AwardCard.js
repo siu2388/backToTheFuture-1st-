@@ -24,11 +24,11 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
         <Col>
           <span>{award?.title}</span>
           <br />
-          <span >{award?.grade}</span>
+          <span>{award?.grade}</span>
           <br />
-          <span >{award?.date}</span>
+          <span>{award?.date}</span>
           <br />
-          <span >{award?.description}</span>
+          <span>{award?.description}</span>
         </Col>
         {isEditable && (
           <Col xs lg="1">
