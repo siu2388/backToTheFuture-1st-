@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
-import  '../../images/profile.jpg'
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
@@ -9,7 +8,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
       <Card.Body>
         <Row xs="auto" className="justify-content-md-center">
           <Card.Img
-            style={{ width: "10rem", height: "8rem", align: "center"}}
+            style={{ width: "12rem", height: "8rem", align: "center"}}
             className="mb-3"
             src={user?.image || "/images/profile.jpg" } // fallback 이미지
             alt="프로필 이미지"
