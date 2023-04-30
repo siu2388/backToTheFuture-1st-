@@ -7,6 +7,7 @@ import { certificateRouter } from "./routes/certificateRouter";
 import { educationRouter } from "./routes/educationRouter";
 import { projectRouter } from "./routes/projectRouter";
 import { careerRouter } from "./routes/careerRouter";
+import { skillRouter } from "./routes/skillRouter";
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(certificateRouter);
 app.use(educationRouter);
 app.use(projectRouter);
 app.use(careerRouter);
+app.use(skillRouter);
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);

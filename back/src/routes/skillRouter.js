@@ -16,7 +16,7 @@ skillRouter.post("/skill/create", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const user_id = req.body.user_id;
-    const skillName = req.body.skill;
+    const skillName = req.body.skillName;
     const level = req.body.level;
     const period = req.body.period;
     const startDate = req.body.startDate;
