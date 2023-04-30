@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 
+
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
@@ -61,13 +62,8 @@ function Portfolio() {
 
   return (
 
-    <Container fluid>
+    <Container className = "bookcover">
       
-
-
-
-        <div className="bookcover">
-
           <div className="bookdot">
 
             <div className="page">
@@ -102,10 +98,6 @@ function Portfolio() {
                   </div>
                 </div>
               </div>
-
-
-
-
 
 
               <div className="content-container">
@@ -157,7 +149,6 @@ function Portfolio() {
               
             </div>
           </div>
-        </div>
 
 
     </Container>

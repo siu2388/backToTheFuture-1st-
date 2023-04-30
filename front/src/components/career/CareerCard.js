@@ -22,7 +22,11 @@ const handleShow = () => setShow(true);
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{career.name}</span>
+          <span>{career.company}</span>
+          <br />
+          <span className="text-muted">{career.department}</span>
+          <br />
+          <span className="text-muted">{career.position}</span>
           <br />
           <span>{career.authority}</span>
           <br />

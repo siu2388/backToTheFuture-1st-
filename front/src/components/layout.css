@@ -1,5 +1,5 @@
 body {
-  background-color:#a3a3a3;
+  background-color:#a3a3a3 !important;
   background-image: url("../images/pattern.png");
   background-size: 100px;
 
@@ -14,13 +14,14 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+
 .bookcover {
   background-color: #b4d1da;
   border-radius: 9px;
   border: 1px solid #738186;
   width: 960px;
   height: 660px;
-  margin: 100px auto;
+  margin: 50px auto;
   position: relative;
 }
 
@@ -61,6 +62,11 @@ body {
   flex-direction: column;
 }
 
+.miniroom-gif-box {
+  display: flex;
+  flex-direction: column;
+  font-family: "NeoDunggeunmo";
+}
 .menu-container {
   flex: 0.15;
 }
@@ -105,7 +111,7 @@ body {
 .profile-box {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .profile-image {
