@@ -38,12 +38,7 @@ async function put(endpoint, data) {
 
   // 객체의 key-value를 FormData 객체에 추가
   Object.keys(data).forEach((key) => {
-    // 이미지 파일일 경우
-    if (key === 'image') {
-      formData.append(key, data[key]);
-    } else {
-      formData.append(key, data[key]);
-    }
+    formData.append(key, data[key])
   });
 
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
