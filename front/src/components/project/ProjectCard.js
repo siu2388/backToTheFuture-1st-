@@ -21,13 +21,13 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
         <Col>
           <span>{project.title}</span>
           <br />
-          <span className="text-muted">{project.startDate}</span>
+          <span>{project.startDate}</span>
           <br />
-          <span className="text-muted">{project.endDate}</span>
+          <span>{project.endDate}</span>
           <br />
-          <span className="text-muted">{project.archive}</span>
+          <span>{project.archive}</span>
           <br />
-          <span className="text-muted">{project.description}</span>
+          <span>{project.description}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
@@ -61,7 +61,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
                       handleDelete();
                     }}
                   >
-                    변경 내용 저장
+                    확인
                   </Button>
                 </Modal.Footer>
               </Modal>

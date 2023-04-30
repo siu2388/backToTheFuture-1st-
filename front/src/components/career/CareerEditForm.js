@@ -43,52 +43,55 @@ function CareerEditForm({
 
   return (
     <Form onSubmit={handleSubmit}>
-    <Form.Group controlId="formBasicCompany">
-      <Form.Control
-        type="text"
-        placeholder="회사 이름"
-        value={company}
-        onChange={(e) => setCompany(e.target.value)}
-      />
-    </Form.Group>
 
-    <Form.Group controlId="formBasicDepartment" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="부서"
-        value={department}
-        onChange={(e) => setDepartment(e.target.value)}
-      />
-    </Form.Group>
+      <label htmlFor="floatingInputCustom">회사명</label>
+      <Form.Group controlId="formBasicCompany">
+        <Form.Control
+          type="text"
+          placeholder="회사명"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+        />
+      </Form.Group>
 
+      <label htmlFor="floatingInputCustom">부서</label>
+      <Form.Group controlId="formBasicDepartment">
+        <Form.Control
+          type="text"
+          placeholder="부서"
+          value={department}
+          onChange={(e) => setDepartment(e.target.value)}
+        />
+      </Form.Group>
 
-    <Form.Group controlId="formBasicPositionm" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="직무"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
-      />
-    </Form.Group>
+      <label htmlFor="floatingInputCustom">직무</label>
+      <Form.Group controlId="formBasicPosition">
+        <Form.Control
+          type="text"
+          placeholder="직무"
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+        />
+      </Form.Group>
 
-    <Form.Label>근무 기간</Form.Label>
-    <Form.Group controlId="formBasicStartDate" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="근무 시작 날짜"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-      />
-    </Form.Group>
+      <label htmlFor="floatingInputCustom">근무 기간</label>
+      <Form.Group controlId="formBasicStartDate">
+        <Form.Control
+          type="text"
+          placeholder="예: 2020-02"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+        />
+      </Form.Group>
 
-    <Form.Group controlId="formBasicEndDate" className="mt-3">
-      <Form.Control
-        type="text"
-        placeholder="근무 종료 날짜"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-      />
-    </Form.Group>
+      <Form.Group controlId="formBasicEndDate">
+        <Form.Control
+          type="text"
+          placeholder="예: 2023-03"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+        />
+      </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>

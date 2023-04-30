@@ -19,10 +19,10 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{education.schoolName}</span>
-          <span className="text-muted">{education.major}</span>
-          <span>{education.schoolType}</span>
-          <span className="text-muted">{education.status}</span>
+          <span>{education.schoolName}</span>{' '}
+          <span>{education.major}</span>{' '}
+          <span>{education.schoolType}</span>{' '}
+          <span>{education.status}</span>
           <br />
           <span className="text-muted">{education.startDate}</span> ~ <span className="text-muted4">{education.endDate}</span>
         </Col>

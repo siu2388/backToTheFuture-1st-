@@ -35,16 +35,18 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
 
   return (
     <Form onSubmit={handleSubmit}>
+      <label htmlFor="floatingInputCustom">자격증명</label>
       <Form.Group controlId="formBasicTitle">
         <Form.Control
           type="text"
-          placeholder="자격증이름"
+          placeholder="자격증명"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicAuthority" className="mt-3">
+      <label htmlFor="floatingInputCustom">발급기관</label>
+      <Form.Group controlId="formBasicAuthority" >
         <Form.Control
           type="text"
           placeholder="발급기관"
@@ -53,8 +55,8 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
         />
       </Form.Group>
 
-
-      <Form.Group controlId="formBasicRegisterNum" className="mt-3">
+      <label htmlFor="floatingInputCustom">발급번호</label>
+      <Form.Group controlId="formBasicRegisterNum" >
         <Form.Control
           type="text"
           placeholder="발급번호"
@@ -63,7 +65,8 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
         />
       </Form.Group>
 
-      <Form.Group controlId="formBasicGrade" className="mt-3">
+      <label htmlFor="floatingInputCustom">등급</label>
+      <Form.Group controlId="formBasicGrade" >
         <Form.Control
           type="text"
           placeholder="등급"

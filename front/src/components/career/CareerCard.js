@@ -24,11 +24,11 @@ const handleShow = () => setShow(true);
         <Col>
           <span>{career.name}</span>
           <br />
-          <span className="text-muted">{career.authority}</span>
+          <span>{career.authority}</span>
           <br />
-          <span className="text-muted">{career.registerNum}</span>
+          <span>{career.registerNum}</span>
           <br />
-          <span className="text-muted">{career.grade}</span>
+          <span>{career.grade}</span>
         </Col>
 
         {isEditable && (
