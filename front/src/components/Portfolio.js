@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
+import "./Portfolio.css";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -58,7 +59,7 @@ function Portfolio() {
   }
 
   return (
-    <Container fluid>
+    <Container>
       <Row>
         <Col md="3" lg="3">
           <User
@@ -94,6 +95,9 @@ function Portfolio() {
               isEditable={portfolioOwner.id === userState.user?.id}
             />    
           </div>
+        </Col>
+        <Col md="1.5" lg="1">
+
         </Col>
       </Row>
     </Container>
