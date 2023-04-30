@@ -1,5 +1,5 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
 
@@ -7,12 +7,16 @@ function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
   const handleDelete = async () => {
     await Api.delete("careers", career.id).then(() => {
       setCareers((prevCareers) =>
-        prevCareers.filter((career) => career.id !== career.id)
+        prevCareers.filter((prevCareer) => prevCareer.id !== career.id)
       );
     });
   };
 
+
+useEffect(() => {}, [career]);
+
 const [show, setShow] = useState(false);
+
 
 const handleClose = () => setShow(false);
 const handleShow = () => setShow(true);
@@ -22,17 +26,17 @@ const handleShow = () => setShow(true);
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{career.company}</span>
+          <span>{career?.company}</span>
           <br />
-          <span className="text-muted">{career.department}</span>
+          <span className="text-muted">{career?.department}</span>
           <br />
-          <span className="text-muted">{career.position}</span>
+          <span className="text-muted">{career?.position}</span>
           <br />
-          <span>{career.authority}</span>
+          <span>{career?.startDate}</span>
           <br />
-          <span>{career.registerNum}</span>
+          <span>{career?.endDate}</span>
           <br />
-          <span>{career.grade}</span>
+          <span>{career?.description}</span>
         </Col>
 
         {isEditable && (
