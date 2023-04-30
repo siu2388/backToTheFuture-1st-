@@ -64,7 +64,6 @@ function Portfolio() {
 
     <Container className = "bookcover">
       
-
           <div className="bookdot">
 
             <div className="page">
@@ -99,10 +98,6 @@ function Portfolio() {
                   </div>
                 </div>
               </div>
-
-
-
-
 
 
               <div className="content-container">

@@ -25,7 +25,7 @@ function Header() {
 
   return (
     <Nav activeKey={location.pathname}>
-      <Nav.Item className="me-auto mb-5">
+      <Nav.Item className="me-auto">
       <Nav.Link onClick={() => navigate("/")}>MINI PORTFOLIOPAGE</Nav.Link>
       </Nav.Item>
 
