@@ -29,6 +29,11 @@ const AwardSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.date = ret.date.toISOString().slice(0, 7);
+      },
+    },
   }
 );
 
