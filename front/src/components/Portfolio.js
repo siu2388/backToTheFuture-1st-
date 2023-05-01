@@ -109,41 +109,65 @@ function Portfolio() {
                   <div className="miniroom">
                     <div className="box-title">Miniroom</div>
                     <div className="miniroom-gif-box">
-                      <Educations
+
+
+                      <div id = "career-section">
+                        <Careers
                           portfolioOwnerId={portfolioOwner.id}
                           isEditable={portfolioOwner.id === userState.user?.id}
                         />
-                      <Careers
-                        portfolioOwnerId={portfolioOwner.id}
-                        isEditable={portfolioOwner.id === userState.user?.id}
-                      /> 
-                      <Certificates
-                        portfolioOwnerId={portfolioOwner.id}
-                        isEditable={portfolioOwner.id === userState.user?.id}
-                      />                                           
-                      <Awards
-                        portfolioOwnerId={portfolioOwner.id}
-                        isEditable={portfolioOwner.id === userState.user?.id}
-                      />
+                      </div>
+
+                      <div id = "education-section">
+                        <Educations
+                            portfolioOwnerId={portfolioOwner.id}
+                            isEditable={portfolioOwner.id === userState.user?.id}
+                          />
+                      </div>
+
+                      <div id = "project-section">
                       <Projects
                         portfolioOwnerId={portfolioOwner.id}
                         isEditable={portfolioOwner.id === userState.user?.id}
                       />
+                      </div>
+
+                      <div id = "award-section">                                            
+                      <Awards
+                        portfolioOwnerId={portfolioOwner.id}
+                        isEditable={portfolioOwner.id === userState.user?.id}
+                      />
+                      </div>
+
+                      <div id = "certificate-section">
+                      <Certificates
+                        portfolioOwnerId={portfolioOwner.id}
+                        isEditable={portfolioOwner.id === userState.user?.id}
+                      />
+                      </div>
+
+
+                      <div id = "skill-section">
                       <Skills
                         portfolioOwnerId={portfolioOwner.id}
                         isEditable={portfolioOwner.id === userState.user?.id}
                       />
+                      </div>
+
+
                     </div>
                   </div>
                 </div>
               </div>
 
 
-
-
-
               <div className="menu-container">  
-                  <Navigator/>  
+              <Navigator 
+                scrollToMove={(e) => {
+                  const section = document.getElementById(e.target.value);
+                  section.scrollIntoView({ behavior: "smooth" });
+                }}
+              /> 
               </div>
 
               
