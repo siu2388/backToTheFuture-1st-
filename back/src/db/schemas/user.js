@@ -33,6 +33,18 @@ const UserSchema = new Schema(
     },
     image: {
       type : String,
+    },
+    homeName: {
+      type: String,
+    },
+    bgColor: {
+      type: String,
+    },
+    boxColor: {
+      type: String,
+    },
+    menuColor: {
+      type: String,
     }
   },
   {

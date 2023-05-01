@@ -55,7 +55,7 @@ class userAuthService {
     const token = jwt.sign({ userId: user.id }, secretKey);
 
     // 반환할 loginuser 객체를 위한 변수 설정
-    const { id, name, github, blog, description, image } = user;
+    const { id, name, github, blog, description, image, homeName, bgColor, boxColor, menuColor } = user;
 
     const loginUser = {
       //컨트롤러층에 반환할 객체
@@ -67,6 +67,10 @@ class userAuthService {
       blog,
       description,
       image,
+      homeName,
+      bgColor,
+      boxColor,
+      menuColor,
       errorMessage: null,
     };
 
@@ -128,6 +132,30 @@ class userAuthService {
     if (toUpdate.image) {
       const fieldToUpdate = "image";
       const newValue = toUpdate.image;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.homeName) {
+      const fieldToUpdate = "homeName";
+      const newValue = toUpdate.homeName;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.bgColor) {
+      const fieldToUpdate = "bgColor";
+      const newValue = toUpdate.bgColor;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.boxColor) {
+      const fieldToUpdate = "boxColor";
+      const newValue = toUpdate.boxColor;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.menuColor) {
+      const fieldToUpdate = "menuColor";
+      const newValue = toUpdate.menuColor;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
