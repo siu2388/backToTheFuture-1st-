@@ -43,7 +43,8 @@ class userAuthService {
       password,
       correctPasswordHash
     );
-    if (!isPasswordCorrect) {  //로그인실패(비번불일치)
+    if (!isPasswordCorrect) {
+      //로그인실패(비번불일치)
       const errorMessage =
         "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -54,13 +55,10 @@ class userAuthService {
     const token = jwt.sign({ user_id: user.id }, secretKey);
 
     // 반환할 loginuser 객체를 위한 변수 설정
-    const id = user.id;
-    const name = user.name;
-    const github = user.github;
-    const blog = user.blog;
-    const description = user.description;
+    const { id, name, github, blog, description, image } = user;
 
-    const loginUser = { //컨트롤러층에 반환할 객체
+    const loginUser = {
+      //컨트롤러층에 반환할 객체
       token,
       id,
       email,
@@ -68,6 +66,7 @@ class userAuthService {
       github,
       blog,
       description,
+      image,
       errorMessage: null,
     };
 
@@ -85,8 +84,7 @@ class userAuthService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      const errorMessage =
-        "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+      const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -124,6 +122,12 @@ class userAuthService {
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.image) {
+      const fieldToUpdate = "image";
+      const newValue = toUpdate.image;
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
