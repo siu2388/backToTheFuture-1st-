@@ -101,7 +101,7 @@ body {
 
 .content-title {
   display: flex;
-  align-items: center;
+  align-items: center;  
 }
 
 .content-title-name {
@@ -113,6 +113,39 @@ body {
   font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
   text-align: end; /* 텍스트 우측 정렬 */
 }
+
+.btn-delete {
+  background-color: #f15f5f;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  display: inline-block;
+  border: none;
+}
+
+.btn-edit {
+  background-color: #617dc1;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  display: inline-block;
+  border: none;
+}
+
+.btn-add {
+  background-color: #b4d1da;
+  color: white;
+  border-radius: 3px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border: none;
+}
+
 
 .profile-title {
   font-size: 0.8rem;
