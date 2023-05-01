@@ -15,20 +15,21 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+    console.log("image",image)
+    console.log("name",name)
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`users/${user.id}`, {
-      image,
       name,
       email,
       github,
       blog,
       description,
-    });
+    },image);
     // 유저 정보는 response의 data임.
   
     const updatedUser = res.data;
+
 
     
     

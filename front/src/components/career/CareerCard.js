@@ -32,11 +32,11 @@ const handleShow = () => setShow(true);
           <br />
           <span className="text-muted">{career?.position}</span>
           <br />
-          <span className="text-muted">{career?.startDate}</span>
+          <span>{career?.startDate}</span>
           <br />
-          <span className="text-muted">{career?.endDate}</span>
+          <span>{career?.endDate}</span>
           <br />
-          <span className="text-muted">{career?.description}</span>
+          <span>{career?.description}</span>
         </Col>
 
         {isEditable && (

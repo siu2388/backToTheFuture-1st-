@@ -33,22 +33,25 @@ async function post(endpoint, data) {
   });
 }
 
-async function put(endpoint, data) {
+async function put(endpoint, data, file) {
+
   const formData = new FormData();
+  const bodyData = JSON.stringify(data);
+
+  console.log(file)
+  //image 파일을 FormData 객체에 추가
+  formData.append("image", file);
 
   // 객체의 key-value를 FormData 객체에 추가
-  Object.keys(data).forEach((key) => {
-    if (key === 'image') {
-      formData.append(key, data[key], data[key].name);
-    } else {
-      formData.append(key, data[key]);
-    }
-
+  Object.keys(bodyData).forEach((key) => {
+    formData.append(key, bodyData[key]);
   });
+  
+  
 
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
-  console.log(`%cPUT 요청 데이터:`, "color: #059c4b;");
-  console.log(data);
+  console.log(`%cPUT 요청 데이터:${formData}`, "color: #059c4b;");
+  
 
   return axios.put(serverUrl + endpoint, formData, {
     headers: {

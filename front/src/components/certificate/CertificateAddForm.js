@@ -65,11 +65,11 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
         />
       </Form.Group>
 
-      <label htmlFor="floatingInputCustom">등급</label>
+      <label htmlFor="floatingInputCustom">등급/점수</label>
       <Form.Group controlId="formBasicGrade" >
         <Form.Control
           type="text"
-          placeholder="등급"
+          placeholder="예: 1급/990"
           value={grade}
           onChange={(e) => setGrade(e.target.value)}
         />
