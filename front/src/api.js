@@ -36,15 +36,16 @@ async function post(endpoint, data) {
 async function put(endpoint, data, file) {
 
   const formData = new FormData();
-  const bodyData = JSON.stringify(data);
 
-  console.log(file)
+  console.log(data)
   //image 파일을 FormData 객체에 추가
-  formData.append("image", file);
+  if (file){
+    formData.append("image", file);
+  }
 
   // 객체의 key-value를 FormData 객체에 추가
-  Object.keys(bodyData).forEach((key) => {
-    formData.append(key, bodyData[key]);
+  Object.keys(data).forEach((key) => {
+    formData.append(key, data[key]);
   });
   
   

@@ -61,26 +61,24 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-@media screen and (max-width: 960px) {
+@media screen and (max-width:960px) {
   .page {
     flex-direction: column;
     position: relative;
+
   }
-  .bookcover {
-    height: 80vh; 
+  .bookcover{
+    height: 80vh;
     overflow-y: auto;
   }
-  .bookdot {
+  .bookdot{
     position: relative;
   }
-  body {
+  body{
     overflow-y: auto;
   }
-  
 
 }
-
 .miniroom-gif-box {
   display: flex;
   flex-direction: column;
