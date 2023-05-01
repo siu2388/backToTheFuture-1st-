@@ -1,6 +1,7 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
 import {useState,useEffect} from 'react';
 import * as Api from "../../api";
+import "../layout.css"
 
 function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   const handleDelete = async () => {
@@ -31,19 +32,17 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
           <span>{award?.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="1">
-            <Button
-              variant="outline-info"
-              size="sm"
+          <Col xs lg="2" style = {{marginRight: "10px"}}>
+            <button
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
+              className="btn-edit"
             >
               편집
-            </Button>
+            </button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <button onClick={handleShow} className  = "btn-delete">
                 삭제
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
