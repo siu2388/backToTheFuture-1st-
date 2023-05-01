@@ -11,8 +11,8 @@ class Skill {
     return skill;
   }
 
-  static async findByUserId({ user_id }) {
-    const skills = await SkillModel.find({ user_id });
+  static async findByUserId({ userId }) {
+    const skills = await SkillModel.find({ userId });
     return skills;
   }
 

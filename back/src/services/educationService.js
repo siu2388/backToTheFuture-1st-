@@ -3,12 +3,12 @@ import { Education } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class EducationService {
-  static async addEducation({ user_id, schoolName, schoolType, major, status,startDate, endDate }) {
+  static async addEducation({ userId, schoolName, schoolType, major, status,startDate, endDate }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newEducation = { id, user_id, schoolName, schoolType, major, status, startDate, endDate };
+    const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
     const createdNewEducation = await Education.create({ newEducation });
 
     return createdNewEducation;
@@ -26,8 +26,8 @@ class EducationService {
     return education;
   }
 
-  static async getEducationList({ user_id }) {
-    const educations = await Education.findByUserId({ user_id });
+  static async getEducationList({ userId }) {
+    const educations = await Education.findByUserId({ userId });
     return educations;
   }
 

@@ -52,7 +52,7 @@ class userAuthService {
 
     // 로그인 성공 -> JWT 웹 토큰 생성
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
-    const token = jwt.sign({ user_id: user.id }, secretKey);
+    const token = jwt.sign({ userId: user.id }, secretKey);
 
     // 반환할 loginuser 객체를 위한 변수 설정
     const { id, name, github, blog, description, image } = user;
@@ -78,9 +78,9 @@ class userAuthService {
     return users;
   }
 
-  static async setUser({ user_id, toUpdate }) {
+  static async setUser({ userId, toUpdate }) {
     // 우선 해당 id 의 유저가 db에 존재하는지 여부 확인
-    let user = await User.findById({ user_id });
+    let user = await User.findById({ userId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
@@ -92,50 +92,50 @@ class userAuthService {
     if (toUpdate.name) {
       const fieldToUpdate = "name";
       const newValue = toUpdate.name;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.email) {
       const fieldToUpdate = "email";
       const newValue = toUpdate.email;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.password) {
       const fieldToUpdate = "password";
       const newValue = bcrypt.hash(toUpdate.password, 10);
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.github) {
       const fieldToUpdate = "github";
       const newValue = toUpdate.github;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.blog) {
       const fieldToUpdate = "blog";
       const newValue = toUpdate.blog;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.image) {
       const fieldToUpdate = "image";
       const newValue = toUpdate.image;
-      user = await User.update({ user_id, fieldToUpdate, newValue });
+      user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
     return user;
   }
   // 입력된 id로 db에서 찾아서 반환
-  static async getUserInfo({ user_id }) {
-    const user = await User.findById({ user_id });
+  static async getUserInfo({ userId }) {
+    const user = await User.findById({ userId });
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
