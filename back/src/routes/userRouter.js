@@ -2,11 +2,8 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
-//
-import multer from "multer";
 
 const userAuthRouter = Router();
-
 // 회원가입
 userAuthRouter.post("/user/register", async (req, res, next) => {
   try {
@@ -85,45 +82,8 @@ userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
   }
 });
 
-// // 이미지업로드Router
-// userAuthRouter.post("/uploads", (req, res) => {
-//   upload(req, res, (err) => {
-//     if (err) {
-//       return res.json({ success: false, err });
-//     }
-//     return res.json({
-//       success: true,
-//       image: res.req.file.path,
-//       fileName: res.req.file.filename,
-//     });
-//   });
-// });
-
 userAuthRouter.put("/users/:id", login_required, async (req, res, next) => {
   try {
-    //
-    // multer-optional
-    const storage = multer.diskStorage({
-      destination: (req, file, cb) => {
-        cb(null, `users/${req.params.id}`);
-      },
-      filename: (req, file, cb) => {
-        cb(null, `${Date.now()}_${file.originalname}`);
-      },
-    });
-    const upload = multer({ storage: storage }).single("image");
-    
-    upload(req, res, (err) => {
-      console.log("3", req.file);
-      if (err) {
-        return res.json({ success: false, err });
-      }
-      return res.json({
-        success: true,
-        image: res.req.file.path,
-        fileName: res.req.file.filename,
-      });
-    });
     // URI로부터 사용자 id를 추출함.
     const user_id = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -174,13 +134,5 @@ userAuthRouter.get("/users/:id", login_required, async (req, res, next) => {
   }
 });
 
-// jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
-userAuthRouter.get("/afterlogin", login_required, (req, res, next) => {
-  res
-    .status(200)
-    .send(
-      `안녕하세요 ${req.currentUserId}님, jwt 웹 토큰 기능 정상 작동 중입니다.`
-    );
-});
 
 export { userAuthRouter };
