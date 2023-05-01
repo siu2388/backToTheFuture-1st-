@@ -65,7 +65,7 @@ body {
   .page {
     flex-direction: column;
     position: relative;
-
+  
   }
   .bookcover{
     height: 80vh;
@@ -79,6 +79,8 @@ body {
   }
 
 }
+
+
 .miniroom-gif-box {
   display: flex;
   flex-direction: column;
@@ -120,7 +122,7 @@ body {
   margin-right: 6px;
   color: white;
   border-radius: 3px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   display: inline-block;
   border: none;
 }
@@ -131,7 +133,7 @@ body {
   margin-right: 6px;
   color: white;
   border-radius: 3px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   display: inline-block;
   border: none;
 }
@@ -140,12 +142,34 @@ body {
   background-color: #b4d1da;
   color: white;
   border-radius: 3px;
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   text-align: center;
   border: none;
 }
 
+
+.btn-confirm {
+  background-color: #617dc1;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  border: none;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  border: none;
+}
 
 .profile-title {
   font-size: 0.8rem;
@@ -184,6 +208,7 @@ body {
 .profile-username {
   flex: 0;
 }
+
 
 .content-box{
   display: flex;
