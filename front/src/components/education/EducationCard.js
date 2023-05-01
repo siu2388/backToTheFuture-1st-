@@ -6,9 +6,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
   const handleDelete = async () => {
     await Api.delete("educations", education.id).then(() => {
       setEducations((prevEducations) =>
-        prevEducations.filter(
-          (prevEducation) => prevEducation.id !== education.id
-        )
+        prevEducations.filter((prevEducation) => prevEducation.id !== education.id)
       );
     });
   };
