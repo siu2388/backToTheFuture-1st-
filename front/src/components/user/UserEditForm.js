@@ -18,17 +18,45 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     console.log("image",image)
     console.log("name",name)
 
-    // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`users/${user.id}`, {
+    const data = {
       name,
       email,
       github,
       blog,
       description,
-    },image);
+    }
+
+    const isValidGithub = github.startsWith("https://") ||
+    github.startsWith("http://")
+
+    if (
+      !isValidGithub
+    ) {
+      setGithub(`https://${github}`)
+      data.github = `https://${github}`
+    } 
+
+    const isValidBlog = blog.startsWith("https://") ||
+    blog.startsWith("http://")
+
+    if (
+      !isValidBlog
+    ) {
+      setBlog(`https://${blog}`)
+      data.blog = `https://${blog}`
+    } 
+
+
+    
+
+
+    // "users/유저id" 엔드포인트로 PUT 요청함.
+    const res = await Api.put(`users/${user.id}`, data, image);
     // 유저 정보는 response의 data임.
   
     const updatedUser = res.data;
+
+
 
 
     
@@ -78,17 +106,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="string"
               placeholder="Github"
               value={github}
-              onChange={(e) => {
-                const inputValue = e.target.value;
-                if (
-                  inputValue.startsWith("https://") ||
-                  inputValue.startsWith("http://")
-                ) {
-                  setGithub(inputValue);
-                } else {
-                  setGithub(`https://${inputValue}`);
-                }
-              }}
+              onChange={(e) => setGithub(e.target.value)}
             />
           </Form.Group>
 
@@ -97,17 +115,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="string"
               placeholder="Blog"
               value={blog}
-              onChange={(e) => {
-                const inputValue = e.target.value;
-                if (
-                  inputValue.startsWith("https://") ||
-                  inputValue.startsWith("http://")
-                ) {
-                  setBlog(inputValue);
-                } else {
-                  setBlog(`https://${inputValue}`);
-                }
-              }}
+              onChange={(e) => setBlog(e.target.value)}
             />
           </Form.Group>
 
