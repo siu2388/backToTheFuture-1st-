@@ -4,26 +4,29 @@ import { Card, Row, Button, Col } from "react-bootstrap";
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
-    <Card className = "userCard">
+    <Card className="userCard">
       <Card.Body>
         <Row xs="auto" className="justify-content-md-center">
           <Card.Img
-            style={{ width: "12rem", height: "8rem", align: "center"}}
+            style={{ width: "12rem", height: "8rem", align: "center" }}
             className="mb-3"
-            src={user?.image || "/images/profile.jpg" } // fallback 이미지
+            src={
+              `http://localhost:5001/${user?.image?.path}` ||
+              "http://localhost:5001/uploads/profile.jpg"
+            } // fallback 이미지
             alt="프로필 이미지"
           />
-
         </Row>
         <Card.Title>{user?.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
-        <Card.Link href = {user?.github} target='_blank'>Github</Card.Link>
-        <Card.Link href = {user?.blog} target='_blank'>Blog</Card.Link>
+        <Card.Link href={user?.github} target="_blank">
+          Github
+        </Card.Link>
+        <Card.Link href={user?.blog} target="_blank">
+          Blog
+        </Card.Link>
 
-
-
-        <Card.Text>{user?.description}</Card.Text> 
-      
+        <Card.Text>{user?.description}</Card.Text>
 
         {isEditable && (
           <Col>

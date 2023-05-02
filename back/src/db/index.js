@@ -6,6 +6,7 @@ import { Education } from "./models/educationModel";
 import { Project } from "./models/projectModel";
 import { Career } from "./models/careerModel";
 import { Skill } from "./models/skillModel";
+import { GuestBook } from "./models/guestBookModel";
 
 const DB_URL = process.env.MONGODB_URL || 5001;
 ("MongoDB 서버 주소가 설정되지 않았습니다.\n./db/index.ts 파일을 확인해 주세요.");
@@ -18,4 +19,13 @@ db.on("error", (error) =>
   console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error)
 );
 
-export { User, Award, Certificate, Education, Project, Career, Skill };
+export {
+  User,
+  Award,
+  Certificate,
+  Education,
+  Project,
+  Career,
+  Skill,
+  GuestBook,
+};
