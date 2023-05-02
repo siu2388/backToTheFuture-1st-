@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Button, Form, Card, Col, Row } from "react-bootstrap";
+import { Button, Form, Card, Col, Row, Modal } from "react-bootstrap";
 import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
-  const [image, setImage]= useState("");
+  const [image, setImage] = useState("");
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
@@ -13,10 +13,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
 
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("image",image)
-    console.log("name",name)
+    console.log("image", image);
+    console.log("name", name);
 
     const data = {
       name,
@@ -24,64 +29,50 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       github,
       blog,
       description,
+    };
+
+    const isValidGithub =
+      github.startsWith("https://") || (github.startsWith("http://") && github);
+
+    if (!isValidGithub) {
+      setGithub(`https://${github}`);
+      data.github = `https://${github}`;
     }
 
-    const isValidGithub = github.startsWith("https://") ||
-    github.startsWith("http://")
+    const isValidBlog =
+      blog.startsWith("https://") || (blog.startsWith("http://") && blog);
 
-    if (
-      !isValidGithub
-    ) {
-      setGithub(`https://${github}`)
-      data.github = `https://${github}`
-    } 
-
-    const isValidBlog = blog.startsWith("https://") ||
-    blog.startsWith("http://")
-
-    if (
-      !isValidBlog
-    ) {
-      setBlog(`https://${blog}`)
-      data.blog = `https://${blog}`
-    } 
-
-
-    
-
+    if (!isValidBlog) {
+      setBlog(`https://${blog}`);
+      data.blog = `https://${blog}`;
+    }
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`users/${user.id}`, data, image);
     // 유저 정보는 response의 data임.
-  
+
     const updatedUser = res.data;
 
-
-
-
-    
-    
     // 해당 유저 정보로 user을 세팅함.
     setUser(updatedUser);
-    
 
     // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
   return (
-    <Card className="mb-2">
-      <Card.Body>
-
-        <Form onSubmit={handleSubmit}>
+    <Modal show={show} animation={false} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>유저 정보 수정</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
           <Form.Group controlId="userEditImage" className="mb-3">
-          <Form.Label>프로필 사진 변경</Form.Label>
-          <Form.Control
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
-        />
+            <Form.Label>프로필 사진 변경</Form.Label>
+            <Form.Control
+              type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
           </Form.Group>
-
 
           <Form.Group controlId="userEditName" className="mb-3">
             <Form.Control
@@ -128,19 +119,26 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             />
           </Form.Group>
 
-          <Form.Group as={Row} className="mt-3 text-center">
-            <Col sm={{ span: 20 }}>
-              <Button variant="primary" type="submit" className="me-3">
-                확인
-              </Button>
-              <Button variant="secondary" onClick={() => setIsEditing(false)}>
-                취소
-              </Button>
-            </Col>
-          </Form.Group>
-        </Form>
-      </Card.Body>
-    </Card>
+      </Modal.Body>
+      <Modal.Footer>
+        <Form.Group as={Row} className="mt-3 text-center">
+          <Col sm={{ span: 20 }}>
+            <Button variant="primary" type="submit" className="me-3" onClick = {() => {
+              handleClose();
+              handleSubmit()
+            }}>
+              확인
+            </Button>
+            <Button variant="secondary" onClick={() => {
+              setIsEditing(false)
+              handleClose()
+              }}>
+              취소
+            </Button>
+          </Col>
+        </Form.Group>
+      </Modal.Footer>
+    </Modal>
   );
 }
 
