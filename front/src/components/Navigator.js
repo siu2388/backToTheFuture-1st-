@@ -22,7 +22,7 @@ function Navigator({ scrollToMove }) {
         <Button value="skill-section" onClick={scrollToMove}>사용기술</Button>
 
 
-        <Button onClick={() => navigate("/network")}>방명록</Button>
+        <Button onClick={() => navigate("/GuestBookPage")}>방명록</Button>
       </div>
     
   );
