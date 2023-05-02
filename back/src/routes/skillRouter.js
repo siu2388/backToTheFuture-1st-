@@ -15,7 +15,7 @@ skillRouter.post("/skill/create", async (req, res, next) => {
     }
 
     // req (request) 에서 데이터 가져오기
-    const user_id = req.body.user_id;
+    const userId = req.body.userId;
     const skillName = req.body.skillName;
     const level = req.body.level;
     const period = req.body.period;
@@ -24,7 +24,7 @@ skillRouter.post("/skill/create", async (req, res, next) => {
 
     // 위 데이터를 유저 db에 추가하기
     const newSkill = await SkillService.addSkill({
-      user_id,
+      userId,
       skillName,
       level,
       period,
@@ -103,11 +103,11 @@ skillRouter.delete("/skills/:id", async (req, res, next) => {
 });
 
 // 특정 사용자의 전체 경력 목록을 얻음
-skillRouter.get("/skilllist/:user_id", async (req, res, next) => {
+skillRouter.get("/skilllist/:userId", async (req, res, next) => {
   try {
     // @ts-ignore
-    const user_id = req.params.user_id;
-    const skillList = await SkillService.getSkillList({ user_id });
+    const userId = req.params.userId;
+    const skillList = await SkillService.getSkillList({ userId });
     res.status(200).send(skillList);
   } catch (error) {
     next(error);
