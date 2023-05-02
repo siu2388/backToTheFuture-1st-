@@ -1,4 +1,4 @@
-import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import { Card, Modal, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
@@ -41,18 +41,16 @@ const handleShow = () => setShow(true);
 
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
-            <Button
-              variant="outline-info"
-              size="sm"
+            <button
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
+              className="btn-edit" 
             >
               편집
-            </Button>
+            </button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size="sm">
+              <button onClick={handleShow} className="btn-delete">
                 삭제
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
@@ -60,18 +58,18 @@ const handleShow = () => setShow(true);
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <button onClick={handleClose} className="btn-cancel">
                     취소
-                  </Button>
-                  <Button
-                    variant="primary"
+                  </button>
+                  <button
                     onClick={() => {
                       handleClose();
                       handleDelete();
                     }}
+                    className="btn-confirm"
                   >
                     확인
-                  </Button>
+                  </button>
                 </Modal.Footer>
               </Modal>
             </>

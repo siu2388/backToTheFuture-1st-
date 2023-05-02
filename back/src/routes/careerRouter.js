@@ -15,7 +15,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
     }
 
     // req (request) 에서 데이터 가져오기
-    const user_id = req.body.user_id;
+    const userId = req.body.userId;
     const company = req.body.company;
     const department = req.body.department;
     const position = req.body.position;
@@ -25,7 +25,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
 
     // 위 데이터를 유저 db에 추가하기
     const newCareer = await CareerService.addCareer({
-      user_id,
+      userId,
       company,
       department,
       position,
@@ -106,11 +106,11 @@ careerRouter.delete("/careers/:id", async (req, res, next) => {
 });
 
 // 특정 사용자의 전체 경력 목록을 얻음
-careerRouter.get("/careerlist/:user_id", async (req, res, next) => {
+careerRouter.get("/careerlist/:userId", async (req, res, next) => {
   try {
     // @ts-ignore
-    const user_id = req.params.user_id;
-    const careerList = await CareerService.getCareerList({ user_id });
+    const userId = req.params.userId;
+    const careerList = await CareerService.getCareerList({ userId });
     res.status(200).send(careerList);
   } catch (error) {
     next(error);

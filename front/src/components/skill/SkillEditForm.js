@@ -12,19 +12,19 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentSkill의 user_id를 user_id 변수에 할당함.
-    const user_id = currentSkill.user_id;
+    // currentSkill의 userId를 userId 변수에 할당함.
+    const userId = currentSkill.userId;
 
     // "skills/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`skills/${currentSkill.id}`, {
-      user_id,
+      userId,
       skillName,
       level,
       period,
     });
 
     // "skilllist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("skilllist", user_id);
+    const res = await Api.get("skilllist", userId);
     // skills를 response의 data로 세팅함.
     setSkills(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
@@ -43,35 +43,39 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
         />
       </Form.Group>
 
-
       <label htmlFor="floatingInputCustom">숙련도</label>
       <Form.Group controlId="formBasicLevel">
-        <Form.Control
-          type="text"
-          placeholder="예: 상,중,하"
-          value={level}
-          onChange={(e) => setLevel(e.target.value)}
-        />
+        <Form.Select value={level} onChange={(e) => setLevel(e.target.value)}>
+          <option>select</option>
+          <option value="하">하</option>
+          <option value="중하">중하</option>
+          <option value="중">중</option>
+          <option value="중상">중상</option>
+          <option value="상">상</option>
+        </Form.Select>
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">사용기간</label>
       <Form.Group controlId="formBasicPeriod">
-        <Form.Control
-          type="text"
-          placeholder="예: 5년"
-          value={period}
-          onChange={(e) => setPeriod(e.target.value)}
-        />
+        <Form.Select value={period} onChange={(e) => setPeriod(e.target.value)}>
+          <option>select</option>
+          <option value="1년 미만">1년 미만</option>
+          <option value="2년 미만">2년 미만</option>
+          <option value="3년 미만">3년 미만</option>
+          <option value="4년 미만">4년 미만</option>
+          <option value="5년 미만">5년 미만</option>
+          <option value="5년 이상">5년 이상</option>
+        </Form.Select>
       </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <button variant="primary" type="submit" className="btn-confirm">
             확인
-          </Button>
-          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+          </button>
+          <button variant="secondary" onClick={() => setIsEditing(false)} className="btn-cancel">
             취소
-          </Button>
+          </button>
         </Col>
       </Form.Group>
     </Form>

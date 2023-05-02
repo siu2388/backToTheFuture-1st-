@@ -15,12 +15,12 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentEducation의 user_id를 user_id 변수에 할당함.
-    const user_id = currentEducation.user_id;
+    // currentEducation의 userId를 userId 변수에 할당함.
+    const userId = currentEducation.userId;
 
     // "Educations/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`educations/${currentEducation.id}`, {
-      user_id,
+      userId,
       schoolName,
       schoolType,
       major,
@@ -30,7 +30,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     });
 
     // "educationlist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("educationlist", user_id);
+    const res = await Api.get("educationlist", userId);
     // Educations를 response의 data로 세팅함.
     setEducations(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 class SkillService {
   static async addSkill({
-    user_id,
+    userId,
     skillName,
     level,
     period,
@@ -17,7 +17,7 @@ class SkillService {
     // db에 저장
     const newSkill = {
       id,
-      user_id,
+      userId,
       skillName,
       level,
       period,
@@ -40,9 +40,9 @@ class SkillService {
 
     return skill;
   }
-  //user_id로 스킬목록들 조회
-  static async getSkillList({ user_id }) {
-    const skills = await Skill.findByUserId({ user_id });
+  //userId로 스킬목록들 조회
+  static async getSkillList({ userId }) {
+    const skills = await Skill.findByUserId({ userId });
     return skills;
   }
 

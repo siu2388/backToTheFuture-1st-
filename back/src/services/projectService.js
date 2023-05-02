@@ -3,12 +3,12 @@ import { Project } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class ProjectService {
-  static async addProject({ user_id, title, startDate, endDate, archive, description }) {
+  static async addProject({ userId, title, startDate, endDate, archive, description }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newProject = { id, user_id, title, startDate, endDate, archive, description };
+    const newProject = { id, userId, title, startDate, endDate, archive, description };
     const createdNewProject = await Project.create({ newProject });
 
     return createdNewProject;
@@ -26,8 +26,8 @@ class ProjectService {
     return project;
   }
 
-  static async getProjectList({ user_id }) {
-    const projects = await Project.findByUserId({ user_id });
+  static async getProjectList({ userId }) {
+    const projects = await Project.findByUserId({ userId });
     return projects;
   }
 

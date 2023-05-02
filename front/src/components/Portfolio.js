@@ -62,7 +62,7 @@ function Portfolio() {
 
   return (
 
-    <Container className = "bookcover">
+    <Container className = "bookcover" style = {{backgroundColor: portfolioOwner.boxColor }}>
       
           <div className="bookdot">
 
