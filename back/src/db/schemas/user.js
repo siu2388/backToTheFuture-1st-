@@ -42,11 +42,11 @@ const UserSchema = new Schema(
     },
     bgColor: {
       type: String,
-      default: "#a3a3a3",
+      default: "#a3a3a3"
     },
     boxColor: {
       type: String,
-      default: "#b4d1da",
+      default: "#b4d1da"
     },
     menuColor: {
       type: String,

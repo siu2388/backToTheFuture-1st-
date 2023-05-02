@@ -134,6 +134,7 @@ class userAuthService {
       const newValue = toUpdate.image;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
+
     if (toUpdate.homeName) {
       const fieldToUpdate = "homeName";
       const newValue = toUpdate.homeName;
@@ -158,7 +159,6 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
-    //console.log("졸려", user);
     return user;
   }
   // 입력된 id로 db에서 찾아서 반환

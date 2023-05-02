@@ -20,9 +20,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   const [bgColor, setBgColor] = useState("#a3a3a3");
   
-  const handleColorChange = (e) => {
-    setBgColor (e.target.value);
-  }
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +35,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       blog,
       description,
       image,
+      bgColor,
+      boxColor,
+      menuColor,
+      homeName,
     };
 
     const isValidGithub =
@@ -140,7 +142,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Form.Control
           type="color"
           value={bgColor}
-          onChange={handleColorChange}
+          onChange={(e)=>setBgColor(e.target.value)}
         />
 
         </div>
