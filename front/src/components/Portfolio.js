@@ -62,7 +62,7 @@ function Portfolio() {
 
   return (
 
-    <Container className = "bookcover">
+    <Container className = "bookcover" >
       
           <div className="bookdot">
 
