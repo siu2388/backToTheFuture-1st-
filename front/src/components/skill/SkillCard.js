@@ -1,4 +1,4 @@
-import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import { Card, Modal, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
