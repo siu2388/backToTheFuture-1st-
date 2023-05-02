@@ -8,7 +8,7 @@ import { GuestBookService } from "../services/guestBookService";
  */
 const guestBookRouter = Router();
 guestBookRouter
-  .route("/:receiverId/guestBooks")
+  .route("/guestBooks:receiverId/")
   .post(login_required, async (req, res, next) => {
     //여기서 작성자는 누구?  -> 토큰을 가진 유저 아무나
     const authorId = req.currentUserId;
@@ -41,7 +41,7 @@ guestBookRouter
 //박제록
 
 guestBookRouter
-  .route("/:receiverId/guestBooks/:guestBookId/remove/author")
+  .route("/guestBooks/:receiverId/:guestBookId/remove/author")
   .delete(login_required, async (req, res) => {
     //여기서 작성자는 누구?
     const authorId = req.currentUserId;
@@ -71,7 +71,7 @@ guestBookRouter
   });
 
 guestBookRouter
-  .route("/:receiverId/guestBooks/:guestBookId/remove/receiver")
+  .route("/guestBooks/:receiverId/:guestBookId/remove/receiver")
   .delete(login_required, async (req, res) => {
     //여기서 작성자는 누구?
     const receiverId = req.currentUserId;
