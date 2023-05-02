@@ -123,6 +123,11 @@ userAuthRouter.put(
       const github = req.body.github ?? null;
       const blog = req.body.blog ?? null;
       const description = req.body.description ?? null;
+      // 홈페이지 꾸미기
+    const homeName = req.body.homeName ?? null;
+    const bgColor = req.body.bgColor ?? null;
+    const boxColor = req.body.boxColor ?? null;
+    const menuColor = req.body.menuColor ?? null;
       //이미지 업로드
       const image = req.file ?? null;
       console.log("req.file 제발찍혀라", req.file);
