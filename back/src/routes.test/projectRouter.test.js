@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("projectRouter", () => {
   let token;
-  let user_id;
+  let userId;
   let project_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("projectRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    user_id = res.body.id;
+    userId = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("projectRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_project",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -98,14 +98,14 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("get -> /projectlist/:user_id", () => {
+  describe("get -> /projectlist/:userId", () => {
     it("should return a project list for specific user", async () => {
       await request(app)
         .post("/project/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_project3",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -117,7 +117,7 @@ describe("projectRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_project4",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -129,7 +129,7 @@ describe("projectRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_project5",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -138,7 +138,7 @@ describe("projectRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/projectlist/${user_id}`)
+        .get(`/projectlist/${userId}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

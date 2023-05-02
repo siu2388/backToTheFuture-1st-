@@ -11,8 +11,8 @@ class Career {
     return career;
   }
 
-  static async findByUserId({ user_id }) {
-    const careers = await CareerModel.find({ user_id });
+  static async findByUserId({ userId }) {
+    const careers = await CareerModel.find({ userId });
     return careers;
   }
 

@@ -87,10 +87,10 @@ describe("userRouter", () => {
         .send({ email: "abc@def.com", password: "1234" });
 
       const token = res.body.token;
-      const user_id = res.body.id;
+      const userId = res.body.id;
 
       const res2 = await request(app)
-        .put(`/users/${user_id}`)
+        .put(`/users/${userId}`)
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({ email: "abc@def.com", name: "tester-changed" });
@@ -108,10 +108,10 @@ describe("userRouter", () => {
         .send({ email: "abc@def.com", password: "1234" });
 
       const token = res.body.token;
-      const user_id = res.body.id;
+      const userId = res.body.id;
 
       const res2 = await request(app)
-        .put(`/users/${user_id}`)
+        .put(`/users/${userId}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res2.statusCode).toEqual(200);
