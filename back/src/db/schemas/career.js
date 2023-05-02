@@ -38,6 +38,12 @@ const CareerSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.startDate = ret.startDate.toISOString().slice(0, 7);
+        ret.endDate = ret.endDate.toISOString().slice(0, 7);
+      },
+    },
   }
 );
 

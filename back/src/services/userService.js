@@ -126,11 +126,11 @@ class userAuthService {
     }
 
     if (toUpdate.image) {
-      const fieldToUpdate = "image";
-      const newValue = toUpdate.image;
+      const fieldToUpdate = { originalname, mimetype, filename, path };
+      const newValue =  toUpdate.image;
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
-
+    //console.log("졸려", user);
     return user;
   }
   // 입력된 id로 db에서 찾아서 반환

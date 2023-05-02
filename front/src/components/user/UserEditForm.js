@@ -29,10 +29,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       github,
       blog,
       description,
+      image,
     };
 
     const isValidGithub =
-      github.startsWith("https://") || (github.startsWith("http://") && github);
+      github.startsWith("https://") || github.startsWith("http://");
 
     if (!isValidGithub) {
       setGithub(`https://${github}`);
@@ -40,15 +41,19 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     }
 
     const isValidBlog =
-      blog.startsWith("https://") || (blog.startsWith("http://") && blog);
+      blog.startsWith("https://") || blog.startsWith("http://");
 
+    if (!isValidBlog) {
+      setBlog(`https://${blog}`);
+      data.blog = `https://${blog}`;
+    }
     if (!isValidBlog) {
       setBlog(`https://${blog}`);
       data.blog = `https://${blog}`;
     }
 
     // "users/유저id" 엔드포인트로 PUT 요청함.
-    const res = await Api.put(`users/${user.id}`, data, image);
+    const res = await Api.put(`users/${user.id}`, data);
     // 유저 정보는 response의 data임.
 
     const updatedUser = res.data;
@@ -72,7 +77,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             />
+            <Form.Label>프로필 사진 변경</Form.Label>
+            <Form.Control
+              type="file"
+              name="image"
+              //accept="image/jpg, image/png, image/jpeg"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
           </Form.Group>
+
 
           <Form.Group controlId="userEditName" className="mb-3">
             <Form.Control
