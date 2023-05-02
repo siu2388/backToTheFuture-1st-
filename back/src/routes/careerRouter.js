@@ -2,6 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { CareerService } from "../services/careerService";
+const multer = require("multer");
 
 const careerRouter = Router();
 careerRouter.use(login_required);
@@ -53,7 +54,7 @@ careerRouter.get("/careers/:id", async (req, res, next) => {
   }
 });
 
-careerRouter.put("/careers/:id", async (req, res, next) => {
+careerRouter.put("/careers/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 경력 데이터 id를 추출함.
     const careerId = req.params.id;
@@ -110,7 +111,6 @@ careerRouter.delete("/careers/:id", async (req, res, next) => {
 // 특정 사용자의 전체 경력 목록을 얻음
 careerRouter.get("/careerlist/:userId", async (req, res, next) => {
   try {
-    // @ts-ignore
     const userId = req.params.userId;
     const careerList = await CareerService.getCareerList({ userId });
     res.status(200).send(careerList);

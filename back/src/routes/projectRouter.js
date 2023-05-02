@@ -2,7 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { ProjectService } from "../services/projectService";
-
+const multer = require("multer");
 const projectRouter = Router();
 projectRouter.use(login_required);
 
@@ -15,12 +15,8 @@ projectRouter.post("/project/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const title = req.body.title;
-    const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
-    const archive = req.body.archive;
-    const description = req.body.description;
+    const userId = req.currentUserId;
+    const { title, startDate, endDate, archive, description } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newProject = await ProjectService.addProject({
@@ -56,7 +52,7 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.put("/projects/:id", async function (req, res, next) {
+projectRouter.put("/projects/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const projectId = req.params.id;

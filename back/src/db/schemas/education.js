@@ -16,33 +16,27 @@ const EducationSchema = new Schema(
     },
     schoolType: {
       type: String,
-      required: true,
+      required: false,
     },
     major: {
       type: String,
-      required: true,
+      required: false,
     },
     status: {
       type: String,
       required: true,
     },
     startDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
     endDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
   },
   {
     timestamps: true,
-    toJSON: {
-      transform(doc, ret) {
-        ret.startDate = ret.startDate.toISOString().slice(0, 7);
-        ret.endDate = ret.endDate.toISOString().slice(0, 7);
-      },
-    },
   }
 );
 //modgoDB에서 데이터 일고 쓰는 작업 수행하는 모델 객체 생성함수(모델이름, 스키마객체)

@@ -2,7 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { EducationService } from "../services/educationService";
-
+const multer = require('multer');
 const educationRouter = Router();
 educationRouter.use(login_required);
 
@@ -15,13 +15,8 @@ educationRouter.post("/education/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const schoolName = req.body.schoolName;
-    const schoolType = req.body.schoolType;
-    const major = req.body.major;
-    const status = req.body.status;
-    const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
+    const userId = req.currentUserId;
+    const { schoolName, schoolType, major, status, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newEducation = await EducationService.addEducation({
@@ -58,7 +53,7 @@ educationRouter.get("/educations/:id", async function (req, res, next) {
   }
 });
 
-educationRouter.put("/educations/:id", async function (req, res, next) {
+educationRouter.put("/educations/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const educationId = req.params.id;

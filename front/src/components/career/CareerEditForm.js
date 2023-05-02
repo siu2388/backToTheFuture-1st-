@@ -93,6 +93,16 @@ function CareerEditForm({
         />
       </Form.Group>
 
+      <label htmlFor="floatingInputCustom">직무설명</label>
+      <Form.Group controlId="formBasicDescription">
+        <Form.Control
+          type="text"
+          placeholder="직무 설명을 작성해주세요."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </Form.Group>
+
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
           <button variant="primary" type="submit" className="btn-confirm">

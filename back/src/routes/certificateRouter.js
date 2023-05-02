@@ -2,6 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { CertificateService } from "../services/certificateService";
+const multer = require("multer");
 
 const certificateRouter = Router();
 certificateRouter.use(login_required);
@@ -15,11 +16,8 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const title = req.body.title;
-    const authority = req.body.authority;
-    const registerNum = req.body.registerNum;
-    const grade = req.body.grade;
+    const userId = req.currentUserId;
+    const { title, authority, registerNum, grade } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newCertificate = await CertificateService.addCertificate({
@@ -54,7 +52,7 @@ certificateRouter.get("/certificates/:id", async function (req, res, next) {
   }
 });
 
-certificateRouter.put("/certificates/:id", async function (req, res, next) {
+certificateRouter.put("/certificates/:id", multer().none(), async function (req, res, next) {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const certificateId = req.params.id;

@@ -2,6 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { AwardService } from "../services/awardService";
+const multer= require("multer");
 
 const awardRouter = Router();
 awardRouter.use(login_required);
@@ -51,7 +52,7 @@ awardRouter.get("/awards/:id", async (req, res, next) => {
   }
 });
 
-awardRouter.put("/awards/:id", async (req, res, next) => {
+awardRouter.put("/awards/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const awardId = req.params.id;
@@ -97,11 +98,11 @@ awardRouter.delete("/awards/:id", async (req, res, next) => {
 });
 
 // 특정 사용자의 전체 수상 목록을 얻음
-awardRouter.get("/awardlist/:user_id", async (req, res, next) => {
+awardRouter.get("/awardlist/:userId", async (req, res, next) => {
   try {
     // @ts-ignore
-    const userId = req.params.user_id;
-    const awardList = await AwardService.getAwardList({ user_id });
+    const userId = req.params.userId;
+    const awardList = await AwardService.getAwardList({ userId });
     res.status(200).send(awardList);
   } catch (error) {
     next(error);

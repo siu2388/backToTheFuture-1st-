@@ -52,6 +52,7 @@ const UserSchema = new Schema(
     },
     image: {
       path: { type: String },
+      
     },
   },
   {

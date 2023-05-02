@@ -2,7 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { SkillService } from "../services/skillService";
-
+const multer = require("multer");
 const skillRouter = Router();
 skillRouter.use(login_required);
 
@@ -15,12 +15,8 @@ skillRouter.post("/skill/create", async (req, res, next) => {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const skillName = req.body.skillName;
-    const level = req.body.level;
-    const period = req.body.period;
-    const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
+    const userId = req.currentUserId;
+    const { skillName, level, period, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newSkill = await SkillService.addSkill({
@@ -56,7 +52,7 @@ skillRouter.get("/skills/:id", async (req, res, next) => {
   }
 });
 
-skillRouter.put("/skills/:id", async (req, res, next) => {
+skillRouter.put("/skills/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 경력 데이터 id를 추출함.
     const skillId = req.params.id;
