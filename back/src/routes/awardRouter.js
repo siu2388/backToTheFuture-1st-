@@ -15,11 +15,8 @@ awardRouter.post("/award/create", async (req, res, next) => {
     }
 
     // req (request) 에서 데이터 가져오기
-    const userId = req.body.userId;
-    const title = req.body.title;
-    const grade = req.body.grade;
-    const date = req.body.date;
-    const description = req.body.description;
+    const userId = req.currentUserId;
+    const { title, grade, date, description } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newAward = await AwardService.addAward({
@@ -100,11 +97,11 @@ awardRouter.delete("/awards/:id", async (req, res, next) => {
 });
 
 // 특정 사용자의 전체 수상 목록을 얻음
-awardRouter.get("/awardlist/:userId", async (req, res, next) => {
+awardRouter.get("/awardlist/:user_id", async (req, res, next) => {
   try {
     // @ts-ignore
-    const userId = req.params.userId;
-    const awardList = await AwardService.getAwardList({ userId });
+    const userId = req.params.user_id;
+    const awardList = await AwardService.getAwardList({ user_id });
     res.status(200).send(awardList);
   } catch (error) {
     next(error);
