@@ -55,7 +55,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         value={schoolType}
         onChange={(e) => setSchoolType(e.target.value)}
       >
-        <option>select</option>
+        <option value="">select</option>
         <option value="학사">학사</option>
         <option value="석사">석사</option>
         <option value="박사">박사</option>

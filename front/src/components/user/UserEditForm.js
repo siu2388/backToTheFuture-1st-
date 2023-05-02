@@ -71,6 +71,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        <div>
           <Form.Group controlId="userEditImage" className="mb-3">
             <Form.Label>프로필 사진 변경</Form.Label>
             <Form.Control
@@ -124,6 +125,21 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setDescription(e.target.value)}
             />
           </Form.Group>
+        </div>
+
+        <div>
+
+        <Form.Label htmlFor="exampleColorInput">배경 색상 선택</Form.Label>
+        <Form.Control
+          type="color"
+          id="exampleColorInput"
+          defaultValue="#a3a3a3"
+          title="배경 색상 선택"
+        />
+
+        </div>
+
+
 
       </Modal.Body>
       <Modal.Footer>
