@@ -3,12 +3,12 @@ import { Award } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class AwardService {
-  static async addAward({ user_id, title, grade, date, description }) {
+  static async addAward({ userId, title, grade, date, description }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newAward = { id, user_id, title, grade, date, description };
+    const newAward = { id, userId, title, grade, date, description };
     const createdNewAward = await Award.create({ newAward });
 
     return createdNewAward;
@@ -25,9 +25,9 @@ class AwardService {
 
     return award;
   }
-  //user_id로 수상목록들 조회
-  static async getAwardList({ user_id }) {
-    const awards = await Award.findByUserId({ user_id });
+  //userId로 수상목록들 조회
+  static async getAwardList({ userId }) {
+    const awards = await Award.findByUserId({ userId });
     return awards;
   }
 

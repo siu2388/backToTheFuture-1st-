@@ -38,11 +38,15 @@
   border-radius: 3px;
 }
 
-.category-pic {
+.delete-button {
   background-color: #f15f5f;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
 }
 
-.category-post {
+.edit-button {
   background-color: #617dc1;
 }
 

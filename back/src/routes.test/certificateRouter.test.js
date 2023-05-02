@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("certificateRouter", () => {
   let token;
-  let user_id;
+  let userId;
   let certificate_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("certificateRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    user_id = res.body.id;
+    userId = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_certificate",
           authority: "issuing_agency",
           registerNum: "awesome001",
@@ -94,14 +94,14 @@ describe("certificateRouter", () => {
     });
   });
 
-  describe("get -> /certificatelist/:user_id", () => {
+  describe("get -> /certificatelist/:userId", () => {
     it("should return a certificate list for specific user", async () => {
       await request(app)
         .post("/certificate/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_certificate3",
           authority: "issuing_agency",
           registerNum: "awesome003",
@@ -112,7 +112,7 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_certificate4",
           authority: "issuing_agency",
           registerNum: "awesome004",
@@ -123,7 +123,7 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           title: "awesome_certificate5",
           authority: "issuing_agency",
           registerNum: "awesome005",
@@ -131,7 +131,7 @@ describe("certificateRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/certificatelist/${user_id}`)
+        .get(`/certificatelist/${userId}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

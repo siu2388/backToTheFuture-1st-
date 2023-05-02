@@ -1,5 +1,5 @@
-import { Card,  Modal, Button, Row, Col } from "react-bootstrap";
-import {useState, useEffect} from 'react';
+import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
 function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
@@ -11,8 +11,8 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
     });
   };
 
-  useEffect(() => {} ,[education]);
-  
+  useEffect(() => {}, [education]);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -40,7 +40,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
               편집
             </Button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <Button variant="outline-danger" onClick={handleShow} size="sm">
                 삭제
               </Button>
 

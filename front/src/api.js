@@ -37,7 +37,7 @@ async function put(endpoint, data, file) {
 
   const formData = new FormData();
 
-  console.log(data)
+  console.log('1',endpoint);
   //image 파일을 FormData 객체에 추가
   if (file){
     formData.append("image", file);
@@ -47,13 +47,10 @@ async function put(endpoint, data, file) {
   Object.keys(data).forEach((key) => {
     formData.append(key, data[key]);
   });
-  
-  
-
+  console.log("2",data);
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터:${formData}`, "color: #059c4b;");
   
-
   return axios.put(serverUrl + endpoint, formData, {
     headers: {
       "Content-Type": "multipart/form-data",

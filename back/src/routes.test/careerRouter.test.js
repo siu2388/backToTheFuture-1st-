@@ -2,10 +2,10 @@ import { closeDatabase } from "./__config__/dbConfig";
 import request from "supertest";
 import { app } from "../app";
 
-describe("educationRouter", () => {
+describe("careerRouter", () => {
   let token;
-  let user_id;
-  let education_id;
+  let userId;
+  let career_id;
 
   beforeAll(async () => {
     await request(app)
@@ -22,79 +22,79 @@ describe("educationRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    user_id = res.body.id;
+    userId = res.body.id;
   });
 
   afterAll(() => {
     closeDatabase();
   });
 
-  describe("post -> /education/create", () => {
-    it("should create a new education in userDB", async () => {
+  describe("post -> /career/create", () => {
+    it("should create a new career in userDB", async () => {
       const res = await request(app)
-        .post("/education/create")
+        .post("/career/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
-          schoolName: "awsome_school",
-          schoolType: "university",
-          major: "computer",
-          status: "graduate",
+          userId,
+          company: "awesome_career",
+          department: "awesome_department",
+          position: "awesome_position",
+          description: "awesome",
           startDate: "20.03.02",
           endDate: "23.02.17",
         });
 
-      education_id = res.body.id;
+      career_id = res.body.id;
       expect(res.statusCode).toEqual(201);
-      expect(res.body.schoolName).toBe("awsome_school");
-      expect(res.body.schoolType).toBe("university");
-      expect(res.body.major).toBe("computer");
-      expect(res.body.status).toBe("graduate");
+      expect(res.body.company).toBe("awesome_career");
+      expect(res.body.department).toBe("awesome_department");
+      expect(res.body.position).toBe("awesome_position");
+      expect(res.body.description).toBe("awesome");
       expect(res.body.startDate).toBe("20.03.02");
       expect(res.body.endDate).toBe("23.02.17");
     });
   });
 
-  describe("get -> /educations/:id", () => {
-    it("should return a education information", async () => {
+  describe("get -> /careers/:id", () => {
+    it("should return a career information", async () => {
       const res = await request(app)
-        .get(`/educations/${education_id}`)
+        .get(`/careers/${career_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
-      expect(res.body.title).toBe("awesome_education");
+      expect(res.body.company).toBe("awesome_career");
     });
   });
 
-  describe("put -> /educations/:id", () => {
-    it("should change a education information", async () => {
+  describe("put -> /careers/:id", () => {
+    it("should change a career information", async () => {
       const res = await request(app)
-        .put(`/educations/${education_id}`)
+        .put(`/careers/${career_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
-          schoolName: "awsome_school2",
-          schoolType: "master",
-          major: "chemistry",
-          status: "graduate",
+          company: "awesome_career2",
+          department: "awesome_department2",
+          position: "awesome_position2",
+          description: "awesome2",
           startDate: "19.03.04",
           endDate: "23.02.17",
         });
 
       expect(res.statusCode).toEqual(200);
-      expect(res.body.schoolName).toBe("awsome_school2");
-      expect(res.body.schoolType).toBe("master");
-      expect(res.body.major).toBe("chemistry");
-      expect(res.body.status).toBe("graduate");
+      expect(res.body.company).toBe("awesome_career2");
+      expect(res.body.department).toBe("awesome_department");
+      expect(res.body.position).toBe("awesome_position");
+      expect(res.body.description).toBe("awesome2");
       expect(res.body.startDate).toBe("19.03.04");
       expect(res.body.endDate).toBe("23.02.17");
     });
   });
 
-  describe("delete -> /educations/:id", () => {
-    it("should delete education from db", async () => {
+  describe("delete -> /careers/:id", () => {
+    it("should delete career from db", async () => {
       const res = await request(app)
-        .delete(`/educations/${education_id}`)
+        .delete(`/careers/${career_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -102,50 +102,50 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("get -> /educationlist/:user_id", () => {
-    it("should return a education list for specific user", async () => {
+  describe("get -> /careerlist/:userId", () => {
+    it("should return a career list for specific user", async () => {
       await request(app)
-        .post("/education/create")
+        .post("/career/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
-          schoolName: "awsome_school3",
-          schoolType: "university",
-          major: "education",
-          status: "graduate",
+          userId,
+          company: "awesome_career3",
+          department: "awesome_department3",
+          position: "awesome_position3",
+          description: "awesome3",
           startDate: "18.03.02",
           endDate: "22.02.16",
         });
       await request(app)
-        .post("/education/create")
+        .post("/career/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
-          schoolName: "awsome_school4",
-          schoolType: "university",
-          major: "business",
-          status: "graduate",
+          userId,
+          company: "awesome_career4",
+          department: "awesome_department4",
+          position: "awesome_position4",
+          description: "awesome4",
           startDate: "19.03.04",
           endDate: "23.02.17",
         });
       await request(app)
-        .post("/education/create")
+        .post("/career/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
-          schoolName: "awsome_school5",
-          schoolType: "university",
-          major: "astronomy",
-          status: "graduate",
+          userId,
+          company: "awesome_career5",
+          department: "awesome_department5",
+          position: "awesome_position5",
+          description: "awesome5",
           startDate: "20.03.02",
           endDate: "23.02.17",
         });
 
       const res = await request(app)
-        .get(`/educationlist/${user_id}`)
+        .get(`/careerlist/${userId}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

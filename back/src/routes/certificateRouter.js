@@ -15,7 +15,7 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const user_id = req.body.user_id;
+    const userId = req.body.userId;
     const title = req.body.title;
     const authority = req.body.authority;
     const registerNum = req.body.registerNum;
@@ -23,7 +23,7 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
 
     // 위 데이터를 유저 db에 추가하기
     const newCertificate = await CertificateService.addCertificate({
-      user_id,
+      userId,
       title,
       authority,
       registerNum,
@@ -98,12 +98,12 @@ certificateRouter.delete("/certificates/:id", async (req, res, next) => {
   }
 });
 
-certificateRouter.get("/certificatelist/:user_id", async function (req, res, next) {
+certificateRouter.get("/certificatelist/:userId", async function (req, res, next) {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
     // @ts-ignore
-    const user_id = req.params.user_id;
-    const certificateList = await CertificateService.getCertificateList({ user_id });
+    const userId = req.params.userId;
+    const certificateList = await CertificateService.getCertificateList({ userId });
     res.status(200).send(certificateList);
   } catch (error) {
     next(error);

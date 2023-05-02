@@ -6,7 +6,7 @@ const AwardSchema = new Schema(
       type: String,
       required: true,
     },
-    user_id: {
+    userId: {
       type: String,
       required: true,
     },
@@ -29,6 +29,11 @@ const AwardSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.date = ret.date.toISOString().slice(0, 7);
+      },
+    },
   }
 );
 

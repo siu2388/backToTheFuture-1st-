@@ -64,7 +64,7 @@ body {
   .page {
     flex-direction: column;
     position: relative;
-
+  
   }
   .bookcover{
     height: 80vh;
@@ -78,6 +78,8 @@ body {
   }
 
 }
+
+
 .miniroom-gif-box {
   display: flex;
   flex-direction: column;
@@ -100,7 +102,7 @@ body {
 
 .content-title {
   display: flex;
-  align-items: center;
+  align-items: center;  
 }
 
 .content-title-name {
@@ -111,6 +113,61 @@ body {
   flex: 1;
   font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
   text-align: end; /* 텍스트 우측 정렬 */
+}
+
+.btn-delete {
+  background-color: #f15f5f;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  border: none;
+}
+
+.btn-edit {
+  background-color: #617dc1;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  border: none;
+}
+
+.btn-add {
+  background-color: #b4d1da;
+  color: white;
+  border-radius: 3px;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  border: none;
+}
+
+
+.btn-confirm {
+  background-color: #617dc1;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  border: none;
+}
+
+.btn-cancel {
+  background-color: #6c757d;
+  padding: 0 6px;
+  margin-right: 6px;
+  color: white;
+  border-radius: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  border: none;
 }
 
 .profile-title {
@@ -150,6 +207,7 @@ body {
 .profile-username {
   flex: 0;
 }
+
 
 .content-box{
   display: flex;

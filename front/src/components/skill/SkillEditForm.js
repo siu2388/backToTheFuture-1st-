@@ -12,19 +12,19 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentSkill의 user_id를 user_id 변수에 할당함.
-    const user_id = currentSkill.user_id;
+    // currentSkill의 userId를 userId 변수에 할당함.
+    const userId = currentSkill.userId;
 
     // "skills/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`skills/${currentSkill.id}`, {
-      user_id,
+      userId,
       skillName,
       level,
       period,
     });
 
     // "skilllist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("skilllist", user_id);
+    const res = await Api.get("skilllist", userId);
     // skills를 response의 data로 세팅함.
     setSkills(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
