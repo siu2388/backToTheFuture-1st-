@@ -110,7 +110,7 @@ userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
 });
 
 userAuthRouter.put(
-  "/users/:id",
+  "/userId/:id",
   login_required,
   upload.single("image"),
   async (req, res, next) => {
@@ -162,7 +162,7 @@ userAuthRouter.put(
   }
 );
 
-userAuthRouter.get("/users/:id", login_required, async (req, res, next) => {
+userAuthRouter.get("/userId/:id", login_required, async (req, res, next) => {
   try {
     const userId = req.params.id;
     const currentUserInfo = await userAuthService.getUserInfo({ userId });

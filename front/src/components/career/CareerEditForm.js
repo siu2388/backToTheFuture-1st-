@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function CareerEditForm({
-  currentCareer,
-  setCareers,
-  setIsEditing,
-}) {
+function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
   const [company, setCompany] = useState(currentCareer.company);
   const [department, setDepartment] = useState(currentCareer.department);
@@ -22,8 +18,8 @@ function CareerEditForm({
     // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentCareer.userId;
 
-    // "projects/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`careers/${currentCareer.id}`, {
+    // "projectId/수상 id" 엔드포인트로 PUT 요청함.
+    await Api.put(`careerId/${currentCareer.id}`, {
       userId,
       company,
       department,
@@ -43,7 +39,6 @@ function CareerEditForm({
 
   return (
     <Form onSubmit={handleSubmit}>
-
       <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
         <Form.Control
@@ -108,7 +103,11 @@ function CareerEditForm({
           <button variant="primary" type="submit" className="btn-confirm">
             확인
           </button>
-          <button variant="secondary" onClick={() => setIsEditing(false)}className="btn-cancel">
+          <button
+            variant="secondary"
+            onClick={() => setIsEditing(false)}
+            className="btn-cancel"
+          >
             취소
           </button>
         </Col>

@@ -18,7 +18,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     const userId = portfolioOwnerId;
 
     // "award/create" 엔드포인트로 post요청함.
-    await Api.post("afront/src/components/award/AwardCard.jsward/create", {
+    await Api.post("award/create", {
       userId: portfolioOwnerId,
       title,
       grade,

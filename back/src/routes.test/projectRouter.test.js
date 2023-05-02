@@ -54,10 +54,10 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("get -> /projects/:id", () => {
+  describe("get -> /projectId/:id", () => {
     it("should return a project information", async () => {
       const res = await request(app)
-        .get(`/projects/${project_id}`)
+        .get(`/projectId/${project_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -65,10 +65,10 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("put -> /projects/:id", () => {
+  describe("put -> /projectId/:id", () => {
     it("should change a project information", async () => {
       const res = await request(app)
-        .put(`/projects/${project_id}`)
+        .put(`/projectId/${project_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "awesome_project2",
@@ -87,10 +87,10 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("delete -> /projects/:id", () => {
+  describe("delete -> /projectId/:id", () => {
     it("should delete project from db", async () => {
       const res = await request(app)
-        .delete(`/projects/${project_id}`)
+        .delete(`/projectId/${project_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

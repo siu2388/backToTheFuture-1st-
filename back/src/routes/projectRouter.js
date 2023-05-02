@@ -34,7 +34,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projects/:id", async function (req, res, next) {
+projectRouter.get("/projectId/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -52,7 +52,7 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.put("/projects/:id", multer().none(), async (req, res, next) => {
+projectRouter.put("/projectId/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const projectId = req.params.id;
@@ -79,7 +79,7 @@ projectRouter.put("/projects/:id", multer().none(), async (req, res, next) => {
   }
 });
 
-projectRouter.delete("/projects/:id", async function (req, res, next) {
+projectRouter.delete("/projectId/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;

@@ -15,8 +15,8 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
     // currentSkill의 userId를 userId 변수에 할당함.
     const userId = currentSkill.userId;
 
-    // "skills/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`skills/${currentSkill.id}`, {
+    // "skillId/수상 id" 엔드포인트로 PUT 요청함.
+    await Api.put(`skillId/${currentSkill.id}`, {
       userId,
       skillName,
       level,
@@ -73,7 +73,11 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
           <button variant="primary" type="submit" className="btn-confirm">
             확인
           </button>
-          <button variant="secondary" onClick={() => setIsEditing(false)} className="btn-cancel">
+          <button
+            variant="secondary"
+            onClick={() => setIsEditing(false)}
+            className="btn-cancel"
+          >
             취소
           </button>
         </Col>

@@ -17,7 +17,8 @@ careerRouter.post("/career/create", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { company, department, position, description, startDate, endDate } = req.body;
+    const { company, department, position, description, startDate, endDate } =
+      req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newCareer = await CareerService.addCareer({
@@ -36,7 +37,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
   }
 });
 
-careerRouter.get("/careers/:id", async (req, res, next) => {
+careerRouter.get("/careerId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const careerId = req.params.id;
@@ -54,7 +55,7 @@ careerRouter.get("/careers/:id", async (req, res, next) => {
   }
 });
 
-careerRouter.put("/careers/:id", multer().none(), async (req, res, next) => {
+careerRouter.put("/careerId/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 경력 데이터 id를 추출함.
     const careerId = req.params.id;
@@ -90,7 +91,7 @@ careerRouter.put("/careers/:id", multer().none(), async (req, res, next) => {
 });
 
 //경력목록 삭제
-careerRouter.delete("/careers/:id", async (req, res, next) => {
+careerRouter.delete("/careerId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const careerId = req.params.id;

@@ -34,7 +34,7 @@ skillRouter.post("/skill/create", async (req, res, next) => {
   }
 });
 
-skillRouter.get("/skills/:id", async (req, res, next) => {
+skillRouter.get("/skillId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const skillId = req.params.id;
@@ -52,7 +52,7 @@ skillRouter.get("/skills/:id", async (req, res, next) => {
   }
 });
 
-skillRouter.put("/skills/:id", multer().none(), async (req, res, next) => {
+skillRouter.put("/skillId/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 경력 데이터 id를 추출함.
     const skillId = req.params.id;
@@ -80,7 +80,7 @@ skillRouter.put("/skills/:id", multer().none(), async (req, res, next) => {
 });
 
 //경력목록 삭제
-skillRouter.delete("/skills/:id", async (req, res, next) => {
+skillRouter.delete("/skillId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const skillId = req.params.id;

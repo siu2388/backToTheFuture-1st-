@@ -56,10 +56,10 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("get -> /educations/:id", () => {
+  describe("get -> /educationId/:id", () => {
     it("should return a education information", async () => {
       const res = await request(app)
-        .get(`/educations/${education_id}`)
+        .get(`/educationId/${education_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -67,10 +67,10 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("put -> /educations/:id", () => {
+  describe("put -> /educationId/:id", () => {
     it("should change a education information", async () => {
       const res = await request(app)
-        .put(`/educations/${education_id}`)
+        .put(`/educationId/${education_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           schoolName: "awsome_school2",
@@ -91,10 +91,10 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("delete -> /educations/:id", () => {
+  describe("delete -> /educationId/:id", () => {
     it("should delete education from db", async () => {
       const res = await request(app)
-        .delete(`/educations/${education_id}`)
+        .delete(`/educationId/${education_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
