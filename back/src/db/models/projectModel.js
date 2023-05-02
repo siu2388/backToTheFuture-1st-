@@ -11,8 +11,8 @@ class Project {
     return project;
   }
 
-  static async findByUserId({ user_id }) {
-    const projects = await ProjectModel.find({ user_id });
+  static async findByUserId({ userId }) {
+    const projects = await ProjectModel.find({ userId });
     return projects;
   }
 

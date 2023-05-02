@@ -15,7 +15,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const user_id = req.body.user_id;
+    const userId = req.body.userId;
     const title = req.body.title;
     const startDate = req.body.startDate;
     const endDate = req.body.endDate;
@@ -24,7 +24,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
 
     // 위 데이터를 유저 db에 추가하기
     const newProject = await ProjectService.addProject({
-      user_id,
+      userId,
       title,
       startDate,
       endDate,
@@ -101,12 +101,12 @@ projectRouter.delete("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projectlist/:user_id", async function (req, res, next) {
+projectRouter.get("/projectlist/:userId", async function (req, res, next) {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
     // @ts-ignore
-    const user_id = req.params.user_id;
-    const projectList = await ProjectService.getProjectList({ user_id });
+    const userId = req.params.userId;
+    const projectList = await ProjectService.getProjectList({ userId });
     res.status(200).send(projectList);
   } catch (error) {
     next(error);

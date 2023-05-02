@@ -32,10 +32,23 @@ const UserSchema = new Schema(
       default: "설명이 아직 없습니다. 추가해 주세요.",
     },
     image: {
-      originalname : {type : String},
-      mimetype : {type : String},
-      filename : {type : String},
-      path : {type : String},
+      type : String,
+    },
+    homeName: {
+      type: String,
+      default: "나의 미니홈피"
+    },
+    bgColor: {
+      type: String,
+      default: "#a3a3a3"
+    },
+    boxColor: {
+      type: String,
+      default: "#b4d1da"
+    },
+    menuColor: {
+      type: String,
+      default: "#3B87AB"
     }
   },
   {
