@@ -18,10 +18,17 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [bgColor, setBgColor] = useState("#a3a3a3");
+  
+  const handleColorChange = (e) => {
+    setBgColor (e.target.value);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("image", image);
     console.log("name", name);
+    console.log("bgColor", bgColor);
 
     const data = {
       name,
@@ -132,9 +139,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Form.Label htmlFor="exampleColorInput">배경 색상 선택</Form.Label>
         <Form.Control
           type="color"
-          id="exampleColorInput"
-          defaultValue="#a3a3a3"
-          title="배경 색상 선택"
+          value={bgColor}
+          onChange={handleColorChange}
         />
 
         </div>
