@@ -32,7 +32,9 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
                 <Button
                   variant="outline-info"
                   size="sm"
-                  onClick={() => setIsEditing(true)}
+                  onClick={() => 
+                    setIsEditing(true)
+                  }
                 >
                   편집
                 </Button>
