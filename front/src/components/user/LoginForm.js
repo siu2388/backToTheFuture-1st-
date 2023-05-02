@@ -4,6 +4,7 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+import "./login.css"
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ function LoginForm() {
     <Container>
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} className="input">
             <Form.Group controlId="loginEmail">
               <Form.Label>이메일 주소</Form.Label>
               <Form.Control
@@ -96,7 +97,7 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <Button variant="primary" type="submit" disabled={!isFormValid} class="submit-button">
                   로그인
                 </Button>
               </Col>
