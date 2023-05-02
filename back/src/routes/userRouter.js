@@ -140,6 +140,10 @@ userAuthRouter.put(
         github,
         blog,
         description,
+        homeName,
+        bgColor,
+        boxColor,
+        menuColor,
         image,
       };
 

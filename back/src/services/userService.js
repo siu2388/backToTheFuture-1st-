@@ -129,12 +129,6 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.image) {
-      const fieldToUpdate = "image";
-      const newValue = toUpdate.image;
-      user = await User.update({ userId, fieldToUpdate, newValue });
-    }
-
     if (toUpdate.homeName) {
       const fieldToUpdate = "homeName";
       const newValue = toUpdate.homeName;
@@ -156,6 +150,12 @@ class userAuthService {
     if (toUpdate.menuColor) {
       const fieldToUpdate = "menuColor";
       const newValue = toUpdate.menuColor;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.image) {
+      const fieldToUpdate = "image";
+      const newValue = toUpdate.image;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
     //console.log("졸려", user);

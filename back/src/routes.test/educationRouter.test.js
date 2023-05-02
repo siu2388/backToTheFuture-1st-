@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("educationRouter", () => {
   let token;
-  let user_id;
+  let userId;
   let education_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("educationRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    user_id = res.body.id;
+    userId = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("educationRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           schoolName: "awsome_school",
           schoolType: "university",
           major: "computer",
@@ -102,14 +102,14 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("get -> /educationlist/:user_id", () => {
+  describe("get -> /educationlist/:userId", () => {
     it("should return a education list for specific user", async () => {
       await request(app)
         .post("/education/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           schoolName: "awsome_school3",
           schoolType: "university",
           major: "education",
@@ -122,7 +122,7 @@ describe("educationRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           schoolName: "awsome_school4",
           schoolType: "university",
           major: "business",
@@ -135,7 +135,7 @@ describe("educationRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          user_id,
+          userId,
           schoolName: "awsome_school5",
           schoolType: "university",
           major: "astronomy",
@@ -145,7 +145,7 @@ describe("educationRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/educationlist/${user_id}`)
+        .get(`/educationlist/${userId}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
