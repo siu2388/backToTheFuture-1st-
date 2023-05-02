@@ -21,10 +21,12 @@ const UserSchema = new Schema(
     github: {
       type: String,
       required: false,
+      default: "",
     },
     blog: {
       type: String,
       required: false,
+      default: "",
     },
     description: {
       type: String,
