@@ -4,7 +4,6 @@ import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
-  const [image, setImage] = useState(user.image);
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);
@@ -22,7 +21,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [boxColor, setBoxColor] = useState(user.boxColor);
   const [menuColor, setMenuColor] = useState(user.menuColor);
   const [homeName, setHomeName] = useState(user.homeName);
-
+  const [image, setImage] = useState(user.image);
 
 
   const handleSubmit = async (e) => {
@@ -40,11 +39,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       github,
       blog,
       description,
-      image,
       bgColor,
       boxColor,
       menuColor,
       homeName,
+      image,
     };
 
     console.log("data", data);
@@ -93,6 +92,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             <Form.Label>프로필 사진 변경</Form.Label>
             <Form.Control
               type="file"
+              name ="image"
               onChange={(e) => setImage(e.target.files[0])}
             />
           </Form.Group>
