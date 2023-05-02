@@ -44,7 +44,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     // "users/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`users/${user.id}`, data);
     // 유저 정보는 response의 data임.
-
     const updatedUser = res.data;
 
     // 해당 유저 정보로 user을 세팅함.
@@ -63,7 +62,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
             <Form.Control
               type="file"
               name="image"
-              id="image"
+              //accept="image/jpg, image/png, image/jpeg"
               onChange={(e) => setImage(e.target.files[0])}
             />
           </Form.Group>
