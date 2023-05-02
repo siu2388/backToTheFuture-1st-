@@ -30,19 +30,17 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
         </Col>
 
         {isEditable && (
-          <Col xs lg="2">
-            <Button
-              variant="outline-info"
-              size="sm"
+          <Col xs lg="3" style = {{marginRight: "10px"}}>
+            <button
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
+              className="btn-edit"
             >
               편집
-            </Button>
+            </button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size="sm">
+              <button onClick={handleShow} className  = "btn-delete">
                 삭제
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
@@ -50,18 +48,19 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                <button variant="secondary" onClick={handleClose} className="btn-cancel">
                     취소
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     variant="primary"
+                    className="btn-confirm"
                     onClick={() => {
                       handleClose();
                       handleDelete();
                     }}
                   >
-                    변경 내용 저장
-                  </Button>
+                    확인
+                  </button>
                 </Modal.Footer>
               </Modal>
             </>
