@@ -4,7 +4,7 @@ import * as Api from "../../api";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(user.image);
   const [name, setName] = useState(user.name);
   //useState로 email 상태를 생성함.
   const [email, setEmail] = useState(user.email);

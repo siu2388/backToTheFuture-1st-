@@ -61,12 +61,12 @@ class userAuthService {
       email,
       name,
       description,
-      image,
       homeName,
       bgColor,
       boxColor,
       menuColor,
       errorMessage: null,
+      image,
     };
 
     return loginUser;
