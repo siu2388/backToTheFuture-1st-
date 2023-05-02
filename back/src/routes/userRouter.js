@@ -3,8 +3,8 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
 const multer = require("multer");
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
 
 const userAuthRouter = Router();
 

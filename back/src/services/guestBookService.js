@@ -35,7 +35,7 @@ class GuestBookService {
 
   static async findOneGuestBookById(guestBookId) {
     const guestBook = await GuestBook.findById({guestBookId});
-     if (!guestBook) {
+    if (!guestBook) {
       const errorMessage =
         "해당 id를 가진 방명록 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
