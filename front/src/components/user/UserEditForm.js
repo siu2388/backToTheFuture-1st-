@@ -77,13 +77,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               type="file"
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <Form.Label>프로필 사진 변경</Form.Label>
-            <Form.Control
-              type="file"
-              name="image"
-              //accept="image/jpg, image/png, image/jpeg"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
           </Form.Group>
 
 
@@ -136,15 +129,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       <Modal.Footer>
         <Form.Group as={Row} className="mt-3 text-center">
           <Col sm={{ span: 20 }}>
-            <Button variant="primary" type="submit" className="me-3" onClick = {() => {
-              handleClose();
-              handleSubmit()
+            <Button variant="primary" type="submit" className="me-3" onClick = {(e) => {
+              handleClose(e);
+              handleSubmit(e)
             }}>
               확인
             </Button>
-            <Button variant="secondary" onClick={() => {
+            <Button variant="secondary" onClick={(e) => {
               setIsEditing(false)
-              handleClose()
+              handleClose(e)
               }}>
               취소
             </Button>
