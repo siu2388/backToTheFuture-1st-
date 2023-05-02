@@ -71,6 +71,8 @@ class userAuthService {
       id,
       email,
       name,
+      github,
+      blog,
       description,
       homeName,
       bgColor,
