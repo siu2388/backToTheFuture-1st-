@@ -82,30 +82,24 @@ userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
   }
 });
 
-userAuthRouter.put(
-  "/users/:id",
-  login_required,
-  upload.single("image"),
-  async (req, res, next) => {
-    try {
-      // URI로부터 사용자 id를 추출함.
-      const userId = req.params.id;
-      // body data 로부터 업데이트할 사용자 정보를 추출함.
-      const name = req.body.name ?? null;
-      const email = req.body.email ?? null;
-      const password = req.body.password ?? null;
-      const github = req.body.github ?? null;
-      const blog = req.body.blog ?? null;
-      const description = req.body.description ?? null;
-      //이미지 업로드
-      const image = req.file ?? null;
-      const homeName = req.body.homeName ?? null;
-      const bgColor = req.body.bgColor ?? null;
-      const boxColor = req.body.boxColor ?? null;
-      const menuColor = req.body.menuColor ?? null;
-  
-      console.log("req.file 제발찍혀라", req.file);
-      console.log("req.body:", req.body);
+userAuthRouter.put("/users/:id", login_required, async (req, res, next) => {
+  try {
+    // URI로부터 사용자 id를 추출함.
+    const userId = req.params.id;
+    // body data 로부터 업데이트할 사용자 정보를 추출함.
+    const name = req.body.name ?? null;
+    const email = req.body.email ?? null;
+    const password = req.body.password ?? null;
+    const github = req.body.github ?? null;
+    const blog = req.body.blog ?? null;
+    const description = req.body.description ?? null;
+    //이미지
+    const image = req.body.image ?? null;
+    // 홈페이지 꾸미기
+    const homeName = req.body.homeName ?? null;
+    const bgColor = req.body.bgColor ?? null;
+    const boxColor = req.body.boxColor ?? null;
+    const menuColor = req.body.menuColor ?? null;
 
     const toUpdate = {
       name,
