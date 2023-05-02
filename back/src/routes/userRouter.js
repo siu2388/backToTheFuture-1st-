@@ -2,34 +2,8 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
-const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
 
 const userAuthRouter = Router();
-
-//multer
-//uploads 파일 생성관련
-try {
-  fs.readdirSync("uploads");
-} catch (e) {
-  console.error("upload 폴더가 없어서 uploads폴더를 생성합니다.");
-  fs.mkdirSync("uploads");
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const filename = path.basename(file.originalname, ext) + Date.now() + ext;
-    cb(null, filename);
-  },
-});
-const limits = { fieldsize: 10 * 1024 * 1024 };
-const upload = multer({ storage: storage, limits: limits });
-
 // 회원가입
 userAuthRouter.post("/user/register", async (req, res, next) => {
   try {
@@ -133,34 +107,32 @@ userAuthRouter.put(
       console.log("req.file 제발찍혀라", req.file);
       console.log("req.body:", req.body);
 
-      const toUpdate = {
-        name,
-        email,
-        password,
-        github,
-        blog,
-        description,
-        image,
-        homeName,
-        bgColor,
-        boxColor,
-        menuColor,
-  
-      };
+    const toUpdate = {
+      name,
+      email,
+      password,
+      github,
+      blog,
+      description,
+      image,
+      homeName,
+      bgColor,
+      boxColor,
+      menuColor,
+    };
 
-      // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-      const updatedUser = await userAuthService.setUser({ userId, toUpdate });
+    // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
+    const updatedUser = await userAuthService.setUser({ userId, toUpdate });
 
-      if (updatedUser.errorMessage) {
-        throw new Error(updatedUser.errorMessage);
-      }
-
-      return res.status(200).json(updatedUser);
-    } catch (error) {
-      next(error);
+    if (updatedUser.errorMessage) {
+      throw new Error(updatedUser.errorMessage);
     }
+
+    return res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 userAuthRouter.get("/users/:id", login_required, async (req, res, next) => {
   try {
@@ -172,10 +144,10 @@ userAuthRouter.get("/users/:id", login_required, async (req, res, next) => {
     }
 
     res.status(200).send(currentUserInfo);
-    return;
   } catch (error) {
     next(error);
   }
 });
+
 
 export { userAuthRouter };

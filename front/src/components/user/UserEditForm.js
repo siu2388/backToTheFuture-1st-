@@ -18,8 +18,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [bgColor, setBgColor] = useState("#a3a3a3");
-  
+  const [bgColor, setBgColor] = useState(user.bgColor);
+  const [boxColor, setBoxColor] = useState(user.boxColor);
+  const [menuColor, setMenuColor] = useState(user.menuColor);
+  const [homeName, setHomeName] = useState(user.homeName);
+
 
 
   const handleSubmit = async (e) => {
@@ -27,6 +30,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     console.log("image", image);
     console.log("name", name);
     console.log("bgColor", bgColor);
+    console.log("boxColor", boxColor);
+    console.log("menuColor", menuColor);
+    console.log("homeName", homeName);
 
     const data = {
       name,
@@ -41,8 +47,10 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       homeName,
     };
 
+    console.log("data", data);
+
     const isValidGithub =
-      github.startsWith("https://") || github.startsWith("http://");
+      (github.startsWith("https://") || github.startsWith("http://")) && github;
 
     if (!isValidGithub) {
       setGithub(`https://${github}`);
@@ -50,7 +58,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     }
 
     const isValidBlog =
-      blog.startsWith("https://") || blog.startsWith("http://");
+      (blog.startsWith("https://") || blog.startsWith("http://")) && blog;
 
     if (!isValidBlog) {
       setBlog(`https://${blog}`);
@@ -76,7 +84,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
 
   return (
     <Modal show={show} animation={false} onHide={handleClose}>
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -88,7 +96,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setImage(e.target.files[0])}
             />
           </Form.Group>
-
 
           <Form.Group controlId="userEditName" className="mb-3">
             <Form.Control
@@ -137,32 +144,66 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         </div>
 
         <div>
+          <Form.Label>홈피 설정</Form.Label>
+          <Form.Group controlId="userEditHomeName">
+            <Form.Control
+              type="text"
+              placeholder="미니홈피 이름"
+              value={homeName}
+              onChange={(e) => setHomeName(e.target.value)}
+            />
+          </Form.Group>
 
-        <Form.Label htmlFor="exampleColorInput">배경 색상 선택</Form.Label>
-        <Form.Control
-          type="color"
-          value={bgColor}
-          onChange={(e)=>setBgColor(e.target.value)}
-        />
+          <Form.Label>배경 색상 선택</Form.Label>
+          <Form.Group controlId="userEditBgColor">
+          <Form.Control
+            type="color"
+            value={bgColor}
+            onChange= {(e) => setBgColor(e.target.value)}
+          />
+          </Form.Group>
+
+          <Form.Label>박스 색상 선택</Form.Label>
+          <Form.Group controlId="userEditBoxColor">
+          <Form.Control
+            type="color"
+            value={boxColor}
+            onChange= {(e) => setBoxColor(e.target.value)}
+          />
+          </Form.Group>
+          
+          <Form.Label>메뉴 색상 선택</Form.Label>
+          <Form.Group controlId="userEditMenuColor">
+          <Form.Control
+            type="color"
+            value={menuColor}
+            onChange= {(e) => setMenuColor(e.target.value)}
+          />
+          </Form.Group>
 
         </div>
-
-
-
       </Modal.Body>
       <Modal.Footer>
         <Form.Group as={Row} className="mt-3 text-center">
           <Col sm={{ span: 20 }}>
-            <Button variant="primary" type="submit" className="me-3" onClick = {(e) => {
-              handleClose(e);
-              handleSubmit(e)
-            }}>
+            <Button
+              variant="primary"
+              type="submit"
+              className="me-3"
+              onClick={(e) => {
+                handleClose(e);
+                handleSubmit(e);
+              }}
+            >
               확인
             </Button>
-            <Button variant="secondary" onClick={(e) => {
-              setIsEditing(false)
-              handleClose(e)
-              }}>
+            <Button
+              variant="secondary"
+              onClick={(e) => {
+                setIsEditing(false);
+                handleClose(e);
+              }}
+            >
               취소
             </Button>
           </Col>
