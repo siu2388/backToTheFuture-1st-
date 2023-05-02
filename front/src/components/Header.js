@@ -24,21 +24,23 @@ function Header() {
   };
 
   return (
-    <Nav activeKey={location.pathname}>
-      <Nav.Item className="me-auto">
-      <Nav.Link onClick={() => navigate("/")}>MINI PORTFOLIOPAGE</Nav.Link>
+    
+    <Nav activeKey={location.pathname} style={{height:150}}>
+
+      <Nav.Item className="me-auto" >
+      <Nav.Link onClick={() => navigate("/")} style={{fontSize: "20px"}}>MINI PORTFOLIOPAGE</Nav.Link>
       </Nav.Item>
 
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+      <Nav.Item > 
+        <Nav.Link onClick={() => navigate("/")} style={{fontSize: "20px"}}>나의 페이지</Nav.Link>
       </Nav.Item>
 
 
       {isLogin && (
         <>
 
-        <Nav.Item>
-          <Nav.Link onClick={logout}>로그아웃</Nav.Link>
+        <Nav.Item >
+          <Nav.Link onClick={logout} style={{fontSize: "20px"}}>로그아웃</Nav.Link>
         </Nav.Item>
         </>
       )}

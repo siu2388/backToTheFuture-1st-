@@ -19,10 +19,9 @@ body {
   background-color: #b4d1da;
   border-radius: 9px;
   border: 1px solid #738186;
-  width: 960px;
-  height: 660px;
-  margin: 50px auto;
   position: relative;
+  width: 90vh; /* 화면 너비의 90%로 설정 */
+  height: 70vh; /* 화면 높이의 66%로 설정 */
 }
 
 .bookdot {
