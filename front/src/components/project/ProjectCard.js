@@ -33,38 +33,38 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
-            <Button
+            <button
               variant="outline-info"
-              size="sm"
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
+              className="btn-edit"
             >
               편집
-            </Button>
+            </button>
 
             <>
-              <Button variant="outline-danger" onClick = {handleShow} size="sm">             
+              <button variant="outline-danger" onClick = {handleShow} className="btn-delete">             
                 삭제
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose} animation = {false}>
-                <Modal.Header closeButton>
+                <Modal.Header closebutton>
                   <Modal.Title>삭제</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <button variant="secondary" onClick={handleClose} className="btn-cancel"> 
                     취소
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     variant="primary"
                     onClick = {() => {
                       handleClose();
                       handleDelete();
                     }}
+                    className = "btn-confirm"
                   >
                     확인
-                  </Button>
+                  </button>
                 </Modal.Footer>
               </Modal>
             </>

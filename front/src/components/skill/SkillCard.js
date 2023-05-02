@@ -48,11 +48,10 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                <button variant="secondary" onClick={handleClose} className="btn-cancel">
+                <button onClick={handleClose} className="btn-cancel">
                     취소
                   </button>
                   <button
-                    variant="primary"
                     className="btn-confirm"
                     onClick={() => {
                       handleClose();

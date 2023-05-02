@@ -32,7 +32,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
           <span>{award?.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="3" style = {{marginRight: "10px"}}>
+          <Col xs lg="3" style = {{ display: "flex", marginRight: "10px"}}>
             <button
               onClick={() => setIsEditing((prev) => !prev)}
               className="btn-edit"
@@ -50,11 +50,10 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <button variant="secondary" onClick={handleClose} className="btn-cancel">
+                  <button onClick={handleClose} className="btn-cancel">
                     취소
                   </button>
                   <button
-                    variant="primary"
                     className="btn-confirm"
                     onClick={() => {
                       handleClose();
