@@ -2,9 +2,18 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 
+
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
+import Awards from "./award/Awards";
+import Projects from "./project/Projects";
+import Certificates from "./certificate/Certificates";
+import Educations from "./education/Educations";
+import Careers from "./career/Careers";
+import Skills from "./skill/Skills";
+import Navigator from "./Navigator";
+
 
 function Portfolio() {
   const navigate = useNavigate();
@@ -52,23 +61,122 @@ function Portfolio() {
   }
 
   return (
-    <Container fluid>
-      <Row>
-        <Col md="3" lg="3">
-          <User
-            portfolioOwnerId={portfolioOwner.id}
-            isEditable={portfolioOwner.id === userState.user?.id}
-          />
-        </Col>
-        <Col>
 
-          <div style={{ textAlign: "center" }}>
-            학력 목록, 수상이력 목록, 프로젝트 목록, 자격증 목록 만들기
+    <Container className = "bookcover">
+      
+          <div className="bookdot">
+
+            <div className="page">
+
+              <div className="profile-container">
+                <div className="header profile-title font-neo">
+                  TODAY<span className="color-red"> 28</span> | TOTAL 234918
+                </div>
+
+                <div className="box profile-box">
+                  <div className="profile-image">
+                  <User
+                    portfolioOwnerId={portfolioOwner.id}
+                    isEditable={portfolioOwner.id === userState.user?.id}
+                  />
+                  </div>
+                  <div className="profile-text font-kyobohand">
+                    ㄴr는.. 오늘도.. 눈물을.. 흘린ㄷr..★
+                  </div>
+                  <div className="profile-username font-kyobohand">
+                    <span style={{ color: "#0f1b5c" }}>수지니</span> (♪♬)
+                  </div>
+                  <div className="profile-dropdown">
+                    <div className="dropdown-button">
+                      <div className="dropdown-title">파도타기</div>
+                      <div className="triangle-down"></div>
+                    </div>
+                    <div className="dropdown-content">
+                    <a onClick={() => navigate("/network")}>네트워크</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div className="content-container">
+                <div className="header content-title">
+                  <div className="content-title-name">의 추억 상ㅈr... (*ˊᵕˋo💐o</div>
+                </div>
+                <div className="box content-box">
+
+                  <div className="miniroom">
+                    <div className="box-title">Miniroom</div>
+                    <div className="miniroom-gif-box">
+
+
+                      <div id = "career-section">
+                        <Careers
+                          portfolioOwnerId={portfolioOwner.id}
+                          isEditable={portfolioOwner.id === userState.user?.id}
+                        />
+                      </div>
+
+                      <div id = "education-section">
+                        <Educations
+                            portfolioOwnerId={portfolioOwner.id}
+                            isEditable={portfolioOwner.id === userState.user?.id}
+                          />
+                      </div>
+
+                      <div id = "project-section">
+                      <Projects
+                        portfolioOwnerId={portfolioOwner.id}
+                        isEditable={portfolioOwner.id === userState.user?.id}
+                      />
+                      </div>
+
+                      <div id = "award-section">                                            
+                      <Awards
+                        portfolioOwnerId={portfolioOwner.id}
+                        isEditable={portfolioOwner.id === userState.user?.id}
+                      />
+                      </div>
+
+                      <div id = "certificate-section">
+                      <Certificates
+                        portfolioOwnerId={portfolioOwner.id}
+                        isEditable={portfolioOwner.id === userState.user?.id}
+                      />
+                      </div>
+
+
+                      <div id = "skill-section">
+                      <Skills
+                        portfolioOwnerId={portfolioOwner.id}
+                        isEditable={portfolioOwner.id === userState.user?.id}
+                      />
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <div className="menu-container">  
+              <Navigator 
+                scrollToMove={(e) => {
+                  const section = document.getElementById(e.target.value);
+                  section.scrollIntoView({ behavior: "smooth" });
+                }}
+              /> 
+              </div>
+
+              
+            </div>
           </div>
 
-        </Col>
-      </Row>
+
     </Container>
+
   );
 }
 

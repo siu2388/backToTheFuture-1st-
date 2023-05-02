@@ -27,6 +27,7 @@ class userAuthService {
     return createdNewUser;
   }
 
+  //로그인
   static async getUser({ email, password }) {
     // 이메일 db에 존재 여부 확인
     const user = await User.findByEmail({ email });
@@ -43,6 +44,7 @@ class userAuthService {
       correctPasswordHash
     );
     if (!isPasswordCorrect) {
+      //로그인실패(비번불일치)
       const errorMessage =
         "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -53,16 +55,18 @@ class userAuthService {
     const token = jwt.sign({ user_id: user.id }, secretKey);
 
     // 반환할 loginuser 객체를 위한 변수 설정
-    const id = user.id;
-    const name = user.name;
-    const description = user.description;
+    const { id, name, github, blog, description, image } = user;
 
     const loginUser = {
+      //컨트롤러층에 반환할 객체
       token,
       id,
       email,
       name,
+      github,
+      blog,
       description,
+      image,
       errorMessage: null,
     };
 
@@ -80,8 +84,7 @@ class userAuthService {
 
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!user) {
-      const errorMessage =
-        "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
+      const errorMessage = "가입 내역이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -104,15 +107,33 @@ class userAuthService {
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
+    if (toUpdate.github) {
+      const fieldToUpdate = "github";
+      const newValue = toUpdate.github;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.blog) {
+      const fieldToUpdate = "blog";
+      const newValue = toUpdate.blog;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
+
     if (toUpdate.description) {
       const fieldToUpdate = "description";
       const newValue = toUpdate.description;
       user = await User.update({ user_id, fieldToUpdate, newValue });
     }
 
+    if (toUpdate.image) {
+      const fieldToUpdate = { originalname, mimetype, filename, path };
+      const newValue =  toUpdate.image;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
+    }
+    //console.log("졸려", user);
     return user;
   }
-
+  // 입력된 id로 db에서 찾아서 반환
   static async getUserInfo({ user_id }) {
     const user = await User.findById({ user_id });
 

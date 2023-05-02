@@ -34,15 +34,25 @@ async function post(endpoint, data) {
 }
 
 async function put(endpoint, data) {
-  // JSON.stringify 함수: Javascript 객체를 JSON 형태로 변환함.
-  // 예시: {name: "Kim"} => {"name": "Kim"}
-  const bodyData = JSON.stringify(data);
-  console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
-  console.log(`%cPUT 요청 데이터: ${bodyData}`, "color: #059c4b;");
+  const formData = new FormData();
 
-  return axios.put(serverUrl + endpoint, bodyData, {
+  // //image 파일을 FormData 객체에 추가
+  // if (file){
+  //   formData.append("image", file);
+  // }
+
+  // 객체의 key-value를 FormData 객체에 추가
+  for (const key in data) {
+    formData.append(key, data[key]);
+  }
+
+  console.log("2", data);
+  console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
+  console.log(`%cPUT 요청 데이터:${formData}`, "color: #059c4b;");
+
+  return axios.put(serverUrl + endpoint, formData, {
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
     },
   });
