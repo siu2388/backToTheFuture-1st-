@@ -123,7 +123,7 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <button variant="primary" type="submit" disabled={!isFormValid}>
+                <button variant="primary" type="submit" disabled={!isFormValid} className="shadow-button"> 
                   회원가입
                 </button>
               </Col>
@@ -131,7 +131,7 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <button variant="light" onClick={() => navigate("/login")}>
+                <button variant="light" onClick={() => navigate("/login")} className="shadow-button">
                   로그인하기
                 </button>
               </Col>

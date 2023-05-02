@@ -103,7 +103,7 @@ function LoginForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <button type="submit" disabled={!isFormValid} className="loginButton">
+                <button type="submit" disabled={!isFormValid} className="shadow-button">
                   로그인
                 </button>
               </Col>
@@ -111,7 +111,7 @@ function LoginForm() {
 
                 <Form.Group as={Row} className="mt-3 text-center">
                   <Col sm={{ span: 20 }}>
-                    <button
+                    <button className="shadow-button"
                       
                       onClick={() => navigate("/register")}
                     >
