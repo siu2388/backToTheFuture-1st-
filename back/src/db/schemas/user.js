@@ -32,6 +32,10 @@ const UserSchema = new Schema(
       default: "설명이 아직 없습니다. 추가해 주세요.",
     },
     image: {
+      originalname : {type : String},
+      mimetype : {type : String},
+      filename : {type : String},
+      path : {type : String},
       type : String,
     },
     homeName: {

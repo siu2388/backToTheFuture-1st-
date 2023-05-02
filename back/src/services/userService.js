@@ -130,35 +130,11 @@ class userAuthService {
     }
 
     if (toUpdate.image) {
-      const fieldToUpdate = "image";
-      const newValue = toUpdate.image;
-      user = await User.update({ userId, fieldToUpdate, newValue });
+      const fieldToUpdate = { originalname, mimetype, filename, path };
+      const newValue =  toUpdate.image;
+      user = await User.update({ user_id, fieldToUpdate, newValue });
     }
-
-    if (toUpdate.homeName) {
-      const fieldToUpdate = "homeName";
-      const newValue = toUpdate.homeName;
-      user = await User.update({ userId, fieldToUpdate, newValue });
-    }
-
-    if (toUpdate.bgColor) {
-      const fieldToUpdate = "bgColor";
-      const newValue = toUpdate.bgColor;
-      user = await User.update({ userId, fieldToUpdate, newValue });
-    }
-
-    if (toUpdate.boxColor) {
-      const fieldToUpdate = "boxColor";
-      const newValue = toUpdate.boxColor;
-      user = await User.update({ userId, fieldToUpdate, newValue });
-    }
-
-    if (toUpdate.menuColor) {
-      const fieldToUpdate = "menuColor";
-      const newValue = toUpdate.menuColor;
-      user = await User.update({ userId, fieldToUpdate, newValue });
-    }
-
+    //console.log("졸려", user);
     return user;
   }
   // 입력된 id로 db에서 찾아서 반환
