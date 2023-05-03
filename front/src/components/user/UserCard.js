@@ -10,9 +10,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Img
             style={{ width: "12rem", height: "8rem", align: "center" }}
             className="mb-3"
-            src={`http://34.64.227.123:5001/${
-              user?.image?.path || "uploads/profile.jpg"
-            }`} // fallback 이미지
+            src={`http://:5001/${user?.image?.path || "uploads/profile.jpg"}`} // fallback 이미지
             alt="프로필 이미지"
           />
         </Row>
