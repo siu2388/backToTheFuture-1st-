@@ -40,8 +40,12 @@ function Portfolio() {
       navigate("/login", { replace: true });
       return;
     }
+      
+  // document.body.style.backgroundColor = portfolioOwner.bgColor;
 
-    if (params.userId) {
+
+
+  if (params.userId) {
       // 만약 현재 URL이 "/userId/:userId" 라면, 이 userId를 유저 id로 설정함.
       const ownerId = params.userId;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
@@ -57,6 +61,8 @@ function Portfolio() {
   if (!isFetchCompleted) {
     return "loading...";
   }
+  
+
 
   return (
     <Container
@@ -163,6 +169,7 @@ function Portfolio() {
         </div>
       </div>
     </Container>
+
   );
 }
 

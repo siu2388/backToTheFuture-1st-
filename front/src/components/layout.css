@@ -1,7 +1,6 @@
 body {
-  background-color:#a3a3a3  !important;
   background-size: 100px;
-
+  background-color: #a3a3a3 !important;
   position: fixed;
   left: 0;
   top: 0;
@@ -23,7 +22,7 @@ body {
   height: 70vh; /* 화면 높이의 66%로 설정 */
   box-shadow: 7px 7px 2px 2px var(--form-primary-highlight),
   7px 7px 2px 2px rgba(0, 0, 0, 1);
-  --form-primary-highlight:#3a7384;
+  --form-primary-highlight:#363636;
 }
 
 .bookdot {
