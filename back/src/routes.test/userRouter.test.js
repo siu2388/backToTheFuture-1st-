@@ -79,7 +79,7 @@ describe("userRouter", () => {
     });
   });
 
-  describe("put -> /users/:id", () => {
+  describe("put -> /userId/:id", () => {
     it("should change user information", async () => {
       const res = await request(app)
         .post("/user/login")
@@ -87,10 +87,10 @@ describe("userRouter", () => {
         .send({ email: "abc@def.com", password: "1234" });
 
       const token = res.body.token;
-      const userId = res.body.id;
+      const user_id = res.body.id;
 
       const res2 = await request(app)
-        .put(`/users/${userId}`)
+        .put(`/userId/${user_id}`)
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({ email: "abc@def.com", name: "tester-changed" });
@@ -100,7 +100,7 @@ describe("userRouter", () => {
     });
   });
 
-  describe("get -> /users/:id", () => {
+  describe("get -> /userId/:id", () => {
     it("should send user data", async () => {
       const res = await request(app)
         .post("/user/login")
@@ -108,10 +108,10 @@ describe("userRouter", () => {
         .send({ email: "abc@def.com", password: "1234" });
 
       const token = res.body.token;
-      const userId = res.body.id;
+      const user_id = res.body.id;
 
       const res2 = await request(app)
-        .put(`/users/${userId}`)
+        .put(`/userId/${user_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res2.statusCode).toEqual(200);

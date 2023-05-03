@@ -4,12 +4,12 @@ import * as Api from "../../api";
 
 function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   //useState로 title 상태를 생성함.
-  const [company, setCompany] = useState();
-  const [department, setDepartment] = useState();
-  const [position, setPosition] = useState();
-  const [description, setDescription] = useState();
-  const [startDate, setStartDate] = useState();
-  const [endDate, setEndDate] = useState();
+  const [company, setCompany] = useState("");
+  const [department, setDepartment] = useState("");
+  const [position, setPosition] = useState("");
+  const [description, setDescription] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
 
 
   const handleSubmit = async (e) => {

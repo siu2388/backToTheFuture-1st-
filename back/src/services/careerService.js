@@ -42,7 +42,7 @@ class CareerService {
 
     return career;
   }
-  //userId로 경력목록들 조회
+  //userI로 경력목록들 조회
   static async getCareerList({ userId }) {
     const careers = await Career.findByUserId({ userId });
     return careers;

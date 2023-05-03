@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("educationRouter", () => {
   let token;
-  let userId;
+  let user_id;
   let education_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("educationRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    userId = res.body.id;
+    user_id = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("educationRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           schoolName: "awsome_school",
           schoolType: "university",
           major: "computer",
@@ -56,10 +56,10 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("get -> /educations/:id", () => {
+  describe("get -> /educationId/:id", () => {
     it("should return a education information", async () => {
       const res = await request(app)
-        .get(`/educations/${education_id}`)
+        .get(`/educationId/${education_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -67,10 +67,10 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("put -> /educations/:id", () => {
+  describe("put -> /educationId/:id", () => {
     it("should change a education information", async () => {
       const res = await request(app)
-        .put(`/educations/${education_id}`)
+        .put(`/educationId/${education_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           schoolName: "awsome_school2",
@@ -91,10 +91,10 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("delete -> /educations/:id", () => {
+  describe("delete -> /educationId/:id", () => {
     it("should delete education from db", async () => {
       const res = await request(app)
-        .delete(`/educations/${education_id}`)
+        .delete(`/educationId/${education_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -102,14 +102,14 @@ describe("educationRouter", () => {
     });
   });
 
-  describe("get -> /educationlist/:userId", () => {
+  describe("get -> /educationlist/:user_id", () => {
     it("should return a education list for specific user", async () => {
       await request(app)
         .post("/education/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           schoolName: "awsome_school3",
           schoolType: "university",
           major: "education",
@@ -122,7 +122,7 @@ describe("educationRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           schoolName: "awsome_school4",
           schoolType: "university",
           major: "business",
@@ -135,7 +135,7 @@ describe("educationRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           schoolName: "awsome_school5",
           schoolType: "university",
           major: "astronomy",
@@ -145,7 +145,7 @@ describe("educationRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/educationlist/${userId}`)
+        .get(`/educationlist/${user_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

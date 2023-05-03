@@ -18,7 +18,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     const userId = portfolioOwnerId;
 
     // "award/create" 엔드포인트로 post요청함.
-    await Api.post("afront/src/components/award/AwardCard.jsward/create", {
+    await Api.post("award/create", {
       userId: portfolioOwnerId,
       title,
       grade,
@@ -36,52 +36,51 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      
       <label htmlFor="floatingInputCustom">수상내역</label>
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          value={title}
-          placeholder="수상내역"
-          onChange={(e) => setTitle(e.target.value)}
-        />
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        value={title}
+        placeholder="수상내역"
+        onChange={(e) => setTitle(e.target.value)}
+      />
 
-
-      
       <label htmlFor="floatingInputCustom">상</label>
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          placeholder="예: 금상"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
-        />
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        placeholder="예: 금상"
+        value={grade}
+        onChange={(e) => setGrade(e.target.value)}
+      />
 
+      <label htmlFor="floatingInputCustom">수상년월</label>
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        placeholder="예 : 2020-02"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
 
-      <label htmlFor="floatingInputCustom">수상년월</label>       
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          placeholder="예 : 2020-02"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-
-
-      <label htmlFor="floatingInputCustom">상세내역</label>    
-        <Form.Control
-          type="text"
-          placeholder="상세내역"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+      <label htmlFor="floatingInputCustom">상세내역</label>
+      <Form.Control
+        type="text"
+        placeholder="상세내역"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <button variant="primary" type="submit" className="btn-confirm">
             확인
           </button>
-          <button variant="secondary" onClick={() => setIsAdding(false)} className="btn-cancel">
+          <button
+            variant="secondary"
+            onClick={() => setIsAdding(false)}
+            className="btn-cancel"
+          >
             취소
           </button>
         </Col>

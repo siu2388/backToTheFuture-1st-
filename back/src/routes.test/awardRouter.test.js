@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("awardRouter", () => {
   let token;
-  let userId;
+  let user_id;
   let award_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("awardRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    userId = res.body.id;
+    user_id = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("awardRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_award",
           description: "awesome",
         });
@@ -48,10 +48,10 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("get -> /awards/:id", () => {
+  describe("get -> /awardId/:id", () => {
     it("should return a award information", async () => {
       const res = await request(app)
-        .get(`/awards/${award_id}`)
+        .get(`/awardId/${award_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -59,10 +59,10 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("put -> /awards/:id", () => {
+  describe("put -> /awardId/:id", () => {
     it("should change a award information", async () => {
       const res = await request(app)
-        .put(`/awards/${award_id}`)
+        .put(`/awardId/${award_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "awesome_award2",
@@ -75,10 +75,10 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("delete -> /awards/:id", () => {
+  describe("delete -> /awardId/:id", () => {
     it("should delete award from db", async () => {
       const res = await request(app)
-        .delete(`/awards/${award_id}`)
+        .delete(`/awardId/${award_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -86,14 +86,14 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("get -> /awardlist/:userId", () => {
+  describe("get -> /awardlist/:user_id", () => {
     it("should return a award list for specific user", async () => {
       await request(app)
         .post("/award/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_award3",
           description: "awesome3",
         });
@@ -102,7 +102,7 @@ describe("awardRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_award4",
           description: "awesome4",
         });
@@ -111,13 +111,13 @@ describe("awardRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_award5",
           description: "awesome5",
         });
 
       const res = await request(app)
-        .get(`/awardlist/${userId}`)
+        .get(`/awardlist/${user_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

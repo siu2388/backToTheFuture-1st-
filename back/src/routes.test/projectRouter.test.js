@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("projectRouter", () => {
   let token;
-  let userId;
+  let user_id;
   let project_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("projectRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    userId = res.body.id;
+    user_id = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("projectRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_project",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -54,10 +54,10 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("get -> /projects/:id", () => {
+  describe("get -> /projectId/:id", () => {
     it("should return a project information", async () => {
       const res = await request(app)
-        .get(`/projects/${project_id}`)
+        .get(`/projectId/${project_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -65,10 +65,10 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("put -> /projects/:id", () => {
+  describe("put -> /projectId/:id", () => {
     it("should change a project information", async () => {
       const res = await request(app)
-        .put(`/projects/${project_id}`)
+        .put(`/projectId/${project_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "awesome_project2",
@@ -87,10 +87,10 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("delete -> /projects/:id", () => {
+  describe("delete -> /projectId/:id", () => {
     it("should delete project from db", async () => {
       const res = await request(app)
-        .delete(`/projects/${project_id}`)
+        .delete(`/projectId/${project_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -98,14 +98,14 @@ describe("projectRouter", () => {
     });
   });
 
-  describe("get -> /projectlist/:userId", () => {
+  describe("get -> /projectlist/:user_id", () => {
     it("should return a project list for specific user", async () => {
       await request(app)
         .post("/project/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_project3",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -117,7 +117,7 @@ describe("projectRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_project4",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -129,7 +129,7 @@ describe("projectRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_project5",
           startDate: "23.04.24",
           endDate: "23.05.06",
@@ -138,7 +138,7 @@ describe("projectRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/projectlist/${userId}`)
+        .get(`/projectlist/${user_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

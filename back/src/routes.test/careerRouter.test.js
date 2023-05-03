@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("careerRouter", () => {
   let token;
-  let userId;
+  let user_id;
   let career_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("careerRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    userId = res.body.id;
+    user_id = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("careerRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           company: "awesome_career",
           department: "awesome_department",
           position: "awesome_position",
@@ -56,10 +56,10 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("get -> /careers/:id", () => {
+  describe("get -> /careerId/:id", () => {
     it("should return a career information", async () => {
       const res = await request(app)
-        .get(`/careers/${career_id}`)
+        .get(`/careerId/${career_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -67,10 +67,10 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("put -> /careers/:id", () => {
+  describe("put -> /careerId/:id", () => {
     it("should change a career information", async () => {
       const res = await request(app)
-        .put(`/careers/${career_id}`)
+        .put(`/careerId/${career_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           company: "awesome_career2",
@@ -91,10 +91,10 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("delete -> /careers/:id", () => {
+  describe("delete -> /careerId/:id", () => {
     it("should delete career from db", async () => {
       const res = await request(app)
-        .delete(`/careers/${career_id}`)
+        .delete(`/careerId/${career_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -102,14 +102,14 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("get -> /careerlist/:userId", () => {
+  describe("get -> /careerlist/:user_id", () => {
     it("should return a career list for specific user", async () => {
       await request(app)
         .post("/career/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           company: "awesome_career3",
           department: "awesome_department3",
           position: "awesome_position3",
@@ -122,7 +122,7 @@ describe("careerRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           company: "awesome_career4",
           department: "awesome_department4",
           position: "awesome_position4",
@@ -135,7 +135,7 @@ describe("careerRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           company: "awesome_career5",
           department: "awesome_department5",
           position: "awesome_position5",
@@ -145,7 +145,7 @@ describe("careerRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/careerlist/${userId}`)
+        .get(`/careerlist/${user_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

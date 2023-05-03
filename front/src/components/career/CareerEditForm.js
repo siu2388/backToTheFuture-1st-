@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function CareerEditForm({
-  currentCareer,
-  setCareers,
-  setIsEditing,
-}) {
+function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
   const [company, setCompany] = useState(currentCareer.company);
   const [department, setDepartment] = useState(currentCareer.department);
@@ -22,8 +18,8 @@ function CareerEditForm({
     // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentCareer.userId;
 
-    // "projects/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`careers/${currentCareer.id}`, {
+    // "projectId/수상 id" 엔드포인트로 PUT 요청함.
+    await Api.put(`careerId/${currentCareer.id}`, {
       userId,
       company,
       department,
@@ -43,7 +39,6 @@ function CareerEditForm({
 
   return (
     <Form onSubmit={handleSubmit}>
-
       <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
         <Form.Control
@@ -93,12 +88,26 @@ function CareerEditForm({
         />
       </Form.Group>
 
+      <label htmlFor="floatingInputCustom">직무설명</label>
+      <Form.Group controlId="formBasicDescription">
+        <Form.Control
+          type="text"
+          placeholder="직무 설명을 작성해주세요."
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </Form.Group>
+
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
           <button variant="primary" type="submit" className="btn-confirm">
             확인
           </button>
-          <button variant="secondary" onClick={() => setIsEditing(false)}className="btn-cancel">
+          <button
+            variant="secondary"
+            onClick={() => setIsEditing(false)}
+            className="btn-cancel"
+          >
             취소
           </button>
         </Col>
