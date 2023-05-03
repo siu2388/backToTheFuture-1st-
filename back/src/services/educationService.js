@@ -3,12 +3,12 @@ import { Education } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class EducationService {
-  static async addEducation({ user_id, title, authority, registerNum, grade }) {
+  static async addEducation({ userId, schoolName, schoolType, major, status,startDate, endDate }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newEducation = { id, user_id, title, authority, registerNum, grade };
+    const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
     const createdNewEducation = await Education.create({ newEducation });
 
     return createdNewEducation;
@@ -26,8 +26,8 @@ class EducationService {
     return education;
   }
 
-  static async getEducationList({ user_id }) {
-    const educations = await Education.findByUserId({ user_id });
+  static async getEducationList({ userId }) {
+    const educations = await Education.findByUserId({ userId });
     return educations;
   }
 
@@ -41,27 +41,39 @@ class EducationService {
       return { errorMessage };
     }
 
-    if (toUpdate.title) {
-      const fieldToUpdate = "title";
-      const newValue = toUpdate.title;
+    if (toUpdate.schoolName) {
+      const fieldToUpdate = "schoolName";
+      const newValue = toUpdate.schoolName;
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.authority) {
-      const fieldToUpdate = "authority";
-      const newValue = toUpdate.authority;
+    if (toUpdate.schoolType) {
+      const fieldToUpdate = "schoolType";
+      const newValue = toUpdate.schoolType;
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
     
-    if (toUpdate.registerNum) {
-      const fieldToUpdate = "registerNum";
-      const newValue = toUpdate.registerNum;
+    if (toUpdate.major) {
+      const fieldToUpdate = "major";
+      const newValue = toUpdate.major;
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
     
-    if (toUpdate.grade) {
-      const fieldToUpdate = "grade";
-      const newValue = toUpdate.grade;
+    if (toUpdate.status) {
+      const fieldToUpdate = "status";
+      const newValue = toUpdate.status;
+      education = await Education.update({ educationId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.startDate) {
+      const fieldToUpdate = "startDate";
+      const newValue = toUpdate.startDate;
+      education = await Education.update({ educationId, fieldToUpdate, newValue });
+    }
+
+    if (toUpdate.endDate) {
+      const fieldToUpdate = "endDate";
+      const newValue = toUpdate.endDate;
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
 

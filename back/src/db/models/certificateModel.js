@@ -11,8 +11,8 @@ class Certificate {
     return certificate;
   }
 
-  static async findByUserId({ user_id }) {
-    const certificates = await CertificateModel.find({ user_id });
+  static async findByUserId({ userId }) {
+    const certificates = await CertificateModel.find({ userId });
     return certificates;
   }
 
@@ -30,7 +30,9 @@ class Certificate {
   }
 
   static async deleteById({ certificateId }) {
-    const deleteResult = await CertificateModel.deleteOne({ id: certificateId });
+    const deleteResult = await CertificateModel.deleteOne({
+      id: certificateId,
+    });
     const isDataDeleted = deleteResult.deletedCount === 1;
     return isDataDeleted;
   }

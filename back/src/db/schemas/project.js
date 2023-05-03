@@ -6,7 +6,7 @@ const ProjectSchema = new Schema(
       type: String,
       required: true,
     },
-    user_id: {
+    userId: {
       type: String,
       required: true,
     },
@@ -15,17 +15,16 @@ const ProjectSchema = new Schema(
       required: true,
     },
     startDate: {
-      type: Date,
-      default: Date.now(),
+      type: Number,
       required: true,
     },
     endDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
     archive: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,
@@ -34,6 +33,7 @@ const ProjectSchema = new Schema(
   },
   {
     timestamps: true,
+    
   }
 );
 //modgoDB에서 데이터 일고 쓰는 작업 수행하는 모델 객체 생성함수(모델이름, 스키마객체)

@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { UserStateContext, DispatchContext } from "../App";
+import './font.css'
 
 function Header() {
   const navigate = useNavigate();
@@ -24,47 +25,29 @@ function Header() {
   };
 
   return (
-    <Nav activeKey={location.pathname}>
+    
+    <Nav activeKey={location.pathname} style={{height:150}}>
+      
 
-      <Nav.Item className="me-auto mb-5">
-        <Nav.Link disabled>안녕하세요, 포트폴리오 공유 서비스입니다.</Nav.Link>
+      <Nav.Item className="me-auto" >
+      <button onClick={() => navigate("/")} style={{fontSize: "20px"}} className="orange-button">MINI PORTFOLIOPAGE</button>
       </Nav.Item>
 
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/")}>나의 페이지</Nav.Link>
+      <Nav.Item > 
+        <button onClick={() => navigate("/")} style={{fontSize: "20px"}} className="orange-button">나의 페이지</button>
       </Nav.Item>
 
-      <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>네트워크</Nav.Link>
-      </Nav.Item>
 
       {isLogin && (
         <>
 
-        <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>학력</Nav.Link>
-        </Nav.Item>
-
-
-        <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>수상이력</Nav.Link>
-        </Nav.Item>
-
-
-        <Nav.Item>
-        <Nav.Link onClick={() => navigate("/network")}>프로젝트 목록</Nav.Link>
-        </Nav.Item>
-
-        <Nav.Item>
-          <Nav.Link onClick={logout}>로그아웃</Nav.Link>
+        <Nav.Item >
+          <button onClick={logout} style={{fontSize: "20px"}} className="orange-button">로그아웃</button>
         </Nav.Item>
         </>
- 
       )}
-
     </Nav>
   );
 }
 
 export default Header;
-

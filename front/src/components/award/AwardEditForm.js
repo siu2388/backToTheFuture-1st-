@@ -14,12 +14,12 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentAward의 user_id를 user_id 변수에 할당함.
-    const user_id = currentAward.user_id;
+    // currentAward의 userId를 userId 변수에 할당함.
+    const userId = currentAward.userId;
 
-    // "awards/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`awards/${currentAward.id}`, {
-      user_id,
+    // "awardId/수상 id" 엔드포인트로 PUT 요청함.
+    await Api.put(`awardId/${currentAward.id}`, {
+      userId,
       title,
       grade,
       date,
@@ -27,7 +27,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     });
 
     // "awardlist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("awardlist", user_id);
+    const res = await Api.get("awardlist", userId);
     // awards를 response의 data로 세팅함.
     setAwards(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
@@ -36,55 +36,53 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicTitle" lassName="mt-3" style={{ display: 'flex'}}>
-        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >수상내역</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="수상내역"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </Form.Group>
+      <label htmlFor="floatingInputCustom">수상내역</label>
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        value={title}
+        placeholder="수상내역"
+        onChange={(e) => setTitle(e.target.value)}
+      />
 
-      <Form.Group controlId="formBasicGrade" className="mt-3" style={{ display: 'flex'}} >
-        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >상</Form.Label>
-        <Form.Control
-          inline
-          type="text"
-          placeholder="상"
-          value={grade}
-          onChange={(e) => setGrade(e.target.value)}
-        />
-      </Form.Group>
+      <label htmlFor="floatingInputCustom">상</label>
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        placeholder="예: 금상"
+        value={grade}
+        onChange={(e) => setGrade(e.target.value)}
+      />
 
-      <Form.Group controlId="formBasicDate" className="mt-3" style={{ display: 'flex'}}>
-        <Form.Label inline className = "me-3 mt-3 text-center" style={{ width: '6rem '}} >수상 날짜</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="수상 날짜"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </Form.Group>
+      <label htmlFor="floatingInputCustom">수상년월</label>
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        placeholder="예 : 2020-02"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
 
-      <Form.Group controlId="formBasicDescription" className="mt-3" style={{ display: 'flex'}}>
-        <Form.Label inline className = "me-3 mt-3 text-center " style={{ width: '6rem'}}>상세내역</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="상세내역"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-      </Form.Group>
+      <label htmlFor="floatingInputCustom">상세내역</label>
+      <Form.Control
+        type="text"
+        placeholder="상세내역"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <button variant="primary" type="submit" className="btn-confirm">
             확인
-          </Button>
-          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+          </button>
+          <button
+            variant="secondary"
+            onClick={() => setIsEditing(false)}
+            className="btn-cancel"
+          >
             취소
-          </Button>
+          </button>
         </Col>
       </Form.Group>
     </Form>

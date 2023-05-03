@@ -48,10 +48,10 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("get -> /awards/:id", () => {
+  describe("get -> /awardId/:id", () => {
     it("should return a award information", async () => {
       const res = await request(app)
-        .get(`/awards/${award_id}`)
+        .get(`/awardId/${award_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -59,10 +59,10 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("put -> /awards/:id", () => {
+  describe("put -> /awardId/:id", () => {
     it("should change a award information", async () => {
       const res = await request(app)
-        .put(`/awards/${award_id}`)
+        .put(`/awardId/${award_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "awesome_award2",
@@ -75,10 +75,10 @@ describe("awardRouter", () => {
     });
   });
 
-  describe("delete -> /awards/:id", () => {
+  describe("delete -> /awardId/:id", () => {
     it("should delete award from db", async () => {
       const res = await request(app)
-        .delete(`/awards/${award_id}`)
+        .delete(`/awardId/${award_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

@@ -1,15 +1,19 @@
-import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState} from 'react';
+import { Card, Modal, Row, Col } from "react-bootstrap";
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
+import "../layout.css";
 
 function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   const handleDelete = async () => {
-    await Api.delete("awards", award.id).then(() => {
+    await Api.delete("awardId", award.id).then(() => {
       setAwards((prevAwards) =>
-        prevAwards.filter((award) => award.id !== award.id)
+        prevAwards.filter((prevAward) => prevAward.id !== award.id)
       );
     });
   };
+
+  useEffect(() => {}, [award]);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,28 +23,26 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{award.title}</span>
+          <span>{award?.title}</span>
           <br />
-          <span className="text-muted">{award.grade}</span>
+          <span>{award?.grade}</span>
           <br />
-          <span className="text-muted">{award.date}</span>
+          <span>{award?.date}</span>
           <br />
-          <span className="text-muted">{award.description}</span>
+          <span>{award?.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
-            <Button
-              variant="outline-info"
-              size="sm"
+          <Col xs lg="3" style={{ display: "flex", marginRight: "10px" }}>
+            <button
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
+              className="btn-edit"
             >
               편집
-            </Button>
+            </button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <button onClick={handleShow} className="btn-delete">
                 삭제
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
@@ -48,18 +50,18 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <button onClick={handleClose} className="btn-cancel">
                     취소
-                  </Button>
-                  <Button
-                    variant="primary"
+                  </button>
+                  <button
+                    className="btn-confirm"
                     onClick={() => {
                       handleClose();
                       handleDelete();
                     }}
                   >
-                    변경 내용 저장
-                  </Button>
+                    확인
+                  </button>
                 </Modal.Footer>
               </Modal>
             </>

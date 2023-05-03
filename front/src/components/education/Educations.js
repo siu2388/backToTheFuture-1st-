@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Card, Button, Row, Col } from "react-bootstrap";
 
 import Education from './Education';
 import EducationAddForm from './EducationAddForm';
@@ -13,13 +13,18 @@ function Educations({ portfolioOwnerId, isEditable }) {
 
   useEffect(() => {
     // "Educationlist/유저id"로 GET 요청하고, response의 data로 Educations를 세팅함.
-    Api.get('educationlist', portfolioOwnerId).then((res) => setEducations(res.data));
+    Api.get("educationlist", portfolioOwnerId).then((res) =>
+      setEducations(res.data)
+    );
   }, [portfolioOwnerId]);
 
   return (
     <Card>
       <Card.Body>
-        <Card.Title>학력</Card.Title>
+        <Card.Title style = {{display: "inline-block", marginRight: "10px"}}>학력</Card.Title>
+        {isEditable && (
+            <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
+        )}
         {educations.map((education) => (
           <Education
             key={education.id}
@@ -28,13 +33,6 @@ function Educations({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )}
         {isAdding && (
           <EducationAddForm
             portfolioOwnerId={portfolioOwnerId}

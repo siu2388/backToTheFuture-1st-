@@ -2,7 +2,7 @@ import is from "@sindresorhus/is";
 import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { ProjectService } from "../services/projectService";
-
+const multer = require("multer");
 const projectRouter = Router();
 projectRouter.use(login_required);
 
@@ -15,16 +15,12 @@ projectRouter.post("/project/create", async function (req, res, next) {
     }
 
     // req (request) 에서 데이터 가져오기
-    const user_id = req.body.user_id;
-    const title = req.body.title;
-    const startDate = req.body.startDate;
-    const endDate = req.body.endDate;
-    const archive = req.body.archive;
-    const description = req.body.description;
+    const userId = req.currentUserId;
+    const { title, startDate, endDate, archive, description } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newProject = await ProjectService.addProject({
-      user_id,
+      userId,
       title,
       startDate,
       endDate,
@@ -38,7 +34,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projects/:id", async function (req, res, next) {
+projectRouter.get("/projectId/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -56,7 +52,7 @@ projectRouter.get("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.put("/projects/:id", async function (req, res, next) {
+projectRouter.put("/projectId/:id", multer().none(), async (req, res, next) => {
   try {
     // URI로부터 수상 데이터 id를 추출함.
     const projectId = req.params.id;
@@ -83,7 +79,7 @@ projectRouter.put("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.delete("/projects/:id", async function (req, res, next) {
+projectRouter.delete("/projectId/:id", async function (req, res, next) {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -101,12 +97,12 @@ projectRouter.delete("/projects/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projectlist/:user_id", async function (req, res, next) {
+projectRouter.get("/projectlist/:userId", async function (req, res, next) {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
     // @ts-ignore
-    const user_id = req.params.user_id;
-    const projectList = await ProjectService.getProjectList({ user_id });
+    const userId = req.params.userId;
+    const projectList = await ProjectService.getProjectList({ userId });
     res.status(200).send(projectList);
   } catch (error) {
     next(error);

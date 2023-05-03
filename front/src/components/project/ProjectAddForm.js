@@ -14,12 +14,12 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // portfolioOwnerId를 user_id 변수에 할당함.
-    const user_id = portfolioOwnerId;
+    // portfolioOwnerId를 userId 변수에 할당함.
+    const userId = portfolioOwnerId;
 
     // "award/create" 엔드포인트로 post요청함.
     await Api.post("project/create", {
-      user_id: portfolioOwnerId,
+      userId: portfolioOwnerId,
       title,
       startDate,
       endDate,
@@ -28,7 +28,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     });
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
-    const res = await Api.get("projectlist", user_id);
+    const res = await Api.get("projectlist", userId);
     // projects를 response의 data로 세팅함.
     setProjects(res.data);
     // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
@@ -37,52 +37,50 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="formBasicTitle">
+      <label htmlFor="floatingInputCustom">프로젝트명</label>
         <Form.Control
           type="text"
-          placeholder="프로젝트 이름"
+          placeholder="프로젝트명"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-      </Form.Group>
 
-      <Form.Label>활동 기간</Form.Label>
-      <Form.Group controlId="formBasicStartDate" className="mt-3">
+
+
+      <label htmlFor="floatingInputCustom">시작 년월</label>
         <Form.Control
           type="text"
-          placeholder="시작 연월"
+          placeholder="예: 2020-02"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
-      </Form.Group>
 
-      <Form.Group controlId="formBasicEndDate" className="mt-3">
+
+      <label htmlFor="floatingInputCustom">완료 년월</label>
         <Form.Control
           type="text"
-          placeholder="완료 연월"
+          placeholder="예: 2022-02"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
-      </Form.Group>
 
 
-      <Form.Group controlId="formBasicArchive" className="mt-3">
+      <label htmlFor="floatingInputCustom">링크</label>
         <Form.Control
           type="text"
-          placeholder="결과물"
+          placeholder="결과물 링크"
           value={archive}
           onChange={(e) => setArchive(e.target.value)}
         />
-      </Form.Group>
 
-      <Form.Group controlId="formBasicDescription" className="mt-3">
+
+      <label htmlFor="floatingInputCustom">상세내역</label>
         <Form.Control
           type="text"
           placeholder="상세내역"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-      </Form.Group>
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

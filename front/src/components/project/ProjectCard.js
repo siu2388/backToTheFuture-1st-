@@ -1,33 +1,73 @@
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Modal } from "react-bootstrap";
+import {useState, useEffect} from 'react';
+import * as Api from "../../api";
 
-function ProjectCard({ project, isEditable, setIsEditing }) {
+function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
+  const handleDelete = async () => {
+    await Api.delete("projectId", project.id).then(() => {
+      setProjects((prevProjects) =>
+        prevProjects.filter((prevProject) => prevProject.id !== project.id)
+      );
+    });
+  };
+
+  useEffect(() => {}, [project]);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{project.title}</span>
+          <span>{project?.title}</span>
           <br />
-          <span className="text-muted">{project.startDate}</span>
+          <span>{project?.startDate}</span>
           <br />
-          <span className="text-muted">{project.endDate}</span>
+          <span>{project?.endDate}</span>
           <br />
-          <span className="text-muted">{project.archive}</span>
+          <span>{project?.archive}</span>
           <br />
-          <span className="text-muted">{project.description}</span>
+          <span>{project?.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="3" style={{ display: 'flex', alignItems: 'center' }}>
-            <Button
+          <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
+            <button
               variant="outline-info"
-              size="sm"
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
-            >편집</Button>
-            <Button 
-            variant="outline-danger"
-            size="sm"
-            // 함수 기능 넣기 
-            >삭제</Button>
+              className="btn-edit"
+            >
+              편집
+            </button>
+
+            <>
+              <button variant="outline-danger" onClick = {handleShow} className="btn-delete">             
+                삭제
+              </button>
+
+              <Modal show={show} onHide={handleClose} animation = {false}>
+                <Modal.Header closebutton>
+                  <Modal.Title>삭제</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
+                <Modal.Footer>
+                  <button variant="secondary" onClick={handleClose} className="btn-cancel"> 
+                    취소
+                  </button>
+                  <button
+                    variant="primary"
+                    onClick = {() => {
+                      handleClose();
+                      handleDelete();
+                    }}
+                    className = "btn-confirm"
+                  >
+                    확인
+                  </button>
+                </Modal.Footer>
+              </Modal>
+            </>
           </Col>
         )}
       </Row>
