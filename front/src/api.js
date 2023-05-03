@@ -38,11 +38,12 @@ async function put(endpoint, data) {
   const formData = new FormData();
 
   // 객체의 key-value를 FormData 객체에 추가
+  console.log("formData전",data)
   for (const key in data) {
     formData.append(key, data[key]);
   }
 
-  console.log("2", data);
+  console.log("put요청", data);
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터:${formData}`, "color: #059c4b;");
 

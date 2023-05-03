@@ -11,8 +11,8 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             style={{ width: "12rem", height: "8rem", align: "center" }}
             className="mb-3"
             src={
-              `http://localhost:5001/${user?.image?.path}` ||
-              "http://localhost:5001/uploads/profile.jpg"
+              `http://localhost:5001/${user?.image?.path|| "uploads/profile.jpg"}`
+       
             } // fallback 이미지
             alt="프로필 이미지"
           />
@@ -33,7 +33,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
                 <Button
-                  variant="outline-info"
+                  variant="outline-secondary"
                   size="sm"
                   onClick={() => setIsEditing(true)}
                 >

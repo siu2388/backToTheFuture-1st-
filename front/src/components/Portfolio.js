@@ -23,7 +23,7 @@ function Portfolio() {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const userState = useContext(UserStateContext);
 
-  const fetchPorfolioOwner = async (ownerId) => {
+  const fetchPortfolioOwner = async (ownerId) => {
     // 유저 id를 가지고 "/userId/유저id" 엔드포인트로 요청해 사용자 정보를 불러옴.
     const res = await Api.get("userId", ownerId);
     // 사용자 정보는 response의 data임.
@@ -40,23 +40,28 @@ function Portfolio() {
       navigate("/login", { replace: true });
       return;
     }
+      
+  // document.body.style.backgroundColor = portfolioOwner.bgColor;
 
-    if (params.userId) {
+
+
+  if (params.userId) {
       // 만약 현재 URL이 "/userId/:userId" 라면, 이 userId를 유저 id로 설정함.
       const ownerId = params.userId;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
-      fetchPorfolioOwner(ownerId);
+      fetchPortfolioOwner(ownerId);
     } else {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
       const ownerId = userState.user.id;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
-      fetchPorfolioOwner(ownerId);
+      fetchPortfolioOwner(ownerId);
     }
   }, [params, userState, navigate]);
 
   if (!isFetchCompleted) {
     return "loading...";
   }
+  
 
   return (
     <Container
@@ -70,7 +75,7 @@ function Portfolio() {
               TODAY<span className="color-red"> 28</span> | TOTAL 234918
             </div>
 
-            <div className="box profile-box">
+            <div className="box profile-box" style = {{display: "flex" }}>
               <div className="profile-image">
                 <User
                   portfolioOwnerId={portfolioOwner.id}
@@ -87,9 +92,9 @@ function Portfolio() {
                 <div className="dropdown-button">
                   <div className="dropdown-title">파도타기</div>
                   <div className="triangle-down"></div>
-                </div>
-                <div className="dropdown-content">
-                  <a onClick={() => navigate("/network")}>네트워크</a>
+                  <div className="dropdown-content">
+                    <p onClick={() => navigate("/network")}>네트워크</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,7 +103,7 @@ function Portfolio() {
           <div className="content-container">
             <div className="header content-title">
               <div className="content-title-name">
-                의 추억 상ㅈr... (*ˊᵕˋo💐o
+                {portfolioOwner.homeName}
               </div>
             </div>
             <div className="box content-box">
@@ -157,11 +162,13 @@ function Portfolio() {
                 const section = document.getElementById(e.target.value);
                 section.scrollIntoView({ behavior: "smooth" });
               }}
+              portfolioOwner =  {portfolioOwner}
             />
           </div>
         </div>
       </div>
     </Container>
+
   );
 }
 
