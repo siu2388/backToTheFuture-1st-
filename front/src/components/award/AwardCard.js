@@ -1,11 +1,11 @@
 import { Card, Modal, Row, Col } from "react-bootstrap";
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from "react";
 import * as Api from "../../api";
-import "../layout.css"
+import "../layout.css";
 
 function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   const handleDelete = async () => {
-    await Api.delete("awards", award.id).then(() => {
+    await Api.delete("awardId", award.id).then(() => {
       setAwards((prevAwards) =>
         prevAwards.filter((prevAward) => prevAward.id !== award.id)
       );
@@ -13,7 +13,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   };
 
   useEffect(() => {}, [award]);
-  
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -32,7 +32,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
           <span>{award?.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="3" style = {{marginRight: "10px"}}>
+          <Col xs lg="3" style={{ display: "flex", marginRight: "10px" }}>
             <button
               onClick={() => setIsEditing((prev) => !prev)}
               className="btn-edit"
@@ -40,7 +40,7 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
               편집
             </button>
             <>
-              <button onClick={handleShow} className  = "btn-delete">
+              <button onClick={handleShow} className="btn-delete">
                 삭제
               </button>
 
@@ -50,11 +50,10 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <button variant="secondary" onClick={handleClose} className="btn-cancel">
+                  <button onClick={handleClose} className="btn-cancel">
                     취소
                   </button>
                   <button
-                    variant="primary"
                     className="btn-confirm"
                     onClick={() => {
                       handleClose();

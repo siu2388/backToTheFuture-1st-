@@ -27,7 +27,6 @@ class userAuthService {
     return createdNewUser;
   }
 
-  //로그인
   static async getUser({ email, password }) {
     // 이메일 db에 존재 여부 확인
     const user = await User.findByEmail({ email });
@@ -44,7 +43,6 @@ class userAuthService {
       correctPasswordHash
     );
     if (!isPasswordCorrect) {
-      //로그인실패(비번불일치)
       const errorMessage =
         "비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -55,13 +53,8 @@ class userAuthService {
     const token = jwt.sign({ userId: user.id }, secretKey);
 
     // 반환할 loginuser 객체를 위한 변수 설정
-    const { id, name, github, blog, description, image, homeName, bgColor, boxColor, menuColor } = user;
-
-    const loginUser = {
-      //컨트롤러층에 반환할 객체
-      token,
+    const {
       id,
-      email,
       name,
       github,
       blog,
@@ -71,7 +64,22 @@ class userAuthService {
       bgColor,
       boxColor,
       menuColor,
+    } = user;
+
+    const loginUser = {
+      token,
+      id,
+      email,
+      name,
+      github,
+      blog,
+      description,
+      homeName,
+      bgColor,
+      boxColor,
+      menuColor,
       errorMessage: null,
+      image,
     };
 
     return loginUser;
@@ -129,12 +137,6 @@ class userAuthService {
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.image) {
-      const fieldToUpdate = "image";
-      const newValue = toUpdate.image;
-      user = await User.update({ userId, fieldToUpdate, newValue });
-    }
-
     if (toUpdate.homeName) {
       const fieldToUpdate = "homeName";
       const newValue = toUpdate.homeName;
@@ -158,7 +160,12 @@ class userAuthService {
       const newValue = toUpdate.menuColor;
       user = await User.update({ userId, fieldToUpdate, newValue });
     }
-    //console.log("졸려", user);
+    if (toUpdate.image) {
+      const fieldToUpdate = "image";
+      const newValue = toUpdate.image;
+      user = await User.update({ userId, fieldToUpdate, newValue });
+    }
+
     return user;
   }
   // 입력된 id로 db에서 찾아서 반환

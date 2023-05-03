@@ -3,8 +3,8 @@ import { Router } from "express";
 import { login_required } from "../middlewares/login_required";
 import { userAuthService } from "../services/userService";
 const multer = require("multer");
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
 
 const userAuthRouter = Router();
 
@@ -24,6 +24,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     const filename = path.basename(file.originalname, ext) + Date.now() + ext;
+    console.log(path.basename(file.originalname, ext));
     cb(null, filename);
   },
 });
@@ -54,7 +55,7 @@ userAuthRouter.post("/user/register", async (req, res, next) => {
       throw new Error(newUser.errorMessage);
     }
 
-    res.status(201).json(newUser);
+    return res.status(201).json(newUser);
   } catch (error) {
     next(error);
   }
@@ -72,7 +73,7 @@ userAuthRouter.post("/user/login", async (req, res, next) => {
       throw new Error(user.errorMessage);
     }
     //프론트에 전달
-    res.status(200).send(user);
+    return res.status(200).send(user);
   } catch (error) {
     next(error);
   }
@@ -84,7 +85,7 @@ userAuthRouter.get("/userlist", login_required, async (req, res, next) => {
     // 전체 사용자 목록을 얻음
     const users = await userAuthService.getUsers();
 
-    res.status(200).send(users);
+    return res.status(200).send(users);
   } catch (error) {
     next(error);
   }
@@ -102,20 +103,20 @@ userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
       throw new Error(currentUserInfo.errorMessage);
     }
 
-    res.status(200).send(currentUserInfo);
+    return res.status(200).send(currentUserInfo);
   } catch (error) {
     next(error);
   }
 });
 
 userAuthRouter.put(
-  "/users/:id",
+  "/userId/:id",
   login_required,
   upload.single("image"),
   async (req, res, next) => {
     try {
       // URI로부터 사용자 id를 추출함.
-      const user_id = req.params.id;
+      const userId = req.currentUserId;
       // body data 로부터 업데이트할 사용자 정보를 추출함.
       const name = req.body.name ?? null;
       const email = req.body.email ?? null;
@@ -123,6 +124,11 @@ userAuthRouter.put(
       const github = req.body.github ?? null;
       const blog = req.body.blog ?? null;
       const description = req.body.description ?? null;
+      // 홈페이지 꾸미기
+      const homeName = req.body.homeName ?? null;
+      const bgColor = req.body.bgColor ?? null;
+      const boxColor = req.body.boxColor ?? null;
+      const menuColor = req.body.menuColor ?? null;
       //이미지 업로드
       const image = req.file ?? null;
       console.log("req.file 제발찍혀라", req.file);
@@ -135,11 +141,15 @@ userAuthRouter.put(
         github,
         blog,
         description,
+        homeName,
+        bgColor,
+        boxColor,
+        menuColor,
         image,
       };
 
       // 해당 사용자 아이디로 사용자 정보를 db에서 찾아 업데이트함. 업데이트 요소가 없을 시 생략함
-      const updatedUser = await userAuthService.setUser({ user_id, toUpdate });
+      const updatedUser = await userAuthService.setUser({ userId, toUpdate });
 
       if (updatedUser.errorMessage) {
         throw new Error(updatedUser.errorMessage);
@@ -152,7 +162,7 @@ userAuthRouter.put(
   }
 );
 
-userAuthRouter.get("/users/:id", login_required, async (req, res, next) => {
+userAuthRouter.get("/userId/:id", login_required, async (req, res, next) => {
   try {
     const user_id = req.params.id;
     const currentUserInfo = await userAuthService.getUserInfo({ user_id });
@@ -161,8 +171,7 @@ userAuthRouter.get("/users/:id", login_required, async (req, res, next) => {
       throw new Error(currentUserInfo.errorMessage);
     }
 
-    res.status(200).send(currentUserInfo);
-    return;
+    return res.status(200).send(currentUserInfo);
   } catch (error) {
     next(error);
   }

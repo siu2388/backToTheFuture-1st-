@@ -1,10 +1,10 @@
-import { Card, Modal, Button, Row, Col } from "react-bootstrap";
+import { Card, Modal, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
 function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
   const handleDelete = async () => {
-    await Api.delete("skills", skill.id).then(() => {
+    await Api.delete("skillId", skill.id).then(() => {
       setSkills((prevSkills) =>
         prevSkills.filter((prevSkill) => prevSkill.id !== skill.id)
       );
@@ -30,7 +30,7 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
         </Col>
 
         {isEditable && (
-          <Col xs lg="3" style = {{marginRight: "10px"}}>
+          <Col xs lg="3" style={{ marginRight: "10px" }}>
             <button
               onClick={() => setIsEditing((prev) => !prev)}
               className="btn-edit"
@@ -38,7 +38,7 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
               편집
             </button>
             <>
-              <button onClick={handleShow} className  = "btn-delete">
+              <button onClick={handleShow} className="btn-delete">
                 삭제
               </button>
 
@@ -48,11 +48,10 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                <button variant="secondary" onClick={handleClose} className="btn-cancel">
+                  <button onClick={handleClose} className="btn-cancel">
                     취소
                   </button>
                   <button
-                    variant="primary"
                     className="btn-confirm"
                     onClick={() => {
                       handleClose();

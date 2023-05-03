@@ -28,22 +28,17 @@ const CareerSchema = new Schema(
       default: "직무 설명이 아직 없습니다. 추가해 주세요.",
     },
     startDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
     endDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
   },
   {
     timestamps: true,
-    toJSON: {
-      transform(doc, ret) {
-        ret.startDate = ret.startDate.toISOString().slice(0, 7);
-        ret.endDate = ret.endDate.toISOString().slice(0, 7);
-      },
-    },
+
   }
 );
 

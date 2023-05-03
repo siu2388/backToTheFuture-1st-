@@ -4,7 +4,7 @@ import { app } from "../app";
 
 describe("certificateRouter", () => {
   let token;
-  let userId;
+  let user_id;
   let certificate_id;
 
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("certificateRouter", () => {
       .send({ email: "abc@def.com", password: "1234" });
 
     token = res.body.token;
-    userId = res.body.id;
+    user_id = res.body.id;
   });
 
   afterAll(() => {
@@ -36,7 +36,7 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_certificate",
           authority: "issuing_agency",
           registerNum: "awesome001",
@@ -52,10 +52,10 @@ describe("certificateRouter", () => {
     });
   });
 
-  describe("get -> /certificates/:id", () => {
+  describe("get -> /certificateId/:id", () => {
     it("should return a certificate information", async () => {
       const res = await request(app)
-        .get(`/certificates/${certificate_id}`)
+        .get(`/certificateId/${certificate_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -63,10 +63,10 @@ describe("certificateRouter", () => {
     });
   });
 
-  describe("put -> /certificates/:id", () => {
+  describe("put -> /certificateId/:id", () => {
     it("should change a certificate information", async () => {
       const res = await request(app)
-        .put(`/certificates/${certificate_id}`)
+        .put(`/certificateId/${certificate_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           title: "awesome_certificate2",
@@ -83,10 +83,10 @@ describe("certificateRouter", () => {
     });
   });
 
-  describe("delete -> /certificates/:id", () => {
+  describe("delete -> /certificateId/:id", () => {
     it("should delete certificate from db", async () => {
       const res = await request(app)
-        .delete(`/certificates/${certificate_id}`)
+        .delete(`/certificateId/${certificate_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -94,14 +94,14 @@ describe("certificateRouter", () => {
     });
   });
 
-  describe("get -> /certificatelist/:userId", () => {
+  describe("get -> /certificatelist/:user_id", () => {
     it("should return a certificate list for specific user", async () => {
       await request(app)
         .post("/certificate/create")
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_certificate3",
           authority: "issuing_agency",
           registerNum: "awesome003",
@@ -112,7 +112,7 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_certificate4",
           authority: "issuing_agency",
           registerNum: "awesome004",
@@ -123,7 +123,7 @@ describe("certificateRouter", () => {
         .set("Authorization", `Bearer ${token}`)
         .set("Content-Type", "application/json")
         .send({
-          userId,
+          user_id,
           title: "awesome_certificate5",
           authority: "issuing_agency",
           registerNum: "awesome005",
@@ -131,7 +131,7 @@ describe("certificateRouter", () => {
         });
 
       const res = await request(app)
-        .get(`/certificatelist/${userId}`)
+        .get(`/certificatelist/${user_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
