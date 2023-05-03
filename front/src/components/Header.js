@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import { UserStateContext, DispatchContext } from "../App";
+import './font.css'
 
 function Header() {
   const navigate = useNavigate();
@@ -26,13 +27,14 @@ function Header() {
   return (
     
     <Nav activeKey={location.pathname} style={{height:150}}>
+      
 
       <Nav.Item className="me-auto" >
-      <Nav.Link onClick={() => navigate("/")} style={{fontSize: "20px"}}>MINI PORTFOLIOPAGE</Nav.Link>
+      <button onClick={() => navigate("/")} style={{fontSize: "20px"}} className="orange-button">MINI PORTFOLIOPAGE</button>
       </Nav.Item>
 
       <Nav.Item > 
-        <Nav.Link onClick={() => navigate("/")} style={{fontSize: "20px"}}>나의 페이지</Nav.Link>
+        <button onClick={() => navigate("/")} style={{fontSize: "20px"}} className="orange-button">나의 페이지</button>
       </Nav.Item>
 
 
@@ -40,7 +42,7 @@ function Header() {
         <>
 
         <Nav.Item >
-          <Nav.Link onClick={logout} style={{fontSize: "20px"}}>로그아웃</Nav.Link>
+          <button onClick={logout} style={{fontSize: "20px"}} className="orange-button">로그아웃</button>
         </Nav.Item>
         </>
       )}

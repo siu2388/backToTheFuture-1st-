@@ -57,13 +57,13 @@ function RegisterForm() {
   };
 
   return (
-    <Container>
+    <div className ="login-page">
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="registerEmail">
+            <Form.Group controlId="registerEmail" >
               <Form.Label>이메일 주소</Form.Label>
-              <Form.Control
+              <Form.Control className="inputLogin"
                 type="email"
                 autoComplete="off"
                 value={email}
@@ -76,9 +76,9 @@ function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="registerPassword" className="mt-3">
+            <Form.Group controlId="registerPassword" className="mt-3" >
               <Form.Label>비밀번호</Form.Label>
-              <Form.Control
+              <Form.Control className="inputLogin"
                 type="password"
                 autoComplete="off"
                 value={password}
@@ -93,7 +93,7 @@ function RegisterForm() {
 
             <Form.Group controlId="registerConfirmPassword" className="mt-3">
               <Form.Label>비밀번호 재확인</Form.Label>
-              <Form.Control
+              <Form.Control className="inputLogin"
                 type="password"
                 autoComplete="off"
                 value={confirmPassword}
@@ -108,7 +108,7 @@ function RegisterForm() {
 
             <Form.Group controlId="registerName" className="mt-3">
               <Form.Label>이름</Form.Label>
-              <Form.Control
+              <Form.Control className="inputLogin"
                 type="text"
                 autoComplete="off"
                 value={name}
@@ -123,23 +123,23 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="primary" type="submit" disabled={!isFormValid}>
+                <button variant="primary" type="submit" disabled={!isFormValid} className="shadow-button"> 
                   회원가입
-                </Button>
+                </button>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <Button variant="light" onClick={() => navigate("/login")}>
+                <button variant="light" onClick={() => navigate("/login")} className="shadow-button">
                   로그인하기
-                </Button>
+                </button>
               </Col>
             </Form.Group>
           </Form>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 }
 

@@ -4,6 +4,9 @@ import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
 import * as Api from "../../api";
 import { DispatchContext } from "../../App";
+import './login.css'
+import '../font.css'
+
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -60,15 +63,15 @@ function LoginForm() {
   };
 
   return (
-    <Container className="bookcover">
-      <div className="bookdot">
+    
+    
         <div className ="login-page">
           <Row className="justify-content-md-center mt-5">
             <Col lg={8}>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="loginEmail">
-                  <Form.Label>이메일 주소</Form.Label>
-                  <Form.Control
+                  <Form.Label>EMAIL</Form.Label>
+                  <Form.Control className="inputLogin" placeholder="Email"
                     type="email"
                     autoComplete="on"
                     value={email}
@@ -81,9 +84,10 @@ function LoginForm() {
                   )}
                 </Form.Group>
 
+
                 <Form.Group controlId="loginPassword" className="mt-3">
-                  <Form.Label>비밀번호</Form.Label>
-                  <Form.Control
+                  <Form.Label>PW</Form.Label>
+                  <Form.Control  className="inputLogin" placeholder="Password"
                     type="password"
                     autoComplete="on"
                     value={password}
@@ -96,34 +100,31 @@ function LoginForm() {
                   )}
                 </Form.Group>
 
-                <Form.Group as={Row} className="mt-3 text-center">
-                  <Col sm={{ span: 20 }}>
-                    <Button
-                      variant="primary"
-                      type="submit"
-                      disabled={!isFormValid}
-                    >
-                      로그인
-                    </Button>
-                  </Col>
-                </Form.Group>
+
+            <Form.Group as={Row} className="mt-3 text-center">
+              <Col sm={{ span: 20 }}>
+                <button type="submit" disabled={!isFormValid} className="shadow-button">
+                  로그인
+                </button>
+              </Col>
+            </Form.Group>
 
                 <Form.Group as={Row} className="mt-3 text-center">
                   <Col sm={{ span: 20 }}>
-                    <Button
-                      variant="light"
+                    <button className="shadow-button"
+                      
                       onClick={() => navigate("/register")}
                     >
-                      회원가입하기
-                    </Button>
+                      회원가입
+                    </button>
                   </Col>
                 </Form.Group>
               </Form>
             </Col>
           </Row>
           </div>
-      </div>
-    </Container>
+
+
   );
 }
 
