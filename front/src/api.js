@@ -13,6 +13,7 @@ async function get(endpoint, params = "") {
   return axios.get(serverUrl + endpoint + "/" + params, {
     // JWT 토큰을 헤더에 담아 백엔드 서버에 보냄.
     headers: {
+      
       Authorization: `Bearer ${sessionStorage.getItem("userToken")}`,
     },
   });
@@ -35,11 +36,6 @@ async function post(endpoint, data) {
 
 async function put(endpoint, data) {
   const formData = new FormData();
-
-  // //image 파일을 FormData 객체에 추가
-  // if (file){
-  //   formData.append("image", file);
-  // }
 
   // 객체의 key-value를 FormData 객체에 추가
   for (const key in data) {
