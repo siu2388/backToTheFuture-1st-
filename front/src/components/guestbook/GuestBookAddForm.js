@@ -3,7 +3,7 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { UserStateContext } from "../../App";
 
-function GuestBookAddForm({ guestBookPageOwner, setGuestBooks, setIsAdding }) {
+function GuestBookAddForm({ guestBookPageOwnerId, setGuestBooks, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [content, setContent] = useState("");
   const userState = useContext(UserStateContext);
@@ -11,18 +11,21 @@ function GuestBookAddForm({ guestBookPageOwner, setGuestBooks, setIsAdding }) {
   const [authorId, setAuthorId] = useState(userState.user?.id);
 
   
+
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
     // guestBookPageOwnerId를 user_id 변수에 할당함.
-    const receiverId = guestBookPageOwner.id;
+    const receiverId = guestBookPageOwnerId;
  
 
     // "guestBook/create" 엔드포인트로 post요청함.
-    await Api.post("guestBook/create", {
-      receiverId: guestBookPageOwner.id,
+    await Api.post(`guestBooks/${receiverId}`, {
+      receiverId: guestBookPageOwnerId,
       authorId: userState.user.id,
+      authorName: userState.user.name,
       content,
     });
 

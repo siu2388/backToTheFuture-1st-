@@ -22,7 +22,8 @@ function GuestBookPage() {
 
   const fetchGuestBookPageOwner = async (ownerId) => {
     // 유저 id를 가지고 "/users/유저id" 엔드포인트로 요청해 사용자 정보를 불러옴.
-    const res = await Api.get("users", ownerId);
+    const res = await Api.get("userId", ownerId);
+    console.log(ownerId);
     // 사용자 정보는 response의 data임.
     const ownerData = res.data;
     // guestBookPageOwner을 해당 사용자 정보로 세팅함.
@@ -30,6 +31,10 @@ function GuestBookPage() {
     // fetchPorfolioOwner 과정이 끝났으므로, isFetchCompleted를 true로 바꿈.
     setIsFetchCompleted(true);
   };
+
+  useEffect(() => {
+    console.log(guestBookPageOwner);
+  }, [guestBookPageOwner])
 
   useEffect(() => {
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
@@ -71,7 +76,7 @@ function GuestBookPage() {
                 <div className="box profile-box">
                   <div className="profile-image">
                   <User
-                    guestBookPageOwnerId={guestBookPageOwner.id}
+                    portfolioOwnerId={guestBookPageOwner.id}
                     isEditable={guestBookPageOwner.id === userState.user?.id}
                   />
                   </div>
@@ -110,6 +115,7 @@ function GuestBookPage() {
                         <GuestBooks
                           guestBookPageOwnerId={guestBookPageOwner.id}
                           isEditable={guestBookPageOwner.id === userState.user?.id}
+                          
                         />
                       </div>
                     </div>

@@ -26,9 +26,9 @@ function GuestBooks({ guestBookPageOwnerId, isEditable }) {
     <Card>
       <Card.Body>
         <Card.Title>방명록</Card.Title>
-        if (userState.user) {
-          <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
-        }
+        { userState.user &&  (
+          <button className = "btn-add" onClick={() => setIsAdding(true)}>+</button>
+        ) }
         
         {guestBooks
         .filter((guestBook) => guestBook.receiverId === guestBookPageOwnerId)
