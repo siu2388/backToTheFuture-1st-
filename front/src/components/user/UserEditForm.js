@@ -1,6 +1,12 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect, useContext} from "react";
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Form, Card, Col, Row, Modal } from "react-bootstrap";
 import * as Api from "../../api";
+
+import { DispatchContext, UserStateContext } from "../../App";
+
+
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -22,6 +28,18 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [menuColor, setMenuColor] = useState(user.menuColor);
   const [homeName, setHomeName] = useState(user.homeName);
   const [image, setImage] = useState(user.image);
+  const dispatch = useContext(DispatchContext);
+  const userState = useContext(UserStateContext);
+
+  useEffect(() => {
+    Api.get("userId", user.id).then((res) => {
+      document.body.style.backgroundColor = res.data.bgColor;
+    })
+    console.log(userState);
+  
+  }, [userState]);
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +49,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     console.log("boxColor", boxColor);
     console.log("menuColor", menuColor);
     console.log("homeName", homeName);
+    
 
     const data = {
       name,
@@ -44,6 +63,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       homeName,
       image,
     };
+
+    
+
+    
+  
 
     console.log("data", data);
 
@@ -76,9 +100,22 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     // 해당 유저 정보로 user을 세팅함.
     setUser(updatedUser);
 
+
+  
+        // dispatch 함수를 통해 로그인 성공 상태로 만듦.
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: updatedUser,
+        });
+
+
+
+
     // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
+
+  
 
   return (
     <Modal show={show} animation={false}>
@@ -185,12 +222,12 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Form.Group as={Row} className="mt-3 text-center">
           <Col sm={{ span: 20 }}>
             <Button
-              variant="primary"
               type="submit"
               className="me-3"
               onClick={(e) => {
                 handleClose(e);
                 handleSubmit(e);
+
               }}
             >
               확인

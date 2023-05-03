@@ -19,6 +19,12 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
+  
+  useEffect(()=>{
+    document.body.style.backgroundColor = userState.user?.bgColor;
+
+    console.log(userState);
+  },[userState]);
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
