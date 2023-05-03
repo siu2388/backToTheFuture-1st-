@@ -83,7 +83,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         id="floatingInputCustom"
         type="text"
         value={startDate}
-        placeholder="예: 202103"
+        placeholder="예: 20210302"
         onChange={(e) => setStartDate(e.target.value)}
       />
 
@@ -92,7 +92,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         id="floatingPasswordCustom"
         type="text"
         value={endDate}
-        placeholder="예: 202309"
+        placeholder="예: 20230906"
         onChange={(e) => setEndDate(e.target.value)}
       />
 
