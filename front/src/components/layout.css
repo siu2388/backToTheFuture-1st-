@@ -115,6 +115,17 @@ body {
   text-align: end; /* 텍스트 우측 정렬 */
 }
 
+
+.btn-post {
+  background-color: #769fab;
+  color: white;
+  border-radius: 3px;
+  width: auto;
+  height: 24px;
+  text-align: center;
+  border: none;
+}
+
 .btn-add {
   background-color: #b4d1da;
   color: white;

@@ -25,16 +25,16 @@ function GuestBooks({ guestBookPageOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>방명록</Card.Title>
+        <Card.Title style = {{display: "inline-block", marginRight: "10px"}} >방명록</Card.Title>
         { userState.user &&  (
-          <button className = "btn-add" onClick={() => setIsAdding(true)}>+</button>
+          <button className = "btn-post" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>글쓰기</button>
         ) }
         
-        {guestBooks
+        { guestBooks
         .filter((guestBook) => guestBook.receiverId === guestBookPageOwnerId)
         .map((guestBook) => (
           <GuestBook
-            key={guestBook.receiverId}
+            key={guestBook.id}
             guestBook={guestBook}
             setGuestBooks={setGuestBooks}
             isEditable={isEditable}

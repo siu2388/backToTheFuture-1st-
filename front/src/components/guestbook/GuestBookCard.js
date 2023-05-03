@@ -22,9 +22,9 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{guestBook?.authorName}</span>
+          <text>{guestBook?.authorName}</text>
           <br />
-          <span>{guestBook?.content}</span>
+          <text>{guestBook?.content}</text>
           <br />
 
         </Col>

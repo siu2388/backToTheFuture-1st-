@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { UserStateContext } from "../../App";
+import "../layout.css";
 
 function GuestBookAddForm({ guestBookPageOwnerId, setGuestBooks, setIsAdding }) {
   //useState로 title 상태를 생성함.
