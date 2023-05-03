@@ -9,7 +9,7 @@ function CertificateCard({
   setCertificates,
 }) {
   const handleDelete = async () => {
-    await Api.delete("certificates", certificate.id).then(() => {
+    await Api.delete("certificateId", certificate.id).then(() => {
       setCertificates((prevCertificates) =>
         prevCertificates.filter(
           (prevCertificate) => prevCertificate.id !== certificate.id
