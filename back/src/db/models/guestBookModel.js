@@ -11,6 +11,11 @@ class GuestBook {
     return guestBook;
   }
 
+  static async findByReceiverId({ receiverId }) {
+    const guestBooks = await GuestBookModel.find({ receiverid: receiverId });
+    return guestBooks;
+  }
+
   static async deleteById({ guestBookId }) {
     const deleteResult = await GuestBookModel.deleteOne({ id: guestBookId });
     const isDataDeleted = deleteResult.deletedCount === 1;
