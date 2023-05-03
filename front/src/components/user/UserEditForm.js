@@ -83,7 +83,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Modal show={show} animation={false} onHide={handleClose}>
+    <Modal show={show} animation={false}>
       <Modal.Header>
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
