@@ -33,7 +33,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             <Row className="mt-3 text-center text-info">
               <Col sm={{ span: 20 }}>
                 <Button
-                  variant="outline-info"
+                  variant="outline-secondary"
                   size="sm"
                   onClick={() => setIsEditing(true)}
                 >

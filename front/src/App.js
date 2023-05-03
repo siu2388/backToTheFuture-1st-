@@ -9,6 +9,7 @@ import LoginForm from "./components/user/LoginForm";
 import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
+import GuestBooks from "./components/guestbook/GuestBooks";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -64,6 +65,7 @@ function App() {
             <Route path="/userId/:userId" element={<Portfolio />} />
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
+            <Route path="/GuestBookPage" element={<GuestBooks />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
