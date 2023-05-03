@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
+import { serverUrl } from "../../api";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           <Card.Img
             style={{ width: "12rem", height: "8rem", align: "center" }}
             className="mb-3"
-            src={`http://:5001/${user?.image?.path || "uploads/profile.jpg"}`} // fallback 이미지
+            src={`${serverUrl}${user?.image?.path || "uploads/profile.jpg"}`} // fallback 이미지
             alt="프로필 이미지"
           />
         </Row>
