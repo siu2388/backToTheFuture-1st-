@@ -21,9 +21,11 @@ function GuestBooks({ guestBookPageOwnerId, isEditable }) {
     <Card>
       <Card.Body>
         <Card.Title>방명록</Card.Title>
-        {guestBooks.map((guestBook) => (
+        {guestBooks
+        .filter((guestBook) => guestBook.receiverId === guestBookPageOwnerId)
+        .map((guestBook) => (
           <GuestBook
-            key={guestBook.id}
+            key={guestBook.authorId}
             guestBook={guestBook}
             setGuestBooks={setGuestBooks}
             isEditable={isEditable}

@@ -20,7 +20,7 @@ function Navigator({ scrollToMove, portfolioOwner }) {
           <Button style = {{backgroundColor: portfolioOwner.menuColor }} value="award-section" onClick={scrollToMove}>수상</Button>
           <Button style = {{backgroundColor: portfolioOwner.menuColor }} value="certificate-section" onClick={scrollToMove}>자격증</Button>
           <Button style = {{backgroundColor: portfolioOwner.menuColor }} value="skill-section" onClick={scrollToMove}>사용기술</Button>
-          <Button style = {{backgroundColor: portfolioOwner.menuColor }} onClick={() => navigate("/network")}>방명록</Button>
+          <Button style = {{backgroundColor: portfolioOwner.menuColor }} onClick={() => navigate("/GuestBooks")}>방명록</Button>
       </div>
     
   );

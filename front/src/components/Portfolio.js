@@ -23,7 +23,7 @@ function Portfolio() {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const userState = useContext(UserStateContext);
 
-  const fetchPorfolioOwner = async (ownerId) => {
+  const fetchPortfolioOwner = async (ownerId) => {
     // 유저 id를 가지고 "/userId/유저id" 엔드포인트로 요청해 사용자 정보를 불러옴.
     const res = await Api.get("userId", ownerId);
     // 사용자 정보는 response의 data임.
@@ -49,12 +49,12 @@ function Portfolio() {
       // 만약 현재 URL이 "/userId/:userId" 라면, 이 userId를 유저 id로 설정함.
       const ownerId = params.userId;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
-      fetchPorfolioOwner(ownerId);
+      fetchPortfolioOwner(ownerId);
     } else {
       // 이외의 경우, 즉 URL이 "/" 라면, 전역 상태의 user.id를 유저 id로 설정함.
       const ownerId = userState.user.id;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
-      fetchPorfolioOwner(ownerId);
+      fetchPortfolioOwner(ownerId);
     }
   }, [params, userState, navigate]);
 
@@ -92,9 +92,9 @@ function Portfolio() {
               <div className="profile-dropdown">
                 <div className="dropdown-button">
                   <div className="dropdown-title">파도타기</div>
-                  <div className="triangle-down"></div>ㅈ
+                  <div className="triangle-down"></div>
                   <div className="dropdown-content">
-                    <a onClick={() => navigate("/network")}>네트워크</a>
+                    <a onClick={() => navigate("network")}>네트워크</a>
                   </div>
                 </div>
               </div>
