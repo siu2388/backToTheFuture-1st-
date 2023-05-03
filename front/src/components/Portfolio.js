@@ -47,7 +47,7 @@ function Portfolio() {
       return;
     }
       
-  // document.body.style.backgroundColor = portfolioOwner.bgColor;
+
 
 
 

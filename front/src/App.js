@@ -64,11 +64,14 @@ function App() {
             <Route path="/" exact element={<Portfolio />} />
             <Route path="/login" element={<LoginForm />} />
             <Route path="/register" element={<RegisterForm />} />
-            <Route path="/userId/:userId" element={<Portfolio />} />
+            <Route path="/userId/:userId">
+              <Route index element={<Portfolio />} />
+              <Route path="guestBooks" element={<GuestBookPage />} />
+            </Route>
             <Route path="/network" element={<Network />} />
             <Route path="*" element={<Portfolio />} />
-            <Route path="/guestBooks" element={<GuestBookPage />} />
-          </Routes>
+            
+          </Routes> 
         </Router>
       </UserStateContext.Provider>
     </DispatchContext.Provider>
