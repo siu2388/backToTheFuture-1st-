@@ -33,8 +33,6 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
             <button
-              variant="outline-info"
-              size="sm"
               onClick={() => setIsEditing((prev) => !prev)}
               className="btn-edit"
             >
@@ -42,7 +40,6 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
             </button>
             <>
               <button
-                variant="outline-danger"
                 onClick={handleShow}
                 className="btn-delete"
               >

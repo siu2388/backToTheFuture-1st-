@@ -32,17 +32,17 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
           <span>{award?.description}</span>
         </Col>
         {isEditable && (
-          <Col xs lg="3" style={{ display: "flex", marginRight: "10px" }}>
-            <button
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="btn-edit"
-            >
-              편집
+          <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
+          <button
+            onClick={() => setIsEditing((prev) => !prev)}
+            className="btn-edit"
+          >
+            편집
+          </button>
+          <>
+            <button onClick={handleShow} className="btn-delete">
+              삭제
             </button>
-            <>
-              <button onClick={handleShow} className="btn-delete">
-                삭제
-              </button>
 
               <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>

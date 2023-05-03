@@ -76,7 +76,7 @@ function Portfolio() {
               TODAY<span className="color-red"> 28</span> | TOTAL 234918
             </div>
 
-            <div className="box profile-box">
+            <div className="box profile-box" style = {{display: "flex" }}>
               <div className="profile-image">
                 <User
                   portfolioOwnerId={portfolioOwner.id}
