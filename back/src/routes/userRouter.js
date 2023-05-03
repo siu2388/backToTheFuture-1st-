@@ -90,7 +90,7 @@ userAuthRouter.get("/userlist", login_required, async (req, res, next) => {
     next(error);
   }
 });
-
+//현재 유저 정보 조회
 userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
   try {
     // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
@@ -109,6 +109,7 @@ userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
   }
 });
 
+//유저 정보 업데이트
 userAuthRouter.put(
   "/userId/:id",
   login_required,
@@ -131,8 +132,6 @@ userAuthRouter.put(
       const menuColor = req.body.menuColor ?? null;
       //이미지 업로드
       const image = req.file ?? null;
-      console.log("req.file 제발찍혀라", req.file);
-      console.log("req.body:", req.body);
 
       const toUpdate = {
         name,

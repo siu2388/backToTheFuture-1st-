@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import GuestBookCard from "./GuestBookCard";
-import GuestBookEditForm from "./GuestBookEditForm";
-
+import "../layout.css"
 
 function GuestBook({ guestBook, setGuestBooks, isEditable }) {
   //useState로 isEditing 상태를 생성함.
@@ -11,20 +10,14 @@ function GuestBook({ guestBook, setGuestBooks, isEditable }) {
 
   return (
     <>
-      {isEditing ? (
-        <GuestBookEditForm
-          currentGuestBook={guestBook}
-          setGuestBooks={setGuestBooks}
-          setIsEditing={setIsEditing}
-        />
-      ) : (
+      (
         <GuestBookCard
           guestBook={guestBook}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
           setGuestBooks = {setGuestBooks}
         />
-      )}
+      )
     </>
   );
 }

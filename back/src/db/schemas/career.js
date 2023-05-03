@@ -38,7 +38,6 @@ const CareerSchema = new Schema(
   },
   {
     timestamps: true,
-
   }
 );
 
