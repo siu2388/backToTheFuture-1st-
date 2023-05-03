@@ -86,10 +86,10 @@ function Portfolio() {
               <div className="profile-dropdown">
                 <div className="dropdown-button">
                   <div className="dropdown-title">파도타기</div>
-                  <div className="triangle-down"></div>
-                </div>
-                <div className="dropdown-content">
-                  <a onClick={() => navigate("/network")}>네트워크</a>
+                  <div className="triangle-down"></div>ㅈ
+                  <div className="dropdown-content">
+                    <a onClick={() => navigate("/network")}>네트워크</a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,7 +98,7 @@ function Portfolio() {
           <div className="content-container">
             <div className="header content-title">
               <div className="content-title-name">
-                의 추억 상ㅈr... (*ˊᵕˋo💐o
+                {portfolioOwner.homeName}
               </div>
             </div>
             <div className="box content-box">
@@ -157,6 +157,7 @@ function Portfolio() {
                 const section = document.getElementById(e.target.value);
                 section.scrollIntoView({ behavior: "smooth" });
               }}
+              portfolioOwner =  {portfolioOwner}
             />
           </div>
         </div>
