@@ -56,10 +56,10 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("get -> /careers/:id", () => {
+  describe("get -> /careerId/:id", () => {
     it("should return a career information", async () => {
       const res = await request(app)
-        .get(`/careers/${career_id}`)
+        .get(`/careerId/${career_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);
@@ -67,10 +67,10 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("put -> /careers/:id", () => {
+  describe("put -> /careerId/:id", () => {
     it("should change a career information", async () => {
       const res = await request(app)
-        .put(`/careers/${career_id}`)
+        .put(`/careerId/${career_id}`)
         .set("Authorization", `Bearer ${token}`)
         .send({
           company: "awesome_career2",
@@ -91,10 +91,10 @@ describe("careerRouter", () => {
     });
   });
 
-  describe("delete -> /careers/:id", () => {
+  describe("delete -> /careerId/:id", () => {
     it("should delete career from db", async () => {
       const res = await request(app)
-        .delete(`/careers/${career_id}`)
+        .delete(`/careerId/${career_id}`)
         .set("Authorization", `Bearer ${token}`);
 
       expect(res.statusCode).toEqual(200);

@@ -18,7 +18,10 @@ function Careers({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title>경력</Card.Title>
+        <Card.Title style = {{display: "inline-block", marginRight: "10px"}}>경력</Card.Title>
+        {isEditable && (
+            <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
+        )}
         {careers.map((career) => (
           <Career
             key={career.id}
@@ -27,13 +30,7 @@ function Careers({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )}
+        
         {isAdding && (
           <CareerAddForm
             portfolioOwnerId={portfolioOwnerId}

@@ -6,7 +6,7 @@ const CareerSchema = new Schema(
       type: String,
       required: true,
     },
-    user_id: {
+    userId: {
       type: String,
       required: true,
     },
@@ -28,16 +28,17 @@ const CareerSchema = new Schema(
       default: "직무 설명이 아직 없습니다. 추가해 주세요.",
     },
     startDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
     endDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
   },
   {
     timestamps: true,
+
   }
 );
 

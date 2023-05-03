@@ -23,8 +23,9 @@ function Network() {
   }, [userState, navigate]);
 
   return (
+    <div style={{ height: "90vh", overflowY: "auto" }}>
     <Container>
-      <Row xs={1} md={2} lg={3} className="justify-content-center">
+      <Row xs={1} md={2} lg={3}>
         {users.map((user) => (
           <Col className="mb-4">
           <UserCard key={user.id} user={user} isNetwork />
@@ -32,6 +33,7 @@ function Network() {
         ))}
       </Row>
     </Container>
+    </div>
   );
 }
 

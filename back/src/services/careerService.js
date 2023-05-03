@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 class CareerService {
   static async addCareer({
-    user_id,
+    userId,
     company,
     department,
     position,
@@ -18,7 +18,7 @@ class CareerService {
     // db에 저장
     const newCareer = {
       id,
-      user_id,
+      userId,
       company,
       department,
       position,
@@ -42,9 +42,9 @@ class CareerService {
 
     return career;
   }
-  //user_id로 경력목록들 조회
-  static async getCareerList({ user_id }) {
-    const careers = await Career.findByUserId({ user_id });
+  //userI로 경력목록들 조회
+  static async getCareerList({ userId }) {
+    const careers = await Career.findByUserId({ userId });
     return careers;
   }
 

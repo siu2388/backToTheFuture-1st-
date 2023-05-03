@@ -6,7 +6,7 @@ const EducationSchema = new Schema(
       type: String,
       required: true,
     },
-    user_id: {
+    userId: {
       type: String,
       required: true,
     },
@@ -16,22 +16,22 @@ const EducationSchema = new Schema(
     },
     schoolType: {
       type: String,
-      required: true,
+      required: false,
     },
     major: {
       type: String,
-      required: true,
+      required: false,
     },
     status: {
       type: String,
       required: true,
     },
     startDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
     endDate: {
-      type: Date,
+      type: Number,
       required: true,
     },
   },

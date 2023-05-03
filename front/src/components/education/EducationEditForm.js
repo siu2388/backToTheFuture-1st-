@@ -15,12 +15,12 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentEducation의 user_id를 user_id 변수에 할당함.
-    const user_id = currentEducation.user_id;
+    // currentEducation의 userId를 userId 변수에 할당함.
+    const userId = currentEducation.userId;
 
-    // "Educations/수상 id" 엔드포인트로 PUT 요청함.
-    await Api.put(`educations/${currentEducation.id}`, {
-      user_id,
+    // "educationId/수상 id" 엔드포인트로 PUT 요청함.
+    await Api.put(`educationId/${currentEducation.id}`, {
+      userId,
       schoolName,
       schoolType,
       major,
@@ -30,7 +30,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     });
 
     // "educationlist/유저id" 엔드포인트로 GET 요청함.
-    const res = await Api.get("educationlist", user_id);
+    const res = await Api.get("educationlist", userId);
     // Educations를 response의 data로 세팅함.
     setEducations(res.data);
     // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
@@ -39,39 +39,35 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <label htmlFor="floatingInputCustom">학교</label>
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        value={schoolName}
+        placeholder="예 :00고등학교/00대학교"
+        onChange={(e) => setSchoolName(e.target.value)}
+      />
 
-        <label htmlFor="floatingInputCustom">학교</label>
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          value={schoolName}
-          placeholder="예 :00고등학교/00대학교"
-          onChange={(e) => setSchoolName(e.target.value)}
-        />
-        
-      
-        <label htmlFor="floatingInputCustom">학위</label>
-        <Form.Select
-          aria-label="Default select example"
-          value={schoolType}
-          onChange={(e) => setSchoolType(e.target.value)}
-        >
-          <option>select</option>
-          <option value="학사">학사</option>
-          <option value="석사">석사</option>
-          <option value="박사">박사</option>
-        </Form.Select>
+      <label htmlFor="floatingInputCustom">학위</label>
+      <Form.Select
+        aria-label="Default select example"
+        value={schoolType}
+        onChange={(e) => setSchoolType(e.target.value)}
+      >
+        <option>select</option>
+        <option value="학사">학사</option>
+        <option value="석사">석사</option>
+        <option value="박사">박사</option>
+      </Form.Select>
 
-
-        <label htmlFor="floatingInputCustom">전공</label>
-          <Form.Control
-            id="floatingInputCustom"
-            type="text"
-            value={major}
-            placeholder="예:경영학"
-            onChange={(e) => setMajor(e.target.value)}
-          />
-        
+      <label htmlFor="floatingInputCustom">전공</label>
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        value={major}
+        placeholder="예:경영학"
+        onChange={(e) => setMajor(e.target.value)}
+      />
 
       <Form.Select
         aria-label="Default select example2"
@@ -84,25 +80,23 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         <option value="졸업">졸업</option>
       </Form.Select>
 
-      
       <label htmlFor="floatingInputCustom">입학년월</label>
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          value={startDate}
-          placeholder="예: 2021-03"
-          onChange={(e) => setStartDate(e.target.value)}
-        />  
-
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        value={startDate}
+        placeholder="예: 2021-03"
+        onChange={(e) => setStartDate(e.target.value)}
+      />
 
       <label htmlFor="floatingInputCustom">졸업년월</label>
-        <Form.Control
-          id="floatingPasswordCustom"
-          type="text"
-          value={endDate}
-          placeholder="예: 2023-09"
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+      <Form.Control
+        id="floatingPasswordCustom"
+        type="text"
+        value={endDate}
+        placeholder="예: 2023-09"
+        onChange={(e) => setEndDate(e.target.value)}
+      />
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

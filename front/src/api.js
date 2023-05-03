@@ -33,26 +33,23 @@ async function post(endpoint, data) {
   });
 }
 
-async function put(endpoint, data, file) {
-
+async function put(endpoint, data) {
   const formData = new FormData();
 
-  console.log(data)
-  //image 파일을 FormData 객체에 추가
-  if (file){
-    formData.append("image", file);
-  }
+  // //image 파일을 FormData 객체에 추가
+  // if (file){
+  //   formData.append("image", file);
+  // }
 
   // 객체의 key-value를 FormData 객체에 추가
-  Object.keys(data).forEach((key) => {
+  console.log("formData전",data)
+  for (const key in data) {
     formData.append(key, data[key]);
-  });
-  
-  
+  }
 
+  console.log("put요청", data);
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터:${formData}`, "color: #059c4b;");
-  
 
   return axios.put(serverUrl + endpoint, formData, {
     headers: {
@@ -61,8 +58,6 @@ async function put(endpoint, data, file) {
     },
   });
 }
-
-
 
 // 아래 함수명에 관해, delete 단어는 자바스크립트의 reserved 단어이기에,
 // 여기서는 우선 delete 대신 del로 쓰고 아래 export 시에 delete로 alias 함.
