@@ -69,15 +69,13 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         onChange={(e) => setMajor(e.target.value)}
       />
 
-      <Form.Select
-        aria-label="Default select example2"
-        onChange={(e) => setStatus(e.target.value)}
-      >
+      <Form.Select value={status} onChange={(e) => setStatus(e.target.value)}>
         <option>상태</option>
         <option value="재학중">재학중</option>
         <option value="휴학">휴학</option>
         <option value="수료">수료</option>
         <option value="졸업">졸업</option>
+        
       </Form.Select>
 
       <label htmlFor="floatingInputCustom">입학년월</label>
@@ -85,7 +83,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         id="floatingInputCustom"
         type="text"
         value={startDate}
-        placeholder="예: 2021-03"
+        placeholder="예: 202103"
         onChange={(e) => setStartDate(e.target.value)}
       />
 
@@ -94,7 +92,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         id="floatingPasswordCustom"
         type="text"
         value={endDate}
-        placeholder="예: 2023-09"
+        placeholder="예: 202309"
         onChange={(e) => setEndDate(e.target.value)}
       />
 
