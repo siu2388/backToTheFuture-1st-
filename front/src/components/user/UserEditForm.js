@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Card, Col, Row, Modal } from "react-bootstrap";
 import * as Api from "../../api";
 
@@ -79,6 +79,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
+
+  
 
   return (
     <Modal show={show} animation={false}>
@@ -185,7 +187,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Form.Group as={Row} className="mt-3 text-center">
           <Col sm={{ span: 20 }}>
             <Button
-              variant="primary"
               type="submit"
               className="me-3"
               onClick={(e) => {
