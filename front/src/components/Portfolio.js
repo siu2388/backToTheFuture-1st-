@@ -101,13 +101,13 @@ function Portfolio() {
             </div>
           </div>
 
-          <div className="content-container">
+          <div className="content-container" id ="content-container">
             <div className="header content-title">
               <div className="content-title-name">
                 {portfolioOwner.homeName}
               </div>
             </div>
-            <div className="box content-box">
+            <div className="box content-box" id="content-box">
               <div className="miniroom">
                 <div className="box-title">Miniroom</div>
                 <div className="miniroom-gif-box">
