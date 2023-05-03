@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Form, Card, Col, Row, Modal } from "react-bootstrap";
 import * as Api from "../../api";
+
+
 
 function UserEditForm({ user, setIsEditing, setUser }) {
   //useState로 name 상태를 생성함.
@@ -23,6 +27,15 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [homeName, setHomeName] = useState(user.homeName);
   const [image, setImage] = useState(user.image);
 
+  useEffect(() => {
+    Api.get().then((res) => {
+      document.body.style.backgroundColor = res.data.bgColor;
+    })
+  
+  }, []);
+  
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("image", image);
@@ -31,6 +44,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     console.log("boxColor", boxColor);
     console.log("menuColor", menuColor);
     console.log("homeName", homeName);
+    
 
     const data = {
       name,
@@ -44,6 +58,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       homeName,
       image,
     };
+
+    window.location.reload();
+
+    
+  
 
     console.log("data", data);
 
@@ -191,6 +210,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onClick={(e) => {
                 handleClose(e);
                 handleSubmit(e);
+
               }}
             >
               확인
