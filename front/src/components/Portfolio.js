@@ -93,7 +93,7 @@ function Portfolio() {
                   <div className="dropdown-title">파도타기</div>
                   <div className="triangle-down"></div>
                   <div className="dropdown-content">
-                    <a onClick={() => navigate("network")}>네트워크</a>
+                    <p onClick={() => navigate("/network")}>네트워크</p>
                   </div>
                 </div>
               </div>
