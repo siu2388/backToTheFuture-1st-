@@ -34,6 +34,12 @@ function Portfolio() {
     setIsFetchCompleted(true);
   };
 
+  useEffect(()=>{
+    document.body.style.backgroundColor = portfolioOwner?.bgColor;
+
+    return () => {document.body.style.backgroundColor =""}
+  },[portfolioOwner]);
+
   useEffect(() => {
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
     if (!userState.user) {
@@ -82,12 +88,7 @@ function Portfolio() {
                   isEditable={portfolioOwner.id === userState.user?.id}
                 />
               </div>
-              <div className="profile-text font-kyobohand">
-                ㄴr는.. 오늘도.. 눈물을.. 흘린ㄷr..★
-              </div>
-              <div className="profile-username font-kyobohand">
-                <span style={{ color: "#0f1b5c" }}>수지니</span> (♪♬)
-              </div>
+
               <div className="profile-dropdown">
                 <div className="dropdown-button">
                   <div className="dropdown-title">파도타기</div>
