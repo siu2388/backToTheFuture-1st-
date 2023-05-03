@@ -4,9 +4,11 @@ import * as Api from "../../api";
 
 function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
   const handleDelete = async () => {
-    await Api.delete("educations", education.id).then(() => {
+    await Api.delete("educationId", education.id).then(() => {
       setEducations((prevEducations) =>
-        prevEducations.filter((prevEducation) => prevEducation.id !== education.id)
+        prevEducations.filter(
+          (prevEducation) => prevEducation.id !== education.id
+        )
       );
     });
   };
@@ -22,12 +24,11 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{education?.schoolName}</span>{' '}
-          <span>{education?.major}</span>{' '}
-          <span>{education?.schoolType}</span>{' '}
-          <span>{education?.status}</span>
+          <span>{education?.schoolName}</span> <span>{education?.major}</span>{" "}
+          <span>{education?.schoolType}</span> <span>{education?.status}</span>
           <br />
-          <span>{education?.startDate}</span> ~ <span className="text-muted4">{education?.endDate}</span>
+          <span>{education?.startDate}</span> ~{" "}
+          <span className="text-muted4">{education?.endDate}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
@@ -40,7 +41,11 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
               편집
             </button>
             <>
-              <button variant="outline-danger" onClick={handleShow} className="btn-delete">
+              <button
+                variant="outline-danger"
+                onClick={handleShow}
+                className="btn-delete"
+              >
                 삭제
               </button>
 
@@ -50,7 +55,11 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <button variant="secondary" onClick={handleClose} className="btn-cancel">
+                  <button
+                    variant="secondary"
+                    onClick={handleClose}
+                    className="btn-cancel"
+                  >
                     취소
                   </button>
                   <button

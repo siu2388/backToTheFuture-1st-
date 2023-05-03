@@ -2,25 +2,21 @@ import { Card, Modal, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
-
 function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
   const handleDelete = async () => {
-    await Api.delete("careers", career.id).then(() => {
+    await Api.delete("careerId", career.id).then(() => {
       setCareers((prevCareers) =>
         prevCareers.filter((prevCareer) => prevCareer.id !== career.id)
       );
     });
   };
 
+  useEffect(() => {}, [career]);
 
-useEffect(() => {}, [career]);
+  const [show, setShow] = useState(false);
 
-const [show, setShow] = useState(false);
-
-
-const handleClose = () => setShow(false);
-const handleShow = () => setShow(true);
-
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Card.Text>
@@ -43,7 +39,7 @@ const handleShow = () => setShow(true);
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
             <button
               onClick={() => setIsEditing((prev) => !prev)}
-              className="btn-edit" 
+              className="btn-edit"
             >
               편집
             </button>

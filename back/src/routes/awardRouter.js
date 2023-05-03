@@ -100,7 +100,6 @@ awardRouter.delete("/awardId/:id", async (req, res, next) => {
 // 특정 사용자의 전체 수상 목록을 얻음
 awardRouter.get("/awardlist/:userId", async (req, res, next) => {
   try {
-    // @ts-ignore
     const userId = req.params.userId;
     const awardList = await AwardService.getAwardList({ userId });
     res.status(200).send(awardList);
