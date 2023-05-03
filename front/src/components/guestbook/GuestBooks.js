@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import * as Api from '../../api';
 import GuestBook from "./GuestBook";
 import GuestBookAddForm from "./GuestBookAddForm";
+
+import { UserStateContext } from "../../App";
 
 
 function GuestBooks({ guestBookPageOwnerId, isEditable }) {
@@ -10,6 +12,9 @@ function GuestBooks({ guestBookPageOwnerId, isEditable }) {
   const [guestBooks, setGuestBooks] = useState([]);
   //useState로 isAdding 상태를 생성함.
   const [isAdding, setIsAdding] = useState(false);
+  const userState = useContext(UserStateContext);
+
+  const[users, setUsers] = useState([]);
 
   useEffect(() => {
     // "guestBooklist/유저id"로 GET 요청하고, response의 data로 guestBooks를 세팅함.
@@ -21,24 +26,22 @@ function GuestBooks({ guestBookPageOwnerId, isEditable }) {
     <Card>
       <Card.Body>
         <Card.Title>방명록</Card.Title>
+        if (userState.user) {
+          <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
+        }
+        
         {guestBooks
         .filter((guestBook) => guestBook.receiverId === guestBookPageOwnerId)
         .map((guestBook) => (
           <GuestBook
-            key={guestBook.authorId}
+            key={guestBook.receiverId}
             guestBook={guestBook}
             setGuestBooks={setGuestBooks}
             isEditable={isEditable}
 
           />
         ))}
-        {isEditable && (
-          <Row className="mt-3 text-center mb-4">
-            <Col sm={{ span: 20 }}>
-              <Button onClick={() => setIsAdding(true)}>+</Button>
-            </Col>
-          </Row>
-        )}
+
         {isAdding && (
           <GuestBookAddForm
             guestBookPageOwnerId={guestBookPageOwnerId}
