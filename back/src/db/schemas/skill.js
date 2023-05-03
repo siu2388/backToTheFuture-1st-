@@ -18,7 +18,7 @@ const SkillSchema = new Schema(
       type: String,
     },
     period: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

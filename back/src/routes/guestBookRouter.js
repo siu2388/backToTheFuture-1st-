@@ -22,12 +22,13 @@ guestBookRouter.post("/guestBooks/:receiverId", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const receiverId = req.params.receiverId;
-    const content = req.body.content;
+    const { authorName, content } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newGuestBook = await GuestBookService.addGuestBook({
       authorId,
       receiverId,
+      authorName,
       content,
     });
 

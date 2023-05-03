@@ -5,6 +5,7 @@ class GuestBookService {
   static async addGuestBook({
     authorId,
     receiverId,
+    authorName,
     content,
     createdAt,
     updatedAt,
@@ -17,6 +18,7 @@ class GuestBookService {
       id,
       authorId,
       receiverId,
+      authorName,
       content,
       createdAt,
       updatedAt,
