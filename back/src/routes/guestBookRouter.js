@@ -8,7 +8,7 @@ import { GuestBookService } from "../services/guestBookService";
  */
 const guestBookRouter = Router();
 guestBookRouter
-  .route("/guestBooks:receiverId/")
+  .route("/guestBooks/:receiverId")
   .post(login_required, async (req, res, next) => {
     //여기서 작성자는 누구?  -> 토큰을 가진 유저 아무나
     const authorId = req.currentUserId;
