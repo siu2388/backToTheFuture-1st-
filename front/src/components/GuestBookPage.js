@@ -110,7 +110,7 @@ function GuestBookPage() {
                   <div id="guestBook-section">
                     <GuestBooks
                       guestBookPageOwnerId={guestBookPageOwner.id}
-                      isEditable={guestBookPageOwner.id === userState.user?.id}
+                      
                     />
                   </div>
                 </div>

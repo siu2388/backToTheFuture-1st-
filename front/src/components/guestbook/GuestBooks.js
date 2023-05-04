@@ -7,14 +7,14 @@ import GuestBookAddForm from "./GuestBookAddForm";
 import { UserStateContext } from "../../App";
 
 
-function GuestBooks({ guestBookPageOwnerId, isEditable }) {
+function GuestBooks({ guestBookPageOwnerId }) {
   //useState로 guestBooks 상태를 생성함.
   const [guestBooks, setGuestBooks] = useState([]);
   //useState로 isAdding 상태를 생성함.
   const [isAdding, setIsAdding] = useState(false);
   const userState = useContext(UserStateContext);
 
-  const[users, setUsers] = useState([]);
+
 
   useEffect(() => {
     // "guestBooklist/유저id"로 GET 요청하고, response의 data로 guestBooks를 세팅함.
@@ -37,7 +37,9 @@ function GuestBooks({ guestBookPageOwnerId, isEditable }) {
             key={guestBook.id}
             guestBook={guestBook}
             setGuestBooks={setGuestBooks}
-            isEditable={isEditable}
+            isEditable={guestBook.receiverId === userState.user?.id
+            ||guestBook.authorId=== userState.user?.id
+          }
 
           />
         ))}
