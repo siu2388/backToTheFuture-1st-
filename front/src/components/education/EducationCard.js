@@ -29,8 +29,8 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
             <span>{education?.schoolType}</span>{" "}
             <span>{education?.status}</span>
             <br />
-            <span>{education?.startDate}</span> ~{" "}
-            <span className="text-muted4">{education?.endDate}</span>
+            <span className="text-muted">{education?.startDate}</span> ~{" "}
+            <span className="text-muted">{education?.endDate}</span>
           </Col>
           {isEditable && (
             <Col xs lg="3.2" className="component-card-col-right">
