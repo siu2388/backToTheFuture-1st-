@@ -6,7 +6,7 @@ const multer = require("multer");
 const projectRouter = Router();
 projectRouter.use(login_required);
 
-projectRouter.post("/project/create", async function (req, res, next) {
+projectRouter.post("/project/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -27,6 +27,10 @@ projectRouter.post("/project/create", async function (req, res, next) {
       archive,
       description,
     });
+
+    if (newProject.errorMessage) {
+      throw new Error (newProject.errorMessage);
+    }
 
     res.status(201).json(newProject);
   } catch (error) {

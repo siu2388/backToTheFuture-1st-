@@ -16,8 +16,7 @@ educationRouter.post("/education/create", async function (req, res, next) {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { schoolName, schoolType, major, status, startDate, endDate } =
-      req.body;
+    const { schoolName, schoolType, major, status, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newEducation = await EducationService.addEducation({
@@ -29,6 +28,10 @@ educationRouter.post("/education/create", async function (req, res, next) {
       startDate,
       endDate,
     });
+
+    if (newEducation.errorMessage) {
+      throw new Error (newEducation.errorMessage);
+    }
 
     res.status(201).json(newEducation);
   } catch (error) {
@@ -70,20 +73,10 @@ educationRouter.put(
       const startDate = req.body.startDate ?? null;
       const endDate = req.body.endDate ?? null;
 
-      const toUpdate = {
-        schoolName,
-        schoolType,
-        major,
-        status,
-        startDate,
-        endDate,
-      };
+      const toUpdate = { schoolName, schoolType, major, status, startDate, endDate };
 
       // 위 추출된 정보를 이용하여 db의 데이터 수정하기
-      const education = await EducationService.setEducation({
-        educationId,
-        toUpdate,
-      });
+      const education = await EducationService.setEducation({ educationId, toUpdate });
 
       if (education.errorMessage) {
         throw new Error(education.errorMessage);

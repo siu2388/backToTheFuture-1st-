@@ -28,6 +28,10 @@ skillRouter.post("/skill/create", async (req, res, next) => {
       endDate,
     });
 
+    if (newSkill.errorMessage) {
+      throw new Error (newSkill.errorMessage);
+    }
+    
     res.status(201).json(newSkill);
   } catch (error) {
     next(error);

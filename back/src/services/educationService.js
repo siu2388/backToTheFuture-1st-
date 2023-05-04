@@ -9,6 +9,68 @@ class EducationService {
 
     // db에 저장
     const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
+    
+    if (!newEducation.startDate) {
+      const errorMessage = "Education startDate를 입력해주세요.";
+      return { errorMessage };
+    }
+    if (!newEducation.endDate) {
+      const errorMessage = "Education endDate를 입력해주세요.";
+      return { errorMessage };
+    }
+    if (newEducation.startDate.length !== 8) {
+      const errorMessage = "Education startDate를 YYYYMMDD, 8자리로 입력해주세요.";
+      return { errorMessage };
+    }
+    // if (!Number.isInteger(newEducation.startDate)) {
+    //   const errorMessage = "Education startDate를 YYYYMMDD, 8자리 정수로 입력해주세요.";
+    //   return { errorMessage };
+    // }
+    if (newEducation.endDate.length !== 8) {
+      const errorMessage = "Education endDate를 YYYYMMDD, 8자리로 입력해주세요.";
+      return { errorMessage };
+    }
+    // if (!Number.isInteger(newEducation.endDate)) {
+    //   const errorMessage = "Education endDate를 YYYYMMDD, 8자리 정수로 입력해주세요.";
+    //   return { errorMessage };
+    // }
+    if (newEducation.startDate > newEducation.endDate) {
+      const errorMessage = "Education startDate가 endDate보다 나중일 순 없습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.startDate[4] > 1) {
+      const errorMessage = "Education startDate의 month 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.startDate[5] > 2) {
+      const errorMessage = "Education startDate의 month 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.startDate[6] > 3) {
+      const errorMessage = "Education startDate의 day 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.startDate[6] === '3' && newEducation.startDate[7] > 1 ) {
+      const errorMessage = "Education startDate의 day 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.endDate[4] > 1) {
+      const errorMessage = "Education endDate의 month 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.endDate[5] > 2) {
+      const errorMessage = "Education endDate의 month 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.endDate[6] > 3) {
+      const errorMessage = "Education endDate의 day 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newEducation.endDate[6] === '3' && newEducation.endDate[7] > 1 ) {
+      const errorMessage = "Education endDate의 day 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+
     const createdNewEducation = await Education.create({ newEducation });
 
     return createdNewEducation;
@@ -68,12 +130,64 @@ class EducationService {
     if (toUpdate.startDate) {
       const fieldToUpdate = "startDate";
       const newValue = toUpdate.startDate;
+
+      if (newValue.length !== 8) {
+        const errorMessage = "Education startDate를 YYYYMMDD, 8자리로 입력해서 수정해주세요.";
+        return { errorMessage };
+      }
+      // if (!Number.isInteger(newValue)) {
+      //   const errorMessage = "Education startDate를 YYYYMMDD, 8자리 정수로 입력해서 수정해주세요.";
+      //   return { errorMessage };
+      // }
+      if (newValue[4] > 1) {
+        const errorMessage = "Education startDate의 month 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[5] > 2) {
+        const errorMessage = "Education startDate의 month 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] > 3) {
+        const errorMessage = "Education startDate의 day 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] === '3' && newValue[7] > 1 ) {
+        const errorMessage = "Education startDate의 day 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.endDate) {
       const fieldToUpdate = "endDate";
       const newValue = toUpdate.endDate;
+
+      if (newValue.length !== 8) {
+        const errorMessage = "Education endDate를 YYYYMMDD, 8자리로 입력해서 수정해주세요.";
+        return { errorMessage };
+      }
+      // if (!Number.isInteger(newValue)) {
+      //   const errorMessage = "Education endDate를 YYYYMMDD, 8자리 정수로 입력해서 수정해주세요!";
+      //   return { errorMessage };
+      // }
+      if (newValue[4] > 1) {
+        const errorMessage = "Education endDate의 month 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[5] > 2) {
+        const errorMessage = "Education endDate의 month 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] > 3) {
+        const errorMessage = "Education endDate의 day 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] === '3' && newValue[7] > 1 ) {
+        const errorMessage = "Education endDate의 day 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
 

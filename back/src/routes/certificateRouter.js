@@ -7,7 +7,7 @@ const multer = require("multer");
 const certificateRouter = Router();
 certificateRouter.use(login_required);
 
-certificateRouter.post("/certificate/create", async function (req, res, next) {
+certificateRouter.post("/certificate/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(

@@ -9,8 +9,38 @@ class AwardService {
 
     // db에 저장
     const newAward = { id, userId, title, grade, date, description };
-    const createdNewAward = await Award.create({ newAward });
 
+    if (!newAward.date) {
+        const errorMessage = "Award date를 입력해주세요.";
+        return { errorMessage };
+      }
+    if (newAward.date.length !== 8) {
+      const errorMessage = "Award date를 YYYYMMDD, 8자리로 입력해주세요.";
+      return { errorMessage };
+    }
+    // if (!Number.isInteger(newAward.date)) {
+    //   const errorMessage = "Award date를 YYYYMMDD, 8자리 정수로 입력해주세요.";
+    //   return { errorMessage };
+    // }
+    if (newAward.date[4] > 1) {
+      const errorMessage = "Award date의 month 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newAward.date[5] > 2) {
+      const errorMessage = "Award date의 month 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newAward.date[6] > 3) {
+      const errorMessage = "Award date의 day 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newAward.date[6] === '3' && newAward.date[7] > 1 ) {
+      const errorMessage = "Award date의 day 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    
+    const createdNewAward = await Award.create({ newAward });
+    
     return createdNewAward;
   }
 
@@ -55,6 +85,36 @@ class AwardService {
     if (toUpdate.date) {
       const fieldToUpdate = "date";
       const newValue = toUpdate.date;
+      
+      // if (!newValue) {
+      //   const errorMessage = "수정 시, Award date를 입력해주세요.";
+      //   return { errorMessage };
+      // }
+      if (newValue.length !== 8) {
+        const errorMessage = "Award date를 YYYYMMDD, 8자리로 입력해서 수정해주세요.";
+        return { errorMessage };
+      }
+      // if (!Number.isInteger(newValue)) {
+      //   const errorMessage = "Award date를 YYYYMMDD, 8자리 정수로 입력해서 수정해주세요.";
+      //   return { errorMessage };
+      // }
+      if (newValue[4] > 1) {
+        const errorMessage = "Award date의 month 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[5] > 2) {
+        const errorMessage = "Award date의 month 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] > 3) {
+        const errorMessage = "Award date의 day 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] === '3' && newValue[7] > 1 ) {
+        const errorMessage = "Award date의 day 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+
       award = await Award.update({ awardId, fieldToUpdate, newValue });
     }
 

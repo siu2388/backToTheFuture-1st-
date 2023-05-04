@@ -9,6 +9,68 @@ class ProjectService {
 
     // db에 저장
     const newProject = { id, userId, title, startDate, endDate, archive, description };
+    
+    if (!newProject.startDate) {
+      const errorMessage = "Project startDate를 입력해주세요.";
+      return { errorMessage };
+    }
+    if (!newProject.endDate) {
+      const errorMessage = "Project endDate를 입력해주세요.";
+      return { errorMessage };
+    }
+    if (newProject.startDate.length !== 8) {
+      const errorMessage = "Project startDate를 YYYYMMDD, 8자리로 입력해주세요.";
+      return { errorMessage };
+    }
+    // if (!Number.isInteger(newProject.startDate)) {
+    //   const errorMessage = "Project startDate를 YYYYMMDD, 8자리 정수로 입력해주세요.";
+    //   return { errorMessage };
+    // }
+    if (newProject.endDate.length !== 8) {
+      const errorMessage = "Project endDate를 YYYYMMDD, 8자리로 입력해주세요.";
+      return { errorMessage };
+    }
+    // if (!Number.isInteger(newProject.endDate)) {
+    //   const errorMessage = "Project endDate를 YYYYMMDD, 8자리 정수로 입력해주세요.";
+    //   return { errorMessage };
+    // }
+    if (newProject.startDate > newProject.endDate) {
+      const errorMessage = "Project startDate가 endDate보다 나중일 순 없습니다.";
+      return { errorMessage };
+    }
+    if (newProject.startDate[4] > 1) {
+      const errorMessage = "Project startDate의 month 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.startDate[5] > 2) {
+      const errorMessage = "Project startDate의 month 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.startDate[6] > 3) {
+      const errorMessage = "Project startDate의 day 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.startDate[6] === '3' && newProject.startDate[7] > 1 ) {
+      const errorMessage = "Project startDate의 day 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.endDate[4] > 1) {
+      const errorMessage = "Project endDate의 month 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.endDate[5] > 2) {
+      const errorMessage = "Project endDate의 month 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.endDate[6] > 3) {
+      const errorMessage = "Project endDate의 day 첫째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+    if (newProject.endDate[6] === '3' && newProject.endDate[7] > 1 ) {
+      const errorMessage = "Project endDate의 day 둘째 자리를 잘못 입력했습니다.";
+      return { errorMessage };
+    }
+
     const createdNewProject = await Project.create({ newProject });
 
     return createdNewProject;
@@ -50,12 +112,64 @@ class ProjectService {
     if (toUpdate.startDate) {
       const fieldToUpdate = "startDate";
       const newValue = toUpdate.startDate;
+
+      if (newValue.length !== 8) {
+        const errorMessage = "Project startDate를 YYYYMMDD, 8자리로 입력해서 수정해주세요.";
+        return { errorMessage };
+      }
+      // if (!Number.isInteger(newValue)) {
+      //   const errorMessage = "Project startDate를 YYYYMMDD, 8자리 정수로 입력해서 수정해주세요.";
+      //   return { errorMessage };
+      // }
+      if (newValue[4] > 1) {
+        const errorMessage = "Project startDate의 month 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[5] > 2) {
+        const errorMessage = "Project startDate의 month 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] > 3) {
+        const errorMessage = "Project startDate의 day 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] === '3' && newValue[7] > 1 ) {
+        const errorMessage = "Project startDate의 day 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
 
     if (toUpdate.endDate) {
       const fieldToUpdate = "endDate";
       const newValue = toUpdate.endDate;
+      
+      if (newValue.length !== 8) {
+        const errorMessage = "Project endDate를 YYYYMMDD, 8자리로 입력해서 수정해주세요.";
+        return { errorMessage };
+      }
+      // if (!Number.isInteger(newValue)) {
+      //   const errorMessage = "Project endDate를 YYYYMMDD, 8자리 정수로 입력해서 수정해주세요!";
+      //   return { errorMessage };
+      // }
+      if (newValue[4] > 1) {
+        const errorMessage = "Project endDate의 month 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[5] > 2) {
+        const errorMessage = "Project endDate의 month 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] > 3) {
+        const errorMessage = "Project endDate의 day 첫째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+      if (newValue[6] === '3' && newValue[7] > 1 ) {
+        const errorMessage = "Project endDate의 day 둘째 자리를 잘못 입력했습니다.";
+        return { errorMessage };
+      }
+
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
     

@@ -28,6 +28,10 @@ awardRouter.post("/award/create", async (req, res, next) => {
       description,
     });
 
+    if (newAward.errorMessage) {
+      throw new Error(newAward.errorMessage);
+    }
+
     res.status(201).json(newAward);
   } catch (error) {
     next(error);
