@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import convertTime from "../ConverTime";
 import * as Api from "../../api";
@@ -35,6 +35,14 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
       alert("프로젝트 설명을 작성해 주세요.");
       return;
     }
+
+    const isValidDate = startDate <= endDate
+
+    if (!isValidDate) {
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.")
+      return;
+    }
+
 
     // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentProject.userId;
