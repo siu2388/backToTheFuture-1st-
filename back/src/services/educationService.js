@@ -12,7 +12,7 @@ class EducationService {
     const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
     
     // 공란일 경우, 에러 메시지 반환
-    if (!newEducation.schoolName || !newEducation.schoolType || !newEducation.major || !newEducation.status || !newEducation.startDate || !newEducation.endDate) {
+    if (!newEducation.schoolName || !newEducation.status || !newEducation.startDate || !newEducation.endDate) {
       const errorMessage = 
         "Education 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
