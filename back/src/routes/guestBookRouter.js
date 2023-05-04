@@ -32,7 +32,8 @@ guestBookRouter.post("/guestBooks/:receiverId", async (req, res, next) => {
       content,
     });
 
-    return res.status(201).json(newGuestBook);
+    res.status(201).json(newGuestBook);
+    return;
   } catch (error) {
     next(error);
   }
@@ -71,13 +72,14 @@ guestBookRouter.delete(
         res.status(403).json("권한이 없습니다.");
         return;
       } else {
-        //삭제
+        // 맞으면 삭제
         const result = await GuestBookService.deleteGuestBookByGuestBookId({
           guestBookId: req.params.guestBookId,
         });
 
         if (result.errorMessage) throw "삭제 에러 발생";
-        return res.status(200).json("삭제 완료");
+        res.status(200).json("삭제 완료");
+        return;
       }
     } catch (err) {
       next(err);
@@ -102,15 +104,14 @@ guestBookRouter.delete(
       if (foundGuestBook.receiverId !== receiverId) {
         return res.status(403).json("권한이 없습니다.");
       } else {
-        /**
-         * 삭제
-         */
+        // 맞으면 삭제
         const result = await GuestBookService.deleteGuestBookByGuestBookId({
           guestBookId: req.params.guestBookId,
         });
 
         if (result.errorMessage) throw "삭제 에러 발생";
-        return res.status(200).json("삭제 완료");
+        res.status(200).json("삭제 완료");
+        return;
       }
     } catch (err) {
       next(err);

@@ -6,7 +6,7 @@ const multer = require("multer");
 const educationRouter = Router();
 educationRouter.use(login_required);
 
-educationRouter.post("/education/create", async function (req, res, next) {
+educationRouter.post("/education/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -16,8 +16,7 @@ educationRouter.post("/education/create", async function (req, res, next) {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { schoolName, schoolType, major, status, startDate, endDate } =
-      req.body;
+    const { schoolName, schoolType, major, status, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newEducation = await EducationService.addEducation({
@@ -31,12 +30,13 @@ educationRouter.post("/education/create", async function (req, res, next) {
     });
 
     res.status(201).json(newEducation);
+    return;
   } catch (error) {
     next(error);
   }
 });
 
-educationRouter.get("/educationId/:id", async function (req, res, next) {
+educationRouter.get("/educationId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;
@@ -49,6 +49,7 @@ educationRouter.get("/educationId/:id", async function (req, res, next) {
     }
 
     res.status(200).send(education);
+    return;
   } catch (error) {
     next(error);
   }
@@ -90,13 +91,14 @@ educationRouter.put(
       }
 
       res.status(200).send(education);
+      return;
     } catch (error) {
       next(error);
     }
   }
 );
 
-educationRouter.delete("/educationId/:id", async function (req, res, next) {
+educationRouter.delete("/educationId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const educationId = req.params.id;
@@ -109,18 +111,19 @@ educationRouter.delete("/educationId/:id", async function (req, res, next) {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
 });
 
-educationRouter.get("/educationlist/:userId", async function (req, res, next) {
+educationRouter.get("/educationlist/:userId", async (req, res, next) => {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
-    // @ts-ignore
     const userId = req.params.userId;
     const educationList = await EducationService.getEducationList({ userId });
     res.status(200).send(educationList);
+    return;
   } catch (error) {
     next(error);
   }

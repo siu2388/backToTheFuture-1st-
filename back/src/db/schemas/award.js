@@ -18,7 +18,7 @@ const AwardSchema = new Schema(
       type: String,
     },
     date: {
-      type: Number,
+      type: Date,
       required: true,
     },
     description: {
@@ -29,6 +29,11 @@ const AwardSchema = new Schema(
   },
   {
     timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.date = ret.date.toISOString().slice(0, 10);
+      },
+    },
   }
 );
 

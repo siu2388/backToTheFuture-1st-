@@ -17,8 +17,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { company, department, position, description, startDate, endDate } =
-      req.body;
+    const { company, department, position, description, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newCareer = await CareerService.addCareer({
@@ -32,6 +31,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
     });
 
     res.status(201).json(newCareer);
+    return;
   } catch (error) {
     next(error);
   }
@@ -50,6 +50,7 @@ careerRouter.get("/careerId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(career);
+    return;
   } catch (error) {
     next(error);
   }
@@ -85,6 +86,7 @@ careerRouter.put("/careerId/:id", multer().none(), async (req, res, next) => {
     }
 
     res.status(200).send(career);
+    return;
   } catch (error) {
     next(error);
   }
@@ -104,6 +106,7 @@ careerRouter.delete("/careerId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
@@ -115,6 +118,7 @@ careerRouter.get("/careerlist/:userId", async (req, res, next) => {
     const userId = req.params.userId;
     const careerList = await CareerService.getCareerList({ userId });
     res.status(200).send(careerList);
+    return;
   } catch (error) {
     next(error);
   }

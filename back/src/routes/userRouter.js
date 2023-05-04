@@ -55,7 +55,8 @@ userAuthRouter.post("/user/register", async (req, res, next) => {
       throw new Error(newUser.errorMessage);
     }
 
-    return res.status(201).json(newUser);
+    res.status(201).json(newUser);
+    return;
   } catch (error) {
     next(error);
   }
@@ -73,7 +74,8 @@ userAuthRouter.post("/user/login", async (req, res, next) => {
       throw new Error(user.errorMessage);
     }
     //프론트에 전달
-    return res.status(200).send(user);
+    res.status(200).send(user);
+    return;
   } catch (error) {
     next(error);
   }
@@ -85,7 +87,8 @@ userAuthRouter.get("/userlist", login_required, async (req, res, next) => {
     // 전체 사용자 목록을 얻음
     const users = await userAuthService.getUsers();
 
-    return res.status(200).send(users);
+    res.status(200).send(users);
+    return;
   } catch (error) {
     next(error);
   }
@@ -103,7 +106,8 @@ userAuthRouter.get("/user/current", login_required, async (req, res, next) => {
       throw new Error(currentUserInfo.errorMessage);
     }
 
-    return res.status(200).send(currentUserInfo);
+    res.status(200).send(currentUserInfo);
+    return;
   } catch (error) {
     next(error);
   }
@@ -154,7 +158,8 @@ userAuthRouter.put(
         throw new Error(updatedUser.errorMessage);
       }
 
-      return res.status(200).json(updatedUser);
+      res.status(200).json(updatedUser);
+      return;
     } catch (error) {
       next(error);
     }
@@ -170,7 +175,8 @@ userAuthRouter.get("/userId/:id", login_required, async (req, res, next) => {
       throw new Error(currentUserInfo.errorMessage);
     }
 
-    return res.status(200).send(currentUserInfo);
+    res.status(200).send(currentUserInfo);
+    return;
   } catch (error) {
     next(error);
   }

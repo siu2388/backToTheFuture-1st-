@@ -21,17 +21,16 @@ const UserSchema = new Schema(
     github: {
       type: String,
       required: false,
-      default : "",
+      default: "",
     },
     blog: {
       type: String,
       required: false,
-      default : "",
+      default: "",
     },
     description: {
       type: String,
       required: false,
-      default: "설명이 아직 없습니다. 추가해 주세요.",
     },
 
     homeName: {
@@ -52,7 +51,6 @@ const UserSchema = new Schema(
     },
     image: {
       path: { type: String },
-      
     },
   },
   {

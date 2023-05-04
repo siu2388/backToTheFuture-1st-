@@ -2,27 +2,12 @@ import { GuestBook } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class GuestBookService {
-  static async addGuestBook({
-    authorId,
-    receiverId,
-    authorName,
-    content,
-    createdAt,
-    updatedAt,
-  }) {
+  static async addGuestBook({ authorId, receiverId, authorName, content, createdAt, updatedAt }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newGuestBook = {
-      id,
-      authorId,
-      receiverId,
-      authorName,
-      content,
-      createdAt,
-      updatedAt,
-    };
+    const newGuestBook = { id, authorId, receiverId, authorName, content, createdAt, updatedAt };
     const createdNewGuestBook = await GuestBook.create({ newGuestBook });
 
     return createdNewGuestBook;

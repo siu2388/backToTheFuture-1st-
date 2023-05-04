@@ -58,9 +58,12 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       <label htmlFor="floatingInputCustom">수상년월</label>
       <DatePicker
         showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
         selected={date}
         onChange={(date) => setDate(date)}
-        />
+      />
 
       <label htmlFor="floatingInputCustom">상세내역</label>
       <Form.Control
