@@ -16,6 +16,27 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if (!title) {
+      alert("프로젝트명을 입력해 주세요.");
+      return;
+    }
+
+    if (!startDate) {
+      alert("활동 시작 날짜를 입력해 주세요.");
+      return;
+    }
+
+    if (!endDate) {
+      alert("활동 종료 날짜를 입력해 주세요. 진행 중이라면 오늘 날짜를 입력해 주세요.");
+      return;
+    }
+
+    if (!description) {
+      alert("프로젝트 설명을 작성해 주세요.");
+      return;
+    }
+
+
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
@@ -56,7 +77,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">프로젝트명</label>
         <Form.Control
           type="text"

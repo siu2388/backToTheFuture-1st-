@@ -157,7 +157,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           </Form.Group>
         </div>
 
-        <div>
+        <div style = {{ fontFamily: 'NanumBarunGothic'}}>
           <Form.Label>홈피 설정</Form.Label>
           <Form.Group controlId="userEditHomeName">
             <Form.Control

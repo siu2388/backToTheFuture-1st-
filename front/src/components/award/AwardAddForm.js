@@ -15,8 +15,15 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-
-    console.log("date: ", date);
+    
+    if (!title) {
+      alert("상 이름을 입력해 주세요.");
+      return;
+    }
+    if (!date) {
+      alert("수상 날짜를 입력해 주세요.")
+      return;
+    }
 
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
@@ -38,6 +45,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       description,
     }
 
+
+
     console.log("data: ", data);
     setDate(convertTime(date));
     data.date = convertTime(date);
@@ -51,7 +60,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">수상내역</label>
       <Form.Control
         id="floatingInputCustom"

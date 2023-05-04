@@ -16,6 +16,26 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if (!schoolName) {
+      alert("학교 이름을 입력해 주세요.");
+      return;
+    }
+
+    if(!status) {
+      alert("재학 상태를 선택해 주세요.");
+      return;
+    }
+
+    if (!startDate) {
+      alert("입학 날짜를 선택해 주세요.");
+      return;
+    }
+
+    if (!endDate) {
+      alert("졸업 날짜를 선택해 주세요. 재학 중이라면 오늘 날짜를 입력해 주세요.");
+      return;
+    }
+
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 

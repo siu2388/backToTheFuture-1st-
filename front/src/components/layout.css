@@ -124,6 +124,7 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "NeoDunggeunmo";
+  
 }
 .menu-container {
   flex: 0.15;
@@ -355,7 +356,7 @@ a button:hover {
   left: 0;
   width: 100%;
 
-  height: 200px;
+  height: 12.5rem;
   overflow-y: auto;
 
   font-family: "NeoDunggeunmo";

@@ -17,6 +17,38 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if (!company) {
+      alert("회사명을 입력해 주세요.");
+      return;
+    }
+
+    if (!department) {
+      alert("부서명을 입력해 주세요.");
+      return;
+    }
+
+    if (!position) {
+      alert("직무를 입력해 주세요.");
+      return;
+    }
+
+    if (!description) {
+      alert("직무 설명을 작성해 주세요.");
+      return;
+    }
+
+    if (!startDate) {
+      alert("근무 시작 날짜를 입력해 주세요.");
+      return;
+    }
+
+    if (!endDate) {
+      alert(
+        "근무 종료 날짜를 입력해 주세요. 재직 중이라면 오늘 날짜를 입력해 주세요."
+      );
+      return;
+    }
+
     // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentCareer.userId;
 
@@ -39,17 +71,16 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       department,
       position,
       description,
-    }
+    };
 
     console.log("data: ", data);
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
-    
+
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
     console.log("data: ", data);
-
 
     // "projectlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("careerlist", userId);
@@ -60,7 +91,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className = "component-card">
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
         <Form.Control
@@ -94,8 +125,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       <label htmlFor="floatingInputCustom">근무 기간</label>
       <br />
       <>
-      <label htmlFor="floatingInputCustom">시작 날짜</label>
-      <DatePicker
+        <label htmlFor="floatingInputCustom">시작 날짜</label>
+        <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"

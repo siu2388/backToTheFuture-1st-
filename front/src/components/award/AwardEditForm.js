@@ -16,6 +16,15 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if (!title) {
+      alert("상 이름을 입력해 주세요.");
+      return;
+    }
+    if (!date) {
+      alert("수상 날짜를 입력해 주세요.")
+      return;
+    }
+
     // currentAward의 userId를 userId 변수에 할당함.
     const userId = currentAward.userId;
 

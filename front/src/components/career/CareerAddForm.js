@@ -19,6 +19,37 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if (!company) {
+      alert("회사명을 입력해 주세요.");
+      return;
+    }
+
+    if (!department) {
+      alert("부서명을 입력해 주세요.");
+      return;
+    }
+
+    if (!position) {
+      alert("직무를 입력해 주세요.");
+      return;
+    }
+
+    if (!description) {
+      alert("직무 설명을 작성해 주세요.")
+      return;
+    }
+
+    if (!startDate) {
+      alert("근무 시작 날짜를 입력해 주세요.")
+      return;
+    }
+
+    if (!endDate) {
+      alert("근무 종료 날짜를 입력해 주세요. 재직 중이라면 오늘 날짜를 입력해 주세요.")
+      return;    
+    }
+
+
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
@@ -61,7 +92,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
 
       <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
