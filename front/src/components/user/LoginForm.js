@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Row, Form, Button } from "react-bootstrap";
 
@@ -61,6 +61,11 @@ function LoginForm() {
       alert("로그인에 실패하였습니다.");
     }
   };
+
+  
+  
+  document.body.style.backgroundColor = "#d9d7da";
+
 
   return (
     

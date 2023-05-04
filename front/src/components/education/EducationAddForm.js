@@ -55,7 +55,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         value={schoolType}
         onChange={(e) => setSchoolType(e.target.value)}
       >
-        <option value="">select</option>
+        <option value=""></option>
         <option value="학사">학사</option>
         <option value="석사">석사</option>
         <option value="박사">박사</option>
@@ -73,7 +73,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         
 
         <Form.Select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option>상태</option>
+        
         <option value="재학중">재학중</option>
         <option value="휴학">휴학</option>
         <option value="수료">수료</option>
@@ -81,22 +81,22 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         </Form.Select>
 
       
-      <label htmlFor="floatingInputCustom">입학년월</label>
+      <label htmlFor="floatingInputCustom">입학날짜</label>
         <Form.Control
           id="floatingInputCustom"
           type="text"
           value={startDate}
-          placeholder="예: 202103"
+          placeholder="예: 20210302"
           onChange={(e) => setStartDate(e.target.value)}
         />  
 
 
-      <label htmlFor="floatingInputCustom">졸업년월</label>
+      <label htmlFor="floatingInputCustom">졸업날짜</label>
         <Form.Control
           id="floatingPasswordCustom"
           type="text"
           value={endDate}
-          placeholder="예: 202309"
+          placeholder="예: 20230906"
           onChange={(e) => setEndDate(e.target.value)}
         />
 

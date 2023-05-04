@@ -47,19 +47,19 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
 
 
 
-      <label htmlFor="floatingInputCustom">시작 년월</label>
+      <label htmlFor="floatingInputCustom">시작날짜</label>
         <Form.Control
           type="text"
-          placeholder="예: 2020-02"
+          placeholder="예: 20230424"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
 
 
-      <label htmlFor="floatingInputCustom">완료 년월</label>
+      <label htmlFor="floatingInputCustom">완료날짜</label>
         <Form.Control
           type="text"
-          placeholder="예: 2022-02"
+          placeholder="예: 20230506"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
