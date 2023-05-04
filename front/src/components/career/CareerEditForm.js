@@ -60,7 +60,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
         <Form.Control
