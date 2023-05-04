@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -62,6 +63,12 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />
+      <label>DatePicker</label>
+      <DatePicker
+        showIcon
+        selected={date}
+        onChange={(date) => setDate(date)}
+        />
 
       <label htmlFor="floatingInputCustom">상세내역</label>
       <Form.Control
