@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -55,13 +56,11 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       />
 
       <label htmlFor="floatingInputCustom">수상년월</label>
-      <Form.Control
-        id="floatingInputCustom"
-        type="text"
-        placeholder="예 : 20230101"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
+      <DatePicker
+        showIcon
+        selected={date}
+        onChange={(date) => setDate(date)}
+        />
 
       <label htmlFor="floatingInputCustom">상세내역</label>
       <Form.Control

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
@@ -70,23 +71,25 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">근무 기간</label>
-      <Form.Group controlId="formBasicStartDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 20230227"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+      <>
+        <DatePicker
+          showIcon
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
         />
-      </Form.Group>
-
-      <Form.Group controlId="formBasicEndDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 20230811"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+        <DatePicker
+          showIcon
+          selected={endDate}
+          onChange={(date) => setEndDate(date)}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          minDate={startDate}
         />
-      </Form.Group>
+      </>
 
       <label htmlFor="floatingInputCustom">직무설명</label>
       <Form.Group controlId="formBasicDescription">

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 
@@ -56,14 +56,6 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       />
 
       <label htmlFor="floatingInputCustom">수상년월</label>
-      <Form.Control
-        id="floatingInputCustom"
-        type="text"
-        placeholder="예 : 20230101"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
-      <label>DatePicker</label>
       <DatePicker
         showIcon
         selected={date}
