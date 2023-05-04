@@ -27,7 +27,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
           <span>{education?.schoolName}</span> <span>{education?.major}</span>{" "}
           <span>{education?.schoolType}</span> <span>{education?.status}</span>
           <br />
-          <span>{education?.startDate}</span> ~{" "}
+          <span>{`education?.startDate`}</span> ~{" "}
           <span className="text-muted4">{education?.endDate}</span>
         </Col>
         {isEditable && (
