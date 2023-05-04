@@ -12,7 +12,7 @@ class EducationService {
     const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
     
     // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
-    if((newEducation.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
+    if((newEducation.endDate) && (!moment(newEducation.startDate).isBefore(moment(newEducation.endDate)))){
       const errorMessage =
         "Education 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
