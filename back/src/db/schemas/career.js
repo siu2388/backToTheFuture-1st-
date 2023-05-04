@@ -41,7 +41,9 @@ const CareerSchema = new Schema(
     toJSON: {
       transform(doc, ret) {
         ret.startDate = ret.startDate.toISOString().slice(0, 10);
-        ret.endDate = ret.endDate.toISOString().slice(0, 10);
+        ret.endDate = ret.endDate
+          ? ret.endDate.toISOString().slice(0, 10)
+          : null;
       },
     },
   }

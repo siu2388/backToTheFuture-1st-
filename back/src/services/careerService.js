@@ -3,12 +3,29 @@ import { Career } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class CareerService {
-  static async addCareer({ userId, company, department, position, description, startDate, endDate }) {
+  static async addCareer({
+    userId,
+    company,
+    department,
+    position,
+    description,
+    startDate,
+    endDate,
+  }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newCareer = { id, userId, company, department, position, description, startDate, endDate };
+    const newCareer = {
+      id,
+      userId,
+      company,
+      department,
+      position,
+      description,
+      startDate,
+      endDate,
+    };
     const createdNewCareer = await Career.create({ newCareer });
 
     return createdNewCareer;
@@ -41,6 +58,19 @@ class CareerService {
       return { errorMessage };
     }
 
+    /**
+     * 조회된 커리어는 알맞게 데이터가 들어가 있다고 가정
+     * 재직 시작이랑 종료 기간 모두 입력
+     * 재직 시작만 입력
+     * 만약 endDate = null 이면 프론트에서는 재직중으로 보여준다.
+     */
+    if((toUpdate.endDate) && (toUpdate.startDate > toUpdate.endDate)){
+      const errorMessage =
+        "말이 안됨";
+      return { errorMessage };
+    }
+
+    // *********************************** 업데이트 로직
     if (toUpdate.company) {
       const fieldToUpdate = "company";
       const newValue = toUpdate.company;
@@ -70,11 +100,9 @@ class CareerService {
       career = await Career.update({ careerId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.endDate) {
-      const fieldToUpdate = "endDate";
-      const newValue = toUpdate.endDate;
-      career = await Career.update({ careerId, fieldToUpdate, newValue });
-    }
+    const fieldToUpdate = "endDate";
+    const newValue = toUpdate.endDate || null;
+    career = await Career.update({ careerId, fieldToUpdate, newValue });
 
     return career;
   }
