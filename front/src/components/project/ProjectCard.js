@@ -25,13 +25,11 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
           <Col className="component-card-col-left">
             <span>{project?.title}</span>
             <br />
-            <span>{project?.startDate}</span>
+            <span className="text-muted">{project?.startDate} ~ {project?.endDate}</span>
             <br />
-            <span>{project?.endDate}</span>
+            <span className="text-muted">{project?.description}</span>
             <br />
-            <span>{project?.description}</span>
-            <br />
-            <span>{project?.archive}</span>
+            <span className="text-muted">{project?.archive}</span>
           </Col>
           {isEditable && (
             <Col xs lg="3.2" className="component-card-col-right">

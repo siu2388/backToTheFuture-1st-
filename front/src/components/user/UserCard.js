@@ -9,7 +9,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
       <Card.Body style={{width:"18rem" ,height:"25rem"}}>
         <Row xs="auto" className="justify-content-md-center">
           <Card.Img
-            style={{ width: "12rem", height: "8rem", align: "center" }}
+            style={{ width: "12rem", height: "12rem", align: "center" }}
             className="mb-3"
             src={`${serverUrl}${user?.image?.path || "uploads/profile.jpg"}`} // fallback 이미지
             alt="프로필 이미지"
