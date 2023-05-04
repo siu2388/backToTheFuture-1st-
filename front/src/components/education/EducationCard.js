@@ -25,9 +25,9 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
       <Card.Text>
         <Row className="align-items-center">
           <Col className="component-card-col-left">
-            <span>{education?.schoolName}</span> <span>{education?.major}</span>{" "}
-            <span>{education?.schoolType}</span>{" "}
-            <span>{education?.status}</span>
+            <span>{education?.schoolName}</span> <span className="text-muted">{education?.major}</span>{" "}
+            <span className="text-muted">{education?.schoolType}</span>{" "}
+            <span className="text-muted">{education?.status}</span>
             <br />
             <span className="text-muted">{education?.startDate} ~ {education?.endDate}</span>
             <br />
