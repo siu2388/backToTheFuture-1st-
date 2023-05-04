@@ -60,7 +60,11 @@ function LoginForm() {
       // 기본 페이지로 이동함.
       navigate("/", { replace: true });
     } catch (err) {
-      alert("로그인에 실패하였습니다.");
+      if (err.response && err.response.status === 400) {
+        alert("비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.");
+      } else {
+        alert("로그인에 실패하였습니다.");
+      }
     }
   };
 

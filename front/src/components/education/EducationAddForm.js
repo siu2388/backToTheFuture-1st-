@@ -74,7 +74,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         value={schoolType}
         onChange={(e) => setSchoolType(e.target.value)}
       >
-        <option value="">선택해주세요</option>
+        <option value="">학위를 선택해주세요</option>
         <option value="학사">학사</option>
         <option value="석사">석사</option>
         <option value="박사">박사</option>
@@ -90,7 +90,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       />
 
       <Form.Select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value="">선택해주세요</option>
+        <option value="">재학여부를 선택해주세요</option>
         <option value="재학중">재학중</option>
         <option value="휴학">휴학</option>
         <option value="수료">수료</option>
