@@ -28,11 +28,11 @@ const CareerSchema = new Schema(
       default: "직무 설명이 아직 없습니다. 추가해 주세요.",
     },
     startDate: {
-      type: Number,
+      type: Date,
       required: true,
     },
     endDate: {
-      type: Number,
+      type: Date,
       required: true,
     },
   },

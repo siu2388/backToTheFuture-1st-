@@ -7,7 +7,7 @@ const multer = require("multer");
 const certificateRouter = Router();
 certificateRouter.use(login_required);
 
-certificateRouter.post("/certificate/create", async function (req, res, next) {
+certificateRouter.post("/certificate/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -34,7 +34,7 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
   }
 });
 
-certificateRouter.get("/certificateId/:id", async function (req, res, next) {
+certificateRouter.get("/certificateId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const certificateId = req.params.id;
@@ -57,7 +57,7 @@ certificateRouter.get("/certificateId/:id", async function (req, res, next) {
 certificateRouter.put(
   "/certificateId/:id",
   multer().none(),
-  async function (req, res, next) {
+  async (req, res, next) => {
     try {
       // URI로부터 수상 데이터 id를 추출함.
       const certificateId = req.params.id;
@@ -109,7 +109,7 @@ certificateRouter.delete("/certificateId/:id", async (req, res, next) => {
 
 certificateRouter.get(
   "/certificatelist/:userId",
-  async function (req, res, next) {
+  async (req, res, next) => {
     try {
       // 특정 사용자의 전체 수상 목록을 얻음
       // @ts-ignore

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 
@@ -56,19 +56,14 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       />
 
       <label htmlFor="floatingInputCustom">수상년월</label>
-      <Form.Control
-        id="floatingInputCustom"
-        type="text"
-        placeholder="예 : 20230101"
-        value={date}
-        onChange={(e) => setDate(e.target.value)}
-      />
-      <label>DatePicker</label>
       <DatePicker
         showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
         selected={date}
         onChange={(date) => setDate(date)}
-        />
+      />
 
       <label htmlFor="floatingInputCustom">상세내역</label>
       <Form.Control

@@ -71,7 +71,7 @@ guestBookRouter.delete(
         res.status(403).json("권한이 없습니다.");
         return;
       } else {
-        //삭제
+        // 맞으면 삭제
         const result = await GuestBookService.deleteGuestBookByGuestBookId({
           guestBookId: req.params.guestBookId,
         });
@@ -102,9 +102,7 @@ guestBookRouter.delete(
       if (foundGuestBook.receiverId !== receiverId) {
         return res.status(403).json("권한이 없습니다.");
       } else {
-        /**
-         * 삭제
-         */
+        // 맞으면 삭제
         const result = await GuestBookService.deleteGuestBookByGuestBookId({
           guestBookId: req.params.guestBookId,
         });

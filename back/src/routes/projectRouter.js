@@ -6,7 +6,7 @@ const multer = require("multer");
 const projectRouter = Router();
 projectRouter.use(login_required);
 
-projectRouter.post("/project/create", async function (req, res, next) {
+projectRouter.post("/project/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -34,7 +34,7 @@ projectRouter.post("/project/create", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projectId/:id", async function (req, res, next) {
+projectRouter.get("/projectId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -79,7 +79,7 @@ projectRouter.put("/projectId/:id", multer().none(), async (req, res, next) => {
   }
 });
 
-projectRouter.delete("/projectId/:id", async function (req, res, next) {
+projectRouter.delete("/projectId/:id", async (req, res, next) => {
   try {
     // req (request) 에서 id 가져오기
     const projectId = req.params.id;
@@ -97,7 +97,7 @@ projectRouter.delete("/projectId/:id", async function (req, res, next) {
   }
 });
 
-projectRouter.get("/projectlist/:userId", async function (req, res, next) {
+projectRouter.get("/projectlist/:userId", async (req, res, next) => {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
     // @ts-ignore

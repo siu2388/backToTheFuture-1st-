@@ -18,7 +18,7 @@ const AwardSchema = new Schema(
       type: String,
     },
     date: {
-      type: Number,
+      type: Date,
       required: true,
     },
     description: {
