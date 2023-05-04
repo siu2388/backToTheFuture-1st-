@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -16,6 +16,7 @@ import Navigator from "./Navigator";
 function Portfolio() {
   const navigate = useNavigate();
   const params = useParams();
+  const [users, setUsers] = useState();
   // useState 훅을 통해 portfolioOwner 상태를 생성함.
   const [portfolioOwner, setPortfolioOwner] = useState(null);
   // fetchPorfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
@@ -46,6 +47,8 @@ function Portfolio() {
       navigate("/login", { replace: true });
       return;
     }
+    Api.get("userlist").then((res) => setUsers(res.data));
+  
       
 
 
@@ -94,7 +97,12 @@ function Portfolio() {
                   <div className="dropdown-title">파도타기</div>
                   <div className="triangle-down"></div>
                   <div className="dropdown-content">
-                    <p onClick={() => navigate("/network")}>네트워크</p>
+                    <p onClick={() => navigate("/network")}>네트워크</p>  
+                    {users.map((user) => (
+                    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
+                      {user.name}
+                      </p>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -103,9 +111,12 @@ function Portfolio() {
 
           <div className="content-container" id ="content-container">
             <div className="header content-title">
-              <div className="content-title-name">
+            <Link
+                to={`/userId/${portfolioOwner.id}`}
+                className="content-title-name"
+              >
                 {portfolioOwner.homeName}
-              </div>
+              </Link>
             </div>
             <div className="box content-box" id="content-box">
               <div className="miniroom">

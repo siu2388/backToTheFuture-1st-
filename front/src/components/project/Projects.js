@@ -20,9 +20,24 @@ function Projects({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title style = {{display: "inline-block", marginRight: "10px"}}>프로젝트</Card.Title>
+        <Card.Title style={{ display: "inline-block", marginRight: "10px", marginLeft: "10px" }}>
+          프로젝트
+        </Card.Title>
         {isEditable && (
-            <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
+          <button
+            className="btn-add"
+            style={{ display: "inline-block" }}
+            onClick={() => setIsAdding(true)}
+          >
+            +
+          </button>
+        )}
+        {isAdding && (
+          <ProjectAddForm
+            portfolioOwnerId={portfolioOwnerId}
+            setProjects={setProjects}
+            setIsAdding={setIsAdding}
+          />
         )}
         {projects.map((project) => (
           <Project
@@ -32,13 +47,6 @@ function Projects({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isAdding && (
-          <ProjectAddForm
-            portfolioOwnerId={portfolioOwnerId}
-            setProjects={setProjects}
-            setIsAdding={setIsAdding}
-          />
-        )}
       </Card.Body>
     </Card>
   );

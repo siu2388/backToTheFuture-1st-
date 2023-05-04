@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -12,6 +12,7 @@ import GuestBooks from "./guestbook/GuestBooks";
 function GuestBookPage() {
   const navigate = useNavigate();
   const params = useParams();
+  const [users, setUsers] =useState();
   // useState 훅을 통해 guestBookPageOwner 상태를 생성함.
   const [guestBookPageOwner, setGuestBookPageOwner] = useState(null);
   // fetchPorfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
@@ -35,19 +36,22 @@ function GuestBookPage() {
     console.log(guestBookPageOwner);
   }, [guestBookPageOwner]);
 
-  useEffect(()=>{
+  useEffect(() => {
     document.body.style.backgroundColor = guestBookPageOwner?.bgColor;
 
-    return () => {document.body.style.backgroundColor =""}
-  },[guestBookPageOwner]);
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, [guestBookPageOwner]);
 
   useEffect(() => {
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
     if (!userState.user) {
       navigate("/login", { replace: true });
       return;
-
     }
+
+    Api.get("userlist").then((res) => setUsers(res.data));
 
     if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
@@ -67,7 +71,8 @@ function GuestBookPage() {
   }
 
   return (
-    <Container className="bookcover"
+    <Container
+      className="bookcover"
       style={{ backgroundColor: guestBookPageOwner?.boxColor }}
     >
       <div className="bookdot">
@@ -92,6 +97,11 @@ function GuestBookPage() {
                 </div>
                 <div className="dropdown-content">
                   <a onClick={() => navigate("/network")}>네트워크</a>
+                  {users.map((user) => (
+                    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
+                      {user.name}
+                      </p>
+                    ))}
                 </div>
               </div>
             </div>
@@ -99,9 +109,12 @@ function GuestBookPage() {
 
           <div className="content-container">
             <div className="header content-title">
-              <div className="content-title-name">
+              <Link
+                to={`/userId/${guestBookPageOwner.id}`}
+                className="content-title-name"
+              >
                 {guestBookPageOwner.homeName}
-              </div>
+              </Link>
             </div>
             <div className="box content-box">
               <div className="miniroom">
@@ -111,7 +124,6 @@ function GuestBookPage() {
                     <GuestBooks
                       guestBookPageOwnerId={guestBookPageOwner.id}
                       portfolioOwner={guestBookPageOwner}
-                      
                     />
                   </div>
                 </div>
@@ -120,11 +132,12 @@ function GuestBookPage() {
           </div>
 
           <div className="menu-container">
-            <Navigator 
+            <Navigator
               portfolioOwner={guestBookPageOwner}
               backHome={() => {
-              navigate(`/userId/${guestBookPageOwner.id}`)
-              }}/>
+                navigate(`/userId/${guestBookPageOwner.id}`);
+              }}
+            />
           </div>
         </div>
       </div>

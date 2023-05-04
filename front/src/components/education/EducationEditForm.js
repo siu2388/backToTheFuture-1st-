@@ -59,7 +59,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">학교</label>
       <Form.Control
         id="floatingInputCustom"

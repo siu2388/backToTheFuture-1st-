@@ -32,7 +32,7 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">보유기술</label>
       <Form.Group controlId="formBasicSkillName">
         <Form.Control
