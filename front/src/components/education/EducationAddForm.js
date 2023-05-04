@@ -8,7 +8,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolName, setSchoolName] = useState("");
   const [schoolType, setSchoolType] = useState("");
   const [major, setMajor] = useState("");
-  const [status, setStatus] = useState("재학중");
+  const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 

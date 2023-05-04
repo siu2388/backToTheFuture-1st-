@@ -7,8 +7,8 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [skillName, setSkillName] = useState("");
   //useState로 description 상태를 생성함.
-  const [level, setLevel] = useState("하");
-  const [period, setPeriod] = useState("1년 미만");
+  const [level, setLevel] = useState("");
+  const [period, setPeriod] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
