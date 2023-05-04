@@ -12,7 +12,7 @@ import GuestBooks from "./guestbook/GuestBooks";
 function GuestBookPage() {
   const navigate = useNavigate();
   const params = useParams();
-  const [users, setUsers] =useState();
+  const [users, setUsers] = useState();
   // useState 훅을 통해 guestBookPageOwner 상태를 생성함.
   const [guestBookPageOwner, setGuestBookPageOwner] = useState(null);
   // fetchPorfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
@@ -98,10 +98,14 @@ function GuestBookPage() {
                 <div className="dropdown-content">
                   <a onClick={() => navigate("/network")}>네트워크</a>
                   {users.map((user) => (
-                    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
+                    <p
+                      key={user.id}
+                      user={user}
+                      onClick={() => navigate(`/userId/${user.id}`)}
+                    >
                       {user.name}
-                      </p>
-                    ))}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
@@ -136,6 +140,13 @@ function GuestBookPage() {
               portfolioOwner={guestBookPageOwner}
               backHome={() => {
                 navigate(`/userId/${guestBookPageOwner.id}`);
+              }}
+              scrollToMove={(e) => {
+                navigate(`/userId/${guestBookPageOwner.id}`);
+                setTimeout(() => {
+                  const section = document.getElementById(e.target.value);
+                  section.scrollIntoView({ behavior: "smooth" });
+                }, 200);
               }}
             />
           </div>
