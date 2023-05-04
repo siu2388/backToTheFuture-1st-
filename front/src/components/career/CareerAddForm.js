@@ -93,10 +93,10 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
         />
       </Form.Group>
 
-      <label htmlFor="floatingInputCustom">근무 기간</label>
+      
       <>
       <label htmlFor="floatingInputCustom">시작 날짜</label>
-        <DatePicker
+        <DatePicker 
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
@@ -105,7 +105,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
           onChange={(startDate) => setStartDate(startDate)}
         />
         <label htmlFor="floatingInputCustom">종료 날짜</label>
-        <DatePicker
+        <DatePicker 
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"

@@ -10,7 +10,9 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   const [schoolType, setSchoolType] = useState(currentEducation.schoolType);
   const [major, setMajor] = useState(currentEducation.major);
   const [status, setStatus] = useState(currentEducation.status);
-  const [startDate, setStartDate] = useState(new Date(currentEducation.startDate));
+  const [startDate, setStartDate] = useState(
+    new Date(currentEducation.startDate)
+  );
   const [endDate, setEndDate] = useState(new Date(currentEducation.endDate));
 
   const handleSubmit = async (e) => {
@@ -39,12 +41,12 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       status,
       startDate,
       endDate,
-    }
+    };
 
     console.log("data: ", data);
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
-    
+
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
@@ -59,7 +61,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className = "component-card">
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">학교</label>
       <Form.Control
         id="floatingInputCustom"
@@ -75,7 +77,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         value={schoolType}
         onChange={(e) => setSchoolType(e.target.value)}
       >
-        <option value=""></option>
+        <option value="">학위를 선택해주세요</option>
         <option value="학사">학사</option>
         <option value="석사">석사</option>
         <option value="박사">박사</option>
@@ -91,20 +93,17 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       />
 
       <Form.Select value={status} onChange={(e) => setStatus(e.target.value)}>
-        
+        <option value="">재학여부를 선택해주세요</option>
         <option value="재학중">재학중</option>
         <option value="휴학">휴학</option>
         <option value="수료">수료</option>
         <option value="졸업">졸업</option>
-        
       </Form.Select>
 
       <>
 
-      <label htrmlFor = "floatingInputCustom">재학 기간</label>
-      <br />
-      <label htmlFor="floatingInputCustom">입학 날짜</label>
-      <DatePicker
+        <label htmlFor="floatingInputCustom">입학 날짜</label>
+        <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
@@ -112,7 +111,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
         />
-      <label htmlFor="floatingInputCustom">졸업 날짜</label>
+        <label htmlFor="floatingInputCustom">졸업 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"

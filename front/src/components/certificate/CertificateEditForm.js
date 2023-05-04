@@ -19,6 +19,23 @@ function CertificateEditForm({
     e.preventDefault();
     e.stopPropagation();
 
+    if (!title) {
+      alert("자격증명을 입력해주세요.");
+      return;
+    }
+    if (!authority) {
+      alert("발급기관을 입력해주세요.");
+      return;
+    }
+    if (!registerNum) {
+      alert("발급번호를 입력해주세요.");
+      return;
+    }
+    if (!grade) {
+      alert("등급/점수를 입력해주세요.");
+      return;
+    }
+
     // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentCertificate.userId;
 
