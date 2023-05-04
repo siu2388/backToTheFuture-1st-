@@ -12,6 +12,8 @@ function Network() {
   // useState 훅을 통해 users 상태를 생성함.
   const [users, setUsers] = useState([]);
 
+  document.body.style.backgroundColor = "#d9d7da";
+
   useEffect(() => {
     // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
     if (!userState.user) {

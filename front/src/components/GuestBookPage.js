@@ -110,6 +110,7 @@ function GuestBookPage() {
                   <div id="guestBook-section">
                     <GuestBooks
                       guestBookPageOwnerId={guestBookPageOwner.id}
+                      portfolioOwner={guestBookPageOwner}
                       
                     />
                   </div>
@@ -119,7 +120,9 @@ function GuestBookPage() {
           </div>
 
           <div className="menu-container">
-            <Navigator backHome={() => {
+            <Navigator 
+              portfolioOwner={guestBookPageOwner}
+              backHome={() => {
               navigate(`/userId/${guestBookPageOwner.id}`)
               }}/>
           </div>
