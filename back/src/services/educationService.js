@@ -12,9 +12,9 @@ class EducationService {
     const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
     
     // 공란일 경우, 에러 메시지 반환
-    if (!newCareer.company || !newCareer.department || !newCareer.position || !newCareer.description || !newCareer.startDate || !newCareer.endDate) {
+    if (!newEducation.schoolName || !newEducation.schoolType || !newEducation.major || !newEducation.status || !newEducation.startDate || !newEducation.endDate) {
       const errorMessage = 
-        "Career 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+        "Education 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
