@@ -56,7 +56,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">프로젝트명</label>
       <Form.Control
         type="text"

@@ -40,7 +40,7 @@ function CertificateEditForm({
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">자격증명</label>
       <Form.Group controlId="formBasicTitle">
         <Form.Control

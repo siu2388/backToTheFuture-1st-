@@ -15,8 +15,8 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
             alt="프로필 이미지"
           />
         </Row>
-        <Card.Title>{user?.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
+        <Card.Title style = {{ fontFamily: "NeoDunggeunmo" }}>{user?.name}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted" >{user?.email}</Card.Subtitle>
         <Card.Link href={user?.github} target="_blank">
           Github
         </Card.Link>

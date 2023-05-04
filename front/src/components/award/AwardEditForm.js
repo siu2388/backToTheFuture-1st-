@@ -53,7 +53,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className = "component-card">
       <label htmlFor="floatingInputCustom">수상내역</label>
       <Form.Control
         id="floatingInputCustom"
