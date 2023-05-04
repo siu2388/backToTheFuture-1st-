@@ -3,29 +3,12 @@ import { Career } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class CareerService {
-  static async addCareer({
-    userId,
-    company,
-    department,
-    position,
-    description,
-    startDate,
-    endDate,
-  }) {
+  static async addCareer({ userId, company, department, position, description, startDate, endDate }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newCareer = {
-      id,
-      userId,
-      company,
-      department,
-      position,
-      description,
-      startDate,
-      endDate,
-    };
+    const newCareer = { id, userId, company, department, position, description, startDate, endDate };
     const createdNewCareer = await Career.create({ newCareer });
 
     return createdNewCareer;
