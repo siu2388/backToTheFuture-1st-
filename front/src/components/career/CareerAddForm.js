@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
-import { Form, Col, Row } from "react-bootstrap";
+
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-import DatePicker from "react-datepicker";
+
 
 function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   //useState로 title 상태를 생성함.
