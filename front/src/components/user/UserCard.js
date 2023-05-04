@@ -6,7 +6,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
     <Card className="userCard">
-      <Card.Body>
+      <Card.Body style={{width:"18rem" ,height:"25rem"}}>
         <Row xs="auto" className="justify-content-md-center">
           <Card.Img
             style={{ width: "12rem", height: "8rem", align: "center" }}
