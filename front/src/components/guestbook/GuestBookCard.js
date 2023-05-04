@@ -3,9 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 import "../layout.css";
+import { serverUrl } from "../../api";
 
 function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
   const userState = useContext(UserStateContext);
+  const [users, setUsers] = useState([]);
   const handleDelete = async () => {
     const isReceiver = guestBook.receiverId === userState.user?.id;
     const isAuthor = guestBook.authorId === userState.user?.id;
@@ -24,8 +26,14 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     }
   };
 
-  useEffect(() => {}, [guestBook]);
-  const lastEditTime = guestBook?.updatedAt ? guestBook.updatedAt : guestBook.createdAt;
+  const author = users.find((user) => user.id === guestBook.authorId);
+
+  useEffect(() => {
+    Api.get("userlist").then((res) => setUsers(res.data));
+  }, [guestBook]);
+  const lastEditTime = guestBook?.updatedAt
+    ? guestBook.updatedAt
+    : guestBook.createdAt;
 
   const formatter = new Intl.DateTimeFormat("ko-KR", {
     year: "numeric",
@@ -36,7 +44,6 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     second: "2-digit",
   });
 
-
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -44,17 +51,49 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
 
   return (
     <Container className="component-card">
-      <Card.Text>
-        <Row className="align-items-center">
-          <Col className="component-card-col-left">
-            <text> {guestBook?.authorName}{" "} </text>
-            <text>{formatter.format(new Date(lastEditTime))}</text>
+      <Row>
+        <Col md={3}>
+          <div>
+            <img
+              style={{ width: "8rem", height: "8rem", align: "center" }}
+              className="mb-3"
+              src={`${serverUrl}${
+                author?.image?.path || "uploads/profile.jpg"
+              }`}
+              alt="프로필 이미지"
+            />
+          </div>
+        </Col>
+        <Col md={8} style={{ marginTop: "1rem" }}>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <div className="author-name">{guestBook?.authorName}</div>
+              <div>
+                <text className="text-muted">
+                  {formatter.format(new Date(lastEditTime))}
+                </text>
+              </div>
+            </div>
+
             <br />
-            <text>{guestBook?.content}</text>
-            <br />
-          </Col>
-          {isEditable && (
-            <Col xs lg="3.2" className="component-card-col-right">
+            <div>
+              <text>{guestBook?.content}</text>
+            </div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              marginTop: "auto",
+            }}
+          >
+            {isEditable && (
               <>
                 <button onClick={handleShow} className="btn-delete">
                   삭제
@@ -86,10 +125,10 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
                   </Modal.Footer>
                 </Modal>
               </>
-            </Col>
-          )}
-        </Row>
-      </Card.Text>
+            )}
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 }

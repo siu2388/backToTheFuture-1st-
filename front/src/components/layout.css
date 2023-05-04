@@ -94,17 +94,26 @@ body {
 
 }
 
+.align-items-center {
+  display: block !important; 
+}
 .component-card-col-left {
   margin-left: 10px;
-
 }
 
-
+.author-name {
+  display: inline-block;
+  background-color: #cce2e9;
+  border-radius: 8px;
+  border: 3px #cce2e9;
+  padding: 0 2px 0 2px
+}
 .component-card-col-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   margin-right: 15px;
+  width: 10%;
 
 }
 
