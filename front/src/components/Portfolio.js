@@ -99,9 +99,9 @@ function Portfolio() {
                   <div className="dropdown-content">
                     <p onClick={() => navigate("/network")}>네트워크</p>  
                     {users.map((user) => (
-    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
-      {user.name}
-    </p>
+                    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
+                      {user.name}
+                      </p>
                     ))}
                   </div>
                 </div>

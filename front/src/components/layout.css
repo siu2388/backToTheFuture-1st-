@@ -35,6 +35,13 @@ body {
 
 }
 
+
+.card-title {
+  display: "inline-block";
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
 .page {
   background-color: #eeeeee;
   border-radius: 9px;

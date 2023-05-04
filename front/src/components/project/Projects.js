@@ -20,7 +20,7 @@ function Projects({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title style={{ display: "inline-block", marginRight: "10px" }}>
+        <Card.Title style={{ display: "inline-block", marginRight: "10px", marginLeft: "10px" }}>
           프로젝트
         </Card.Title>
         {isEditable && (
