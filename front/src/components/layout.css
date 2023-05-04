@@ -351,11 +351,15 @@ a button:hover {
   left: 0;
   width: 100%;
 
+  height: 200px;
+  overflow-y: auto;
+
   font-family: "NeoDunggeunmo";
 }
 
 .profile-dropdown:hover .dropdown-content {
   display: block;
+  
 }
 
 .dropdown-content p {
