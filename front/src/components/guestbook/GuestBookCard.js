@@ -1,18 +1,28 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState,useEffect} from 'react';
+import { useState, useEffect, useContext } from "react";
+import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 
 function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
+  const userState = useContext(UserStateContext);
   const handleDelete = async () => {
-    await Api.delete("guestBooks", guestBook.id).then(() => {
-      setGuestBooks((prevGuestBooks) =>
-        prevGuestBooks.filter((prevGuestBook) => prevGuestBook.id !== guestBook.id)
-      );
-    });
+    const isReceiver = guestBook.receiverId === userState.user?.id;
+    const isAuthor = guestBook.authorId === userState.user?.id;
+    
+    if (isReceiver || isAuthor) {
+      const deleteUrl = `guestBooks/${guestBook.receiverId}/${guestBook.id}/remove/${isAuthor ? "author" : "receiver"}`;
+      await Api.delete(deleteUrl).then(() => {
+        setGuestBooks((prevGuestBooks) =>
+          prevGuestBooks.filter(
+            (prevGuestBook) => prevGuestBook.id !== guestBook.id
+          )
+        );
+      });
+    }
   };
 
   useEffect(() => {}, [guestBook]);
-  
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -28,7 +38,7 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
           <br />
         </Col>
 
-          {isEditable && (
+        {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
             <button
               onClick={() => setIsEditing((prev) => !prev)}
@@ -37,10 +47,7 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
               편집
             </button>
             <>
-              <button
-                onClick={handleShow}
-                className="btn-delete"
-              >
+              <button onClick={handleShow} className="btn-delete">
                 삭제
               </button>
 
@@ -72,7 +79,6 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
             </>
           </Col>
         )}
-
       </Row>
     </Card.Text>
   );
