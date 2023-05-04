@@ -75,6 +75,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         showIcon
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
         // selected={new Date(this.state.startDate)}
         selected={date}
         onChange={(date) => setDate(date)}
