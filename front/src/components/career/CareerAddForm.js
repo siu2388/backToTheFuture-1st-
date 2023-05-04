@@ -12,7 +12,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState(null);
 
 
   const handleSubmit = async (e) => {

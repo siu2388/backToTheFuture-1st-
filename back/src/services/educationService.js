@@ -1,6 +1,7 @@
 // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import { Education } from "../db";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class EducationService {
   static async addEducation({ userId, schoolName, schoolType, major, status,startDate, endDate }) {
@@ -9,6 +10,14 @@ class EducationService {
 
     // db에 저장
     const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
+    
+    // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
+    if((newEducation.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
+      const errorMessage =
+        "Education 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     const createdNewEducation = await Education.create({ newEducation });
 
     return createdNewEducation;
@@ -19,7 +28,7 @@ class EducationService {
     const education = await Education.findById({ educationId });
     if (!education) {
       const errorMessage =
-        "해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Education 조회: 해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -37,10 +46,18 @@ class EducationService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!education) {
       const errorMessage =
-        "해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Education 조회: 해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
+    // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
+    if((toUpdate.endDate) && (!moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate)))){
+      const errorMessage =
+        "Education 수정: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    // 업데이트
     if (toUpdate.schoolName) {
       const fieldToUpdate = "schoolName";
       const newValue = toUpdate.schoolName;
@@ -71,11 +88,9 @@ class EducationService {
       education = await Education.update({ educationId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.endDate) {
-      const fieldToUpdate = "endDate";
-      const newValue = toUpdate.endDate;
-      education = await Education.update({ educationId, fieldToUpdate, newValue });
-    }
+    const fieldToUpdate = "endDate";
+    const newValue = toUpdate.endDate;
+    education = await Education.update({ educationId, fieldToUpdate, newValue });
 
     return education;
   }
@@ -86,7 +101,7 @@ class EducationService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Education 삭제: 해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

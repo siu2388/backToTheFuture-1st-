@@ -29,7 +29,7 @@ class GuestBookService {
     const guestBook = await GuestBook.findById({ guestBookId });
     if (!guestBook) {
       const errorMessage =
-        "해당 id를 가진 방명록 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "GuestBook 조회: 해당 id를 가진 방명록 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
     return guestBook;
@@ -41,7 +41,7 @@ class GuestBookService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 방명록이 없습니다. 다시 한 번 확인해 주세요.";
+        "GuestBook 삭제: 해당 id를 가진 방명록이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

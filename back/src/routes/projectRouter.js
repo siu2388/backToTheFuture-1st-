@@ -28,6 +28,10 @@ projectRouter.post("/project/create", async (req, res, next) => {
       description,
     });
 
+    if (newProject.errorMessage) {
+      throw new Error(newProject.errorMessage);
+    }
+
     res.status(201).json(newProject);
     return;
   } catch (error) {
@@ -62,7 +66,7 @@ projectRouter.put("/projectId/:id", multer().none(), async (req, res, next) => {
     // body data 로부터 업데이트할 수상 정보를 추출함.
     const title = req.body.title ?? null;
     const startDate = req.body.startDate ?? null;
-    const endDate = req.body.endDate ?? null;
+    const endDate = req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
     const archive = req.body.archive ?? null;
     const description = req.body.description ?? null;
 

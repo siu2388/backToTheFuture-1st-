@@ -20,7 +20,7 @@ const ProjectSchema = new Schema(
     },
     endDate: {
       type: Date,
-      required: true,
+      required: false,
     },
     archive: {
       type: String,
@@ -36,7 +36,7 @@ const ProjectSchema = new Schema(
     toJSON: {
       transform(doc, ret) {
         ret.startDate = ret.startDate.toISOString().slice(0, 10);
-        ret.endDate = ret.endDate.toISOString().slice(0, 10);
+        ret.endDate = ret.endDate ? ret.endDate.toISOString().slice(0, 10) : null;
       },
     },
   }

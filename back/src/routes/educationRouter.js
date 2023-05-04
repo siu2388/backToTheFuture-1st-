@@ -29,6 +29,10 @@ educationRouter.post("/education/create", async (req, res, next) => {
       endDate,
     });
 
+    if (newEducation.errorMessage) {
+      throw new Error(newEducation.errorMessage);
+    }
+
     res.status(201).json(newEducation);
     return;
   } catch (error) {
@@ -69,7 +73,7 @@ educationRouter.put(
       const major = req.body.major ?? null;
       const status = req.body.status ?? null;
       const startDate = req.body.startDate ?? null;
-      const endDate = req.body.endDate ?? null;
+      const endDate = req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
 
       const toUpdate = {
         schoolName,

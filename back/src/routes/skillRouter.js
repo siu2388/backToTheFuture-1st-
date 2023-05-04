@@ -16,7 +16,7 @@ skillRouter.post("/skill/create", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { skillName, level, period, startDate, endDate } = req.body;
+    const { skillName, level, period } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newSkill = await SkillService.addSkill({
@@ -24,8 +24,6 @@ skillRouter.post("/skill/create", async (req, res, next) => {
       skillName,
       level,
       period,
-      startDate,
-      endDate,
     });
 
     res.status(201).json(newSkill);
@@ -63,10 +61,8 @@ skillRouter.put("/skillId/:id", multer().none(), async (req, res, next) => {
     const skillName = req.body.skillName ?? null;
     const level = req.body.level ?? null;
     const period = req.body.period ?? null;
-    const startDate = req.body.startDate ?? null;
-    const endDate = req.body.endDate ?? null;
 
-    const toUpdate = { skillName, level, period, startDate, endDate };
+    const toUpdate = { skillName, level, period };
 
     // 위 추출된 정보를 이용하여 db의 데이터 수정하기
     const skill = await SkillService.setSkill({ skillId, toUpdate });

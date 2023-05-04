@@ -9,7 +9,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [endDate, setEndDate] = useState(null);
   const [archive, setArchive] = useState("");
 
   const handleSubmit = async (e) => {
