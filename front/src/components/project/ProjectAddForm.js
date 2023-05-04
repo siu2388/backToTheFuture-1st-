@@ -37,6 +37,14 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       return;
     }
 
+    const isValidDate = startDate <= endDate;
+
+    if (!isValidDate) {
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
+      return;
+    }
+
+    // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
     await Api.post("project/create", {

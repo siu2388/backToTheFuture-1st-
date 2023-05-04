@@ -8,7 +8,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolName, setSchoolName] = useState("");
   const [schoolType, setSchoolType] = useState("");
   const [major, setMajor] = useState("");
-  const [status, setStatus] = useState("재학중");
+  const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -36,6 +36,13 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       alert(
         "졸업 날짜를 선택해 주세요. 재학 중이라면 오늘 날짜를 입력해 주세요."
       );
+      return;
+    }
+
+    const isValidDate = startDate <= endDate
+
+    if (!isValidDate) {
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.")
       return;
     }
 

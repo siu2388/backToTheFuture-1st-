@@ -4,8 +4,8 @@ import * as Api from "../../api";
 
 function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
   const [skillName, setSkillName] = useState("");
-  const [level, setLevel] = useState("하");
-  const [period, setPeriod] = useState("1년 미만");
+  const [level, setLevel] = useState("");
+  const [period, setPeriod] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();

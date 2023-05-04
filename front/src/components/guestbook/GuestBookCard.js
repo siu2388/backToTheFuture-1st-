@@ -55,7 +55,7 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
         <Col md={3}>
           <div>
             <img
-              style={{ width: "8rem", height: "8rem", align: "center" }}
+              style={{ width: "8rem", align: "center" }}
               className="mb-3"
               src={`${serverUrl}${
                 author?.image?.path || "uploads/profile.jpg"

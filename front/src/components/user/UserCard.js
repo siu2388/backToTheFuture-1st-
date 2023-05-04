@@ -9,7 +9,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
       <Card.Body style={{ width: "18rem", height: "25rem" }}>
         <Row xs="auto" className="justify-content-md-center">
           <Card.Img
-            style={{ width: "12rem", height: "12rem", align: "center" }}
+            style={{ width: "12rem", align: "center" }}
             className="mb-3"
             src={`${serverUrl}${user?.image?.path || "uploads/profile.jpg"}`} // fallback 이미지
             alt="프로필 이미지"
@@ -19,12 +19,20 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
           {user?.name}
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{user?.email}</Card.Subtitle>
-        <Card.Link href={user?.github} target="_blank">
-          Github
-        </Card.Link>
-        <Card.Link href={user?.blog} target="_blank">
-          Blog
-        </Card.Link>
+        <a href={user?.github} target="_blank">
+          <img
+            src="uploads/github.png"
+            alt="Github"
+            style={{ width: "0.5rem" }}
+          />
+        </a>
+        <a href={user?.blog} target="_blank">
+          <img
+            style={{ width: "0.5rem" }}
+            src="uploads/tistory.png"
+            alt="Blog"
+          />
+        </a>
 
         <Card.Text>{user?.description}</Card.Text>
 
