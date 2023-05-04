@@ -93,14 +93,10 @@ function Portfolio() {
                   <div className="dropdown-title">파도타기</div>
                   <div className="triangle-down"></div>
                   <div className="dropdown-content">
-                    <p onClick={() => navigate("/network")}>네트워크</p>
+                    <p onClick={() => navigate("/network")}>네트워크</p>  
                     {users?.map((user) => (
-                      <p
-                        key={user.id}
-                        user={user}
-                        onClick={() => navigate(`/userId/${user.id}`)}
-                      >
-                        {user.name}
+                    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
+                      {user.name} ({user.homeName})
                       </p>
                     ))}
                   </div>
@@ -122,42 +118,42 @@ function Portfolio() {
               <div className="miniroom">
                 <div className="box-title">Miniroom</div>
                 <div className="miniroom-gif-box">
-                  <div id="career-section">
+                  <div id="career-section" className = "component-card-body">
                     <Careers
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="education-section">
+                  <div id="education-section" className = "component-card-body">
                     <Educations
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="project-section">
+                  <div id="project-section" className = "component-card-body">
                     <Projects
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="award-section">
+                  <div id="award-section" className = "component-card-body">
                     <Awards
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="certificate-section">
+                  <div id="certificate-section" className = "component-card-body">
                     <Certificates
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="skill-section">
+                  <div id="skill-section" className = "component-card-body">
                     <Skills
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}

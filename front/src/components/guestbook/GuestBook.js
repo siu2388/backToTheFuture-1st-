@@ -10,14 +10,12 @@ function GuestBook({ guestBook, setGuestBooks, isEditable }) {
 
   return (
     <>
-      (
         <GuestBookCard
           guestBook={guestBook}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
           setGuestBooks = {setGuestBooks}
         />
-      )
     </>
   );
 }
