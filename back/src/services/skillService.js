@@ -3,27 +3,12 @@ import { Skill } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class SkillService {
-  static async addSkill({
-    userId,
-    skillName,
-    level,
-    period,
-    startDate,
-    endDate,
-  }) {
+  static async addSkill({ userId, skillName, level, period, startDate, endDate }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newSkill = {
-      id,
-      userId,
-      skillName,
-      level,
-      period,
-      startDate,
-      endDate,
-    };
+    const newSkill = { id, userId, skillName, level, period, startDate, endDate };
     const createdNewSkill = await Skill.create({ newSkill });
 
     return createdNewSkill;

@@ -16,8 +16,7 @@ educationRouter.post("/education/create", async function (req, res, next) {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { schoolName, schoolType, major, status, startDate, endDate } =
-      req.body;
+    const { schoolName, schoolType, major, status, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newEducation = await EducationService.addEducation({

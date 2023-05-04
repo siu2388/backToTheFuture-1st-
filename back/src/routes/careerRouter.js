@@ -17,8 +17,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { company, department, position, description, startDate, endDate } =
-      req.body;
+    const { company, department, position, description, startDate, endDate } = req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newCareer = await CareerService.addCareer({
