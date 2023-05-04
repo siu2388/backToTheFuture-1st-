@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -12,6 +12,7 @@ import GuestBooks from "./guestbook/GuestBooks";
 function GuestBookPage() {
   const navigate = useNavigate();
   const params = useParams();
+  const [users, setUsers] =useState();
   // useState 훅을 통해 guestBookPageOwner 상태를 생성함.
   const [guestBookPageOwner, setGuestBookPageOwner] = useState(null);
   // fetchPorfolioOwner 함수가 완료된 이후에만 (isFetchCompleted가 true여야) 컴포넌트가 구현되도록 함.
@@ -49,6 +50,8 @@ function GuestBookPage() {
       navigate("/login", { replace: true });
       return;
     }
+
+    Api.get("userlist").then((res) => setUsers(res.data));
 
     if (params.userId) {
       // 만약 현재 URL이 "/users/:userId" 라면, 이 userId를 유저 id로 설정함.
@@ -94,6 +97,11 @@ function GuestBookPage() {
                 </div>
                 <div className="dropdown-content">
                   <a onClick={() => navigate("/network")}>네트워크</a>
+                  {users.map((user) => (
+                    <p key={user.id} user={user} onClick={() => navigate(`/userId/${user.id}`)}>
+                      {user.name}
+                      </p>
+                    ))}
                 </div>
               </div>
             </div>

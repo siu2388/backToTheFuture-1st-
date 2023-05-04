@@ -343,7 +343,7 @@ a button:hover {
   top: 100%;
   left: 0;
   width: 100%;
-  height: 50px; /* height 설정 */
+
   font-family: "NeoDunggeunmo";
 }
 
@@ -351,6 +351,9 @@ a button:hover {
   display: block;
 }
 
+.dropdown-content p {
+  margin: 0; 
+}
 
 
 .dropdown-content > p{
