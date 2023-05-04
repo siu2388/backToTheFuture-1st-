@@ -4,7 +4,15 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 class CareerService {
-  static async addCareer({ userId, company, department, position, description, startDate, endDate }) {
+  static async addCareer({
+    userId,
+    company,
+    department,
+    position,
+    description,
+    startDate,
+    endDate,
+  }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 

@@ -38,7 +38,7 @@ async function put(endpoint, data) {
   const formData = new FormData();
 
   // 객체의 key-value를 FormData 객체에 추가
-  console.log("formData전",data)
+  console.log("formData전", data);
   for (const key in data) {
     formData.append(key, data[key]);
   }

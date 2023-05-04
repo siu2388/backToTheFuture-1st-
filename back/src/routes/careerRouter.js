@@ -17,7 +17,8 @@ careerRouter.post("/career/create", async (req, res, next) => {
 
     // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
-    const { company, department, position, description, startDate, endDate } = req.body;
+    const { company, department, position, description, startDate, endDate } =
+      req.body;
 
     // 위 데이터를 유저 db에 추가하기
     const newCareer = await CareerService.addCareer({
@@ -74,6 +75,8 @@ careerRouter.put("/careerId/:id", multer().none(), async (req, res, next) => {
     // const endDate = req.body.endDate ?? null;
     const endDate = !req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
 
+    // const endDate = req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
+
     const toUpdate = {
       company,
       department,
@@ -82,7 +85,6 @@ careerRouter.put("/careerId/:id", multer().none(), async (req, res, next) => {
       startDate,
       endDate,
     };
-
     // 위 추출된 정보를 이용하여 db의 데이터 수정하기
     const career = await CareerService.setCareer({ careerId, toUpdate });
 
