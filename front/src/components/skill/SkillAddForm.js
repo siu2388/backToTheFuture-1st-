@@ -7,8 +7,8 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [skillName, setSkillName] = useState("");
   //useState로 description 상태를 생성함.
-  const [level, setLevel] = useState("");
-  const [period, setPeriod] = useState("");
+  const [level, setLevel] = useState("하");
+  const [period, setPeriod] = useState("1년 미만");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,11 +45,10 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
         />
       </Form.Group>
 
-      
       <label htmlFor="floatingInputCustom">숙련도</label>
       <Form.Group controlId="formBasicLevel">
         <Form.Select value={level} onChange={(e) => setLevel(e.target.value)}>
-          <option>select</option>
+          <option value="">숙련도를 선택해주세요</option>
           <option value="하">하</option>
           <option value="중하">중하</option>
           <option value="중">중</option>
@@ -61,7 +60,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
       <label htmlFor="floatingInputCustom">사용기간</label>
       <Form.Group controlId="formBasicPeriod">
         <Form.Select value={period} onChange={(e) => setPeriod(e.target.value)}>
-          <option>select</option>
+          <option value="">사용기간을 선택해주세요</option>
           <option value="1년 미만">1년 미만</option>
           <option value="2년 미만">2년 미만</option>
           <option value="3년 미만">3년 미만</option>

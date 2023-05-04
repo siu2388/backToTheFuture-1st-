@@ -35,11 +35,13 @@ function Portfolio() {
     setIsFetchCompleted(true);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     document.body.style.backgroundColor = portfolioOwner?.bgColor;
 
-    return () => {document.body.style.backgroundColor ="#d9d7da"}
-  },[portfolioOwner]);
+    return () => {
+      document.body.style.backgroundColor = "#d9d7da";
+    };
+  }, [portfolioOwner]);
 
   useEffect(() => {
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
@@ -48,13 +50,8 @@ function Portfolio() {
       return;
     }
     Api.get("userlist").then((res) => setUsers(res.data));
-  
-      
 
-
-
-
-  if (params.userId) {
+    if (params.userId) {
       // 만약 현재 URL이 "/userId/:userId" 라면, 이 userId를 유저 id로 설정함.
       const ownerId = params.userId;
       // 해당 유저 id로 fetchPorfolioOwner 함수를 실행함.
@@ -70,7 +67,6 @@ function Portfolio() {
   if (!isFetchCompleted) {
     return "loading...";
   }
-  
 
   return (
     <Container
@@ -84,7 +80,7 @@ function Portfolio() {
               TODAY<span className="color-red"> 28</span> | TOTAL 234918
             </div>
 
-            <div className="box profile-box" style = {{display: "flex" }}>
+            <div className="box profile-box" style={{ display: "flex" }}>
               <div className="profile-image">
                 <User
                   portfolioOwnerId={portfolioOwner.id}
@@ -109,9 +105,9 @@ function Portfolio() {
             </div>
           </div>
 
-          <div className="content-container" id ="content-container">
+          <div className="content-container" id="content-container">
             <div className="header content-title">
-            <Link
+              <Link
                 to={`/userId/${portfolioOwner.id}`}
                 className="content-title-name"
               >
@@ -170,18 +166,19 @@ function Portfolio() {
 
           <div className="menu-container">
             <Navigator
-              backHome={() => navigate("/")}
+              backHome={() => {
+                navigate(`/userId/${portfolioOwner.id}`);
+              }}
               scrollToMove={(e) => {
                 const section = document.getElementById(e.target.value);
                 section.scrollIntoView({ behavior: "smooth" });
               }}
-              portfolioOwner =  {portfolioOwner}
+              portfolioOwner={portfolioOwner}
             />
           </div>
         </div>
       </div>
     </Container>
-
   );
 }
 
