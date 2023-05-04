@@ -8,8 +8,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [department, setDepartment] = useState(currentCareer.department);
   const [position, setPosition] = useState(currentCareer.position);
   const [description, setDescription] = useState(currentCareer.description);
-  const [startDate, setStartDate] = useState(currentCareer.StartDate);
-  const [endDate, setEndDate] = useState(currentCareer.EndDate);
+  const [startDate, setStartDate] = useState(currentCareer.startDate);
+  const [endDate, setEndDate] = useState(currentCareer.endDate);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       <Form.Group controlId="formBasicStartDate">
         <Form.Control
           type="text"
-          placeholder="예: 2020-02"
+          placeholder="예: 20230227"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
@@ -82,7 +82,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       <Form.Group controlId="formBasicEndDate">
         <Form.Control
           type="text"
-          placeholder="예: 2023-03"
+          placeholder="예: 20230811"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />

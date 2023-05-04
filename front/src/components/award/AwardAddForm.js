@@ -58,7 +58,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       <Form.Control
         id="floatingInputCustom"
         type="text"
-        placeholder="예 : 2020-02"
+        placeholder="예 : 20230101"
         value={date}
         onChange={(e) => setDate(e.target.value)}
       />

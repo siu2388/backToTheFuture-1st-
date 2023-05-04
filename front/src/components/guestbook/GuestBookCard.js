@@ -1,18 +1,28 @@
 import { Card, Modal, Button, Row, Col } from "react-bootstrap";
-import {useState,useEffect} from 'react';
+import { useState, useEffect, useContext } from "react";
+import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 
 function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
+  const userState = useContext(UserStateContext);
   const handleDelete = async () => {
-    await Api.delete("guestBooks", guestBook.id).then(() => {
-      setGuestBooks((prevGuestBooks) =>
-        prevGuestBooks.filter((prevGuestBook) => prevGuestBook.id !== guestBook.id)
-      );
-    });
+    const isReceiver = guestBook.receiverId === userState.user?.id;
+    const isAuthor = guestBook.authorId === userState.user?.id;
+    
+    if (isReceiver || isAuthor) {
+      const deleteUrl = `guestBooks/${guestBook.receiverId}/${guestBook.id}/remove/${isAuthor ? "author" : "receiver"}`;
+      await Api.delete(deleteUrl).then(() => {
+        setGuestBooks((prevGuestBooks) =>
+          prevGuestBooks.filter(
+            (prevGuestBook) => prevGuestBook.id !== guestBook.id
+          )
+        );
+      });
+    }
   };
 
   useEffect(() => {}, [guestBook]);
-  
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -22,28 +32,24 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <span>{guestBook?.title}</span>
+          <text>{guestBook?.authorName}</text>
           <br />
-          <span>{guestBook?.grade}</span>
+          <text>{guestBook?.content}</text>
           <br />
-          <span>{guestBook?.date}</span>
-          <br />
-          <span>{guestBook?.description}</span>
         </Col>
+
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
-            <Button
-              variant="outline-info"
-              size="sm"
+            <button
               onClick={() => setIsEditing((prev) => !prev)}
-              className="me-1"
+              className="btn-edit"
             >
               편집
-            </Button>
+            </button>
             <>
-              <Button variant="outline-danger" onClick={handleShow} size = "sm" >
+              <button onClick={handleShow} className="btn-delete">
                 삭제
-              </Button>
+              </button>
 
               <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
@@ -51,18 +57,23 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
                 </Modal.Header>
                 <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>
+                  <button
+                    variant="secondary"
+                    onClick={handleClose}
+                    className="btn-cancel"
+                  >
                     취소
-                  </Button>
-                  <Button
+                  </button>
+                  <button
                     variant="primary"
                     onClick={() => {
                       handleClose();
                       handleDelete();
                     }}
+                    className="btn-confirm"
                   >
                     확인
-                  </Button>
+                  </button>
                 </Modal.Footer>
               </Modal>
             </>

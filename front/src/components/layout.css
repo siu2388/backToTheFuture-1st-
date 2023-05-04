@@ -94,7 +94,7 @@ body {
 }
 
 .header {
-  flex: 0.1;
+  flex: 0.2;
 }
 
 .box {
@@ -111,12 +111,27 @@ body {
 
 .content-title-name {
   flex: 1;
+  font-family: "NeoDunggeunmo" ;
+  font-weight:200;
+  font-size: 20px;
+  height: 2rem;
 }
 
 .content-title-url {
   flex: 1;
   font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
   text-align: end; /* 텍스트 우측 정렬 */
+}
+
+
+.btn-post {
+  background-color: #769fab;
+  color: white;
+  border-radius: 3px;
+  width: auto;
+  height: 24px;
+  text-align: center;
+  border: none;
 }
 
 .btn-add {
@@ -189,6 +204,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 5rem;
 }
 
 .color-red {

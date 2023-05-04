@@ -75,7 +75,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       <Form.Group controlId="formBasicStartDate">
         <Form.Control
           type="text"
-          placeholder="예: 2020-02"
+          placeholder="예: 20230227"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         />
@@ -84,7 +84,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       <Form.Group controlId="formBasicEndDate">
         <Form.Control
           type="text"
-          placeholder="예: 2023-03"
+          placeholder="예: 20230811"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         />
