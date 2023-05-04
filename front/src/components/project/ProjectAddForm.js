@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -28,6 +29,24 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       description,
     });
 
+    const data = {
+      userId,
+      title,
+      startDate,
+      endDate,
+      archive,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
+
     // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("projectlist", userId);
     // projects를 response의 data로 세팅함.
@@ -46,21 +65,28 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
           onChange={(e) => setTitle(e.target.value)}
         />
 
+      <label htmlFor="floadtingInputCustom">활동 기간</label>
+      <br />
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
+        selected={startDate}
+        onChange={(startDate) => setStartDate(startDate)}
+      />
 
-      <label htmlFor="floatingInputCustom">시작 년월</label>
-        <DatePicker
-          showIcon
-          selected={startDate}
-          onChange={(startDate) => setStartDate(startDate)}
-          />
 
-
-      <label htmlFor="floatingInputCustom">완료 년월</label>
-        <DatePicker
-          showIcon
-          selected={endDate}
-          onChange={(endDate) => setEndDate(endDate)}
-          />
+      <label htmlFor="floatingInputCustom">완료 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
+        selected={endDate}
+        onChange={(endDate) => setEndDate(endDate)}
+      />
 
 
       <label htmlFor="floatingInputCustom">링크</label>

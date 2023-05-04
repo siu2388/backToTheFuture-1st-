@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
+import convertTime from "../ConverTime";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+
 
 function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -30,6 +32,25 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      startDate,
+      endDate,
+      company,
+      userId,
+      department,
+      position,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
 
     // "careerlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("careerlist", userId);
@@ -73,22 +94,26 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">근무 기간</label>
-      <Form.Group controlId="formBasicStartDate">
+      <>
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
         <DatePicker
           showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
-          />
-      </Form.Group>
-
-      <Form.Group controlId="formBasicEndDate">
+        />
+        <label htmlFor="floatingInputCustom">종료 날짜</label>
         <DatePicker
           showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
-          />
-      </Form.Group>
-
+        />
+      </>
 
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control

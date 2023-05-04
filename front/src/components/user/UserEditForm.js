@@ -125,12 +125,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           </Form.Group>
 
           <Form.Group controlId="userEditEmail" className="mb-3">
-            <Form.Control
-              type="email"
-              placeholder="이메일"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <Form.Label>이메일: {email}</Form.Label>
           </Form.Group>
 
           <Form.Group controlId="userEditGithub" className="mb-3">

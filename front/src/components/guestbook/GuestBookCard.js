@@ -32,7 +32,7 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     <Card.Text>
       <Row className="align-items-center">
         <Col>
-          <text>{guestBook?.authorName}</text>
+          <text>{guestBook?.authorName} {guestBook?.updatedAt? guestBook.updatedAt : guestBook.createdAt}</text>
           <br />
           <text>{guestBook?.content}</text>
           <br />
@@ -40,12 +40,6 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
 
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
-            <button
-              onClick={() => setIsEditing((prev) => !prev)}
-              className="btn-edit"
-            >
-              편집
-            </button>
             <>
               <button onClick={handleShow} className="btn-delete">
                 삭제

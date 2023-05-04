@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolName, setSchoolName] = useState("");
@@ -28,6 +29,25 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      userId,
+      schoolName,
+      schoolType,
+      major,
+      status,
+      startDate,
+      endDate,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("educationlist", userId);
@@ -82,24 +102,30 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         </Form.Select>
 
       
-      <label htmlFor="floatingInputCustom">입학년월</label>
-        <Form.Group controlId="formBasicStartDate">
-          <DatePicker
-            showIcon
-            selected={startDate}
-            onChange={(startDate) => setStartDate(startDate)}
-            />
-        </Form.Group>
 
-
-      <label htmlFor="floatingInputCustom">졸업년월</label>
-        <Form.Group controlId="formBasicEndDate">
-          <DatePicker
-            showIcon
-            selected={endDate}
-            onChange={(endDate) => setEndDate(endDate)}
-            />
-        </Form.Group>
+      <>
+      <label htrmlFor = "floatingInputCustom">재학 기간</label>
+      <br />
+      <label htmlFor="floatingInputCustom">입학 년월</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
+          selected={startDate}
+          onChange={(startDate) => setStartDate(startDate)}
+        />
+      <label htmlFor="floatingInputCustom">졸업 년월</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
+          selected={endDate}
+          onChange={(endDate) => setEndDate(endDate)}
+        />
+      </>
+      
 
 
       <Form.Group as={Row} className="mt-3 text-center">

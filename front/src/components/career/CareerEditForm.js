@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
+import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
@@ -8,8 +10,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [department, setDepartment] = useState(currentCareer.department);
   const [position, setPosition] = useState(currentCareer.position);
   const [description, setDescription] = useState(currentCareer.description);
-  const [startDate, setStartDate] = useState(currentCareer.startDate);
-  const [endDate, setEndDate] = useState(currentCareer.endDate);
+  const [startDate, setStartDate] = useState(new Date(currentCareer.startDate));
+  const [endDate, setEndDate] = useState(new Date(currentCareer.endDate));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,6 +30,26 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      startDate,
+      endDate,
+      company,
+      userId,
+      department,
+      position,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
+
 
     // "projectlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("careerlist", userId);
@@ -70,23 +92,27 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">근무 기간</label>
-      <Form.Group controlId="formBasicStartDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 20230227"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+      <br />
+      <>
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
+      <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
+          selected={startDate}
+          onChange={(startDate) => setStartDate(startDate)}
         />
-      </Form.Group>
-
-      <Form.Group controlId="formBasicEndDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 20230811"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+        <label htmlFor="floatingInputCustom">종료 날짜</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
+          selected={endDate}
+          onChange={(endDate) => setEndDate(endDate)}
         />
-      </Form.Group>
+      </>
 
       <label htmlFor="floatingInputCustom">직무설명</label>
       <Form.Group controlId="formBasicDescription">

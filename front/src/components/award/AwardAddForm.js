@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -15,6 +16,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    console.log("date: ", date);
+
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
@@ -26,6 +29,18 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       date,
       description,
     });
+
+    const data = {
+      userId,
+      title,
+      grade,
+      date,
+      description,
+    }
+
+    console.log("data: ", data);
+    setDate(convertTime(date));
+    data.date = convertTime(date);
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("awardlist", userId);
@@ -55,7 +70,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         onChange={(e) => setGrade(e.target.value)}
       />
 
-      <label htmlFor="floatingInputCustom">수상년월</label>
+      <label htmlFor="floatingInputCustom">수상 날짜</label>
       <DatePicker
         showIcon
         dateFormat="yyyy-MM-dd"
