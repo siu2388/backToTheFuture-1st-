@@ -105,7 +105,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div>
+        <div style = {{ fontFamily: 'NanumBarunGothic'}}>
+          
           <Form.Group controlId="userEditImage" className="mb-3">
             <Form.Label>프로필 사진 변경</Form.Label>
             <Form.Control
@@ -166,7 +167,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setHomeName(e.target.value)}
             />
           </Form.Group>
-
+        <div style = {{display: "flex" }}>
+          <Col style = {{justifyContent: "center", alignItems: "center", width: '33.33%'}}>
           <Form.Label>배경 색상 선택</Form.Label>
           <Form.Group controlId="userEditBgColor">
             <Form.Control
@@ -175,7 +177,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setBgColor(e.target.value)}
             />
           </Form.Group>
-
+          </Col>
+          <Col style = {{justifyContent: "center", alignItems: "center", width: '33.33%'}}>
           <Form.Label>박스 색상 선택</Form.Label>
           <Form.Group controlId="userEditBoxColor">
             <Form.Control
@@ -184,7 +187,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setBoxColor(e.target.value)}
             />
           </Form.Group>
-
+          </Col>
+          <Col style = {{justifyContent: "center", alignItems: "center", width: '33.33%'}}>
           <Form.Label>메뉴 색상 선택</Form.Label>
           <Form.Group controlId="userEditMenuColor">
             <Form.Control
@@ -193,6 +197,9 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setMenuColor(e.target.value)}
             />
           </Form.Group>
+          </Col>
+
+        </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
