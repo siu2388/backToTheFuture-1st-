@@ -23,6 +23,16 @@ function Awards({ portfolioOwnerId, isEditable }) {
         {isEditable && (
             <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
         )}
+
+        {isAdding && (
+          <AwardAddForm
+            portfolioOwnerId={portfolioOwnerId}
+            setAwards={setAwards}
+            setIsAdding={setIsAdding}
+            
+          />
+        )}
+        
         {awards.map((award) => (
           <Award
             key={award.id}
@@ -33,14 +43,7 @@ function Awards({ portfolioOwnerId, isEditable }) {
           />
         ))}
 
-        {isAdding && (
-          <AwardAddForm
-            portfolioOwnerId={portfolioOwnerId}
-            setAwards={setAwards}
-            setIsAdding={setIsAdding}
-            
-          />
-        )}
+
       </Card.Body>
     </Card>
   );

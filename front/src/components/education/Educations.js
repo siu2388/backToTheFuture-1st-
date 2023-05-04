@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 
-import Education from './Education';
-import EducationAddForm from './EducationAddForm';
+import Education from "./Education";
+import EducationAddForm from "./EducationAddForm";
 import * as Api from "../../api";
 
 function Educations({ portfolioOwnerId, isEditable }) {
@@ -21,9 +21,25 @@ function Educations({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title style = {{display: "inline-block", marginRight: "10px"}}>학력</Card.Title>
+        <Card.Title style={{ display: "inline-block", marginRight: "10px" }}>
+          학력
+        </Card.Title>
         {isEditable && (
-            <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
+          <button
+            className="btn-add"
+            style={{ display: "inline-block" }}
+            onClick={() => setIsAdding(true)}
+          >
+            +
+          </button>
+        )}
+
+        {isAdding && (
+          <EducationAddForm
+            portfolioOwnerId={portfolioOwnerId}
+            setEducations={setEducations}
+            setIsAdding={setIsAdding}
+          />
         )}
         {educations.map((education) => (
           <Education
@@ -33,13 +49,6 @@ function Educations({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        {isAdding && (
-          <EducationAddForm
-            portfolioOwnerId={portfolioOwnerId}
-            setEducations={setEducations}
-            setIsAdding={setIsAdding}
-          />
-        )}
       </Card.Body>
     </Card>
   );

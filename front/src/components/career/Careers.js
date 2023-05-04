@@ -18,9 +18,25 @@ function Careers({ portfolioOwnerId, isEditable }) {
   return (
     <Card>
       <Card.Body>
-        <Card.Title style = {{display: "inline-block", marginRight: "10px"}}>경력</Card.Title>
+        <Card.Title style={{ display: "inline-block", marginRight: "10px" }}>
+          경력
+        </Card.Title>
         {isEditable && (
-            <button className = "btn-add" style = {{ display: "inline-block" }} onClick={() => setIsAdding(true)}>+</button>
+          <button
+            className="btn-add"
+            style={{ display: "inline-block" }}
+            onClick={() => setIsAdding(true)}
+          >
+            +
+          </button>
+        )}
+
+        {isAdding && (
+          <CareerAddForm
+            portfolioOwnerId={portfolioOwnerId}
+            setCareers={setCareers}
+            setIsAdding={setIsAdding}
+          />
         )}
         {careers.map((career) => (
           <Career
@@ -30,18 +46,9 @@ function Careers({ portfolioOwnerId, isEditable }) {
             isEditable={isEditable}
           />
         ))}
-        
-        {isAdding && (
-          <CareerAddForm
-            portfolioOwnerId={portfolioOwnerId}
-            setCareers={setCareers}
-            setIsAdding={setIsAdding}
-          />
-        )}
       </Card.Body>
     </Card>
   );
 }
 
 export default Careers;
-
