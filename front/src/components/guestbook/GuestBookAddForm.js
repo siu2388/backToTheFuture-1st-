@@ -48,6 +48,7 @@ function GuestBookAddForm({ guestBookPageOwnerId, setGuestBooks, setIsAdding }) 
           value={content}
           placeholder="하고 싶은 말을 남겨 보세요."
           onChange={(e) => setContent(e.target.value)}
+          style = {{ fontFamily: "NanumBarunGothic"}}
         />
 
 

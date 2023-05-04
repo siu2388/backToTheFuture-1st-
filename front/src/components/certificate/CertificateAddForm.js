@@ -98,12 +98,12 @@ function CertificateAddForm({
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <button type="submit" className="btn-confirm">
             확인
-          </Button>
-          <Button variant="secondary" onClick={() => setIsAdding(false)}>
+          </button>
+          <button className="btn-cancel" onClick={() => setIsAdding(false)}>
             취소
-          </Button>
+          </button>
         </Col>
       </Form.Group>
     </Form>

@@ -25,6 +25,17 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
   };
 
   useEffect(() => {}, [guestBook]);
+  const lastEditTime = guestBook?.updatedAt ? guestBook.updatedAt : guestBook.createdAt;
+
+  const formatter = new Intl.DateTimeFormat("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
+
 
   const [show, setShow] = useState(false);
 
@@ -36,10 +47,8 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
       <Card.Text>
         <Row className="align-items-center">
           <Col className="component-card-col-left">
-            <text>
-              {guestBook?.authorName}{" "}
-              {guestBook?.updatedAt ? guestBook.updatedAt : guestBook.createdAt}
-            </text>
+            <text> {guestBook?.authorName}{" "} </text>
+            <text>{formatter.format(new Date(lastEditTime))}</text>
             <br />
             <text>{guestBook?.content}</text>
             <br />
