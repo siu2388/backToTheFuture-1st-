@@ -15,6 +15,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    console.log("date: ", date);
+
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
@@ -55,7 +57,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
         onChange={(e) => setGrade(e.target.value)}
       />
 
-      <label htmlFor="floatingInputCustom">수상년월</label>
+      <label htmlFor="floatingInputCustom">수상 날짜</label>
       <DatePicker
         showIcon
         dateFormat="yyyy-MM-dd"

@@ -9,7 +9,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
   const [grade, setGrade] = useState(currentAward.grade);
-  const [date, setDate] = useState(currentAward.date);
+  const [date, setDate] = useState(new Date(currentAward.date));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -57,10 +57,13 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
       <label htmlFor="floatingInputCustom">수상년월</label>
       <DatePicker
+        dateFormat="yyyy-MM-dd"
         showIcon
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
         selected={date}
         onChange={(date) => setDate(date)}
-        />
+      />
 
       <label htmlFor="floatingInputCustom">상세내역</label>
       <Form.Control

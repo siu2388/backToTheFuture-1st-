@@ -46,21 +46,28 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
           onChange={(e) => setTitle(e.target.value)}
         />
 
+      <label htmlFor="floadtingInputCustom">활동 기간</label>
+      <br />
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
+        selected={startDate}
+        onChange={(startDate) => setStartDate(startDate)}
+      />
 
-      <label htmlFor="floatingInputCustom">시작 년월</label>
-        <DatePicker
-          showIcon
-          selected={startDate}
-          onChange={(startDate) => setStartDate(startDate)}
-          />
 
-
-      <label htmlFor="floatingInputCustom">완료 년월</label>
-        <DatePicker
-          showIcon
-          selected={endDate}
-          onChange={(endDate) => setEndDate(endDate)}
-          />
+      <label htmlFor="floatingInputCustom">완료 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
+        selected={endDate}
+        onChange={(endDate) => setEndDate(endDate)}
+      />
 
 
       <label htmlFor="floatingInputCustom">링크</label>

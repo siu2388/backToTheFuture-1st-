@@ -9,8 +9,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [department, setDepartment] = useState(currentCareer.department);
   const [position, setPosition] = useState(currentCareer.position);
   const [description, setDescription] = useState(currentCareer.description);
-  const [startDate, setStartDate] = useState(currentCareer.startDate);
-  const [endDate, setEndDate] = useState(currentCareer.endDate);
+  const [startDate, setStartDate] = useState(new Date(currentCareer.startDate));
+  const [endDate, setEndDate] = useState(new Date(currentCareer.endDate));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,23 +71,25 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">근무 기간</label>
+      <br />
       <>
-        <DatePicker
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
+      <DatePicker
           showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
           selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          selectsStart
-          startDate={startDate}
-          endDate={endDate}
+          onChange={(startDate) => setStartDate(startDate)}
         />
+        <label htmlFor="floatingInputCustom">종료 날짜</label>
         <DatePicker
           showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
           selected={endDate}
-          onChange={(date) => setEndDate(date)}
-          selectsEnd
-          startDate={startDate}
-          endDate={endDate}
-          minDate={startDate}
+          onChange={(endDate) => setEndDate(endDate)}
         />
       </>
 

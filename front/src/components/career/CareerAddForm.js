@@ -76,22 +76,23 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
 
       <label htmlFor="floatingInputCustom">근무 기간</label>
       <>
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
         <DatePicker
           showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
           selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          selectsStart
-          startDate={startDate}
-          endDate={endDate}
+          onChange={(startDate) => setStartDate(startDate)}
         />
+        <label htmlFor="floatingInputCustom">종료 날짜</label>
         <DatePicker
           showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
           selected={endDate}
-          onChange={(date) => setEndDate(date)}
-          selectsEnd
-          startDate={startDate}
-          endDate={endDate}
-          minDate={startDate}
+          onChange={(endDate) => setEndDate(endDate)}
         />
       </>
 

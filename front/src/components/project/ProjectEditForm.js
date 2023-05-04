@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
+import DatePicker from "react-datepicker";
 
 import * as Api from "../../api";
 
@@ -7,8 +8,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
   const [description, setDescription] = useState(currentProject.description);
-  const [startDate, setStartDate] = useState(currentProject.startDate);
-  const [endDate, setEndDate] = useState(currentProject.endDate);
+  const [startDate, setStartDate] = useState(new Date(currentProject.startDate));
+  const [endDate, setEndDate] = useState(new Date(currentProject.endDate));
   const [archive, setArchive] = useState(currentProject.archive);
 
   const handleSubmit = async (e) => {
@@ -46,20 +47,27 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <label htmlFor="floatingInputCustom">시작날짜</label>
-      <Form.Control
-        type="text"
-        placeholder="예: 20230424"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
+      <label htmlFor="floadtingInputCustom">활동 기간</label>
+      <br />
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
+        selected={startDate}
+        onChange={(startDate) => setStartDate(startDate)}
       />
 
-      <label htmlFor="floatingInputCustom">완료날짜</label>
-      <Form.Control
-        type="text"
-        placeholder="예: 20230506"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
+
+      <label htmlFor="floatingInputCustom">완료 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        // selected={new Date(this.state.startDate)}
+        selected={endDate}
+        onChange={(endDate) => setEndDate(endDate)}
       />
 
       <label htmlFor="floatingInputCustom">링크</label>

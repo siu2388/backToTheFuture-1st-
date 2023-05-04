@@ -3,6 +3,7 @@ import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 
+
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolName, setSchoolName] = useState("");
   const [schoolType, setSchoolType] = useState("");
@@ -82,24 +83,30 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         </Form.Select>
 
       
-      <label htmlFor="floatingInputCustom">입학년월</label>
-        <Form.Group controlId="formBasicStartDate">
-          <DatePicker
-            showIcon
-            selected={startDate}
-            onChange={(startDate) => setStartDate(startDate)}
-            />
-        </Form.Group>
 
-
-      <label htmlFor="floatingInputCustom">졸업년월</label>
-        <Form.Group controlId="formBasicEndDate">
-          <DatePicker
-            showIcon
-            selected={endDate}
-            onChange={(endDate) => setEndDate(endDate)}
-            />
-        </Form.Group>
+      <>
+      <label htrmlFor = "floatingInputCustom">재학 기간</label>
+      <br />
+      <label htmlFor="floatingInputCustom">입학 년월</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
+          selected={startDate}
+          onChange={(startDate) => setStartDate(startDate)}
+        />
+      <label htmlFor="floatingInputCustom">졸업 년월</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          // selected={new Date(this.state.startDate)}
+          selected={endDate}
+          onChange={(endDate) => setEndDate(endDate)}
+        />
+      </>
+      
 
 
       <Form.Group as={Row} className="mt-3 text-center">
