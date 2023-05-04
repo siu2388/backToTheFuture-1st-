@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import converTime from "../ConverTime";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
@@ -29,6 +30,26 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      startDate,
+      endDate,
+      company,
+      userId,
+      department,
+      position,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(converTime(startDate));
+    data.startDate = converTime(startDate);
+    
+    setEndDate(converTime(endDate));
+    data.endDate = converTime(endDate);
+
+    console.log("data: ", data);
+
 
     // "projectlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("careerlist", userId);

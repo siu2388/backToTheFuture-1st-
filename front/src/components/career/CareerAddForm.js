@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
-
+import converTime from "../ConverTime";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 
@@ -32,6 +32,25 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      startDate,
+      endDate,
+      company,
+      userId,
+      department,
+      position,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(converTime(startDate));
+    data.startDate = converTime(startDate);
+    
+    setEndDate(converTime(endDate));
+    data.endDate = converTime(endDate);
+
+    console.log("data: ", data);
 
     // "careerlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("careerlist", userId);
