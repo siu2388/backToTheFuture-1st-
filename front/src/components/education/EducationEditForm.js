@@ -54,7 +54,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
         value={schoolType}
         onChange={(e) => setSchoolType(e.target.value)}
       >
-        <option>select</option>
+        <option value=""></option>
         <option value="학사">학사</option>
         <option value="석사">석사</option>
         <option value="박사">박사</option>
@@ -70,7 +70,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       />
 
       <Form.Select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option>상태</option>
+        
         <option value="재학중">재학중</option>
         <option value="휴학">휴학</option>
         <option value="수료">수료</option>

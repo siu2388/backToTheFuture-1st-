@@ -37,7 +37,7 @@ function Portfolio() {
   useEffect(()=>{
     document.body.style.backgroundColor = portfolioOwner?.bgColor;
 
-    return () => {document.body.style.backgroundColor =""}
+    return () => {document.body.style.backgroundColor ="#d9d7da"}
   },[portfolioOwner]);
 
   useEffect(() => {
