@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-
+import convertTime from "../ConverTime";
 
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolName, setSchoolName] = useState("");
@@ -29,6 +29,25 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      userId,
+      schoolName,
+      schoolType,
+      major,
+      status,
+      startDate,
+      endDate,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("educationlist", userId);

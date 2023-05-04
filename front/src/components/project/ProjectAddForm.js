@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -27,6 +28,24 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       archive,
       description,
     });
+
+    const data = {
+      userId,
+      title,
+      startDate,
+      endDate,
+      archive,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
 
     // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("projectlist", userId);

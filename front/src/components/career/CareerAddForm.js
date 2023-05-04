@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
-import converTime from "../ConverTime";
+import convertTime from "../ConverTime";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 
@@ -44,11 +44,11 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
     }
 
     console.log("data: ", data);
-    setStartDate(converTime(startDate));
-    data.startDate = converTime(startDate);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
     
-    setEndDate(converTime(endDate));
-    data.endDate = converTime(endDate);
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
 
     console.log("data: ", data);
 

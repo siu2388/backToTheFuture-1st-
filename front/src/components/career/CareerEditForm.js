@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-import converTime from "../ConverTime";
+import convertTime from "../ConverTime";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
@@ -42,11 +42,11 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
     }
 
     console.log("data: ", data);
-    setStartDate(converTime(startDate));
-    data.startDate = converTime(startDate);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
     
-    setEndDate(converTime(endDate));
-    data.endDate = converTime(endDate);
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
 
     console.log("data: ", data);
 

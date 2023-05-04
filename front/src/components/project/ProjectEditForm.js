@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-
+import convertTime from "../ConverTime";
 import * as Api from "../../api";
 
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
@@ -29,6 +29,24 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
       description,
     });
 
+    const data = {
+      userId,
+      title,
+      startDate,
+      endDate,
+      archive,
+      description,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
+
     // "projectlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("projectlist", userId);
     // projects를 response의 data로 세팅함.
@@ -55,7 +73,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"
         // selected={new Date(this.state.startDate)}
-        selected={startDate}
+        selected={startDate}  
         onChange={(startDate) => setStartDate(startDate)}
       />
 

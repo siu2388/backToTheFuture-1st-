@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -26,6 +27,22 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       date,
       description,
     });
+
+    const data = {
+      userId,
+      title,
+      grade,
+      date,
+      description,
+    }
+
+    console.log("data: ", data);
+    setDate(convertTime(date));
+    data.date = convertTime(date);
+    
+    
+
+    console.log("data: ", data);
 
     // "awardlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("awardlist", userId);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
+import convertTime from "../ConverTime";
 
 function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
   //useState로 title 상태를 생성함.
@@ -29,6 +30,25 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       startDate,
       endDate,
     });
+
+    const data = {
+      userId,
+      schoolName,
+      schoolType,
+      major,
+      status,
+      startDate,
+      endDate,
+    }
+
+    console.log("data: ", data);
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+    
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    console.log("data: ", data);
 
     // "educationlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("educationlist", userId);
