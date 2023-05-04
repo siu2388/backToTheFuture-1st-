@@ -8,8 +8,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [archive, setArchive] = useState("");
 
   const handleSubmit = async (e) => {
@@ -89,6 +89,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
         showIcon
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
         // selected={new Date(this.state.startDate)}
         selected={startDate}
         onChange={(startDate) => setStartDate(startDate)}
@@ -100,6 +102,8 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
         showIcon
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
         // selected={new Date(this.state.startDate)}
         selected={endDate}
         onChange={(endDate) => setEndDate(endDate)}

@@ -11,8 +11,8 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   const [department, setDepartment] = useState("");
   const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
 
   const handleSubmit = async (e) => {
@@ -109,6 +109,8 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
           // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
