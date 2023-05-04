@@ -39,7 +39,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
       <Form.Group controlId="formBasicSkillName">
         <Form.Control
           type="text"
-          placeholder="예: React"
+          placeholder="프로그래밍 언어/프레임워크"
           value={skillName}
           onChange={(e) => setSkillName(e.target.value)}
         />

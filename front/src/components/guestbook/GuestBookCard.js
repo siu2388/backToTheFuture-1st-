@@ -36,10 +36,8 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
       <Card.Text>
         <Row className="align-items-center">
           <Col className="component-card-col-left">
-            <text>
-              {guestBook?.authorName}{" "}
-              {guestBook?.updatedAt ? guestBook.updatedAt : guestBook.createdAt}
-            </text>
+            <text> {guestBook?.authorName}{" "} </text>
+            <text dateFormat="yyyy-MM-dd"> {guestBook?.updatedAt ? guestBook.updatedAt : guestBook.createdAt} </text>
             <br />
             <text>{guestBook?.content}</text>
             <br />

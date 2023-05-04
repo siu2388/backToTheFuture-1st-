@@ -36,6 +36,10 @@ body {
 }
 
 
+.component-card-body {
+  margin-bottom: 7px;
+}
+
 .card-title {
   display: "inline-block";
   margin-right: 10px;

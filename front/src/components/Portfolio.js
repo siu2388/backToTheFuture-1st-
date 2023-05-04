@@ -122,42 +122,42 @@ function Portfolio() {
               <div className="miniroom">
                 <div className="box-title">Miniroom</div>
                 <div className="miniroom-gif-box">
-                  <div id="career-section">
+                  <div id="career-section" className = "component-card-body">
                     <Careers
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="education-section">
+                  <div id="education-section" className = "component-card-body">
                     <Educations
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="project-section">
+                  <div id="project-section" className = "component-card-body">
                     <Projects
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="award-section">
+                  <div id="award-section" className = "component-card-body">
                     <Awards
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="certificate-section">
+                  <div id="certificate-section" className = "component-card-body">
                     <Certificates
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
                     />
                   </div>
 
-                  <div id="skill-section">
+                  <div id="skill-section" className = "component-card-body">
                     <Skills
                       portfolioOwnerId={portfolioOwner.id}
                       isEditable={portfolioOwner.id === userState.user?.id}
