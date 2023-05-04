@@ -83,6 +83,31 @@ body {
 
 }
 
+.component-card-col-left {
+  margin-left: 10px;
+
+}
+
+
+.component-card-col-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 15px;
+
+}
+
+.component-card {
+    border-radius: 8px;
+    width: 100%;
+    border: 1px solid #b9b9b9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    margin-bottom: 5px;
+    font-family: 'NanumBarunGothic';
+    font-weight: 600;
+}
+
 
 .miniroom-gif-box {
   display: flex;
@@ -106,7 +131,8 @@ body {
 
 .content-title {
   display: flex;
-  align-items: center;  
+  align-items: center;
+  
 }
 
 .content-title-name {
@@ -115,6 +141,9 @@ body {
   font-weight:200;
   font-size: 20px;
   height: 2rem;
+  margin-left: 10px;  
+  text-decoration: none;
+  color: black;
 }
 
 .content-title-url {
@@ -132,6 +161,7 @@ body {
   height: 24px;
   text-align: center;
   border: none;
+  font-family: "NeoDunggeunmo";
 }
 
 .btn-add {
@@ -142,8 +172,8 @@ body {
   height: 24px;
   text-align: center;
   border: none;
+  font-family: "NeoDunggeunmo";
 }
-
 
 .btn-delete {
   background-color: #f15f5f;
@@ -154,8 +184,9 @@ body {
   font-size: 1rem;
   display: inline-block;
   border: none;
-  width: 3rem;
+  width: 50px;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 .btn-edit {
@@ -167,8 +198,9 @@ body {
   font-size: 1rem;
   display: inline-block;
   border: none;
-  width: 3rem;
+  width: 50px;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 
@@ -184,6 +216,7 @@ body {
   border: none;
   width: 3rem;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 .btn-cancel {
@@ -197,6 +230,7 @@ body {
   border: none;
   width: 3rem;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 .profile-title {
@@ -226,6 +260,11 @@ body {
 .profile-image-img {
   width: 100%;
   height: 100%;
+}
+
+.userCard {
+  font-family: 'NanumBarunGothic';
+  font-weight: 600;
 }
 
 .profile-text {

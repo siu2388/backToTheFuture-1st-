@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Container, Col, Row } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Container } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
 import * as Api from "../api";
@@ -103,9 +103,12 @@ function Portfolio() {
 
           <div className="content-container" id ="content-container">
             <div className="header content-title">
-              <div className="content-title-name">
+            <Link
+                to={`/userId/${portfolioOwner.id}`}
+                className="content-title-name"
+              >
                 {portfolioOwner.homeName}
-              </div>
+              </Link>
             </div>
             <div className="box content-box" id="content-box">
               <div className="miniroom">

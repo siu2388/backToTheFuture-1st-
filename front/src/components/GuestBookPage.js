@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { Container, Col, Row } from "react-bootstrap";
 
 import { UserStateContext } from "../App";
@@ -35,18 +35,19 @@ function GuestBookPage() {
     console.log(guestBookPageOwner);
   }, [guestBookPageOwner]);
 
-  useEffect(()=>{
+  useEffect(() => {
     document.body.style.backgroundColor = guestBookPageOwner?.bgColor;
 
-    return () => {document.body.style.backgroundColor =""}
-  },[guestBookPageOwner]);
+    return () => {
+      document.body.style.backgroundColor = "";
+    };
+  }, [guestBookPageOwner]);
 
   useEffect(() => {
     // 전역 상태의 user가 null이라면 로그인이 안 된 상태이므로, 로그인 페이지로 돌림.
     if (!userState.user) {
       navigate("/login", { replace: true });
       return;
-
     }
 
     if (params.userId) {
@@ -67,7 +68,8 @@ function GuestBookPage() {
   }
 
   return (
-    <Container className="bookcover"
+    <Container
+      className="bookcover"
       style={{ backgroundColor: guestBookPageOwner?.boxColor }}
     >
       <div className="bookdot">
@@ -99,9 +101,12 @@ function GuestBookPage() {
 
           <div className="content-container">
             <div className="header content-title">
-              <div className="content-title-name">
+              <Link
+                to={`/userId/${guestBookPageOwner.id}`}
+                className="content-title-name"
+              >
                 {guestBookPageOwner.homeName}
-              </div>
+              </Link>
             </div>
             <div className="box content-box">
               <div className="miniroom">
@@ -111,7 +116,6 @@ function GuestBookPage() {
                     <GuestBooks
                       guestBookPageOwnerId={guestBookPageOwner.id}
                       portfolioOwner={guestBookPageOwner}
-                      
                     />
                   </div>
                 </div>
@@ -120,11 +124,12 @@ function GuestBookPage() {
           </div>
 
           <div className="menu-container">
-            <Navigator 
+            <Navigator
               portfolioOwner={guestBookPageOwner}
               backHome={() => {
-              navigate(`/userId/${guestBookPageOwner.id}`)
-              }}/>
+                navigate(`/userId/${guestBookPageOwner.id}`);
+              }}
+            />
           </div>
         </div>
       </div>
