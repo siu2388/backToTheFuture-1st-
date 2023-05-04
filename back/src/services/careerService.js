@@ -1,6 +1,7 @@
 // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import { Career } from "../db";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class CareerService {
   static async addCareer({ userId, company, department, position, description, startDate, endDate }) {
@@ -9,6 +10,21 @@ class CareerService {
 
     // db에 저장
     const newCareer = { id, userId, company, department, position, description, startDate, endDate };
+
+    // 공란일 경우, 에러 메시지 반환
+    if (!newCareer.company || !newCareer.department || !newCareer.position || !newCareer.description || !newCareer.startDate || !newCareer.endDate) {
+      const errorMessage = 
+        "Career 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
+    if ((newCareer.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
+      const errorMessage =
+        "Career 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     const createdNewCareer = await Career.create({ newCareer });
 
     return createdNewCareer;
@@ -19,7 +35,7 @@ class CareerService {
     const career = await Career.findById({ careerId });
     if (!career) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Career 조회: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -37,10 +53,18 @@ class CareerService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!career) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Career 조회: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
+    // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
+    if((toUpdate.endDate) && (!moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate)))){
+      const errorMessage =
+        "Career 수정: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    // 업데이트
     if (toUpdate.company) {
       const fieldToUpdate = "company";
       const newValue = toUpdate.company;
@@ -85,7 +109,7 @@ class CareerService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Career 삭제: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

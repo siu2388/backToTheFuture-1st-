@@ -28,6 +28,10 @@ certificateRouter.post("/certificate/create", async (req, res, next) => {
       grade,
     });
 
+    if (newCertificate.errorMessage) {
+      throw new Error(newCertificate.errorMessage);
+    }
+
     res.status(201).json(newCertificate);
     return;
   } catch (error) {

@@ -9,6 +9,14 @@ class AwardService {
 
     // db에 저장
     const newAward = { id, userId, title, grade, date, description };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newAward.title || !newAward.grade || !newAward.date || !newAward.description) {
+      const errorMessage = 
+        "Award 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     const createdNewAward = await Award.create({ newAward });
 
     return createdNewAward;
@@ -19,7 +27,7 @@ class AwardService {
     const award = await Award.findById({ awardId });
     if (!award) {
       const errorMessage =
-        "해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Award 조회: 해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -37,7 +45,7 @@ class AwardService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!award) {
       const errorMessage =
-        "해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Award 조회: 해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -73,7 +81,7 @@ class AwardService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Award 삭제: 해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

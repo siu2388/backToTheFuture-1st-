@@ -32,6 +32,10 @@ guestBookRouter.post("/guestBooks/:receiverId", async (req, res, next) => {
       content,
     });
 
+    if (newGuestBook.errorMessage) {
+      throw new Error(newGuestBook.errorMessage);
+    }
+
     res.status(201).json(newGuestBook);
     return;
   } catch (error) {
@@ -45,8 +49,9 @@ guestBookRouter.get("/guestBooklist/:receiverId", async (req, res, next) => {
     // 특정 사용자의 전체 방명록 목록을 얻음
     const receiverId = req.params.receiverId;
     const guestBookList = await GuestBookService.getGuestBookList(receiverId);
+    const sortedGuestBookList = guestBookList.sort().reverse()
 
-    res.status(200).send(guestBookList);
+    res.status(200).send(sortedGuestBookList);
     return;
   } catch (error) {
     next(error);
@@ -65,7 +70,9 @@ guestBookRouter.delete(
         req.params.guestBookId
       );
 
-      if (foundGuestBook.errorMessage) throw "해당 방명록을 찾을 수 없습니다.";
+      if (foundGuestBook.errorMessage) {
+        throw new Error(foundGuestBook.errorMessage);
+      }
 
       //이 게시물 작성자랑 토큰 유저랑 같은지?
       if (foundGuestBook.authorId !== authorId) {
@@ -77,7 +84,10 @@ guestBookRouter.delete(
           guestBookId: req.params.guestBookId,
         });
 
-        if (result.errorMessage) throw "삭제 에러 발생";
+        if (result.errorMessage) {
+          throw new Error(result.errorMessage);
+        }
+
         res.status(200).json("삭제 완료");
         return;
       }
@@ -98,7 +108,9 @@ guestBookRouter.delete(
         req.params.guestBookId
       );
 
-      if (foundGuestBook.errorMessage) throw "해당 방명록을 찾을 수 없습니다.";
+      if (foundGuestBook.errorMessage) {
+        throw new Error(foundGuestBook.errorMessage);
+      }
 
       /*이 게시물 receiverId랑 의 토큰의 userId랑 같은지? */
       if (foundGuestBook.receiverId !== receiverId) {
@@ -109,7 +121,10 @@ guestBookRouter.delete(
           guestBookId: req.params.guestBookId,
         });
 
-        if (result.errorMessage) throw "삭제 에러 발생";
+        if (result.errorMessage) {
+          throw new Error(result.errorMessage);
+        }
+
         res.status(200).json("삭제 완료");
         return;
       }

@@ -2,16 +2,37 @@ import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) {
+function CertificateAddForm({
+  portfolioOwnerId,
+  setCertificates,
+  setIsAdding,
+}) {
   //useState로 title 상태를 생성함.
-  const [title, setTitle] = useState("")
-  const [authority, setAuthority] = useState("")
-  const [registerNum, setRegisterNum] = useState("")
-  const [grade, setGrade] = useState("")
+  const [title, setTitle] = useState("");
+  const [authority, setAuthority] = useState("");
+  const [registerNum, setRegisterNum] = useState("");
+  const [grade, setGrade] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (!title) {
+      alert("자격증명을 입력해주세요.");
+      return;
+    }
+    if (!authority) {
+      alert("발급기관을 입력해주세요.");
+      return;
+    }
+    if (!registerNum) {
+      alert("발급번호를 입력해주세요.");
+      return;
+    }
+    if (!grade) {
+      alert("등급/점수를 입력해주세요.");
+      return;
+    }
 
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
@@ -22,7 +43,7 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
       title,
       authority,
       registerNum,
-      grade
+      grade,
     });
 
     // "certificatelist/유저id" 엔드포인트로 get요청함.
@@ -46,7 +67,7 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">발급기관</label>
-      <Form.Group controlId="formBasicAuthority" >
+      <Form.Group controlId="formBasicAuthority">
         <Form.Control
           type="text"
           placeholder="발급기관"
@@ -56,7 +77,7 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">발급번호</label>
-      <Form.Group controlId="formBasicRegisterNum" >
+      <Form.Group controlId="formBasicRegisterNum">
         <Form.Control
           type="text"
           placeholder="발급번호"
@@ -66,7 +87,7 @@ function CertificateAddForm({ portfolioOwnerId, setCertificates, setIsAdding }) 
       </Form.Group>
 
       <label htmlFor="floatingInputCustom">등급/점수</label>
-      <Form.Group controlId="formBasicGrade" >
+      <Form.Group controlId="formBasicGrade">
         <Form.Control
           type="text"
           placeholder="예: 1급/990"

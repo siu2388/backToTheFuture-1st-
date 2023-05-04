@@ -28,6 +28,10 @@ projectRouter.post("/project/create", async (req, res, next) => {
       description,
     });
 
+    if (newProject.errorMessage) {
+      throw new Error(newProject.errorMessage);
+    }
+
     res.status(201).json(newProject);
     return;
   } catch (error) {

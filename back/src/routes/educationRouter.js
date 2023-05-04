@@ -29,6 +29,10 @@ educationRouter.post("/education/create", async (req, res, next) => {
       endDate,
     });
 
+    if (newEducation.errorMessage) {
+      throw new Error(newEducation.errorMessage);
+    }
+
     res.status(201).json(newEducation);
     return;
   } catch (error) {

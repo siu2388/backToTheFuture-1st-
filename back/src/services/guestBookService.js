@@ -2,12 +2,20 @@ import { GuestBook } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class GuestBookService {
-  static async addGuestBook({ authorId, receiverId, authorName, content, createdAt, updatedAt }) {
+  static async addGuestBook({ authorId, receiverId, authorName, content }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newGuestBook = { id, authorId, receiverId, authorName, content, createdAt, updatedAt };
+    const newGuestBook = { id, authorId, receiverId, authorName, content };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newGuestBook.authorId || !newGuestBook.receiverId || !newGuestBook.authorName || !newGuestBook.content) {
+      const errorMessage = 
+        "GuestBook 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     const createdNewGuestBook = await GuestBook.create({ newGuestBook });
 
     return createdNewGuestBook;
@@ -29,7 +37,7 @@ class GuestBookService {
     const guestBook = await GuestBook.findById({ guestBookId });
     if (!guestBook) {
       const errorMessage =
-        "해당 id를 가진 방명록 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "GuestBook 조회: 해당 id를 가진 방명록 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
     return guestBook;
@@ -41,7 +49,7 @@ class GuestBookService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 방명록이 없습니다. 다시 한 번 확인해 주세요.";
+        "GuestBook 삭제: 해당 id를 가진 방명록이 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

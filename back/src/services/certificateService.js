@@ -9,6 +9,14 @@ class CertificateService {
 
     // db에 저장
     const newCertificate = { id, userId, title, authority, registerNum, grade };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newCertificate.title || !newCertificate.authority || !newCertificate.registerNum || !newCertificate.grade) {
+      const errorMessage = 
+        "Certificate 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    
     const createdNewCertificate = await Certificate.create({ newCertificate });
 
     return createdNewCertificate;
@@ -19,7 +27,7 @@ class CertificateService {
     const certificate = await Certificate.findById({ certificateId });
     if (!certificate) {
       const errorMessage =
-        "해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Certificate 조회: 해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -37,7 +45,7 @@ class CertificateService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!certificate) {
       const errorMessage =
-        "해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Certificate 조회: 해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -74,7 +82,7 @@ class CertificateService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Certificate 삭제: 해당 id를 가진 자격증 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

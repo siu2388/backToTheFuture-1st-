@@ -11,8 +11,8 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   const [department, setDepartment] = useState("");
   const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
 
   const handleSubmit = async (e) => {
@@ -124,10 +124,10 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
         />
       </Form.Group>
 
-      <label htmlFor="floatingInputCustom">근무 기간</label>
+      
       <>
       <label htmlFor="floatingInputCustom">시작 날짜</label>
-        <DatePicker
+        <DatePicker 
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
@@ -136,10 +136,12 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
           onChange={(startDate) => setStartDate(startDate)}
         />
         <label htmlFor="floatingInputCustom">종료 날짜</label>
-        <DatePicker
+        <DatePicker 
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
           // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}

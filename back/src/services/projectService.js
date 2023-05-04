@@ -1,6 +1,7 @@
 // from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import { Project } from "../db";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class ProjectService {
   static async addProject({ userId, title, startDate, endDate, archive, description }) {
@@ -9,6 +10,21 @@ class ProjectService {
 
     // db에 저장
     const newProject = { id, userId, title, startDate, endDate, archive, description };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newProject.title || !newProject.startDate || !newProject.endDate || !newProject.archive || !newProject.description) {
+      const errorMessage = 
+        "Project 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
+    if((newProject.endDate) && (!moment(newProject.startDate).isBefore(moment(newProject.endDate)))){
+      const errorMessage =
+        "Project 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     const createdNewProject = await Project.create({ newProject });
 
     return createdNewProject;
@@ -19,7 +35,7 @@ class ProjectService {
     const project = await Project.findById({ projectId });
     if (!project) {
       const errorMessage =
-        "해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Project 조회: 해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -37,10 +53,18 @@ class ProjectService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!project) {
       const errorMessage =
-        "해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Project 조회: 해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
+    // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
+    if((toUpdate.endDate) && (!moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate)))){
+      const errorMessage =
+        "Project 수정: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    // 업데이트
     if (toUpdate.title) {
       const fieldToUpdate = "title";
       const newValue = toUpdate.title;
@@ -80,7 +104,7 @@ class ProjectService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Project 삭제: 해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

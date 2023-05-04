@@ -3,12 +3,20 @@ import { Skill } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class SkillService {
-  static async addSkill({ userId, skillName, level, period, startDate, endDate }) {
+  static async addSkill({ userId, skillName, level, period }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newSkill = { id, userId, skillName, level, period, startDate, endDate };
+    const newSkill = { id, userId, skillName, level, period };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newSkill.skillName || !newSkill.level || !newSkill.period) {
+      const errorMessage = 
+        "Skill 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    
     const createdNewSkill = await Skill.create({ newSkill });
 
     return createdNewSkill;
@@ -19,7 +27,7 @@ class SkillService {
     const skill = await Skill.findById({ skillId });
     if (!skill) {
       const errorMessage =
-        "해당 id를 가진 기술 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Skill 조회: 해당 id를 가진 기술 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -37,7 +45,7 @@ class SkillService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!skill) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Skill 조회: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -58,18 +66,6 @@ class SkillService {
       skill = await Skill.update({ skillId, fieldToUpdate, newValue });
     }
 
-    if (toUpdate.startDate) {
-      const fieldToUpdate = "startDate";
-      const newValue = toUpdate.startDate;
-      skill = await Skill.update({ skillId, fieldToUpdate, newValue });
-    }
-
-    if (toUpdate.endDate) {
-      const fieldToUpdate = "endDate";
-      const newValue = toUpdate.endDate;
-      skill = await Skill.update({ skillId, fieldToUpdate, newValue });
-    }
-
     return skill;
   }
 
@@ -79,7 +75,7 @@ class SkillService {
     // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 기술 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Skill 삭제: 해당 id를 가진 기술 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

@@ -52,7 +52,7 @@ function RegisterForm() {
       // 로그인 페이지로 이동함.
       navigate("/login");
     } catch (err) {
-      alert("회원가입에 실패하였습니다.");
+      alert("회원가입에 실패하였습니다.서버를 확인해주세요.");
     }
   };
 

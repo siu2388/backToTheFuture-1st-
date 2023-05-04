@@ -9,8 +9,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolType, setSchoolType] = useState("");
   const [major, setMajor] = useState("");
   const [status, setStatus] = useState("재학중");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,7 +94,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
         value={schoolType}
         onChange={(e) => setSchoolType(e.target.value)}
       >
-        <option value="">선택해주세요</option>
+        <option value="">학위를 선택해주세요</option>
         <option value="학사">학사</option>
         <option value="석사">석사</option>
         <option value="박사">박사</option>
@@ -110,7 +110,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       />
 
       <Form.Select value={status} onChange={(e) => setStatus(e.target.value)}>
-        <option value="">선택해주세요</option>
+        <option value="">재학여부를 선택해주세요</option>
         <option value="재학중">재학중</option>
         <option value="휴학">휴학</option>
         <option value="수료">수료</option>
@@ -118,22 +118,25 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       </Form.Select>
 
       <>
-        <label htrmlFor="floatingInputCustom">재학 기간</label>
-        <br />
-        <label htmlFor="floatingInputCustom">입학 년월</label>
+
+        <label htmlFor="floatingInputCustom">입학 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
           // selected={new Date(this.state.startDate)}
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
         />
-        <label htmlFor="floatingInputCustom">졸업 년월</label>
+        <label htmlFor="floatingInputCustom">졸업 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
           // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
