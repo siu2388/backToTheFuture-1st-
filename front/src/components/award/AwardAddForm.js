@@ -10,7 +10,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   //useState로 description 상태를 생성함.
   const [description, setDescription] = useState("");
   const [grade, setGrade] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,7 +72,7 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
       />
 
       <label htmlFor="floatingInputCustom">수상 날짜</label>
-      <DatePicker
+      <DatePicker 
         showIcon
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"

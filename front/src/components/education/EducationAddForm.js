@@ -9,8 +9,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolType, setSchoolType] = useState("");
   const [major, setMajor] = useState("");
   const [status, setStatus] = useState("재학중");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,6 +104,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
           // selected={new Date(this.state.startDate)}
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
@@ -113,6 +115,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
           // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
