@@ -4,23 +4,22 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 class CareerService {
-  static async addCareer({
-    userId,
-    company,
-    department,
-    position,
-    description,
-    startDate,
-    endDate,
-  }) {
+  static async addCareer({ userId, company, department, position, description, startDate, endDate }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
     const newCareer = { id, userId, company, department, position, description, startDate, endDate };
 
+    // 공란일 경우, 에러 메시지 반환
+    if (!newCareer.company || !newCareer.department || !newCareer.position || !newCareer.description || !newCareer.startDate || !newCareer.endDate) {
+      const errorMessage = 
+        "Career 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
-    if((newCareer.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
+    if ((newCareer.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
       const errorMessage =
         "Career 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -95,11 +94,12 @@ class CareerService {
       career = await Career.update({ careerId, fieldToUpdate, newValue });
     }
 
-    const fieldToUpdate = "endDate";
-    const newValue = toUpdate.endDate || null;  // endDate가 null일 경우, '재직중'으로 출력되게?
-    career = await Career.update({ careerId, fieldToUpdate, newValue });
+    if (toUpdate.endDate) {
+      const fieldToUpdate = "endDate";
+      const newValue = toUpdate.endDate;
+      career = await Career.update({ careerId, fieldToUpdate, newValue });
+    }
 
-    console.log("커리어 수정: ", career);
     return career;
   }
 

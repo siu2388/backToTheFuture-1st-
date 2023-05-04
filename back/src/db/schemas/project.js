@@ -20,7 +20,7 @@ const ProjectSchema = new Schema(
     },
     endDate: {
       type: Date,
-      required: false,
+      required: true,
     },
     archive: {
       type: String,

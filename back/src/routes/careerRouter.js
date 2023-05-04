@@ -71,10 +71,8 @@ careerRouter.put("/careerId/:id", multer().none(), async (req, res, next) => {
     const position = req.body.position ?? null;
     const description = req.body.description ?? null;
     const startDate = req.body.startDate ?? null;
-    // const endDate = req.body.endDate ?? null;
-    const endDate = !req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
-
-    // const endDate = req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
+    const endDate = req.body.endDate ?? null;
+    // const endDate = !req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
 
     const toUpdate = {
       company,

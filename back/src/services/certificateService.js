@@ -9,6 +9,14 @@ class CertificateService {
 
     // db에 저장
     const newCertificate = { id, userId, title, authority, registerNum, grade };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newCertificate.title || !newCertificate.authority || !newCertificate.registerNum || !newCertificate.grade) {
+      const errorMessage = 
+        "Certificate 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    
     const createdNewCertificate = await Certificate.create({ newCertificate });
 
     return createdNewCertificate;

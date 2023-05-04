@@ -33,7 +33,7 @@ const CareerSchema = new Schema(
     },
     endDate: {
       type: Date,
-      required: false,
+      required: true,
     },
   },
   {

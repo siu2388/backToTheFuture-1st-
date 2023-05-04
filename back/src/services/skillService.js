@@ -9,6 +9,14 @@ class SkillService {
 
     // db에 저장
     const newSkill = { id, userId, skillName, level, period };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newSkill.skillName || !newSkill.level || !newSkill.period) {
+      const errorMessage = 
+        "Skill 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+    
     const createdNewSkill = await Skill.create({ newSkill });
 
     return createdNewSkill;

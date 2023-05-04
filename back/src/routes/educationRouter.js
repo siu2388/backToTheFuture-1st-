@@ -73,7 +73,7 @@ educationRouter.put(
       const major = req.body.major ?? null;
       const status = req.body.status ?? null;
       const startDate = req.body.startDate ?? null;
-      const endDate = !req.body.endDate || req.body.endDate === "null" ? null : req.body.endDate;
+      const endDate = req.body.endDate ?? null;
 
       const toUpdate = {
         schoolName,

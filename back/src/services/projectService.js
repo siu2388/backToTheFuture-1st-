@@ -11,6 +11,13 @@ class ProjectService {
     // db에 저장
     const newProject = { id, userId, title, startDate, endDate, archive, description };
     
+    // 공란일 경우, 에러 메시지 반환
+    if (!newProject.title || !newProject.startDate || !newProject.endDate || !newProject.archive || !newProject.description) {
+      const errorMessage = 
+        "Project 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     // startDate가 endDate보다 나중일 경우, 에러 메시지 반환
     if((newProject.endDate) && (!moment(newProject.startDate).isBefore(moment(newProject.endDate)))){
       const errorMessage =
@@ -70,9 +77,11 @@ class ProjectService {
       project = await Project.update({ projectId, fieldToUpdate, newValue });
     }
 
-    const fieldToUpdate = "endDate";
-    const newValue = toUpdate.endDate;
-    project = await Project.update({ projectId, fieldToUpdate, newValue });
+    if (toUpdate.endDate) {
+      const fieldToUpdate = "endDate";
+      const newValue = toUpdate.endDate;
+      project = await Project.update({ projectId, fieldToUpdate, newValue });
+    }
     
     if (toUpdate.archive) {
       const fieldToUpdate = "archive";

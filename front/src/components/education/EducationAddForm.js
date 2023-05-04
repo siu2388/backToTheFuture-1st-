@@ -10,7 +10,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [major, setMajor] = useState("");
   const [status, setStatus] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState(null);
+  const [endDate, setEndDate] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();

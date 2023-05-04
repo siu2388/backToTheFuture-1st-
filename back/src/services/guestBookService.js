@@ -2,12 +2,20 @@ import { GuestBook } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class GuestBookService {
-  static async addGuestBook({ authorId, receiverId, authorName, content, createdAt, updatedAt }) {
+  static async addGuestBook({ authorId, receiverId, authorName, content }) {
     // id로 유니크 값 사용
     const id = uuidv4();
 
     // db에 저장
-    const newGuestBook = { id, authorId, receiverId, authorName, content, createdAt, updatedAt };
+    const newGuestBook = { id, authorId, receiverId, authorName, content };
+    
+    // 공란일 경우, 에러 메시지 반환
+    if (!newGuestBook.authorId || !newGuestBook.receiverId || !newGuestBook.authorName || !newGuestBook.content) {
+      const errorMessage = 
+        "GuestBook 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     const createdNewGuestBook = await GuestBook.create({ newGuestBook });
 
     return createdNewGuestBook;

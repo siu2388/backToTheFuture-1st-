@@ -32,6 +32,10 @@ guestBookRouter.post("/guestBooks/:receiverId", async (req, res, next) => {
       content,
     });
 
+    if (newGuestBook.errorMessage) {
+      throw new Error(newGuestBook.errorMessage);
+    }
+
     res.status(201).json(newGuestBook);
     return;
   } catch (error) {
@@ -45,8 +49,9 @@ guestBookRouter.get("/guestBooklist/:receiverId", async (req, res, next) => {
     // 특정 사용자의 전체 방명록 목록을 얻음
     const receiverId = req.params.receiverId;
     const guestBookList = await GuestBookService.getGuestBookList(receiverId);
+    const sortedGuestBookList = guestBookList.sort().reverse()
 
-    res.status(200).send(guestBookList);
+    res.status(200).send(sortedGuestBookList);
     return;
   } catch (error) {
     next(error);
