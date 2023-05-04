@@ -16,6 +16,23 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if(!title){
+      alert('프로젝트명을 입력해주세요.');
+      return;
+    }
+    if(!startDate){
+      alert('시작 날짜를 입력해주세요.');
+      return;
+    }
+    if(!endDate){
+      alert('완료 날짜를 입력해주세요.');
+      return;
+    }
+    if(!description){
+      alert('상세내역을 입력해주세요.');
+      return;
+    }
+
     // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentProject.userId;
 
@@ -65,8 +82,7 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <label htmlFor="floadtingInputCustom">활동 기간</label>
-      <br />
+
       <label htmlFor="floatingInputCustom">시작 날짜</label>
       <DatePicker
         showIcon

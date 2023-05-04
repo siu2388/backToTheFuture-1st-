@@ -14,6 +14,20 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    if(!skillName){
+      alert('프로그래밍 언어/프레임워크를 입력해주세요.');
+      return;
+    }
+    if(!level){
+      alert('숙련도를 입력해주세요.');
+      return;
+    }
+    if(!period){
+      alert('사용기간을 입력해주세요.');
+      return;
+    }
+
+
     // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 

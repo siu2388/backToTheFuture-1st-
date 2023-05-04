@@ -98,9 +98,8 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       </Form.Select>
 
       <>
-        <label htrmlFor="floatingInputCustom">재학 기간</label>
-        <br />
-        <label htmlFor="floatingInputCustom">입학 년월</label>
+
+        <label htmlFor="floatingInputCustom">입학 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
@@ -109,7 +108,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
         />
-        <label htmlFor="floatingInputCustom">졸업 년월</label>
+        <label htmlFor="floatingInputCustom">졸업 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"

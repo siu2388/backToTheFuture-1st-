@@ -91,8 +91,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
         />
       </Form.Group>
 
-      <label htmlFor="floatingInputCustom">근무 기간</label>
-      <br />
+
       <>
       <label htmlFor="floatingInputCustom">시작 날짜</label>
       <DatePicker

@@ -101,8 +101,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       </Form.Select>
 
       <>
-        <label htrmlFor="floatingInputCustom">재학 기간</label>
-        <br />
+
         <label htmlFor="floatingInputCustom">입학 날짜</label>
         <DatePicker
           showIcon
