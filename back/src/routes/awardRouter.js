@@ -29,6 +29,7 @@ awardRouter.post("/award/create", async (req, res, next) => {
     });
 
     res.status(201).json(newAward);
+    return;
   } catch (error) {
     next(error);
   }
@@ -47,6 +48,7 @@ awardRouter.get("/awardId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(award);
+    return;
   } catch (error) {
     next(error);
   }
@@ -73,6 +75,7 @@ awardRouter.put("/awardId/:id", multer().none(), async (req, res, next) => {
     }
 
     res.status(200).send(award);
+    return;
   } catch (error) {
     next(error);
   }
@@ -92,6 +95,7 @@ awardRouter.delete("/awardId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }

@@ -32,7 +32,8 @@ guestBookRouter.post("/guestBooks/:receiverId", async (req, res, next) => {
       content,
     });
 
-    return res.status(201).json(newGuestBook);
+    res.status(201).json(newGuestBook);
+    return;
   } catch (error) {
     next(error);
   }
@@ -77,7 +78,8 @@ guestBookRouter.delete(
         });
 
         if (result.errorMessage) throw "삭제 에러 발생";
-        return res.status(200).json("삭제 완료");
+        res.status(200).json("삭제 완료");
+        return;
       }
     } catch (err) {
       next(err);
@@ -108,7 +110,8 @@ guestBookRouter.delete(
         });
 
         if (result.errorMessage) throw "삭제 에러 발생";
-        return res.status(200).json("삭제 완료");
+        res.status(200).json("삭제 완료");
+        return;
       }
     } catch (err) {
       next(err);

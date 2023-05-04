@@ -29,6 +29,7 @@ skillRouter.post("/skill/create", async (req, res, next) => {
     });
 
     res.status(201).json(newSkill);
+    return;
   } catch (error) {
     next(error);
   }
@@ -47,6 +48,7 @@ skillRouter.get("/skillId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(skill);
+    return;
   } catch (error) {
     next(error);
   }
@@ -74,6 +76,7 @@ skillRouter.put("/skillId/:id", multer().none(), async (req, res, next) => {
     }
 
     res.status(200).send(skill);
+    return;
   } catch (error) {
     next(error);
   }
@@ -93,6 +96,7 @@ skillRouter.delete("/skillId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
@@ -101,10 +105,10 @@ skillRouter.delete("/skillId/:id", async (req, res, next) => {
 // 특정 사용자의 전체 경력 목록을 얻음
 skillRouter.get("/skilllist/:userId", async (req, res, next) => {
   try {
-    // @ts-ignore
     const userId = req.params.userId;
     const skillList = await SkillService.getSkillList({ userId });
     res.status(200).send(skillList);
+    return;
   } catch (error) {
     next(error);
   }

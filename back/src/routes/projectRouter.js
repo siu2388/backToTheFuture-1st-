@@ -29,6 +29,7 @@ projectRouter.post("/project/create", async (req, res, next) => {
     });
 
     res.status(201).json(newProject);
+    return;
   } catch (error) {
     next(error);
   }
@@ -47,6 +48,7 @@ projectRouter.get("/projectId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(project);
+    return;
   } catch (error) {
     next(error);
   }
@@ -74,6 +76,7 @@ projectRouter.put("/projectId/:id", multer().none(), async (req, res, next) => {
     }
 
     res.status(200).send(project);
+    return;
   } catch (error) {
     next(error);
   }
@@ -92,6 +95,7 @@ projectRouter.delete("/projectId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
@@ -100,10 +104,10 @@ projectRouter.delete("/projectId/:id", async (req, res, next) => {
 projectRouter.get("/projectlist/:userId", async (req, res, next) => {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
-    // @ts-ignore
     const userId = req.params.userId;
     const projectList = await ProjectService.getProjectList({ userId });
     res.status(200).send(projectList);
+    return;
   } catch (error) {
     next(error);
   }

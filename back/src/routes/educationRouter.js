@@ -30,6 +30,7 @@ educationRouter.post("/education/create", async (req, res, next) => {
     });
 
     res.status(201).json(newEducation);
+    return;
   } catch (error) {
     next(error);
   }
@@ -48,6 +49,7 @@ educationRouter.get("/educationId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(education);
+    return;
   } catch (error) {
     next(error);
   }
@@ -89,6 +91,7 @@ educationRouter.put(
       }
 
       res.status(200).send(education);
+      return;
     } catch (error) {
       next(error);
     }
@@ -108,6 +111,7 @@ educationRouter.delete("/educationId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
@@ -116,10 +120,10 @@ educationRouter.delete("/educationId/:id", async (req, res, next) => {
 educationRouter.get("/educationlist/:userId", async (req, res, next) => {
   try {
     // 특정 사용자의 전체 수상 목록을 얻음
-    // @ts-ignore
     const userId = req.params.userId;
     const educationList = await EducationService.getEducationList({ userId });
     res.status(200).send(educationList);
+    return;
   } catch (error) {
     next(error);
   }

@@ -31,6 +31,7 @@ careerRouter.post("/career/create", async (req, res, next) => {
     });
 
     res.status(201).json(newCareer);
+    return;
   } catch (error) {
     next(error);
   }
@@ -49,6 +50,7 @@ careerRouter.get("/careerId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(career);
+    return;
   } catch (error) {
     next(error);
   }
@@ -84,6 +86,7 @@ careerRouter.put("/careerId/:id", multer().none(), async (req, res, next) => {
     }
 
     res.status(200).send(career);
+    return;
   } catch (error) {
     next(error);
   }
@@ -103,6 +106,7 @@ careerRouter.delete("/careerId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
@@ -114,6 +118,7 @@ careerRouter.get("/careerlist/:userId", async (req, res, next) => {
     const userId = req.params.userId;
     const careerList = await CareerService.getCareerList({ userId });
     res.status(200).send(careerList);
+    return;
   } catch (error) {
     next(error);
   }

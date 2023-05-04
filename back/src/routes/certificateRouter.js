@@ -29,6 +29,7 @@ certificateRouter.post("/certificate/create", async (req, res, next) => {
     });
 
     res.status(201).json(newCertificate);
+    return;
   } catch (error) {
     next(error);
   }
@@ -49,6 +50,7 @@ certificateRouter.get("/certificateId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(certificate);
+    return;
   } catch (error) {
     next(error);
   }
@@ -81,6 +83,7 @@ certificateRouter.put(
       }
 
       res.status(200).send(certificate);
+      return;
     } catch (error) {
       next(error);
     }
@@ -102,6 +105,7 @@ certificateRouter.delete("/certificateId/:id", async (req, res, next) => {
     }
 
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
@@ -112,12 +116,12 @@ certificateRouter.get(
   async (req, res, next) => {
     try {
       // 특정 사용자의 전체 수상 목록을 얻음
-      // @ts-ignore
       const userId = req.params.userId;
       const certificateList = await CertificateService.getCertificateList({
         userId,
       });
       res.status(200).send(certificateList);
+      return;
     } catch (error) {
       next(error);
     }
