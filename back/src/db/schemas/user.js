@@ -32,7 +32,6 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
-
     homeName: {
       type: String,
       default: "나의 미니홈피",
@@ -57,7 +56,6 @@ const UserSchema = new Schema(
     timestamps: true,
   }
 );
-//modgoDB에서 데이터 일고 쓰는 작업 수행하는 모델 객체 생성함수(모델이름, 스키마객체)
-const UserModel = model("User", UserSchema); //이제 UserModel.find()같은거 쓸수있음
+const UserModel = model("User", UserSchema);
 
 export { UserModel };

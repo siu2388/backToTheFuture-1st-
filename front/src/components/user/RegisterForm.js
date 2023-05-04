@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
+import { Col, Row, Form } from "react-bootstrap";
 
 import * as Api from "../../api";
 
 function RegisterForm() {
   const navigate = useNavigate();
 
-  //useState로 email 상태를 생성함.
   const [email, setEmail] = useState("");
-  //useState로 password 상태를 생성함.
   const [password, setPassword] = useState("");
-  //useState로 confirmPassword 상태를 생성함.
   const [confirmPassword, setConfirmPassword] = useState("");
-  //useState로 name 상태를 생성함.
   const [name, setName] = useState("");
 
-  //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
   const validateEmail = (email) => {
     return email
       .toLowerCase()
@@ -25,13 +20,9 @@ function RegisterForm() {
       );
   };
 
-  //위 validateEmail 함수를 통해 이메일 형태 적합 여부를 확인함.
   const isEmailValid = validateEmail(email);
-  // 비밀번호가 4글자 이상인지 여부를 확인함.
   const isPasswordValid = password.length >= 4;
-  // 비밀번호와 확인용 비밀번호가 일치하는지 여부를 확인함.
   const isPasswordSame = password === confirmPassword;
-  // 이름이 2글자 이상인지 여부를 확인함.
   const isNameValid = name.length >= 2;
 
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
@@ -42,7 +33,6 @@ function RegisterForm() {
     e.preventDefault();
 
     try {
-      // "user/register" 엔드포인트로 post요청함.
       await Api.post("user/register", {
         email,
         password,
@@ -57,13 +47,14 @@ function RegisterForm() {
   };
 
   return (
-    <div className ="login-page">
+    <div className="login-page">
       <Row className="justify-content-md-center mt-5">
         <Col lg={8}>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="registerEmail" >
+            <Form.Group controlId="registerEmail">
               <Form.Label>이메일 주소</Form.Label>
-              <Form.Control className="inputLogin"
+              <Form.Control
+                className="inputLogin"
                 type="email"
                 autoComplete="off"
                 value={email}
@@ -76,9 +67,10 @@ function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="registerPassword" className="mt-3" >
+            <Form.Group controlId="registerPassword" className="mt-3">
               <Form.Label>비밀번호</Form.Label>
-              <Form.Control className="inputLogin"
+              <Form.Control
+                className="inputLogin"
                 type="password"
                 autoComplete="off"
                 value={password}
@@ -93,7 +85,8 @@ function RegisterForm() {
 
             <Form.Group controlId="registerConfirmPassword" className="mt-3">
               <Form.Label>비밀번호 재확인</Form.Label>
-              <Form.Control className="inputLogin"
+              <Form.Control
+                className="inputLogin"
                 type="password"
                 autoComplete="off"
                 value={confirmPassword}
@@ -108,7 +101,8 @@ function RegisterForm() {
 
             <Form.Group controlId="registerName" className="mt-3">
               <Form.Label>이름</Form.Label>
-              <Form.Control className="inputLogin"
+              <Form.Control
+                className="inputLogin"
                 type="text"
                 autoComplete="off"
                 value={name}
@@ -123,7 +117,12 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <button variant="primary" type="submit" disabled={!isFormValid} className="shadow-button"> 
+                <button
+                  variant="primary"
+                  type="submit"
+                  disabled={!isFormValid}
+                  className="shadow-button"
+                >
                   회원가입
                 </button>
               </Col>
@@ -131,7 +130,11 @@ function RegisterForm() {
 
             <Form.Group as={Row} className="mt-3 text-center">
               <Col sm={{ span: 20 }}>
-                <button variant="light" onClick={() => navigate("/login")} className="shadow-button">
+                <button
+                  variant="light"
+                  onClick={() => navigate("/login")}
+                  className="shadow-button"
+                >
                   로그인하기
                 </button>
               </Col>

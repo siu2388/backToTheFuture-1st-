@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 import convertTime from "../ConverTime";
@@ -16,12 +16,13 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
+    //에러처리
     if (!schoolName) {
       alert("학교 이름을 입력해 주세요.");
       return;
     }
 
-    if(!status) {
+    if (!status) {
       alert("재학 상태를 선택해 주세요.");
       return;
     }
@@ -32,14 +33,14 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
     }
 
     if (!endDate) {
-      alert("졸업 날짜를 선택해 주세요. 재학 중이라면 오늘 날짜를 입력해 주세요.");
+      alert(
+        "졸업 날짜를 선택해 주세요. 재학 중이라면 오늘 날짜를 입력해 주세요."
+      );
       return;
     }
 
-    // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
-    // "award/create" 엔드포인트로 post요청함.
     await Api.post("education/create", {
       userId: portfolioOwnerId,
       schoolName,
@@ -60,25 +61,19 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       endDate,
     };
 
-    console.log("data: ", data);
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
-    console.log("data: ", data);
-
-    // "awardlist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("educationlist", userId);
-    // educations를 response의 data로 세팅함.
     setEducations(res.data);
-    // award를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit} className = "component-card">
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">학교</label>
       <Form.Control
         id="floatingInputCustom"
@@ -118,7 +113,6 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
       </Form.Select>
 
       <>
-
         <label htmlFor="floatingInputCustom">입학 날짜</label>
         <DatePicker
           showIcon
@@ -126,7 +120,6 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           placeholderText="날짜를 선택해 주세요"
           showMonthDropdown
           showYearDropdown
-          // selected={new Date(this.state.startDate)}
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
         />
@@ -137,7 +130,6 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
           placeholderText="날짜를 선택해 주세요"
           showMonthDropdown
           showYearDropdown
-          // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
         />
@@ -145,7 +137,7 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
-          <button  type="submit" className="btn-confirm">
+          <button type="submit" className="btn-confirm">
             확인
           </button>
           <button className="btn-cancel" onClick={() => setIsAdding(false)}>

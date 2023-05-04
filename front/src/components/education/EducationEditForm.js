@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 import convertTime from "../ConverTime";
@@ -19,6 +19,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
+    //에러처리
     if (!schoolName) {
       alert("학교 이름을 입력해 주세요.");
       return;
@@ -41,10 +42,8 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       return;
     }
 
-    // currentEducation의 userId를 userId 변수에 할당함.
     const userId = currentEducation.userId;
 
-    // "educationId/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`educationId/${currentEducation.id}`, {
       userId,
       schoolName,
@@ -72,13 +71,8 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
-    console.log("data: ", data);
-
-    // "educationlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("educationlist", userId);
-    // Educations를 response의 data로 세팅함.
     setEducations(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
@@ -123,13 +117,11 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       </Form.Select>
 
       <>
-
         <label htmlFor="floatingInputCustom">입학 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
-          // selected={new Date(this.state.startDate)}
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
         />
@@ -138,7 +130,6 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
-          // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
         />
@@ -149,7 +140,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
           <button type="submit" className="btn-confirm">
             확인
           </button>
-          <button className = "btn-cancel" onClick={() => setIsEditing(false)}>
+          <button className="btn-cancel" onClick={() => setIsEditing(false)}>
             취소
           </button>
         </Col>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 
-import { Button, Form, Card, Col, Row, Modal } from "react-bootstrap";
+import { Button, Form, Col, Row, Modal } from "react-bootstrap";
 import * as Api from "../../api";
 
 import { DispatchContext, UserStateContext } from "../../App";
@@ -19,7 +18,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [show, setShow] = useState(true);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const [bgColor, setBgColor] = useState(user.bgColor);
   const [boxColor, setBoxColor] = useState(user.boxColor);
@@ -80,22 +78,16 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       data.blog = `https://${blog}`;
     }
 
-    // "userId/유저id" 엔드포인트로 PUT 요청함.
     const res = await Api.put(`userId/${user.id}`, data);
-    // 유저 정보는 response의 data임.
-
     const updatedUser = res.data;
 
-    // 해당 유저 정보로 user을 세팅함.
     setUser(updatedUser);
 
-    // dispatch 함수를 통해 로그인 성공 상태로 만듦.
     dispatch({
       type: "LOGIN_SUCCESS",
       payload: updatedUser,
     });
 
-    // isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
@@ -105,8 +97,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div style = {{ fontFamily: 'NanumBarunGothic'}}>
-          
+        <div style={{ fontFamily: "NanumBarunGothic" }}>
           <Form.Group controlId="userEditImage" className="mb-3">
             <Form.Label>프로필 사진 변경</Form.Label>
             <Form.Control
@@ -157,7 +148,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
           </Form.Group>
         </div>
 
-        <div style = {{ fontFamily: 'NanumBarunGothic'}}>
+        <div style={{ fontFamily: "NanumBarunGothic" }}>
           <Form.Label>홈피 설정</Form.Label>
           <Form.Group controlId="userEditHomeName">
             <Form.Control
@@ -167,39 +158,56 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setHomeName(e.target.value)}
             />
           </Form.Group>
-        <div style = {{display: "flex" }}>
-          <Col style = {{justifyContent: "center", alignItems: "center", width: '33.33%'}}>
-          <Form.Label>배경 색상 선택</Form.Label>
-          <Form.Group controlId="userEditBgColor">
-            <Form.Control
-              type="color"
-              value={bgColor}
-              onChange={(e) => setBgColor(e.target.value)}
-            />
-          </Form.Group>
-          </Col>
-          <Col style = {{justifyContent: "center", alignItems: "center", width: '33.33%'}}>
-          <Form.Label>박스 색상 선택</Form.Label>
-          <Form.Group controlId="userEditBoxColor">
-            <Form.Control
-              type="color"
-              value={boxColor}
-              onChange={(e) => setBoxColor(e.target.value)}
-            />
-          </Form.Group>
-          </Col>
-          <Col style = {{justifyContent: "center", alignItems: "center", width: '33.33%'}}>
-          <Form.Label>메뉴 색상 선택</Form.Label>
-          <Form.Group controlId="userEditMenuColor">
-            <Form.Control
-              type="color"
-              value={menuColor}
-              onChange={(e) => setMenuColor(e.target.value)}
-            />
-          </Form.Group>
-          </Col>
-
-        </div>
+          <div style={{ display: "flex" }}>
+            <Col
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                width: "33.33%",
+              }}
+            >
+              <Form.Label>배경 색상 선택</Form.Label>
+              <Form.Group controlId="userEditBgColor">
+                <Form.Control
+                  type="color"
+                  value={bgColor}
+                  onChange={(e) => setBgColor(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                width: "33.33%",
+              }}
+            >
+              <Form.Label>박스 색상 선택</Form.Label>
+              <Form.Group controlId="userEditBoxColor">
+                <Form.Control
+                  type="color"
+                  value={boxColor}
+                  onChange={(e) => setBoxColor(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+            <Col
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+                width: "33.33%",
+              }}
+            >
+              <Form.Label>메뉴 색상 선택</Form.Label>
+              <Form.Group controlId="userEditMenuColor">
+                <Form.Control
+                  type="color"
+                  value={menuColor}
+                  onChange={(e) => setMenuColor(e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+          </div>
         </div>
       </Modal.Body>
       <Modal.Footer>

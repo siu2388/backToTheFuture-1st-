@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
-// userId,skillName,level,period
 function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
-  //useState로 title 상태를 생성함.
   const [skillName, setSkillName] = useState("");
-  //useState로 description 상태를 생성함.
   const [level, setLevel] = useState("하");
   const [period, setPeriod] = useState("1년 미만");
 
@@ -14,24 +11,22 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
     e.preventDefault();
     e.stopPropagation();
 
-    if(!skillName){
-      alert('프로그래밍 언어/프레임워크를 입력해주세요.');
+    //에러처리
+    if (!skillName) {
+      alert("프로그래밍 언어/프레임워크를 입력해주세요.");
       return;
     }
-    if(!level){
-      alert('숙련도를 입력해주세요.');
+    if (!level) {
+      alert("숙련도를 입력해주세요.");
       return;
     }
-    if(!period){
-      alert('사용기간을 입력해주세요.');
+    if (!period) {
+      alert("사용기간을 입력해주세요.");
       return;
     }
 
-
-    // portfolioOwnerId를 userId 변수에 할당함.
     const userId = portfolioOwnerId;
 
-    // "skill/create" 엔드포인트로 post요청함.
     await Api.post("skill/create", {
       userId: portfolioOwnerId,
       skillName,
@@ -39,16 +34,13 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
       period,
     });
 
-    // "skilllist/유저id" 엔드포인트로 get요청함.
     const res = await Api.get("skilllist", userId);
-    // skills를 response의 data로 세팅함.
     setSkills(res.data);
-    // skill를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit} className = "component-card">
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">보유기술</label>
       <Form.Group controlId="formBasicSkillName">
         <Form.Control
@@ -89,7 +81,7 @@ function SkillAddForm({ portfolioOwnerId, setSkills, setIsAdding }) {
           <button type="submit" className="btn-confirm">
             확인
           </button>
-          <button className = "btn-cancel" onClick={() => setIsAdding(false)}>
+          <button className="btn-cancel" onClick={() => setIsAdding(false)}>
             취소
           </button>
         </Col>

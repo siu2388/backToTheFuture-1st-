@@ -5,9 +5,7 @@ import DatePicker from "react-datepicker";
 import convertTime from "../ConverTime";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
-  //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentAward.title);
-  //useState로 description 상태를 생성함.
   const [description, setDescription] = useState(currentAward.description);
   const [grade, setGrade] = useState(currentAward.grade);
   const [date, setDate] = useState(new Date(currentAward.date));
@@ -16,19 +14,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
+    //에러처리
     if (!title) {
       alert("상 이름을 입력해 주세요.");
       return;
     }
     if (!date) {
-      alert("수상 날짜를 입력해 주세요.")
+      alert("수상 날짜를 입력해 주세요.");
       return;
     }
 
-    // currentAward의 userId를 userId 변수에 할당함.
     const userId = currentAward.userId;
 
-    // "awardId/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`awardId/${currentAward.id}`, {
       userId,
       title,
@@ -43,26 +40,18 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       grade,
       date,
       description,
-    }
+    };
 
-    console.log("data: ", data);
     setDate(convertTime(date));
     data.date = convertTime(date);
-    
-    
 
-    console.log("data: ", data);
-
-    // "awardlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("awardlist", userId);
-    // awards를 response의 data로 세팅함.
     setAwards(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit} className = "component-card">
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">수상내역</label>
       <Form.Control
         id="floatingInputCustom"
@@ -86,7 +75,6 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         dateFormat="yyyy-MM-dd"
         showIcon
         placeholderText="날짜를 선택해 주세요"
-        // selected={new Date(this.state.startDate)}
         selected={date}
         onChange={(date) => setDate(date)}
       />

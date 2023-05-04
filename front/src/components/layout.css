@@ -11,7 +11,6 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-
 .bookcover {
   background-color: #b4d1da;
   border-radius: 9px;
@@ -20,8 +19,8 @@ body {
   width: 90vh; /* 화면 너비의 90%로 설정 */
   height: 70vh; /* 화면 높이의 66%로 설정 */
   box-shadow: 7px 7px 2px 2px var(--form-primary-highlight),
-  7px 7px 2px 2px rgba(0, 0, 0, 1);
-  --form-primary-highlight:#363636;
+    7px 7px 2px 2px rgba(0, 0, 0, 1);
+  --form-primary-highlight: #363636;
 }
 
 .bookdot {
@@ -32,9 +31,7 @@ body {
   left: 0.5rem;
   right: 0.5rem;
   bottom: 0.5rem;
-
 }
-
 
 .component-card-body {
   margin-bottom: 7px;
@@ -71,31 +68,29 @@ body {
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width:960px) {
+@media screen and (max-width: 960px) {
   .page {
     flex-direction: column;
     position: relative;
-  
   }
-  .bookcover{
+  .bookcover {
     height: 80vh;
     overflow-y: auto;
   }
-  .bookdot{
+  .bookdot {
     position: relative;
   }
-  body{
+  body {
     overflow-y: auto;
   }
   .menu-container {
     position: relative;
     order: -1;
   }
-
 }
 
 .align-items-center {
-  display: block !important; 
+  display: block !important;
 }
 .component-card-col-left {
   margin-left: 10px;
@@ -106,7 +101,7 @@ body {
   background-color: #cce2e9;
   border-radius: 8px;
   border: 3px #cce2e9;
-  padding: 0 2px 0 2px
+  padding: 0 2px 0 2px;
 }
 .component-card-col-right {
   display: flex;
@@ -114,26 +109,23 @@ body {
   justify-content: flex-end;
   margin-right: 15px;
   width: 10%;
-
 }
 
 .component-card {
-    border-radius: 8px;
-    width: 100%;
-    border: 1px solid #b9b9b9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 12px;
-    margin-bottom: 5px;
-    font-family: 'NanumBarunGothic';
-    font-weight: 600;
+  border-radius: 8px;
+  width: 100%;
+  border: 1px solid #b9b9b9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  margin-bottom: 5px;
+  font-family: "NanumBarunGothic";
+  font-weight: 600;
 }
-
 
 .miniroom-gif-box {
   display: flex;
   flex-direction: column;
   font-family: "NeoDunggeunmo";
-  
 }
 .menu-container {
   flex: 0.15;
@@ -153,16 +145,15 @@ body {
 .content-title {
   display: flex;
   align-items: center;
-  
 }
 
 .content-title-name {
   flex: 1;
-  font-family: "NeoDunggeunmo" ;
-  font-weight:200;
+  font-family: "NeoDunggeunmo";
+  font-weight: 200;
   font-size: 20px;
   height: 2rem;
-  margin-left: 10px;  
+  margin-left: 10px;
   text-decoration: none;
   color: black;
 }
@@ -172,7 +163,6 @@ body {
   font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
   text-align: end; /* 텍스트 우측 정렬 */
 }
-
 
 .btn-post {
   background-color: #769fab;
@@ -223,8 +213,6 @@ body {
   height: 1.6rem;
   font-family: "NeoDunggeunmo";
 }
-
-
 
 .btn-confirm {
   background-color: #5580ec;
@@ -284,7 +272,7 @@ body {
 }
 
 .userCard {
-  font-family: 'NanumBarunGothic';
+  font-family: "NanumBarunGothic";
   font-weight: 600;
 }
 
@@ -300,8 +288,7 @@ body {
   flex: 0;
 }
 
-
-.content-box{
+.content-box {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -315,23 +302,23 @@ body {
   font-size: 1rem;
   font-family: "NeoDunggeunmo";
   padding: 0.4rem;
-  background-color: #3B87AB;
+  background-color: #3b87ab;
   color: white;
   border-radius: 0 5px 5px 0;
   border: 1px solid grey;
   cursor: pointer;
 }
 
-.menu-button:first-child{
+.menu-button:first-child {
   margin-top: 3rem;
 }
 
 a button:hover {
-  background-color: #6B66FF;
+  background-color: #6b66ff;
   color: white;
 }
 
-.profile-dropdown{
+.profile-dropdown {
   flex: 0;
   border: 1px solid #c9d4da;
   padding: 5px;
@@ -340,7 +327,7 @@ a button:hover {
   position: relative;
 }
 
-.triangle-down{
+.triangle-down {
   width: 0;
   height: 0;
   border-left: 4.5px solid transparent;
@@ -348,13 +335,13 @@ a button:hover {
   border-top: 5px solid #838383;
 }
 
-.dropdown-button{
+.dropdown-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.dropdown-title{
+.dropdown-title {
   font-family: "NeoDunggeunmo";
 }
 
@@ -373,15 +360,13 @@ a button:hover {
 
 .profile-dropdown:hover .dropdown-content {
   display: block;
-  
 }
 
 .dropdown-content p {
-  margin: 0; 
+  margin: 0;
 }
 
-
-.dropdown-content > p{
+.dropdown-content > p {
   display: block;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -391,6 +376,6 @@ a button:hover {
   text-decoration: none;
 }
 
-.dropdown-content > p:hover{
+.dropdown-content > p:hover {
   background-color: #f1f1f1;
 }

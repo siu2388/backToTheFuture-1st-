@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Card, Button, Row, Col } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import * as Api from "../../api";
 import Skill from "./Skill";
 import SkillAddForm from "./SkillAddForm";
 
 function Skills({ portfolioOwnerId, isEditable }) {
-  //useState로 skills 상태를 생성함.
   const [skills, setSkills] = useState([]);
-  //useState로 isAdding 상태를 생성함.
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    // "skilllist/유저id"로 GET 요청하고, response의 data로 skills를 세팅함.
     Api.get("skilllist", portfolioOwnerId).then((res) => setSkills(res.data));
   }, [portfolioOwnerId]);
 

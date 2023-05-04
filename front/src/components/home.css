@@ -21,7 +21,7 @@
 
 .box-title {
   font-family: "KOTRA_BOLD-Bold";
-  
+
   color: #3b87ab;
 }
 
@@ -67,7 +67,6 @@
 }
 
 .miniroom-gif-box {
-  
   flex: 1;
   display: flex;
 }

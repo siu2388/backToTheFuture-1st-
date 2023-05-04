@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import SkillCard from "./SkillCard";
 import SkillEditForm from "./SkillEditForm";
 
-
 function Skill({ skill, setSkills, isEditable }) {
-  //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
-
-
 
   return (
     <>
@@ -22,7 +18,7 @@ function Skill({ skill, setSkills, isEditable }) {
           skill={skill}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
-          setSkills = {setSkills}
+          setSkills={setSkills}
         />
       )}
     </>

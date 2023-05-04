@@ -1,4 +1,4 @@
-import { Card, Modal, Container, Row, Col } from "react-bootstrap";
+import { Modal, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";

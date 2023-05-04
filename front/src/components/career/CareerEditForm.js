@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import convertTime from "../ConverTime";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
-  //useState로 title 상태를 생성함. company,department, position, description, startDate,endDate,
   const [company, setCompany] = useState(currentCareer.company);
   const [department, setDepartment] = useState(currentCareer.department);
   const [position, setPosition] = useState(currentCareer.position);
@@ -17,6 +16,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
+    //에러처리
     if (!company) {
       alert("회사명을 입력해 주세요.");
       return;
@@ -49,10 +49,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       return;
     }
 
-    // currentProject의 userId를 userId 변수에 할당함.
     const userId = currentCareer.userId;
 
-    // "projectId/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`careerId/${currentCareer.id}`, {
       userId,
       company,
@@ -73,20 +71,14 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       description,
     };
 
-    console.log("data: ", data);
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
-    console.log("data: ", data);
-
-    // "projectlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("careerlist", userId);
-    // projects를 response의 data로 세팅함.
     setCareers(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
@@ -122,14 +114,12 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
         />
       </Form.Group>
 
-
       <>
         <label htmlFor="floatingInputCustom">시작 날짜</label>
         <DatePicker
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
-          // selected={new Date(this.state.startDate)}
           selected={startDate}
           onChange={(startDate) => setStartDate(startDate)}
         />
@@ -138,7 +128,6 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
           showIcon
           dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택해 주세요"
-          // selected={new Date(this.state.startDate)}
           selected={endDate}
           onChange={(endDate) => setEndDate(endDate)}
         />

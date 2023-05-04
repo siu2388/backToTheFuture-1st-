@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
@@ -12,23 +12,22 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    if(!skillName){
-      alert('프로그래밍 언어/프레임워크를 입력해주세요.');
+    //에러처리
+    if (!skillName) {
+      alert("프로그래밍 언어/프레임워크를 입력해주세요.");
       return;
     }
-    if(!level){
-      alert('숙련도를 입력해주세요.');
+    if (!level) {
+      alert("숙련도를 입력해주세요.");
       return;
     }
-    if(!period){
-      alert('사용기간을 입력해주세요.');
+    if (!period) {
+      alert("사용기간을 입력해주세요.");
       return;
     }
 
-    // currentSkill의 userId를 userId 변수에 할당함.
     const userId = currentSkill.userId;
 
-    // "skillId/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`skillId/${currentSkill.id}`, {
       userId,
       skillName,
@@ -36,11 +35,8 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
       period,
     });
 
-    // "skilllist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("skilllist", userId);
-    // skills를 response의 data로 세팅함.
     setSkills(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 

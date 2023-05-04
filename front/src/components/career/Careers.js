@@ -5,13 +5,10 @@ import Career from "./Career";
 import CareerAddForm from "./CareerAddForm";
 
 function Careers({ portfolioOwnerId, isEditable }) {
-  //useState로 awards 상태를 생성함.
   const [careers, setCareers] = useState([]);
-  //useState로 isAdding 상태를 생성함.
   const [isAdding, setIsAdding] = useState(false);
 
   useEffect(() => {
-    // "awardlist/유저id"로 GET 요청하고, response의 data로 awards를 세팅함.
     Api.get("careerlist", portfolioOwnerId).then((res) => setCareers(res.data));
   }, [portfolioOwnerId]);
 
