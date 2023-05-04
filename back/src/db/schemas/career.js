@@ -25,7 +25,6 @@ const CareerSchema = new Schema(
     description: {
       type: String,
       required: true,
-      default: "직무 설명이 아직 없습니다. 추가해 주세요.",
     },
     startDate: {
       type: Date,

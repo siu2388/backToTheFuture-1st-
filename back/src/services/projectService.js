@@ -12,7 +12,7 @@ class ProjectService {
     const newProject = { id, userId, title, startDate, endDate, archive, description };
     
     // 공란일 경우, 에러 메시지 반환
-    if (!newProject.title || !newProject.startDate || !newProject.endDate || !newProject.archive || !newProject.description) {
+    if (!newProject.title || !newProject.startDate || !newProject.endDate || !newProject.description) {
       const errorMessage = 
         "Project 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
