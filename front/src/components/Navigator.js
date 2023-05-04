@@ -10,7 +10,7 @@ import { animateScroll as scroll } from 'react-scroll';
 
 
 
-function Navigator({ scrollToMove, portfolioOwner }) {
+function Navigator({ backHome, scrollToMove, portfolioOwner }) {
   const navigate = useNavigate();
 
   const scrollUp = () => {
@@ -24,7 +24,7 @@ function Navigator({ scrollToMove, portfolioOwner }) {
   return (
     
       <div className="menu-button">
-          <Button style = {{backgroundColor: portfolioOwner?.menuColor }} onClick={scrollUp}>홈</Button>
+          <Button style = {{backgroundColor: portfolioOwner?.menuColor }} onClick={backHome}>홈</Button>
           <Button style = {{backgroundColor: portfolioOwner?.menuColor }} value="career-section" onClick={scrollToMove}>경력</Button>
           <Button style = {{backgroundColor: portfolioOwner?.menuColor }} value="education-section" onClick={scrollToMove}>학력</Button>
           <Button style = {{backgroundColor: portfolioOwner?.menuColor }} value="project-section" onClick={scrollToMove}>프로젝트</Button>

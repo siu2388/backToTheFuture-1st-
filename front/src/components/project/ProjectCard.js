@@ -12,6 +12,7 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
   };
 
   useEffect(() => {}, [project]);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,9 +28,9 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
           <br />
           <span>{project?.endDate}</span>
           <br />
-          <span>{project?.archive}</span>
-          <br />
           <span>{project?.description}</span>
+          <br />
+          <span>{project?.archive}</span>
         </Col>
         {isEditable && (
           <Col xs lg="3" style={{ display: "flex", alignItems: "center" }}>
@@ -42,7 +43,8 @@ function ProjectCard({ project, isEditable, setIsEditing, setProjects }) {
             </button>
 
             <>
-              <button variant="outline-danger" onClick = {handleShow} className="btn-delete">             
+              <button variant="outline-danger" 
+              onClick = {handleShow} className="btn-delete">             
                 삭제
               </button>
 

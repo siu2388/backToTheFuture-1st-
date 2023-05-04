@@ -67,6 +67,11 @@
   --form-primary-highlight: #de81f7;
 }
 
+@media screen and (max-width:960px) {
+
+
+}
+
 
 
 button:hover {
@@ -74,6 +79,7 @@ button:hover {
   color: white;
   border: 1px solid rgba(0, 0, 0, 1);
 }
+
 
 ::selection {
   background: var(--form-secondary-highlight);
