@@ -159,6 +159,7 @@ function Portfolio() {
 
           <div className="menu-container">
             <Navigator
+              backHome={() => navigate("/")}
               scrollToMove={(e) => {
                 const section = document.getElementById(e.target.value);
                 section.scrollIntoView({ behavior: "smooth" });

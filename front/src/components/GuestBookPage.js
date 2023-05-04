@@ -5,9 +5,9 @@ import { Container, Col, Row } from "react-bootstrap";
 import { UserStateContext } from "../App";
 import * as Api from "../api";
 import User from "./user/User";
-import GuestBooks from "./guestbook/GuestBooks";
 import Navigator from "./Navigator";
 import "./layout.css";
+import GuestBooks from "./guestbook/GuestBooks";
 
 function GuestBookPage() {
   const navigate = useNavigate();
@@ -46,6 +46,7 @@ function GuestBookPage() {
     if (!userState.user) {
       navigate("/login", { replace: true });
       return;
+
     }
 
     if (params.userId) {
@@ -67,7 +68,7 @@ function GuestBookPage() {
 
   return (
     <Container className="bookcover"
-      style={{ backgroundColor: guestBookPageOwner.boxColor }}
+      style={{ backgroundColor: guestBookPageOwner?.boxColor }}
     >
       <div className="bookdot">
         <div className="page">
@@ -83,12 +84,7 @@ function GuestBookPage() {
                   isEditable={guestBookPageOwner.id === userState.user?.id}
                 />
               </div>
-              <div className="profile-text font-kyobohand">
-                ㄴr는.. 오늘도.. 눈물을.. 흘린ㄷr..★
-              </div>
-              <div className="profile-username font-kyobohand">
-                <span style={{ color: "#0f1b5c" }}>수지니</span> (♪♬)
-              </div>
+
               <div className="profile-dropdown">
                 <div className="dropdown-button">
                   <div className="dropdown-title">파도타기</div>
@@ -104,7 +100,7 @@ function GuestBookPage() {
           <div className="content-container">
             <div className="header content-title">
               <div className="content-title-name">
-                의 추억 상ㅈr... (*ˊᵕˋo💐o
+                {guestBookPageOwner.homeName}
               </div>
             </div>
             <div className="box content-box">
@@ -123,12 +119,9 @@ function GuestBookPage() {
           </div>
 
           <div className="menu-container">
-            <Navigator
-              scrollToMove={(e) => {
-                const section = document.getElementById(e.target.value);
-                section.scrollIntoView({ behavior: "smooth" });
-              }}
-            />
+            <Navigator backHome={() => {
+              navigate(`/userId/${guestBookPageOwner.id}`)
+              }}/>
           </div>
         </div>
       </div>
