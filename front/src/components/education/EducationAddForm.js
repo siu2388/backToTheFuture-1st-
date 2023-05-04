@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "../../api"; //Education를 위한 api 쓰기
+import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
   const [schoolName, setSchoolName] = useState("");
@@ -82,23 +83,23 @@ function EducationAddForm({ portfolioOwnerId, setEducations, setIsAdding }) {
 
       
       <label htmlFor="floatingInputCustom">입학년월</label>
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          value={startDate}
-          placeholder="예: 202103"
-          onChange={(e) => setStartDate(e.target.value)}
-        />  
+        <Form.Group controlId="formBasicStartDate">
+          <DatePicker
+            showIcon
+            selected={startDate}
+            onChange={(startDate) => setStartDate(startDate)}
+            />
+        </Form.Group>
 
 
       <label htmlFor="floatingInputCustom">졸업년월</label>
-        <Form.Control
-          id="floatingPasswordCustom"
-          type="text"
-          value={endDate}
-          placeholder="예: 202309"
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+        <Form.Group controlId="formBasicEndDate">
+          <DatePicker
+            showIcon
+            selected={endDate}
+            onChange={(endDate) => setEndDate(endDate)}
+            />
+        </Form.Group>
 
 
       <Form.Group as={Row} className="mt-3 text-center">

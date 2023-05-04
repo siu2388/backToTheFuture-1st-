@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row, ButtonGroup } from "react-bootstrap";
 import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -73,22 +74,21 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
 
       <label htmlFor="floatingInputCustom">근무 기간</label>
       <Form.Group controlId="formBasicStartDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 2020-02"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
+        <DatePicker
+          showIcon
+          selected={startDate}
+          onChange={(startDate) => setStartDate(startDate)}
+          />
       </Form.Group>
 
       <Form.Group controlId="formBasicEndDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 2023-03"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+        <DatePicker
+          showIcon
+          selected={endDate}
+          onChange={(endDate) => setEndDate(endDate)}
+          />
       </Form.Group>
+
 
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
-import * as Api from "../../api";  //project를 위한 api 쓰기
+import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   //useState로 title 상태를 생성함.
@@ -46,23 +47,20 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
         />
 
 
-
       <label htmlFor="floatingInputCustom">시작 년월</label>
-        <Form.Control
-          type="text"
-          placeholder="예: 2020-02"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-        />
+        <DatePicker
+          showIcon
+          selected={startDate}
+          onChange={(startDate) => setStartDate(startDate)}
+          />
 
 
       <label htmlFor="floatingInputCustom">완료 년월</label>
-        <Form.Control
-          type="text"
-          placeholder="예: 2022-02"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
-        />
+        <DatePicker
+          showIcon
+          selected={endDate}
+          onChange={(endDate) => setEndDate(endDate)}
+          />
 
 
       <label htmlFor="floatingInputCustom">링크</label>
