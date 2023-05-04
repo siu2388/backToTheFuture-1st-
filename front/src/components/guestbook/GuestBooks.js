@@ -41,6 +41,7 @@ function GuestBooks({ guestBookPageOwnerId }) {
             guestBookPageOwnerId={guestBookPageOwnerId}
             setGuestBooks={setGuestBooks}
             setIsAdding={setIsAdding}
+            style = {{marginBottom: "10px"}}
           />
         )}
 
