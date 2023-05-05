@@ -10,7 +10,12 @@ class AwardService {
 
     if (
       !newAward.title ||
+<<<<<<< HEAD
       !newAward.date 
+=======
+      !newAward.date ||
+      !newAward.description
+>>>>>>> origin/jyfrontfinal
     ) {
       const errorMessage =
         "Award 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";

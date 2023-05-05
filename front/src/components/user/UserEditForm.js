@@ -31,17 +31,12 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     Api.get("userId", user.id).then((res) => {
       document.body.style.backgroundColor = res.data.bgColor;
     });
-    console.log(userState);
+
   }, [userState]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("image", image);
-    console.log("name", name);
-    console.log("bgColor", bgColor);
-    console.log("boxColor", boxColor);
-    console.log("menuColor", menuColor);
-    console.log("homeName", homeName);
+
 
     const data = {
       name,
@@ -56,7 +51,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       image,
     };
 
-    console.log("data", data);
+  
 
     const isValidGithub =
       (github.startsWith("https://") || github.startsWith("http://")) && github;

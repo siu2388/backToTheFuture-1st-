@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-import convertTime from "../ConverTime";
+import convertTime from "../ConvertTime";
 
 function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [grade, setGrade] = useState("");
   const [date, setDate] = useState(new Date());
+  const [today, setToday] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +22,12 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
     }
     if (!date) {
       alert("수상 날짜를 입력해 주세요.");
+      return;
+    }
+    const isValidToday = date < today;
+
+    if (!isValidToday) {
+      alert("오늘 날짜를 기준으로 미래 날짜는 선택이 불가능합니다. ");
       return;
     }
 
@@ -44,6 +51,8 @@ function AwardAddForm({ portfolioOwnerId, setAwards, setIsAdding }) {
 
     setDate(convertTime(date));
     data.date = convertTime(date);
+
+    setToday(convertTime(new Date()));
 
     const res = await Api.get("awardlist", userId);
     setAwards(res.data);

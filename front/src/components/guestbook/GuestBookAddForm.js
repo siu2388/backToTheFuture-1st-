@@ -4,7 +4,11 @@ import * as Api from "../../api";
 import { UserStateContext } from "../../App";
 import "../layout.css";
 
-function GuestBookAddForm({ guestBookPageOwnerId, setGuestBooks, setIsAdding }) {
+function GuestBookAddForm({
+  guestBookPageOwnerId,
+  setGuestBooks,
+  setIsAdding,
+}) {
   const [content, setContent] = useState("");
   const userState = useContext(UserStateContext);
 
@@ -13,7 +17,7 @@ function GuestBookAddForm({ guestBookPageOwnerId, setGuestBooks, setIsAdding }) 
     e.stopPropagation();
 
     const receiverId = guestBookPageOwnerId;
- 
+
     await Api.post(`guestBooks/${receiverId}`, {
       receiverId: guestBookPageOwnerId,
       authorId: userState.user.id,
@@ -29,14 +33,14 @@ function GuestBookAddForm({ guestBookPageOwnerId, setGuestBooks, setIsAdding }) 
   return (
     <Form onSubmit={handleSubmit}>
       <label htmlFor="floatingInputCustom">발자국 남기기</label>
-        <Form.Control
-          id="floatingInputCustom"
-          type="text"
-          value={content}
-          placeholder="하고 싶은 말을 남겨 보세요."
-          onChange={(e) => setContent(e.target.value)}
-          style = {{ fontFamily: "NanumBarunGothic"}}
-        />
+      <Form.Control
+        id="floatingInputCustom"
+        type="text"
+        value={content}
+        placeholder="하고 싶은 말을 남겨 보세요."
+        onChange={(e) => setContent(e.target.value)}
+        style={{ fontFamily: "NanumBarunGothic" }}
+      />
 
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>

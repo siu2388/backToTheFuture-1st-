@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-import convertTime from "../ConverTime";
+import convertTime from "../ConvertTime";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [company, setCompany] = useState(currentCareer.company);
@@ -11,6 +11,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [description, setDescription] = useState(currentCareer.description);
   const [startDate, setStartDate] = useState(new Date(currentCareer.startDate));
   const [endDate, setEndDate] = useState(new Date(currentCareer.endDate));
+  const [today, setToday] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,10 +50,15 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       return;
     }
 
-    const isValidDate = startDate < endDate
+    const isValidDate = startDate < endDate;
+    const isValidToday = startDate < today;
 
     if (!isValidDate) {
-      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.")
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
+      return;
+    }
+    if (!isValidToday) {
+      alert("오늘 날짜를 기준으로 미래 날짜는 선택이 불가능합니다. ");
       return;
     }
 
@@ -83,6 +89,8 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
+    
+    setToday(convertTime(new Date()));
 
     const res = await Api.get("careerlist", userId);
     setCareers(res.data);
