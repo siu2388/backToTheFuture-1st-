@@ -78,11 +78,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Modal
-      show={show}
-      animation={false}
-      style={{ fontFamily: "NeoDunggeunmo" }}
-    >
+    <Modal show={show} animation={false} style={{ fontFamily: "NeoDunggeunmo" }}>
       <Modal.Header>
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
@@ -105,7 +101,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="userEditGithub" className="mb-3">
             <Form.Control
               type="string"
