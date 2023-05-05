@@ -49,16 +49,20 @@
   - 네트워크
 
 - 프론트 페이지 preview
-  <img src="./login.png" >
-  <img src="./homeview.png" >
-  <img src="./colorpick.png" >
-  <img src="./network.png" >
+  - 로그인 화면
+    <img src="./login.png" >
+  - 홈 화면
+    <img src="./homeview.png" >
+  - 개인공간 커스터마이징
+    <img src="./colorpick.png" >
+  - 네트워크 (유저 리스트)화면
+    <img src="./network.png" >
 
 ## 백엔드
 
 ##### DB
 
-<img src="./dbtable.png">
+<img src="./dbcollection.png">
 
 ##### node.js , npm , express
 
