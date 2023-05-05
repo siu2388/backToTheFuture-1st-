@@ -10,6 +10,7 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [archive, setArchive] = useState("");
+  const [today, setToday] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,9 +39,14 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
     }
 
     const isValidDate = startDate < endDate;
+    const isValidToday = startDate < today;
 
     if (!isValidDate) {
       alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
+      return;
+    }
+    if (!isValidToday) {
+      alert("오늘 날짜를 기준으로 미래 날짜는 선택이 불가능합니다. ");
       return;
     }
 
@@ -65,14 +71,13 @@ function ProjectAddForm({ portfolioOwnerId, setProjects, setIsAdding }) {
       description,
     };
 
-    console.log("data: ", data);
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
-    console.log("data: ", data);
+    setToday(convertTime(new Date()));
 
     const res = await Api.get("projectlist", userId);
     setProjects(res.data);

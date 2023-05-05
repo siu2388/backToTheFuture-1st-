@@ -9,6 +9,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   const [description, setDescription] = useState(currentAward.description);
   const [grade, setGrade] = useState(currentAward.grade);
   const [date, setDate] = useState(new Date(currentAward.date));
+  const [today, setToday] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,13 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       alert("수상 날짜를 입력해 주세요.");
       return;
     }
+    const isValidToday = date < today;
+
+    if (!isValidToday) {
+      alert("오늘 날짜를 기준으로 미래 날짜는 선택이 불가능합니다. ");
+      return;
+    }
+
 
     const userId = currentAward.userId;
 
@@ -44,6 +52,8 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
 
     setDate(convertTime(date));
     data.date = convertTime(date);
+
+    setToday(convertTime(new Date()));
 
     const res = await Api.get("awardlist", userId);
     setAwards(res.data);
