@@ -25,15 +25,15 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         <Card.Text>{user?.description}</Card.Text>
         <a href={user?.github} rel="noreferrer" target="_blank">
           <img
-            src="../../images/github.png"
+            src="uploads/github.png"
             alt="Github"
             style={{ width: "1.7rem", marginRight: "10px" }}
           />
         </a>
         <a href={user?.blog} rel="noreferrer" target="_blank">
           <img
-            style={{ width: "1.7rem" }}
-            src="../../images/tistory.png"
+            style={{ width: "1.7rem"}}
+            src="uploads/tistory.png"
             alt="Blog"
           />
         </a>
