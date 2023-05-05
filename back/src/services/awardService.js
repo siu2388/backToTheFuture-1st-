@@ -10,7 +10,6 @@ class AwardService {
 
     if (
       !newAward.title ||
-      !newAward.grade ||
       !newAward.date 
     ) {
       const errorMessage =
