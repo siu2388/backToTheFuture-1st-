@@ -10,6 +10,13 @@
   --font-color: #2A293E;
 }
 
+.logo-box {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 7rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -72,7 +79,23 @@
 
 }
 
+.login-container {
+  position: relative;
+  /* 로고 이미지와 로그인 폼을 세로로 중앙 정렬합니다. */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.logo {
+  position: absolute;
+  top: 0;
+  /* 로고 이미지의 가로폭을 100%로 설정하여 부모 요소의 가로폭에 맞춥니다. */
+  width: 100%;
+  /* 로고 이미지와 로그인 폼 사이의 여백을 조정합니다. */
+  margin-top: -60px;
+  padding: 20px;
+}
 
 button:hover {
   background: rgba(0, 0, 0, 1);
