@@ -374,6 +374,7 @@ a button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor : pointer;
 }
 
 .dropdown-title {
@@ -390,6 +391,7 @@ a button:hover {
   overflow-y: auto;
   font-family: "NeoDunggeunmo";
   z-index: 1;
+  cursor : pointer;
 }
 
 .profile-dropdown:hover .dropdown-content {
