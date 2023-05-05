@@ -35,6 +35,13 @@ class ProjectService {
       return { errorMessage };
     }
 
+    const today = new Date();
+    if (!moment(newProject.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     if (
       newProject.endDate &&
       !moment(newProject.startDate).isBefore(moment(newProject.endDate))
@@ -71,6 +78,13 @@ class ProjectService {
     if (!project) {
       const errorMessage =
         "Project 조회: 해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(toUpdate.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

@@ -1,5 +1,6 @@
 import { Award } from "../db";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class AwardService {
   static async addAward({ userId, title, grade, date, description }) {
@@ -15,6 +16,13 @@ class AwardService {
     ) {
       const errorMessage =
         "Award 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(newAward.date).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -45,6 +53,13 @@ class AwardService {
     if (!award) {
       const errorMessage =
         "Award 조회: 해당 id를 가진 수상 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(toUpdate.date).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

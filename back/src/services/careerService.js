@@ -14,6 +14,13 @@ class CareerService {
       return { errorMessage };
     }
 
+    const today = new Date();
+    if (!moment(newCareer.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
     if ((newCareer.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
       const errorMessage =
         "Career 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
@@ -46,6 +53,13 @@ class CareerService {
     if (!career) {
       const errorMessage =
         "Career 조회: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(toUpdate.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
