@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import { UserStateContext } from "../../App";
 import "../layout.css";
@@ -31,7 +31,7 @@ function GuestBookAddForm({
   };
 
   return (
-    <Form onSubmit={handleSubmit} className = "component-card">
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">발자국 남기기</label>
       <Form.Control
         id="floatingInputCustom"
@@ -47,7 +47,7 @@ function GuestBookAddForm({
           <button type="submit" className="btn-confirm">
             확인
           </button>
-          <button className = "btn-cancel" onClick={() => setIsAdding(false)}>
+          <button className="btn-cancel" onClick={() => setIsAdding(false)}>
             취소
           </button>
         </Col>
