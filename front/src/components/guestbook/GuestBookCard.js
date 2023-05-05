@@ -88,7 +88,7 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
               </div>
             </div>
 
-            <br />
+
             <div>
               <text>{guestBook?.content}</text>
             </div>
