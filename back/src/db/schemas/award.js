@@ -16,19 +16,24 @@ const AwardSchema = new Schema(
     },
     grade: {
       type: String,
+      required:false,
     },
     date: {
-      type: Number,
+      type: Date,
       required: true,
     },
     description: {
       type: String,
       required: false,
-      default: "설명이 아직 없습니다. 추가해 주세요.",
     },
   },
   {
     timestamps: true,
+    toJSON: {
+      transform(doc, ret) {
+        ret.date = ret.date.toISOString().slice(0, 10);
+      },
+    },
   }
 );
 

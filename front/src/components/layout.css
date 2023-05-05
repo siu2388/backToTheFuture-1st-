@@ -1,16 +1,15 @@
 body {
   background-size: 100px;
-  position: fixed;
+  /* position: fixed;
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   font-size: 16px;
 
   /** 기본 폰트 설정 */
   font-family: "Noto Sans KR", sans-serif;
 }
-
 
 .bookcover {
   background-color: #b4d1da;
@@ -18,34 +17,52 @@ body {
   border: 1px solid #738186;
   position: relative;
   width: 90vh; /* 화면 너비의 90%로 설정 */
-  height: 70vh; /* 화면 높이의 66%로 설정 */
+  height: 80vh; /* 화면 높이의 66%로 설정 */
+  min-height: 600px;
   box-shadow: 7px 7px 2px 2px var(--form-primary-highlight),
-  7px 7px 2px 2px rgba(0, 0, 0, 1);
-  --form-primary-highlight:#363636;
+    7px 7px 2px 2px rgba(0, 0, 0, 1);
+  --form-primary-highlight: #363636;
+  padding :0.5rem !important;
 }
 
 .bookdot {
   border-radius: 9px;
   border: 2px dashed #ffffff;
-  position: absolute;
+  /* position: absolute;
   top: 0.5rem;
   left: 0.5rem;
   right: 0.5rem;
-  bottom: 0.5rem;
+  bottom: 0.5rem; */
+  padding: 0.8rem;
+  width:100%;
+  height:100%;
+  position: relative;
+}
 
+.component-card-body {
+  margin-bottom: 7px;
+}
+
+.card-title {
+  display: "inline-block";
+  margin-right: 10px;
+  margin-left: 5px;
 }
 
 .page {
   background-color: #eeeeee;
   border-radius: 9px;
-  position: absolute;
+  /* position: absolute;
   top: 0.5rem;
   left: 0.5rem;
   right: 0.5rem;
-  bottom: 0.5rem;
+  bottom: 0.5rem; */
   padding: 15px;
   display: flex;
   padding: 15px;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .profile-container {
@@ -60,25 +77,83 @@ body {
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width:960px) {
+
+@media screen and (max-width: 1180px) {
   .page {
     flex-direction: column;
     position: relative;
-  
+    height: auto;
   }
-  .bookcover{
+  .bookcover {
     height: 80vh;
     overflow-y: auto;
   }
-  .bookdot{
+  .bookdot {
     position: relative;
+    height: auto;
   }
-  body{
+  body {
     overflow-y: auto;
   }
-
+  .menu-container {
+    position: relative;
+    order: -1;
+  }
 }
 
+@media (max-width: 768px) {
+  .component-card-col-left,
+  .component-card-col-right {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .component-card-col-right {
+    text-align: center;
+    margin-top: 1rem;
+  }
+    .btn-edit,
+    .btn-delete {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+
+.component-card-col-left {
+  margin-left: 10px;
+  flex-grow: 1;
+  width: 100%; 
+  flex: none;
+  margin-bottom: 5px;
+}
+
+.author-name {
+  display: inline-block;
+  background-color: #cce2e9;
+  border-radius: 8px;
+  border: 3px #cce2e9;
+  padding: 0 2px 0 2px;
+  text-decoration: none;
+  color: black;
+}
+.component-card-col-right {
+  display: flex;
+
+  justify-content: flex-end;
+  margin-right: 15px;
+
+  flex-shrink: 0
+}
+
+.component-card {
+  border-radius: 8px;
+  width: 100%;
+  border: 1px solid #b9b9b9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  margin-bottom: 5px;
+  font-family: "NanumBarunGothic";
+  font-weight: 600;
+}
 
 .miniroom-gif-box {
   display: flex;
@@ -90,7 +165,7 @@ body {
 }
 
 .header {
-  flex: 0.1;
+  flex: 0.2;
 }
 
 .box {
@@ -102,17 +177,35 @@ body {
 
 .content-title {
   display: flex;
-  align-items: center;  
+  align-items: center;
 }
 
 .content-title-name {
   flex: 1;
+  font-family: "NeoDunggeunmo";
+  font-weight: 200;
+  font-size: 20px;
+  height: 2rem;
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
 }
 
 .content-title-url {
   flex: 1;
   font-size: 0.5rem; /* 적용한 폰트 특성 상 사이즈가 커서 font-size 조정 */
   text-align: end; /* 텍스트 우측 정렬 */
+}
+
+.btn-post {
+  background-color: #769fab;
+  color: white;
+  border-radius: 3px;
+  width: auto;
+  height: 24px;
+  text-align: center;
+  border: none;
+  font-family: "NeoDunggeunmo";
 }
 
 .btn-add {
@@ -123,8 +216,8 @@ body {
   height: 24px;
   text-align: center;
   border: none;
+  font-family: "NeoDunggeunmo";
 }
-
 
 .btn-delete {
   background-color: #f15f5f;
@@ -135,8 +228,9 @@ body {
   font-size: 1rem;
   display: inline-block;
   border: none;
-  width: 3rem;
+  width: 50px;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 .btn-edit {
@@ -148,11 +242,10 @@ body {
   font-size: 1rem;
   display: inline-block;
   border: none;
-  width: 3rem;
+  width: 50px;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
-
-
 
 .btn-confirm {
   background-color: #5580ec;
@@ -165,6 +258,7 @@ body {
   border: none;
   width: 3rem;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 .btn-cancel {
@@ -178,6 +272,7 @@ body {
   border: none;
   width: 3rem;
   height: 1.6rem;
+  font-family: "NeoDunggeunmo";
 }
 
 .profile-title {
@@ -185,6 +280,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 5rem;
 }
 
 .color-red {
@@ -201,11 +297,18 @@ body {
   flex: none;
   display: flex;
   font-family: "NeoDunggeunmo";
+  justify-content: center;
 }
 
 .profile-image-img {
   width: 100%;
   height: 100%;
+}
+
+.userCard {
+  font-family: "NanumBarunGothic";
+  font-weight: 600;
+  align-items: center;
 }
 
 .profile-text {
@@ -220,8 +323,7 @@ body {
   flex: 0;
 }
 
-
-.content-box{
+.content-box {
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -235,23 +337,23 @@ body {
   font-size: 1rem;
   font-family: "NeoDunggeunmo";
   padding: 0.4rem;
-  background-color: #3B87AB;
+  background-color: #3b87ab;
   color: white;
   border-radius: 0 5px 5px 0;
   border: 1px solid grey;
   cursor: pointer;
 }
 
-.menu-button:first-child{
+.menu-button:first-child {
   margin-top: 3rem;
 }
 
 a button:hover {
-  background-color: #6B66FF;
+  background-color: #6b66ff;
   color: white;
 }
 
-.profile-dropdown{
+.profile-dropdown {
   flex: 0;
   border: 1px solid #c9d4da;
   padding: 5px;
@@ -260,7 +362,7 @@ a button:hover {
   position: relative;
 }
 
-.triangle-down{
+.triangle-down {
   width: 0;
   height: 0;
   border-left: 4.5px solid transparent;
@@ -268,13 +370,14 @@ a button:hover {
   border-top: 5px solid #838383;
 }
 
-.dropdown-button{
+.dropdown-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor : pointer;
 }
 
-.dropdown-title{
+.dropdown-title {
   font-family: "NeoDunggeunmo";
 }
 
@@ -284,17 +387,22 @@ a button:hover {
   top: 100%;
   left: 0;
   width: 100%;
-  height: 50px; /* height 설정 */
+  height: 12.5rem;
+  overflow-y: auto;
   font-family: "NeoDunggeunmo";
+  z-index: 1;
+  cursor : pointer;
 }
 
-.profile-dropdown:hover > .dropdown-content {
+.profile-dropdown:hover .dropdown-content {
   display: block;
 }
 
+.dropdown-content p {
+  margin: 0;
+}
 
-
-.dropdown-content > p{
+.dropdown-content > p {
   display: block;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -304,6 +412,6 @@ a button:hover {
   text-decoration: none;
 }
 
-.dropdown-content > p:hover{
+.dropdown-content > p:hover {
   background-color: #f1f1f1;
 }

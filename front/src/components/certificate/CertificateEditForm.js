@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function CertificateEditForm({
@@ -7,7 +7,6 @@ function CertificateEditForm({
   setCertificates,
   setIsEditing,
 }) {
-  //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentCertificate.title);
   const [authority, setAuthority] = useState(currentCertificate.authority);
   const [registerNum, setRegisterNum] = useState(
@@ -19,10 +18,26 @@ function CertificateEditForm({
     e.preventDefault();
     e.stopPropagation();
 
-    // currentProject의 userId를 userId 변수에 할당함.
+    //에러처리
+    if (!title) {
+      alert("자격증명을 입력해주세요.");
+      return;
+    }
+    if (!authority) {
+      alert("발급기관을 입력해주세요.");
+      return;
+    }
+    if (!registerNum) {
+      alert("발급번호를 입력해주세요.");
+      return;
+    }
+    if (!grade) {
+      alert("등급/점수를 입력해주세요.");
+      return;
+    }
+
     const userId = currentCertificate.userId;
 
-    // "projectId/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`certificateId/${currentCertificate.id}`, {
       userId,
       title,
@@ -31,16 +46,13 @@ function CertificateEditForm({
       grade,
     });
 
-    // "projectlist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("certificatelist", userId);
-    // projects를 response의 data로 세팅함.
     setCertificates(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">자격증명</label>
       <Form.Group controlId="formBasicTitle">
         <Form.Control
@@ -83,12 +95,12 @@ function CertificateEditForm({
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <button type="submit" className="btn-confirm">
             확인
-          </Button>
-          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+          </button>
+          <button className="btn-cancel" onClick={() => setIsEditing(false)}>
             취소
-          </Button>
+          </button>
         </Col>
       </Form.Group>
     </Form>

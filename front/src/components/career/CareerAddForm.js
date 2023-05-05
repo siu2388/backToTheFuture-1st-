@@ -1,25 +1,69 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row, ButtonGroup } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
+import convertTime from "../ConvertTime";
 import * as Api from "../../api";
+import DatePicker from "react-datepicker";
 
 function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
-  //useState로 title 상태를 생성함.
   const [company, setCompany] = useState("");
   const [department, setDepartment] = useState("");
   const [position, setPosition] = useState("");
   const [description, setDescription] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [today, setToday] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // portfolioOwnerId를 userId 변수에 할당함.
+    //에러처리
+    if (!company) {
+      alert("회사명을 입력해 주세요.");
+      return;
+    }
+
+    if (!department) {
+      alert("부서명을 입력해 주세요.");
+      return;
+    }
+
+    if (!position) {
+      alert("직급을 입력해 주세요.");
+      return;
+    }
+
+    if (!description) {
+      alert("직무 설명을 작성해 주세요.");
+      return;
+    }
+
+    if (!startDate) {
+      alert("근무 시작 날짜를 입력해 주세요.");
+      return;
+    }
+
+    if (!endDate) {
+      alert(
+        "근무 종료 날짜를 입력해 주세요. 재직 중이라면 오늘 날짜를 입력해 주세요."
+      );
+      return;
+    }
+
+    const isValidDate = startDate < endDate;
+    const isValidToday = startDate < today;
+
+    if (!isValidDate) {
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
+      return;
+    }
+    if (!isValidToday) {
+      alert("오늘 날짜를 기준으로 미래 날짜는 선택이 불가능합니다. ");
+      return;
+    }
+
     const userId = portfolioOwnerId;
 
-    // "career/create" 엔드포인트로 post요청함.
     await Api.post("career/create", {
       userId: portfolioOwnerId,
       company,
@@ -30,17 +74,31 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       endDate,
     });
 
-    // "careerlist/유저id" 엔드포인트로 get요청함.
+    const data = {
+      startDate,
+      endDate,
+      company,
+      userId,
+      department,
+      position,
+      description,
+    };
+
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    setToday(convertTime(new Date()));
+
     const res = await Api.get("careerlist", userId);
-    // careers를 response의 data로 세팅함.
     setCareers(res.data);
-    // career를 추가하는 과정이 끝났으므로, isAdding을 false로 세팅함.
     setIsAdding(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">회사명</label>
       <Form.Group controlId="formBasicCompany">
         <Form.Control
@@ -65,30 +123,34 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       <Form.Group controlId="formBasicPositionm">
         <Form.Control
           type="text"
-          placeholder="직무"
+          placeholder="직급"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
         />
       </Form.Group>
 
-      <label htmlFor="floatingInputCustom">근무 기간</label>
-      <Form.Group controlId="formBasicStartDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 2020-02"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
+      <>
+        <label htmlFor="floatingInputCustom">시작 날짜</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
+          selected={startDate}
+          onChange={(startDate) => setStartDate(startDate)}
         />
-      </Form.Group>
-
-      <Form.Group controlId="formBasicEndDate">
-        <Form.Control
-          type="text"
-          placeholder="예: 2023-03"
-          value={endDate}
-          onChange={(e) => setEndDate(e.target.value)}
+        <label htmlFor="floatingInputCustom">종료 날짜</label>
+        <DatePicker
+          showIcon
+          dateFormat="yyyy-MM-dd"
+          placeholderText="날짜를 선택해 주세요"
+          showMonthDropdown
+          showYearDropdown
+          selected={endDate}
+          onChange={(endDate) => setEndDate(endDate)}
         />
-      </Form.Group>
+      </>
 
       <Form.Group controlId="formBasicDescription" className="mt-3">
         <Form.Control
@@ -99,13 +161,16 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
         />
       </Form.Group>
 
-
       <Form.Group as={Row} className="mt-3 text-center">
         <Col sm={{ span: 20 }}>
           <button variant="primary" type="submit" className="btn-confirm">
             확인
           </button>
-          <button variant="secondary" onClick={() => setIsAdding(false)} className="btn-cancel">
+          <button
+            variant="secondary"
+            onClick={() => setIsAdding(false)}
+            className="btn-cancel"
+          >
             취소
           </button>
         </Col>

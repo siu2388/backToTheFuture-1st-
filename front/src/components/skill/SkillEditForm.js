@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 
 function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
@@ -12,10 +12,22 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentSkill의 userId를 userId 변수에 할당함.
+    //에러처리
+    if (!skillName) {
+      alert("프로그래밍 언어/프레임워크를 입력해주세요.");
+      return;
+    }
+    if (!level) {
+      alert("숙련도를 입력해주세요.");
+      return;
+    }
+    if (!period) {
+      alert("사용기간을 입력해주세요.");
+      return;
+    }
+
     const userId = currentSkill.userId;
 
-    // "skillId/수상 id" 엔드포인트로 PUT 요청함.
     await Api.put(`skillId/${currentSkill.id}`, {
       userId,
       skillName,
@@ -23,21 +35,18 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
       period,
     });
 
-    // "skilllist/유저id" 엔드포인트로 GET 요청함.
     const res = await Api.get("skilllist", userId);
-    // skills를 response의 data로 세팅함.
     setSkills(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">보유기술</label>
       <Form.Group controlId="formBasicSkillName">
         <Form.Control
           type="text"
-          placeholder="예: React"
+          placeholder="프로그래밍 언어/프레임워크"
           value={skillName}
           onChange={(e) => setSkillName(e.target.value)}
         />
@@ -46,7 +55,7 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
       <label htmlFor="floatingInputCustom">숙련도</label>
       <Form.Group controlId="formBasicLevel">
         <Form.Select value={level} onChange={(e) => setLevel(e.target.value)}>
-          <option>select</option>
+          <option value="">숙련도를 선택해주세요</option>
           <option value="하">하</option>
           <option value="중하">중하</option>
           <option value="중">중</option>
@@ -58,7 +67,7 @@ function SkillEditForm({ currentSkill, setSkills, setIsEditing }) {
       <label htmlFor="floatingInputCustom">사용기간</label>
       <Form.Group controlId="formBasicPeriod">
         <Form.Select value={period} onChange={(e) => setPeriod(e.target.value)}>
-          <option>select</option>
+          <option value="">사용기간을 선택해주세요</option>
           <option value="1년 미만">1년 미만</option>
           <option value="2년 미만">2년 미만</option>
           <option value="3년 미만">3년 미만</option>

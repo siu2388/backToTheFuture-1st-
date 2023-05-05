@@ -7,7 +7,7 @@ const multer = require("multer");
 const certificateRouter = Router();
 certificateRouter.use(login_required);
 
-certificateRouter.post("/certificate/create", async function (req, res, next) {
+certificateRouter.post("/certificate/create", async (req, res, next) => {
   try {
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -15,11 +15,9 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
       );
     }
 
-    // req (request) 에서 데이터 가져오기
     const userId = req.currentUserId;
     const { title, authority, registerNum, grade } = req.body;
 
-    // 위 데이터를 유저 db에 추가하기
     const newCertificate = await CertificateService.addCertificate({
       userId,
       title,
@@ -28,18 +26,19 @@ certificateRouter.post("/certificate/create", async function (req, res, next) {
       grade,
     });
 
+    if (newCertificate.errorMessage) {
+      throw new Error(newCertificate.errorMessage);
+    }
     res.status(201).json(newCertificate);
+    return;
   } catch (error) {
     next(error);
   }
 });
 
-certificateRouter.get("/certificateId/:id", async function (req, res, next) {
+certificateRouter.get("/certificateId/:id", async (req, res, next) => {
   try {
-    // req (request) 에서 id 가져오기
     const certificateId = req.params.id;
-
-    // 위 id를 이용하여 db에서 데이터 찾기
     const certificate = await CertificateService.getCertificate({
       certificateId,
     });
@@ -47,8 +46,8 @@ certificateRouter.get("/certificateId/:id", async function (req, res, next) {
     if (certificate.errorMessage) {
       throw new Error(certificate.errorMessage);
     }
-
     res.status(200).send(certificate);
+    return;
   } catch (error) {
     next(error);
   }
@@ -57,12 +56,10 @@ certificateRouter.get("/certificateId/:id", async function (req, res, next) {
 certificateRouter.put(
   "/certificateId/:id",
   multer().none(),
-  async function (req, res, next) {
+  async (req, res, next) => {
     try {
-      // URI로부터 수상 데이터 id를 추출함.
       const certificateId = req.params.id;
 
-      // body data 로부터 업데이트할 수상 정보를 추출함.
       const title = req.body.title ?? null;
       const authority = req.body.authority ?? null;
       const registerNum = req.body.registerNum ?? null;
@@ -70,7 +67,6 @@ certificateRouter.put(
 
       const toUpdate = { title, authority, registerNum, grade };
 
-      // 위 추출된 정보를 이용하여 db의 데이터 수정하기
       const certificate = await CertificateService.setCertificate({
         certificateId,
         toUpdate,
@@ -79,8 +75,8 @@ certificateRouter.put(
       if (certificate.errorMessage) {
         throw new Error(certificate.errorMessage);
       }
-
       res.status(200).send(certificate);
+      return;
     } catch (error) {
       next(error);
     }
@@ -89,10 +85,8 @@ certificateRouter.put(
 
 certificateRouter.delete("/certificateId/:id", async (req, res, next) => {
   try {
-    // req (request) 에서 id 가져오기
     const certificateId = req.params.id;
 
-    // 위 id를 이용하여 db에서 데이터 삭제하기
     const result = await CertificateService.deleteCertificate({
       certificateId,
     });
@@ -100,28 +94,24 @@ certificateRouter.delete("/certificateId/:id", async (req, res, next) => {
     if (result.errorMessage) {
       throw new Error(result.errorMessage);
     }
-
     res.status(200).send(result);
+    return;
   } catch (error) {
     next(error);
   }
 });
 
-certificateRouter.get(
-  "/certificatelist/:userId",
-  async function (req, res, next) {
-    try {
-      // 특정 사용자의 전체 수상 목록을 얻음
-      // @ts-ignore
-      const userId = req.params.userId;
-      const certificateList = await CertificateService.getCertificateList({
-        userId,
-      });
-      res.status(200).send(certificateList);
-    } catch (error) {
-      next(error);
-    }
+certificateRouter.get("/certificatelist/:userId", async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const certificateList = await CertificateService.getCertificateList({
+      userId,
+    });
+    res.status(200).send(certificateList);
+    return;
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 export { certificateRouter };

@@ -3,7 +3,6 @@ import CareerCard from "./CareerCard";
 import CareerEditForm from "./CareerEditForm";
 
 function Career({ career, setCareers, isEditable }) {
-  //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
     <>
@@ -18,7 +17,7 @@ function Career({ career, setCareers, isEditable }) {
           career={career}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
-          setCareers = {setCareers}
+          setCareers={setCareers}
         />
       )}
     </>

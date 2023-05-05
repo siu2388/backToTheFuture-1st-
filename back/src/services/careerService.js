@@ -1,6 +1,6 @@
-// from을 폴더(db) 로 설정 시, 디폴트로 index.js 로부터 import함.
 import { Career } from "../db";
 import { v4 as uuidv4 } from "uuid";
+import moment from "moment";
 
 class CareerService {
   static async addCareer({
@@ -12,10 +12,8 @@ class CareerService {
     startDate,
     endDate,
   }) {
-    // id로 유니크 값 사용
     const id = uuidv4();
 
-    // db에 저장
     const newCareer = {
       id,
       userId,
@@ -26,23 +24,51 @@ class CareerService {
       startDate,
       endDate,
     };
+
+    if (
+      !newCareer.company ||
+      !newCareer.department ||
+      !newCareer.position ||
+      !newCareer.description ||
+      !newCareer.startDate ||
+      !newCareer.endDate
+    ) {
+      const errorMessage =
+        "Career 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(newCareer.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "Career 추가: startDate를 오늘보다 미래 날짜로 입력할 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    if (
+      newCareer.endDate &&
+      !moment(newCareer.startDate).isBefore(moment(newCareer.endDate))
+    ) {
+      const errorMessage =
+        "Career 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
     const createdNewCareer = await Career.create({ newCareer });
 
     return createdNewCareer;
   }
 
   static async getCareer({ careerId }) {
-    // 해당 id를 가진 데이터가 db에 존재 여부 확인
     const career = await Career.findById({ careerId });
+
     if (!career) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Career 조회: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
-
     return career;
   }
-  //userI로 경력목록들 조회
+
   static async getCareerList({ userId }) {
     const careers = await Career.findByUserId({ userId });
     return careers;
@@ -51,10 +77,25 @@ class CareerService {
   static async setCareer({ careerId, toUpdate }) {
     let career = await Career.findById({ careerId });
 
-    // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!career) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Career 조회: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(toUpdate.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "Career 수정: startDate를 오늘보다 미래 날짜로 입력할 수 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    if (
+      toUpdate.endDate &&
+      !moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate))
+    ) {
+      const errorMessage =
+        "Career 수정: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -99,10 +140,9 @@ class CareerService {
   static async deleteCareer({ careerId }) {
     const isDataDeleted = await Career.deleteById({ careerId });
 
-    // db에서 찾지 못한 경우, 에러 메시지 반환
     if (!isDataDeleted) {
       const errorMessage =
-        "해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+        "Career 삭제: 해당 id를 가진 경력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

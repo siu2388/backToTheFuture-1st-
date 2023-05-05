@@ -1,24 +1,60 @@
 import React, { useState } from "react";
-import { Button, Form, Col, Row } from "react-bootstrap";
-
+import { Form, Col, Row } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import convertTime from "../ConvertTime";
 import * as Api from "../../api";
 
 function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
   //useState로 title 상태를 생성함.
   const [title, setTitle] = useState(currentProject.title);
   const [description, setDescription] = useState(currentProject.description);
-  const [startDate, setStartDate] = useState(currentProject.startDate);
-  const [endDate, setEndDate] = useState(currentProject.endDate);
+  const [startDate, setStartDate] = useState(
+    new Date(currentProject.startDate)
+  );
+  const [endDate, setEndDate] = useState(new Date(currentProject.endDate));
   const [archive, setArchive] = useState(currentProject.archive);
+  const [today, setToday] = useState(new Date());
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    // currentProject의 userId를 userId 변수에 할당함.
-    const userId = currentProject.userId;
+    //에러처리
+    if (!title) {
+      alert("프로젝트명을 입력해 주세요.");
+      return;
+    }
 
-    // "projectId/수상 id" 엔드포인트로 PUT 요청함.
+    if (!startDate) {
+      alert("활동 시작 날짜를 입력해 주세요.");
+      return;
+    }
+
+    if (!endDate) {
+      alert(
+        "활동 종료 날짜를 입력해 주세요. 진행 중이라면 오늘 날짜를 입력해 주세요."
+      );
+      return;
+    }
+
+    if (!description) {
+      alert("프로젝트 설명을 작성해 주세요.");
+      return;
+    }
+
+    const isValidDate = startDate < endDate;
+    const isValidToday = startDate < today;
+
+    if (!isValidDate) {
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
+      return;
+    }
+    if (!isValidToday) {
+      alert("오늘 날짜를 기준으로 미래 날짜는 선택이 불가능합니다. ");
+      return;
+    }
+
+    const userId = currentProject.userId;
     await Api.put(`projectId/${currentProject.id}`, {
       userId,
       title,
@@ -28,16 +64,30 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
       description,
     });
 
-    // "projectlist/유저id" 엔드포인트로 GET 요청함.
+    const data = {
+      userId,
+      title,
+      startDate,
+      endDate,
+      archive,
+      description,
+    };
+
+    setStartDate(convertTime(startDate));
+    data.startDate = convertTime(startDate);
+
+    setEndDate(convertTime(endDate));
+    data.endDate = convertTime(endDate);
+
+    setToday(convertTime(new Date()));
+
     const res = await Api.get("projectlist", userId);
-    // projects를 response의 data로 세팅함.
     setProjects(res.data);
-    // 편집 과정이 끝났으므로, isEditing을 false로 세팅함.
     setIsEditing(false);
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className="component-card">
       <label htmlFor="floatingInputCustom">프로젝트명</label>
       <Form.Control
         type="text"
@@ -46,20 +96,26 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         onChange={(e) => setTitle(e.target.value)}
       />
 
-      <label htmlFor="floatingInputCustom">시작 년월</label>
-      <Form.Control
-        type="text"
-        placeholder="예: 2020-02"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
+      <label htmlFor="floatingInputCustom">시작 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
+        selected={startDate}
+        onChange={(startDate) => setStartDate(startDate)}
       />
 
-      <label htmlFor="floatingInputCustom">완료 년월</label>
-      <Form.Control
-        type="text"
-        placeholder="예: 2022-02"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
+      <label htmlFor="floatingInputCustom">완료 날짜</label>
+      <DatePicker
+        showIcon
+        dateFormat="yyyy-MM-dd"
+        placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
+        selected={endDate}
+        onChange={(endDate) => setEndDate(endDate)}
       />
 
       <label htmlFor="floatingInputCustom">링크</label>
@@ -80,12 +136,12 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
 
       <Form.Group as={Row} className="mt-3 text-center mb-4">
         <Col sm={{ span: 20 }}>
-          <Button variant="primary" type="submit" className="me-3">
+          <button type="submit" className="btn-confirm">
             확인
-          </Button>
-          <Button variant="secondary" onClick={() => setIsEditing(false)}>
+          </button>
+          <button className="btn-cancel" onClick={() => setIsEditing(false)}>
             취소
-          </Button>
+          </button>
         </Col>
       </Form.Group>
     </Form>

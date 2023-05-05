@@ -3,7 +3,6 @@ import EducationCard from "./EducationCard";
 import EducationEditForm from "./EducationEditForm";
 
 function Education({ education, setEducations, isEditable }) {
-  //useState로 isEditing 상태를 생성함.
   const [isEditing, setIsEditing] = useState(false);
   return (
     <>
@@ -18,7 +17,7 @@ function Education({ education, setEducations, isEditable }) {
           education={education}
           isEditable={isEditable}
           setIsEditing={setIsEditing}
-          setEducations = {setEducations}
+          setEducations={setEducations}
         />
       )}
     </>
