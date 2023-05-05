@@ -66,7 +66,7 @@ function LoginForm() {
           alt="백투더퓨처 로고"
           className = "logo"
           style = {{
-            width: "50%",
+            width: "60%",
             maxWidth: "50vh"
           }}
         ></img>
