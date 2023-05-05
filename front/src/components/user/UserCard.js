@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 import { serverUrl } from "../../api";
-import "./userCard.css";
+import "./imageCard.css";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();

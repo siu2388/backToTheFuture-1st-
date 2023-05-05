@@ -1,9 +1,11 @@
-import { Modal, Container, Row, Col } from "react-bootstrap";
+import { Card,Modal, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 import "../layout.css";
+import "./bookImageCard.css"
 import { serverUrl } from "../../api";
+
 
 function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
   const userState = useContext(UserStateContext);
@@ -53,13 +55,10 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     <Container className="component-card">
       <Row>
         <Col md={3}>
-          <div>
-            <img
-              style={{ width: "8rem", align: "center" }}
-              className="mb-3"
-              src={`${serverUrl}${
-                author?.image?.path || "uploads/profile.jpg"
-              }`}
+        <div className="gbcard-img-container">
+            <Card.Img
+              className="gbcard-img"
+              src={`${serverUrl}${author?.image?.path || "uploads/profile.jpg"}`}
               alt="프로필 이미지"
             />
           </div>
