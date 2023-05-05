@@ -1,4 +1,4 @@
-import { Card, Modal, Row, Col, Container } from "react-bootstrap";
+import { Card, Modal, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
@@ -21,17 +21,17 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
   return (
     <Container className="component-card">
       <Card.Text>
-        <Row className="align-items-center">
-          <Col className="component-card-col-left">
+        <div className="align-items-center">
+          <div className="component-card-col-left">
             <span>{skill?.skillName}</span>
             <br />
             <span className="text-muted">{skill?.level}</span>
             <br />
             <span className="text-muted">{skill?.period}</span>
-          </Col>
+          </div>
 
           {isEditable && (
-            <Col xs lg="3.2" className="component-card-col-right">
+            <div className="component-card-col-right">
               <button
                 onClick={() => setIsEditing((prev) => !prev)}
                 className="btn-edit"
@@ -53,20 +53,20 @@ function SkillCard({ skill, isEditable, setIsEditing, setSkills }) {
                       취소
                     </button>
                     <button
-                      className="btn-confirm"
                       onClick={() => {
                         handleClose();
                         handleDelete();
                       }}
+                      className="btn-confirm"
                     >
                       확인
                     </button>
                   </Modal.Footer>
                 </Modal>
               </>
-            </Col>
+            </div>
           )}
-        </Row>
+        </div>
       </Card.Text>
     </Container>
   );

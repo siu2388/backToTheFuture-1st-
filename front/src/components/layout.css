@@ -90,8 +90,29 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .component-card-col-left,
+  .component-card-col-right {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .component-card-col-right {
+    text-align: center;
+    margin-top: 1rem;
+  }
+    .btn-edit,
+    .btn-delete {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+
 .component-card-col-left {
   margin-left: 10px;
+  flex-grow: 1;
+  width: 100%; 
+  flex: none;
+  margin-bottom: 5px;
 }
 
 .author-name {
@@ -105,10 +126,11 @@ body {
 }
 .component-card-col-right {
   display: flex;
-  align-items: center;
+
   justify-content: flex-end;
   margin-right: 15px;
-  width: 10%;
+
+  flex-shrink: 0
 }
 
 .component-card {

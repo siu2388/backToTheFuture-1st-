@@ -1,4 +1,4 @@
-import { Card, Modal, Container, Row, Col } from "react-bootstrap";
+import { Card, Modal, Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
@@ -27,8 +27,8 @@ function CertificateCard({
   return (
     <Container className="component-card">
       <Card.Text>
-        <Row className="align-items-center">
-          <Col className="component-card-col-left">
+        <div>
+          <div className="component-card-col-left">
             <span>{certificate?.title}</span>
             <br />
             <span className="text-muted">{certificate?.authority}</span>
@@ -36,10 +36,10 @@ function CertificateCard({
             <span className="text-muted">{certificate?.registerNum}</span>
             <br />
             <span className="text-muted">{certificate?.grade}</span>
-          </Col>
+          </div>
 
           {isEditable && (
-            <Col xs lg="3.2" className="component-card-col-right">
+            <div className="component-card-col-right">
               <button
                 onClick={() => setIsEditing((prev) => !prev)}
                 className="btn-edit"
@@ -52,7 +52,7 @@ function CertificateCard({
                 </button>
 
                 <Modal show={show} onHide={handleClose} animation={false}>
-                  <Modal.Header closebutton>
+                  <Modal.Header closeButton>
                     <Modal.Title>삭제</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>정말로 삭제하시겠습니까? T.T</Modal.Body>
@@ -72,9 +72,9 @@ function CertificateCard({
                   </Modal.Footer>
                 </Modal>
               </>
-            </Col>
+            </div>
           )}
-        </Row>
+        </div>
       </Card.Text>
     </Container>
   );

@@ -1,4 +1,4 @@
-import { Card, Container, Modal, Row, Col } from "react-bootstrap";
+import { Card, Container, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 
@@ -21,8 +21,8 @@ function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
   return (
     <Container className="component-card">
       <Card.Text>
-        <Row className="align-items-center">
-          <Col className="component-card-col-left">
+        <div>
+          <div className="component-card-col-left">
             <span>{career?.company}</span>
             <br />
             <span className="text-muted">{career?.department}</span>
@@ -34,10 +34,10 @@ function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
             </span>
             <br />
             <span className="text-muted">{career?.description}</span>
-          </Col>
+          </div>
 
           {isEditable && (
-            <Col xs lg="3.2" className="component-card-col-right">
+            <div className="component-card-col-right">
               <button
                 onClick={() => setIsEditing((prev) => !prev)}
                 className="btn-edit"
@@ -70,9 +70,9 @@ function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
                   </Modal.Footer>
                 </Modal>
               </>
-            </Col>
+            </div>
           )}
-        </Row>
+        </div>
       </Card.Text>
     </Container>
   );

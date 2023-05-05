@@ -1,4 +1,4 @@
-import { Container, Card, Modal, Row, Col } from "react-bootstrap";
+import { Container, Card, Modal } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import * as Api from "../../api";
 import "../layout.css";
@@ -22,8 +22,8 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
   return (
     <Container className="component-card">
       <Card.Text>
-        <Row className="align-items-center">
-          <Col className="component-card-col-left">
+        <div className="align-items-center">
+          <div className="component-card-col-left">
             <span>{award?.title}</span>
             <br />
             <span className="text-muted">{award?.grade}</span>
@@ -31,21 +31,20 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
             <span className="text-muted">{award?.date}</span>
             <br />
             <span className="text-muted">{award?.description}</span>
-          </Col>
+          </div>
           {isEditable && (
-            <Col xs lg="3.2" className="component-card-col-right">
+            <div className="component-card-col-right" >
               <button
                 onClick={() => setIsEditing((prev) => !prev)}
                 className="btn-edit"
               >
                 편집
               </button>
-
-              <button onClick={handleShow} className="btn-delete">
-                삭제
-              </button>
-
               <>
+                <button onClick={handleShow} className="btn-delete">
+                  삭제
+                </button>
+
                 <Modal show={show} onHide={handleClose} animation={false}>
                   <Modal.Header closeButton>
                     <Modal.Title>삭제</Modal.Title>
@@ -56,20 +55,20 @@ function AwardCard({ award, isEditable, setIsEditing, setAwards }) {
                       취소
                     </button>
                     <button
-                      className="btn-confirm"
                       onClick={() => {
                         handleClose();
                         handleDelete();
                       }}
+                      className="btn-confirm"
                     >
                       확인
                     </button>
                   </Modal.Footer>
                 </Modal>
               </>
-            </Col>
+            </div>
           )}
-        </Row>
+        </div>
       </Card.Text>
     </Container>
   );
