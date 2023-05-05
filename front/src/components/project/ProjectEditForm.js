@@ -67,14 +67,14 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
       description,
     };
 
-    console.log("data: ", data);
+   
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
 
-    console.log("data: ", data);
+
 
     const res = await Api.get("projectlist", userId);
     setProjects(res.data);

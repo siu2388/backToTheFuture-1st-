@@ -83,7 +83,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
-    console.log(data.startDate);
+
 
     const res = await Api.get("careerlist", userId);
     setCareers(res.data);

@@ -71,7 +71,7 @@ function EducationEditForm({ currentEducation, setEducations, setIsEditing }) {
       endDate,
     };
 
-    console.log("data: ", data);
+   
     setStartDate(convertTime(startDate));
     data.startDate = convertTime(startDate);
 

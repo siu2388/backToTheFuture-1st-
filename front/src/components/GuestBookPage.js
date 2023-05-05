@@ -19,7 +19,7 @@ function GuestBookPage() {
 
   const fetchGuestBookPageOwner = async (ownerId) => {
     const res = await Api.get("userId", ownerId);
-    console.log(ownerId);
+
     const ownerData = res.data;
 
     setGuestBookPageOwner(ownerData);
@@ -27,9 +27,7 @@ function GuestBookPage() {
     setIsFetchCompleted(true);
   };
 
-  useEffect(() => {
-    console.log(guestBookPageOwner);
-  }, [guestBookPageOwner]);
+  useEffect(() => {}, [guestBookPageOwner]);
 
   useEffect(() => {
     document.body.style.backgroundColor = guestBookPageOwner?.bgColor;

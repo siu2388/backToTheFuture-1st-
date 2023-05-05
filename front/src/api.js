@@ -38,7 +38,7 @@ async function put(endpoint, data) {
     formData.append(key, data[key]);
   }
 
-  console.log("put요청", data);
+ 
   console.log(`%cPUT 요청: ${serverUrl + endpoint}`, "color: #059c4b;");
   console.log(`%cPUT 요청 데이터:${formData}`, "color: #059c4b;");
 
