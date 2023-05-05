@@ -27,14 +27,19 @@ class EducationService {
 
     if (
       !newEducation.schoolName ||
-      !newEducation.schoolType ||
-      !newEducation.major ||
       !newEducation.status ||
       !newEducation.startDate ||
       !newEducation.endDate
     ) {
       const errorMessage =
         "Education 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(newEducation.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -72,6 +77,13 @@ class EducationService {
     if (!education) {
       const errorMessage =
         "Education 조회: 해당 id를 가진 학력 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(toUpdate.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 

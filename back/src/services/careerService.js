@@ -3,18 +3,52 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 class CareerService {
-  static async addCareer({ userId, company, department, position, description, startDate, endDate }) {
+  static async addCareer({
+    userId,
+    company,
+    department,
+    position,
+    description,
+    startDate,
+    endDate,
+  }) {
     const id = uuidv4();
 
-    const newCareer = { id, userId, company, department, position, description, startDate, endDate };
+    const newCareer = {
+      id,
+      userId,
+      company,
+      department,
+      position,
+      description,
+      startDate,
+      endDate,
+    };
 
-    if (!newCareer.company || !newCareer.department || !newCareer.position || !newCareer.description || !newCareer.startDate || !newCareer.endDate) {
-      const errorMessage = 
+    if (
+      !newCareer.company ||
+      !newCareer.department ||
+      !newCareer.position ||
+      !newCareer.description ||
+      !newCareer.startDate ||
+      !newCareer.endDate
+    ) {
+      const errorMessage =
         "Career 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
-    if ((newCareer.endDate) && (!moment(newCareer.startDate).isBefore(moment(newCareer.endDate)))){
+    const today = new Date();
+    if (!moment(newCareer.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    if (
+      newCareer.endDate &&
+      !moment(newCareer.startDate).isBefore(moment(newCareer.endDate))
+    ) {
       const errorMessage =
         "Career 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -49,7 +83,17 @@ class CareerService {
       return { errorMessage };
     }
 
-    if((toUpdate.endDate) && (!moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate)))){
+    const today = new Date();
+    if (!moment(toUpdate.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    if (
+      toUpdate.endDate &&
+      !moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate))
+    ) {
       const errorMessage =
         "Career 수정: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };

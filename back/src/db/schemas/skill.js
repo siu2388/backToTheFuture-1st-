@@ -16,6 +16,7 @@ const SkillSchema = new Schema(
     },
     level: {
       type: String,
+      required: true,
     },
     period: {
       type: String,

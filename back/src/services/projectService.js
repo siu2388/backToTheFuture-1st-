@@ -27,11 +27,17 @@ class ProjectService {
       !newProject.title ||
       !newProject.startDate ||
       !newProject.endDate ||
-      !newProject.archive ||
       !newProject.description
     ) {
       const errorMessage =
         "Project 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(newProject.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -71,6 +77,13 @@ class ProjectService {
     if (!project) {
       const errorMessage =
         "Project 조회: 해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.";
+      return { errorMessage };
+    }
+
+    const today = new Date();
+    if (!moment(toUpdate.startDate).isBefore(moment(today))) {
+      const errorMessage =
+        "날짜 입력이 잘못되었습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
