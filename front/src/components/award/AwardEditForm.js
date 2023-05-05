@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-import convertTime from "../ConverTime";
+import convertTime from "../ConvertTime";
 
 function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
   const [title, setTitle] = useState(currentAward.title);

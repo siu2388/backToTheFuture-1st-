@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
-import convertTime from "../ConverTime";
+import convertTime from "../ConvertTime";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
 
@@ -48,11 +48,11 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       );
       return;
     }
-    
-    const isValidDate = startDate < endDate
+
+    const isValidDate = startDate < endDate;
 
     if (!isValidDate) {
-      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.")
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
       return;
     }
 

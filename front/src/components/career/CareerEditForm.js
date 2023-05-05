@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Col, Row } from "react-bootstrap";
 import * as Api from "../../api";
 import DatePicker from "react-datepicker";
-import convertTime from "../ConverTime";
+import convertTime from "../ConvertTime";
 
 function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
   const [company, setCompany] = useState(currentCareer.company);
@@ -49,10 +49,10 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       return;
     }
 
-    const isValidDate = startDate < endDate
+    const isValidDate = startDate < endDate;
 
     if (!isValidDate) {
-      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.")
+      alert("시작 날짜가 종료 날짜와 같거나 종료 날짜보다 늦을 수 없습니다.");
       return;
     }
 
