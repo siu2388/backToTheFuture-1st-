@@ -29,7 +29,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
     }
 
     if (!position) {
-      alert("직무를 입력해 주세요.");
+      alert("직급을 입력해 주세요.");
       return;
     }
 
@@ -123,7 +123,7 @@ function CareerAddForm({ portfolioOwnerId, setCareers, setIsAdding }) {
       <Form.Group controlId="formBasicPositionm">
         <Form.Control
           type="text"
-          placeholder="직무"
+          placeholder="직급"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
         />

@@ -29,7 +29,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
     }
 
     if (!position) {
-      alert("직무를 입력해 주세요.");
+      alert("직급을 입력해 주세요.");
       return;
     }
 
@@ -123,7 +123,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
       <Form.Group controlId="formBasicPosition">
         <Form.Control
           type="text"
-          placeholder="직무"
+          placeholder="직급"
           value={position}
           onChange={(e) => setPosition(e.target.value)}
         />
