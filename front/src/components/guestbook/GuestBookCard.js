@@ -1,5 +1,6 @@
 import { Card,Modal, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 import "../layout.css";
@@ -8,6 +9,7 @@ import { serverUrl } from "../../api";
 
 
 function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
+  const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [users, setUsers] = useState([]);
   const handleDelete = async () => {
@@ -72,7 +74,7 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
                 justifyContent: "space-between",
               }}
             >
-              <div className="author-name">{guestBook?.authorName}</div>
+              <a className="author-name" onClick={() => navigate(`/userId/${guestBook?.authorId}`)} >{guestBook?.authorName}</a>
               <div>
                 <text className="text-muted">
                   {formatter.format(new Date(lastEditTime))}

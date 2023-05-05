@@ -10,3 +10,6 @@
   height: 100%;
   object-fit: cover; /* 이미지를 자르기 */
 }
+.card-body a {
+  text-decoration: none;
+}
