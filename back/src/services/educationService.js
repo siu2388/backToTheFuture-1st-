@@ -17,7 +17,7 @@ class EducationService {
     const today = new Date();
     if (!moment(newEducation.startDate).isBefore(moment(today))) {
       const errorMessage =
-        "Education 추가: 오늘을 기준으로 미래 날짜를 입력할 수 없습니다. 다시 한 번 확인해 주세요.";
+        "Education 추가: startDate를 오늘보다 미래 날짜로 입력할 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
@@ -58,7 +58,7 @@ class EducationService {
     const today = new Date();
     if (!moment(toUpdate.startDate).isBefore(moment(today))) {
       const errorMessage =
-        "Education 수정: 오늘을 기준으로 미래 날짜를 입력할 수 없습니다. 다시 한 번 확인해 주세요.";
+        "Education 수정: startDate를 오늘보다 미래 날짜로 입력할 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
     }
 
