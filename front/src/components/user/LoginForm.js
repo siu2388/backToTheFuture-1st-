@@ -62,7 +62,7 @@ function LoginForm() {
     <div className="login-page">
       <div className="logo-box">
         <img
-          src="images/logo2.png"
+          src="/images/logo2.png"
           alt="백투더퓨처 로고"
           style={{ width: "20rem" }}
         ></img>
