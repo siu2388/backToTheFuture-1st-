@@ -2,23 +2,12 @@ import { Certificate } from "../db";
 import { v4 as uuidv4 } from "uuid";
 
 class CertificateService {
-  static async addCertificate({
-    userId,
-    title,
-    authority,
-    registerNum,
-    grade,
-  }) {
+  static async addCertificate({ userId, title, authority, registerNum, grade }) {
     const id = uuidv4();
 
     const newCertificate = { id, userId, title, authority, registerNum, grade };
 
-    if (
-      !newCertificate.title ||
-      !newCertificate.authority ||
-      !newCertificate.registerNum ||
-      !newCertificate.grade
-    ) {
+    if (!newCertificate.title || !newCertificate.authority || !newCertificate.registerNum || !newCertificate.grade) {
       const errorMessage =
         "Certificate 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };

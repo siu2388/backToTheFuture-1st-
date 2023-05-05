@@ -7,12 +7,7 @@ class GuestBookService {
 
     const newGuestBook = { id, authorId, receiverId, authorName, content };
 
-    if (
-      !newGuestBook.authorId ||
-      !newGuestBook.receiverId ||
-      !newGuestBook.authorName ||
-      !newGuestBook.content
-    ) {
+    if (!newGuestBook.authorId || !newGuestBook.receiverId || !newGuestBook.authorName || !newGuestBook.content) {
       const errorMessage =
         "GuestBook 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
