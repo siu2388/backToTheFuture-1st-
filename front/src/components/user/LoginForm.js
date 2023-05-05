@@ -61,7 +61,7 @@ function LoginForm() {
   return (
     <div className="login-page">
       <div className="logo-box">
-      <img src = "images/logo2.png" style = {{width: "28rem"}}></img>
+      <img src = "images/logo2.png" style = {{width: "20rem"}}></img>
       </div>
       <Row className="justify-content-center mt-5">
         <Col lg={5} md={8} xs={10}>
