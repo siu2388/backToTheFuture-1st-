@@ -8,7 +8,6 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   return (
     <Card className="userCard">
       <Card.Body style={{ width: "18rem", height: "25rem" }}>
-
         <Row xs="auto" className="justify-content-md-center">
           <div className="card-img-container">
             <Card.Img
@@ -26,20 +25,18 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         <Card.Text>{user?.description}</Card.Text>
         <a href={user?.github} rel="noreferrer" target="_blank">
           <img
-            src="../../images/github.png"
+            src="images/github.png"
             alt="Github"
-            style={{ width: "1.7rem", marginRight:"10px"}}
+            style={{ width: "1.7rem", marginRight: "10px" }}
           />
         </a>
         <a href={user?.blog} rel="noreferrer" target="_blank">
           <img
             style={{ width: "1.7rem"}}
-            src="../../images/tistory.png"
+            src="images/tistory.png"
             alt="Blog"
           />
         </a>
-
-
 
         {isEditable && (
           <Col>

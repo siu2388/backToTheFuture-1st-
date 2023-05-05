@@ -1,12 +1,11 @@
-import { Card,Modal, Container, Row, Col } from "react-bootstrap";
+import { Card, Modal, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
 import "../layout.css";
-import "./bookImageCard.css"
+import "./bookImageCard.css";
 import { serverUrl } from "../../api";
-
 
 function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
   const navigate = useNavigate();
@@ -57,10 +56,12 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
     <Container className="component-card">
       <Row>
         <Col md={3}>
-        <div className="gbcard-img-container">
+          <div className="gbcard-img-container">
             <Card.Img
               className="gbcard-img"
-              src={`${serverUrl}${author?.image?.path || "uploads/profile.jpg"}`}
+              src={`${serverUrl}${
+                author?.image?.path || "uploads/profile.jpg"
+              }`}
               alt="프로필 이미지"
             />
           </div>
@@ -74,7 +75,12 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
                 justifyContent: "space-between",
               }}
             >
-              <a className="author-name" onClick={() => navigate(`/userId/${guestBook?.authorId}`)} >{guestBook?.authorName}</a>
+              <p
+                className="author-name"
+                onClick={() => navigate(`/userId/${guestBook?.authorId}`)}
+              >
+                {guestBook?.authorName}
+              </p>
               <div>
                 <text className="text-muted">
                   {formatter.format(new Date(lastEditTime))}

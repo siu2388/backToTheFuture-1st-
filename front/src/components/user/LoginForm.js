@@ -56,10 +56,17 @@ function LoginForm() {
     }
   };
 
-  document.body.style.backgroundColor = "#d9d7da";
+  document.body.style.backgroundColor = "#e5e1fe";
 
   return (
     <div className="login-page">
+      <div className="logo-box">
+        <img
+          src="images/logo2.png"
+          alt="백투더퓨처 로고"
+          style={{ width: "28rem" }}
+        ></img>
+      </div>
       <Row className="justify-content-center mt-5">
         <Col lg={5} md={8} xs={10}>
           <Form onSubmit={handleSubmit}>
@@ -94,6 +101,7 @@ function LoginForm() {
                 autoComplete="on"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                style={{ marginBottom: "2rem" }}
               />
               {!isPasswordValid && password !== "" && (
                 <Form.Text className="text-success">

@@ -10,8 +10,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [blog, setBlog] = useState(user.blog);
   const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
-  const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
   const [bgColor, setBgColor] = useState(user.bgColor);
   const [boxColor, setBoxColor] = useState(user.boxColor);
   const [menuColor, setMenuColor] = useState(user.menuColor);
