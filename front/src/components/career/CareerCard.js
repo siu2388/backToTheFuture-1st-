@@ -33,7 +33,7 @@ function CareerCard({ career, isEditable, setIsEditing, setCareers }) {
               {career?.startDate} ~ {career?.endDate}
             </span>
             <br />
-            <span>{career?.description}</span>
+            <span className="text-muted">{career?.description}</span>
           </Col>
 
           {isEditable && (
