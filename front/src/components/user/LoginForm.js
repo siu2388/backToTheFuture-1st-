@@ -64,7 +64,7 @@ function LoginForm() {
         <img
           src="images/logo2.png"
           alt="백투더퓨처 로고"
-          style={{ width: "28rem" }}
+          style={{ width: "20rem" }}
         ></img>
       </div>
       <Row className="justify-content-center mt-5">
