@@ -14,7 +14,7 @@ yarn start
 
 ## 파일 구조 설명
 
-1. src폴더 구성
+ src폴더 구성
 
 - components 폴더:
 
@@ -29,5 +29,5 @@ yarn start
   - project 폴더: 프로젝트 관련 컴포넌트들 
   - user 폴더: 사용자 관련 컴포넌트들
 
-2. 
+
 
