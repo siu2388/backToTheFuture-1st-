@@ -60,8 +60,8 @@ function LoginForm() {
 
   return (
     <div className="login-page">
-      <Row className="justify-content-md-center mt-5">
-        <Col lg={8}>
+      <Row className="justify-content-center mt-5">
+        <Col lg={5} md={8} xs={10}>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="loginEmail">
               <Form.Label>EMAIL</Form.Label>

@@ -66,7 +66,7 @@ function Navigator({ backHome, scrollToMove, portfolioOwner }) {
         value="skill-section"
         onClick={scrollToMove}
       >
-        사용기술
+        보유기술
       </Button>
       <Button
         style={{ backgroundColor: portfolioOwner?.menuColor }}

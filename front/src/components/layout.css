@@ -68,7 +68,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1180px) {
   .page {
     flex-direction: column;
     position: relative;
@@ -264,6 +264,7 @@ body {
   flex: none;
   display: flex;
   font-family: "NeoDunggeunmo";
+  justify-content: center;
 }
 
 .profile-image-img {
@@ -274,6 +275,7 @@ body {
 .userCard {
   font-family: "NanumBarunGothic";
   font-weight: 600;
+  align-items: center;
 }
 
 .profile-text {
