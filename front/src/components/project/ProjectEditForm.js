@@ -101,6 +101,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         showIcon
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
         selected={startDate}
         onChange={(startDate) => setStartDate(startDate)}
       />
@@ -110,6 +112,8 @@ function ProjectEditForm({ currentProject, setProjects, setIsEditing }) {
         showIcon
         dateFormat="yyyy-MM-dd"
         placeholderText="날짜를 선택해 주세요"
+        showMonthDropdown
+        showYearDropdown
         selected={endDate}
         onChange={(endDate) => setEndDate(endDate)}
       />
