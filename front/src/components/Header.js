@@ -21,7 +21,7 @@ function Header() {
   };
 
   return (
-    <Nav activeKey={location.pathname} style={{ height: 150 }}>
+    <Nav activeKey={location.pathname} style={{ height: 100 }}>
       <Nav.Item className="me-auto">
         <button
           onClick={() => navigate("/")}
