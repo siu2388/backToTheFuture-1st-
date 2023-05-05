@@ -84,7 +84,7 @@ function GuestBookPage() {
                   <div className="triangle-down"></div>
                 </div>
                 <div className="dropdown-content">
-                  <a onClick={() => navigate("/network")}>네트워크</a>
+                  <p onClick={() => navigate("/network")}>네트워크</p>
                   {users?.map((user) => (
                     <p
                       key={user.id}

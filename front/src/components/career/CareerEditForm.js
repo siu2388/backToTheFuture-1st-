@@ -89,7 +89,7 @@ function CareerEditForm({ currentCareer, setCareers, setIsEditing }) {
 
     setEndDate(convertTime(endDate));
     data.endDate = convertTime(endDate);
-    
+
     setToday(convertTime(new Date()));
 
     const res = await Api.get("careerlist", userId);
