@@ -10,6 +10,8 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   const [blog, setBlog] = useState(user.blog);
   const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
+  const [show, setShow] = useState(true);
+  const handleClose = () => setShow(false);
   const [bgColor, setBgColor] = useState(user.bgColor);
   const [boxColor, setBoxColor] = useState(user.boxColor);
   const [menuColor, setMenuColor] = useState(user.menuColor);
@@ -78,11 +80,7 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Modal
-      show={show}
-      animation={false}
-      style={{ fontFamily: "NeoDunggeunmo" }}
-    >
+    <Modal show={show} animation={false} style={{ fontFamily: "NeoDunggeunmo" }}>
       <Modal.Header>
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
@@ -105,7 +103,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               onChange={(e) => setName(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="userEditGithub" className="mb-3">
             <Form.Control
               type="string"
