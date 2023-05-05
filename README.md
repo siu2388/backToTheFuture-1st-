@@ -99,6 +99,7 @@
 - 기존 MVP 이외에 커리어, 사용 기술 관리 섹션 추가 
 - 웹 화면 구성과 디자인을 변경하여 사용자 친화적으로 기능 개선 
 - 유저가 원하는 배경색, 메뉴색, 박스색 커스터마이징 가능, 변경 즉시 홈페이지 색 변경
+- 메뉴탭 색상 변경 시 자동 색대비 기능 적용
 
 
 ## 💎 추후에 추가하고 싶은 기능
@@ -110,14 +111,15 @@
 
 
 ## 💎 팀원 
- 시유   github 👉 https://github.com/siu2388
- 영현   github 👉 https://github.com/yyoungl
- 지윤 
- 채영 
- 희원 
+ * 시유   github 👉 https://github.com/siu2388
+ * 영현   github 👉 https://github.com/yyoungl
+ * 지윤 
+ * 채영 
+ * 희원 
  
 ## 💎 라이선스 및 참고자료 
  - https://sujin-dev.tistory.com/377 
+
  : 싸이월드 페이지 만들기의 HTML -> 리액트 용으로 변형 및 CSS 파일을 사용했습니다. 감사합니다.🤞 
  
  - 엘리스에서 기본으로 제공되는 MVP를 사용했습니다. 
