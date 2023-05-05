@@ -6,24 +6,20 @@ import * as Api from "../../api";
 import { DispatchContext, UserStateContext } from "../../App";
 
 function UserEditForm({ user, setIsEditing, setUser }) {
-  //useState로 name 상태를 생성함.
   const [name, setName] = useState(user.name);
-  //useState로 email 상태를 생성함.
-  const [email, setEmail] = useState(user.email);
-  //useState로 description 상태를 생성함.
   const [blog, setBlog] = useState(user.blog);
   const [github, setGithub] = useState(user.github);
   const [description, setDescription] = useState(user.description);
-
-  const [show, setShow] = useState(true);
-
-  const handleClose = () => setShow(false);
-
   const [bgColor, setBgColor] = useState(user.bgColor);
   const [boxColor, setBoxColor] = useState(user.boxColor);
   const [menuColor, setMenuColor] = useState(user.menuColor);
   const [homeName, setHomeName] = useState(user.homeName);
   const [image, setImage] = useState(user.image);
+
+  const [show, setShow] = useState(true);
+
+  const handleClose = () => setShow(false);
+
   const dispatch = useContext(DispatchContext);
   const userState = useContext(UserStateContext);
 
@@ -31,16 +27,13 @@ function UserEditForm({ user, setIsEditing, setUser }) {
     Api.get("userId", user.id).then((res) => {
       document.body.style.backgroundColor = res.data.bgColor;
     });
-
   }, [userState]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     const data = {
       name,
-      email,
       github,
       blog,
       description,
@@ -50,8 +43,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
       homeName,
       image,
     };
-
-  
 
     const isValidGithub =
       (github.startsWith("https://") || github.startsWith("http://")) && github;
@@ -87,7 +78,11 @@ function UserEditForm({ user, setIsEditing, setUser }) {
   };
 
   return (
-    <Modal show={show} animation={false}>
+    <Modal
+      show={show}
+      animation={false}
+      style={{ fontFamily: "NeoDunggeunmo" }}
+    >
       <Modal.Header>
         <Modal.Title>유저 정보 수정</Modal.Title>
       </Modal.Header>
@@ -109,10 +104,6 @@ function UserEditForm({ user, setIsEditing, setUser }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </Form.Group>
-
-          <Form.Group controlId="userEditEmail" className="mb-3">
-            <Form.Label>이메일: {email}</Form.Label>
           </Form.Group>
 
           <Form.Group controlId="userEditGithub" className="mb-3">
