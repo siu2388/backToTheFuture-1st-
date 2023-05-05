@@ -23,9 +23,8 @@ function Header() {
   return (
     <Nav activeKey={location.pathname} style={{ height: 100 }}>
       <Nav.Item className="me-auto">
-        <button
+        <button 
           onClick={() => navigate("/")}
-          style={{ fontSize: "20px" }}
           className="orange-button"
         >
           MINI PORTFOLIOPAGE
@@ -35,7 +34,7 @@ function Header() {
       <Nav.Item>
         <button
           onClick={() => navigate("/")}
-          style={{ fontSize: "20px" }}
+
           className="orange-button"
         >
           나의 페이지
@@ -47,7 +46,6 @@ function Header() {
           <Nav.Item>
             <button
               onClick={logout}
-              style={{ fontSize: "20px" }}
               className="orange-button"
             >
               로그아웃
