@@ -1,10 +1,10 @@
 body {
   background-size: 100px;
-  position: fixed;
+  /* position: fixed;
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; */
   font-size: 16px;
 
   /** 기본 폰트 설정 */
@@ -22,16 +22,21 @@ body {
   box-shadow: 7px 7px 2px 2px var(--form-primary-highlight),
     7px 7px 2px 2px rgba(0, 0, 0, 1);
   --form-primary-highlight: #363636;
+  padding :0.5rem !important;
 }
 
 .bookdot {
   border-radius: 9px;
   border: 2px dashed #ffffff;
-  position: absolute;
+  /* position: absolute;
   top: 0.5rem;
   left: 0.5rem;
   right: 0.5rem;
-  bottom: 0.5rem;
+  bottom: 0.5rem; */
+  padding: 0.8rem;
+  width:100%;
+  height:100%;
+  position: relative;
 }
 
 .component-card-body {
@@ -47,14 +52,17 @@ body {
 .page {
   background-color: #eeeeee;
   border-radius: 9px;
-  position: absolute;
+  /* position: absolute;
   top: 0.5rem;
   left: 0.5rem;
   right: 0.5rem;
-  bottom: 0.5rem;
+  bottom: 0.5rem; */
   padding: 15px;
   display: flex;
   padding: 15px;
+  width: 100%;
+  height: 100%;
+  position: relative;
 }
 
 .profile-container {
@@ -69,10 +77,12 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 @media screen and (max-width: 1180px) {
   .page {
     flex-direction: column;
     position: relative;
+    height: auto;
   }
   .bookcover {
     height: 80vh;
@@ -80,6 +90,7 @@ body {
   }
   .bookdot {
     position: relative;
+    height: auto;
   }
   body {
     overflow-y: auto;
@@ -90,8 +101,29 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .component-card-col-left,
+  .component-card-col-right {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .component-card-col-right {
+    text-align: center;
+    margin-top: 1rem;
+  }
+    .btn-edit,
+    .btn-delete {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+
 .component-card-col-left {
   margin-left: 10px;
+  flex-grow: 1;
+  width: 100%; 
+  flex: none;
+  margin-bottom: 5px;
 }
 
 .author-name {
@@ -105,10 +137,11 @@ body {
 }
 .component-card-col-right {
   display: flex;
-  align-items: center;
+
   justify-content: flex-end;
   margin-right: 15px;
-  width: 10%;
+
+  flex-shrink: 0
 }
 
 .component-card {
