@@ -16,6 +16,7 @@ const AwardSchema = new Schema(
     },
     grade: {
       type: String,
+      required: false,
     },
     date: {
       type: Date,

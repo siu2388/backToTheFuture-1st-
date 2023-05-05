@@ -9,7 +9,6 @@ class AwardService {
 
     if (
       !newAward.title ||
-      !newAward.grade ||
       !newAward.date ||
       !newAward.description
     ) {
