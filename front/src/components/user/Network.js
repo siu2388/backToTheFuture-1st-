@@ -22,7 +22,7 @@ function Network() {
   }, [userState, navigate]);
 
   return (
-    <div >
+    <div>
       <Container>
         <Row xs={1} md={2} lg={3}>
           {users.map((user) => (
@@ -32,7 +32,6 @@ function Network() {
           ))}
         </Row>
       </Container>
-    
     </div>
   );
 }

@@ -32,7 +32,7 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         </a>
         <a href={user?.blog} rel="noreferrer" target="_blank">
           <img
-            style={{ width: "1.7rem"}}
+            style={{ width: "1.7rem" }}
             src="/images/tistory.png"
             alt="Blog"
           />
@@ -57,11 +57,10 @@ function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
         <br />
 
         {isNetwork && (
-
           <Card.Link
             href="#"
             onClick={() => navigate(`/userId/${user.id}`)}
-            style = {{display: "block", marginTop: "0.4rem"}}
+            style={{ display: "block", marginTop: "0.4rem" }}
           >
             포트폴리오
           </Card.Link>

@@ -64,10 +64,10 @@ function LoginForm() {
         <img
           src="/images/logo2.png"
           alt="백투더퓨처 로고"
-          className = "logo"
-          style = {{
+          className="logo"
+          style={{
             width: "60%",
-            maxWidth: "50vh"
+            maxWidth: "50vh",
           }}
         ></img>
       </div>

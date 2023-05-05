@@ -36,7 +36,7 @@ function EducationCard({ education, isEditable, setIsEditing, setEducations }) {
             <br />
           </div>
           {isEditable && (
-            <div className="component-card-col-right" >
+            <div className="component-card-col-right">
               <button
                 onClick={() => setIsEditing((prev) => !prev)}
                 className="btn-edit"

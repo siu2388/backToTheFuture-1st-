@@ -8,7 +8,7 @@ class AwardService {
 
     const newAward = { id, userId, title, grade, date, description };
 
-    if (!newAward.title || !newAward.date ) {
+    if (!newAward.title || !newAward.date) {
       const errorMessage =
         "Award 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };

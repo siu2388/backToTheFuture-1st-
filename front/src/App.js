@@ -11,7 +11,6 @@ import Network from "./components/user/Network";
 import RegisterForm from "./components/user/RegisterForm";
 import Portfolio from "./components/Portfolio";
 import GuestBookPage from "./components/GuestBookPage";
-import { Container } from "react-bootstrap";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);

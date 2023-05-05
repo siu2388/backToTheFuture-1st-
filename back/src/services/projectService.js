@@ -3,12 +3,32 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 class ProjectService {
-  static async addProject({ userId, title, startDate, endDate, archive, description }) {
+  static async addProject({
+    userId,
+    title,
+    startDate,
+    endDate,
+    archive,
+    description,
+  }) {
     const id = uuidv4();
 
-    const newProject = { id, userId, title, startDate, endDate, archive, description };
+    const newProject = {
+      id,
+      userId,
+      title,
+      startDate,
+      endDate,
+      archive,
+      description,
+    };
 
-    if (!newProject.title || !newProject.startDate || !newProject.endDate || !newProject.description) {
+    if (
+      !newProject.title ||
+      !newProject.startDate ||
+      !newProject.endDate ||
+      !newProject.description
+    ) {
       const errorMessage =
         "Project 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -21,7 +41,10 @@ class ProjectService {
       return { errorMessage };
     }
 
-    if (newProject.endDate && !moment(newProject.startDate).isBefore(moment(newProject.endDate))) {
+    if (
+      newProject.endDate &&
+      !moment(newProject.startDate).isBefore(moment(newProject.endDate))
+    ) {
       const errorMessage =
         "Project 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };

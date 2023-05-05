@@ -3,12 +3,34 @@ import { v4 as uuidv4 } from "uuid";
 import moment from "moment";
 
 class EducationService {
-  static async addEducation({ userId, schoolName, schoolType, major, status, startDate, endDate }) {
+  static async addEducation({
+    userId,
+    schoolName,
+    schoolType,
+    major,
+    status,
+    startDate,
+    endDate,
+  }) {
     const id = uuidv4();
 
-    const newEducation = { id, userId, schoolName, schoolType, major, status, startDate, endDate };
+    const newEducation = {
+      id,
+      userId,
+      schoolName,
+      schoolType,
+      major,
+      status,
+      startDate,
+      endDate,
+    };
 
-    if (!newEducation.schoolName || !newEducation.status || !newEducation.startDate || !newEducation.endDate) {
+    if (
+      !newEducation.schoolName ||
+      !newEducation.status ||
+      !newEducation.startDate ||
+      !newEducation.endDate
+    ) {
       const errorMessage =
         "Education 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -21,7 +43,10 @@ class EducationService {
       return { errorMessage };
     }
 
-    if (newEducation.endDate && !moment(newEducation.startDate).isBefore(moment(newEducation.endDate))) {
+    if (
+      newEducation.endDate &&
+      !moment(newEducation.startDate).isBefore(moment(newEducation.endDate))
+    ) {
       const errorMessage =
         "Education 추가: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };
@@ -62,7 +87,10 @@ class EducationService {
       return { errorMessage };
     }
 
-    if (toUpdate.endDate && !moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate))) {
+    if (
+      toUpdate.endDate &&
+      !moment(toUpdate.startDate).isBefore(moment(toUpdate.endDate))
+    ) {
       const errorMessage =
         "Education 수정: startDate가 endDate보다 나중일 수 없습니다. 다시 한 번 확인해 주세요.";
       return { errorMessage };

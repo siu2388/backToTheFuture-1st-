@@ -76,7 +76,8 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
               }}
             >
               <p
-                className="author-name" style={{cursor : "pointer"}}
+                className="author-name"
+                style={{ cursor: "pointer" }}
                 onClick={() => navigate(`/userId/${guestBook?.authorId}`)}
               >
                 {guestBook?.authorName}
@@ -87,7 +88,6 @@ function GuestBookCard({ guestBook, isEditable, setIsEditing, setGuestBooks }) {
                 </text>
               </div>
             </div>
-
 
             <div>
               <text>{guestBook?.content}</text>
