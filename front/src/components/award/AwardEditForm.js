@@ -31,7 +31,6 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
       return;
     }
 
-
     const userId = currentAward.userId;
 
     await Api.put(`awardId/${currentAward.id}`, {
@@ -80,7 +79,7 @@ function AwardEditForm({ currentAward, setAwards, setIsEditing }) {
         onChange={(e) => setGrade(e.target.value)}
       />
 
-      <label htmlFor="floatingInputCustom">수상년월</label>
+      <label htmlFor="floatingInputCustom">수상날짜</label>
       <DatePicker
         dateFormat="yyyy-MM-dd"
         showIcon
