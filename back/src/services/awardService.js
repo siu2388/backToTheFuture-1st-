@@ -11,8 +11,7 @@ class AwardService {
     if (
       !newAward.title ||
       !newAward.grade ||
-      !newAward.date ||
-      !newAward.description
+      !newAward.date 
     ) {
       const errorMessage =
         "Award 추가: 값이 공란입니다. 다시 한 번 확인해 주세요.";

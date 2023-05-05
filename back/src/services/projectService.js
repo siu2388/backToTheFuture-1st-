@@ -27,7 +27,6 @@ class ProjectService {
       !newProject.title ||
       !newProject.startDate ||
       !newProject.endDate ||
-      !newProject.archive ||
       !newProject.description
     ) {
       const errorMessage =
