@@ -1,20 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import { Card, Row, Button, Col } from "react-bootstrap";
 import { serverUrl } from "../../api";
+import "./userCard.css";
 
 function UserCard({ user, setIsEditing, isEditable, isNetwork }) {
   const navigate = useNavigate();
   return (
     <Card className="userCard">
       <Card.Body style={{ width: "18rem", height: "25rem" }}>
+
         <Row xs="auto" className="justify-content-md-center">
-          <Card.Img
-            style={{ width: "12rem", align: "center" }}
-            className="mb-3"
-            src={`${serverUrl}${user?.image?.path || "uploads/profile.jpg"}`} // fallback 이미지
-            alt="프로필 이미지"
-          />
+          <div className="card-img-container">
+            <Card.Img
+              className="card-img"
+              src={`${serverUrl}${user?.image?.path || "uploads/profile.jpg"}`}
+              alt="프로필 이미지"
+            />
+          </div>
         </Row>
+
         <Card.Title style={{ fontFamily: "NeoDunggeunmo" }}>
           {user?.name}
         </Card.Title>
